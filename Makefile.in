@@ -1,0 +1,166 @@
+# @configure_input@
+
+# Package
+package      := @PACKAGE_NAME@
+version      := @PACKAGE_VERSION@
+major        := @PACKAGE_MAJOR_VERSION@
+minor        := @PACKAGE_MINOR_VERSION@
+tarname      := @PACKAGE_TARNAME@
+
+# Directories
+prefix       := @prefix@
+exec_prefix  := @exec_prefix@
+bindir       := @bindir@
+libdir       := @libdir@
+includedir   := @includedir@
+myincludedir := $(includedir)/$(tarname)
+srcdir       := src
+testdir      := test
+builddir     := build
+srcmods      := $(srcdir)/ \
+                    ${filter %/,${wildcard $(srcdir)/*/}} \
+                    ${filter %/,${wildcard $(srcdir)/*/*/}}
+testmods     := $(testdir)/ \
+                    ${filter %/,${wildcard $(testdir)/*/}} \
+                    ${filter %/,${wildcard $(testdir)/*/*/}}
+VPATH        := $(srcdir) $(testdir) $(builddir) $(srcmods) $(testmods)
+pkgcfgdir    := $(libdir)/pkgconfig
+
+# Tools
+CXX          := @CXX@
+INCLUDES     := -I./ -I$(srcdir)/ -I$(testdir)/
+DEFS         := @DEFS@
+CPPFLAGS     := @CPPFLAGS@
+DEPS_CFLAGS  := @DEPS_CFLAGS@
+CXXFLAGS     := @CXXFLAGS@ $(DEFS) $(INCLUDES) $(DEPS_CFLAGS)
+DEPS_LIBS    := @DEPS_LIBS@
+LIBS         := @LIBS@ $(DEPS_LIBS)
+LDFLAGS      := @LDFLAGS@
+INSTALL      := @INSTALL@
+
+# Files
+sources      := ${foreach m,$(srcmods),${wildcard $(m)*.cpp}}
+headers      := ${subst .cpp,.hpp,$(sources)}
+objects      := ${notdir ${subst .cpp,.lo,$(sources)}}
+fixtures     := ${foreach m,$(testmods),${wildcard $(m)*.cxx}}
+tests        := ${notdir ${subst .cxx,,$(fixtures)}}
+depends      := ${subst .lo,.d,$(objects)} ${addsuffix .d,$(tests)}
+library      := lib$(tarname).la
+pkgcfgfile   := $(tarname).pc
+
+# Interface
+.PHONY: all clean distclean maintainer-clean
+.DEFAULT: all
+all: objects tests library
+clean:
+	$(RM) -r $(builddir)
+distclean: clean
+	$(RM) config.h
+	$(RM) config.log
+	$(RM) config.status
+	$(RM) Makefile
+	$(RM) $(pkgcfgfile)
+maintainer-clean: distclean
+	$(RM) aclocal.m4
+	$(RM) -r autom4te.cache
+	$(RM) autoscan.log
+	$(RM) configure.scan
+	$(RM) config.guess
+	$(RM) config.h.in
+	$(RM) config.h.in~
+	$(RM) config.sub
+	$(RM) configure
+	$(RM) install-sh
+	$(RM) libtool
+	$(RM) ltmain.sh
+
+# Objects
+.PHONY: objects
+objects: $(objects)
+%.lo: %.cpp %.hpp
+	@echo "  CXX   $@"
+	@libtool --mode=compile --quiet \
+            $(CXX) $(CPPFLAGS) $(CXXFLAGS) \
+            -c $< -o $(builddir)/$@
+
+# Tests
+.PHONY: tests
+tests: $(tests)
+%: %.cxx
+	@echo "  CXX   $@"
+	@libtool --mode=link --quiet \
+        $(CXX) \
+        $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) \
+        $< -o $(builddir)/$@ \
+        ${addprefix $(builddir)/,${notdir ${filter %.lo,$^}}} \
+        $(LIBS)
+
+# Library
+.PHONY: library
+library: $(library)
+$(library): $(objects)
+	@echo "  LD    $@"
+	@libtool --mode=link --quiet \
+			$(CXX) \
+			$(LDFLAGS) \
+            -o $(builddir)/$(library) \
+            ${addprefix $(builddir)/,$(objects)} \
+			-rpath $(libdir) \
+			-version-info $(minor):$(minor)
+
+# Installation
+.PHONY: install uninstall
+install:
+	@echo "  INSTALL $(library)"
+	@$(INSTALL) -d $(libdir)
+	@libtool --mode=install --quiet \
+			$(INSTALL) $(builddir)/$(library) $(libdir)
+	@libtool --mode=finish -n --quiet $(libdir)
+	@$(INSTALL) -d $(myincludedir)
+	@for i in $(srcmods); do \
+            mod=`echo $$i | sed 's|$(srcdir)/||'`; \
+            if test -n "$$mod"; then \
+                $(INSTALL) -d $(myincludedir)/$$mod; \
+                for j in $$i*.h $$i*.hpp; do \
+                    if test -e $$j; then \
+                        echo "  INSTALL $$j"; \
+                        $(INSTALL) -m 0644 $$j $(myincludedir)/$$mod; \
+                    fi \
+                done \
+            fi \
+        done
+	@echo "  INSTALL $(pkgcfgfile)"
+	@$(INSTALL) -d $(pkgcfgdir)
+	@$(INSTALL) -m 0644 $(pkgcfgfile) $(pkgcfgdir)
+uninstall:
+	@echo "  UNINSTALL $(library)"
+	@libtool --mode=uninstall $(RM) $(library)
+	@echo "  UNINSTALL *.hpp *.h"
+	@$(RM) -r $(includedir)/$(tarname)
+	@echo "  UNINSTALL $(pkgcfgfile)"
+	@$(RM) $(pkgcfgdir)/$(pkgcfgfile)
+
+# Dependencies
+.PHONY: depends
+depends: $(depends)
+$(builddir)/%.d: %.hpp
+	@echo "  GEN   $@"
+	@$(INSTALL) -d $(builddir)
+	@$(CXX) \
+            $(CPPFLAGS) $(CXXFLAGS) \
+            -MM ${subst .hpp,.cpp,$<} \
+            | sed 's|\([[:alnum:]]*\)\.o|\1.o build/\1.d|' \
+            > $@
+$(builddir)/%.d: %.cxx
+	@echo "  GEN   $@"
+	@$(INSTALL) -d $(builddir)
+	@$(CXX) \
+            $(CPPFLAGS) $(CXXFLAGS) \
+            -MM $< \
+            | sed 's|\([[:alnum:]]*\)\.o|\1 build/\1.d|' \
+            | sed 's|\.hpp|\.lo|g' \
+            | sed 's|[[:alnum:]/]*/||g' \
+            > $@
+ifneq (clean,${findstring clean,$(MAKECMDGOALS)})
+  -include ${addprefix $(builddir)/,$(depends)}
+endif
