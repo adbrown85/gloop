@@ -4,7 +4,7 @@ libdir=@libdir@
 includedir=@includedir@/glycerin
 
 Name: libglycerin
-Description: Fuel for your OpenGL application
+Description: Fuel OpenGL applications
 Version: @PACKAGE_VERSION@
 Libs: -L${libdir} -lglycerin
 Cflags: -I${includedir}
