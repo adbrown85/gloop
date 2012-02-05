@@ -2,13 +2,14 @@
 AC_PREREQ([2.67])
 
 # Initialize package information
-define([MY_NAME], [glycerin])
+define([MY_NAME], [Glycerin])
 define([MY_MAJOR_VERSION], [0])
 define([MY_MINOR_VERSION], [1])
 define([MY_VERSION], MY_MAJOR_VERSION.MY_MINOR_VERSION)
 define([MY_EMAIL], [adb1413@rit.edu])
+define([MY_TARNAME], [glycerin])
 define([MY_URL], [http://github.com/adbrown85/glycerin])
-AC_INIT(MY_NAME, MY_VERSION, MY_EMAIL, , MY_URL)
+AC_INIT(MY_NAME, MY_VERSION, MY_EMAIL, MY_TARNAME, MY_URL)
 AC_SUBST([PACKAGE_MAJOR_VERSION], MY_MAJOR_VERSION)
 AC_SUBST([PACKAGE_MINOR_VERSION], MY_MINOR_VERSION)
 AC_CONFIG_SRCDIR([src/glycerin/common.h])
@@ -65,7 +66,7 @@ fi
 error_no_glfw() {
     AC_MSG_RESULT([no])
     echo "------------------------------------------------------------"
-    echo " GLFW is needed to build Glycerin."
+    echo " GLFW is needed to build MY_NAME."
     echo " Please visit 'http://glfw.org/'."
     echo "------------------------------------------------------------"
     (exit 1); exit 1;
@@ -78,7 +79,7 @@ AC_CHECK_LIB([glfw], glfwInit, , [error_no_glfw])
 error_no_cppunit() {
     AC_MSG_RESULT([no])
     echo "------------------------------------------------------------"
-    echo " CppUnit is needed to build Glycerin."
+    echo " CppUnit is needed to build MY_NAME."
     echo " Please visit 'http://cppunit.sourceforge.net/'."
     echo "------------------------------------------------------------"
     (exit 1); exit 1;
@@ -87,7 +88,7 @@ AC_MSG_CHECKING([for CppUnit])
 PKG_CHECK_EXISTS([cppunit], [AC_MSG_RESULT([yes])], [error_no_cppunit])
 
 # Finish
-AC_CONFIG_FILES([glycerin.pc Makefile])
+AC_CONFIG_FILES(MY_TARNAME.pc [Makefile])
 PKG_CHECK_MODULES([DEPS], cppunit)
 AC_OUTPUT
 
