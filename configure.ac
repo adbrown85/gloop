@@ -65,14 +65,15 @@ fi
 
 # Check for GLFW
 error_no_glfw() {
+    AC_MSG_RESULT([no])
     echo "------------------------------------------------------------"
     echo " GLFW is needed to build MY_NAME."
     echo " Please visit 'http://glfw.org/'."
     echo "------------------------------------------------------------"
     (exit 1); exit 1;
 }
-AC_CHECK_HEADER([GL/glfw.h], , [error_no_glfw])
-AC_CHECK_LIB([glfw], glfwInit, , [error_no_glfw])
+AC_MSG_CHECKING([for GLFW])
+PKG_CHECK_EXISTS([libglfw], [AC_MSG_RESULT([yes])], [error_no_glfw])
 
 # Check for CppUnit
 error_no_cppunit() {
@@ -88,7 +89,7 @@ PKG_CHECK_EXISTS([cppunit], [AC_MSG_RESULT([yes])], [error_no_cppunit])
 
 # Finish
 AC_CONFIG_FILES(MY_TARNAME.pc [Makefile])
-PKG_CHECK_MODULES([DEPS], cppunit)
+PKG_CHECK_MODULES([DEPS], libglfw cppunit)
 AC_OUTPUT
 
 # Report
