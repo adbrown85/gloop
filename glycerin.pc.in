@@ -1,3 +1,4 @@
+name=@PACKAGE_NAME@
 tarname=@PACKAGE_TARNAME@
 version=@PACKAGE_VERSION@
 description=@PACKAGE_DESCRIPTION@
@@ -7,7 +8,7 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@/${tarname}
 
-Name: lib${tarname}
+Name: ${name}
 Description: ${description}
 Version: ${version}
 Libs: -L${libdir} -l${tarname}
