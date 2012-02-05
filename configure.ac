@@ -36,33 +36,6 @@ AC_PROG_INSTALL
 AC_PROG_SED
 PKG_PROG_PKG_CONFIG
 
-# Check for OpenGL
-error_no_gl() {
-    echo "--------------------"
-    echo " No OpenGL!"
-    echo "--------------------"
-    (exit 1); exit 1;
-}
-if test "$host_vendor" != 'apple'; then
-    AC_SEARCH_LIBS([glGetString], [GL], , [error_no_gl])
-    AC_CHECK_HEADER([GL/gl.h], , [error_no_gl])
-fi
-
-# Check for backend
-if test "$host_vendor" = 'apple'; then
-    AC_LANG_PUSH([Objective C++])
-    AC_CHECK_HEADER(
-        [Cocoa/Cocoa.h],
-        [AC_DEFINE([HAVE_COCOA], [1], [Define to 1 if have Cocoa.])])
-    LDFLAGS="-framework Cocoa -framework OpenGL"
-    AC_LANG_POP()
-else
-    AC_CHECK_HEADER(
-        [GL/glx.h],
-        [AC_DEFINE([HAVE_GLX], [1], [Define to 1 if have GLX.])])
-    LIBS="${LIBS} -lX11"
-fi
-
 # Check for GLFW
 error_no_glfw() {
     AC_MSG_RESULT([no])
@@ -103,7 +76,6 @@ echo \
  CPPFLAGS    ${CPPFLAGS}
  CXXFLAGS    ${CXXFLAGS}
  LDFLAGS     ${LDFLAGS}
- LIBS        ${LIBS}
  DEFS        ${DEFS}
  
  Now type 'make' then 'sudo make install'
