@@ -9,11 +9,13 @@ define([MY_VERSION], MY_MAJOR_VERSION.MY_MINOR_VERSION)
 define([MY_EMAIL], [adb1413@rit.edu])
 define([MY_TARNAME], [glycerin])
 define([MY_URL], [http://github.com/adbrown85/glycerin])
+define([MY_DESCRIPTION], ['Fuel for OpenGL applications'])
 AC_INIT(MY_NAME, MY_VERSION, MY_EMAIL, MY_TARNAME, MY_URL)
 AC_CONFIG_SRCDIR([src/glycerin/common.h])
 AC_CONFIG_HEADERS([config.h])
 AC_SUBST([PACKAGE_MAJOR_VERSION], MY_MAJOR_VERSION)
 AC_SUBST([PACKAGE_MINOR_VERSION], MY_MINOR_VERSION)
+AC_SUBST([PACKAGE_DESCRIPTION], MY_DESCRIPTION)
 
 # Check for system
 AC_CANONICAL_HOST
@@ -96,6 +98,7 @@ AC_OUTPUT
 echo \
 "--------------------------------------------------------------
  ${PACKAGE_NAME} ${PACKAGE_VERSION}
+ ${PACKAGE_DESCRIPTION}
 
  prefix      ${prefix}
  CXX         ${CXX}
