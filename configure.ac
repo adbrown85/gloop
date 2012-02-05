@@ -38,7 +38,6 @@ PKG_PROG_PKG_CONFIG
 
 # Check for OpenGL
 error_no_gl() {
-    echo "no"
     echo "--------------------"
     echo " No OpenGL!"
     echo "--------------------"
@@ -66,14 +65,12 @@ fi
 
 # Check for GLFW
 error_no_glfw() {
-    AC_MSG_RESULT([no])
     echo "------------------------------------------------------------"
     echo " GLFW is needed to build MY_NAME."
     echo " Please visit 'http://glfw.org/'."
     echo "------------------------------------------------------------"
     (exit 1); exit 1;
 }
-AC_MSG_CHECKING([for GLFW])
 AC_CHECK_HEADER([GL/glfw.h], , [error_no_glfw])
 AC_CHECK_LIB([glfw], glfwInit, , [error_no_glfw])
 
