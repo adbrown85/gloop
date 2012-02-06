@@ -1,6 +1,6 @@
 /*
  * ErrorChecker.cpp
- * 
+ *
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
@@ -11,13 +11,13 @@ using namespace Glycerin;
 
 /**
  * Checks for an OpenGL error.
- * 
+ *
  * @param location Location in code
  */
 void ErrorChecker::checkErrors(const string &location) {
-    
+
     GLenum error;
-    
+
     error = glGetError();
     while (error != GL_NO_ERROR) {
         report(error, location);
@@ -29,9 +29,9 @@ void ErrorChecker::checkErrors(const string &location) {
  * Clears all the error flags.
  */
 void ErrorChecker::clearErrors() {
-    
+
     GLenum error;
-    
+
     error = glGetError();
     while (error != GL_NO_ERROR) {
         error = glGetError();
