@@ -225,6 +225,13 @@ bool Vec3::operator!=(const Vec3 &v) const {
 }
 
 /**
+ * Returns the additive inverse of the vector.
+ */
+Vec3 Vec3::operator-() const {
+    return Vec3(-x, -y, -z);
+}
+
+/**
  * Adds a value to this vector, making a new vector.
  *
  * @param d Value to add

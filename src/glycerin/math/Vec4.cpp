@@ -229,6 +229,13 @@ bool Vec4::operator!=(const Vec4 &v) const {
 }
 
 /**
+ * Returns the additive inverse of a vector.
+ */
+Vec4 Vec4::operator-() const {
+    return Vec4(-x, -y, -z, -w);
+}
+
+/**
  * Adds a value to this vector, making a new vector.
  *
  * @param d Value to add

@@ -32,6 +32,7 @@ public:
     explicit Vec3(float arr[3]);
     double operator[](int i) const;
     double& operator[](int i);
+    Vec3 operator-() const;
     bool operator==(const Vec3 &v) const;
     bool operator!=(const Vec3 &v) const;
     Vec3 operator+(double d) const;

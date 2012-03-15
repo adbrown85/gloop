@@ -34,6 +34,7 @@ public:
     double& operator[](int i);
     bool operator==(const Vec4 &v) const;
     bool operator!=(const Vec4 &v) const;
+    Vec4 operator-() const;
     Vec4 operator+(double f) const;
     Vec4 operator+(const Vec4 &v) const;
     Vec4& operator+=(double f);
