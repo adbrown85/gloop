@@ -267,6 +267,37 @@ public:
     }
 
     /**
+     * Ensures the constructor taking a 3x3 matrix works correctly.
+     */
+    void testConstructorMat3() {
+
+        // Make a 3x3 matrix
+        Mat3 m3;
+        m3(0,0) = 1; m3(0,1) = 2; m3(0,2) = 3;
+        m3(1,0) = 4; m3(1,1) = 5; m3(1,2) = 6;
+        m3(2,0) = 7; m3(2,1) = 8; m3(2,2) = 9;
+
+        // Make a 4x4 matrix from it
+        const Mat4 m4(m3);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(1, m4(0,0), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(2, m4(0,1), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(3, m4(0,2), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4(0,3), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(4, m4(1,0), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(5, m4(1,1), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(6, m4(1,2), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4(1,3), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(7, m4(2,0), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(8, m4(2,1), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(9, m4(2,2), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4(2,3), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4(3,0), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4(3,1), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4(3,2), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(1, m4(3,3), TOLERANCE);
+    }
+
+    /**
      * Ensures the inverse function works correctly.
      */
     void testInverse() {
@@ -309,6 +340,32 @@ public:
                 CPPUNIT_ASSERT_EQUAL(arr[i*4+j], m2(i,j));
             }
         }
+    }
+
+    /**
+     * Ensures conversion to a 3x3 matrix works correctly.
+     */
+    void testToMat3() {
+
+        // Make the 4x4 matrix
+        Mat4 m4;
+        m4(0,0) = 1; m4(0,1) = 2; m4(0,2) = 3; m4(0,3) = 4;
+        m4(1,0) = 5; m4(1,1) = 6; m4(1,2) = 7; m4(1,3) = 8;
+        m4(2,0) = 9; m4(2,1) = 10; m4(2,2) = 11; m4(2,3) = 12;
+        m4(3,0) = 13; m4(3,1) = 14; m4(3,2) = 15; m4(3,3) = 16;
+
+        // Make the 3x3 matrix
+        const Mat3 m3 = m4.toMat3();
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 1, m3(0,0), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 2, m3(0,1), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 3, m3(0,2), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 5, m3(1,0), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 6, m3(1,1), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 7, m3(1,2), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 9, m3(2,0), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(10, m3(2,1), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(11, m3(2,2), TOLERANCE);
+
     }
 
     /**
@@ -364,8 +421,10 @@ public:
     CPPUNIT_TEST_SUITE(Mat4Test);
     CPPUNIT_TEST(testCreateSignChart);
     CPPUNIT_TEST(testCreateMinorChart);
+    CPPUNIT_TEST(testConstructorMat3);
     CPPUNIT_TEST(testInverse);
     CPPUNIT_TEST(testSetArray);
+    CPPUNIT_TEST(testToMat3);
     CPPUNIT_TEST(testTranspose);
     CPPUNIT_TEST(testMultiplyVector);
     CPPUNIT_TEST(testMultiplyMatrix);

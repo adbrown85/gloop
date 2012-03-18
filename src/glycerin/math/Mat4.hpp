@@ -7,6 +7,7 @@
 #ifndef GLYCERIN_MAT4_HPP
 #define GLYCERIN_MAT4_HPP
 #include "glycerin/common.h"
+#include "glycerin/math/Mat3.hpp"
 #include "glycerin/math/Vec4.hpp"
 #include "glycerin/system/Exception.hpp"
 namespace Glycerin {
@@ -29,12 +30,14 @@ public:
     explicit Mat4(const float arr[4][4]);
     explicit Mat4(const double arr[16]);
     explicit Mat4(const float arr[16]);
+    explicit Mat4(const Mat3& mat);
     Vec4 getColumn(const int j) const;
     Vec4 getRow(const int i) const;
     void toArray(double arr[4][4]) const;
     void toArray(float arr[4][4]) const;
     void toArray(double arr[16]) const;
     void toArray(float arr[16]) const;
+    Mat3 toMat3() const;
     std::string toString() const;
 // Operators
     double operator()(const int i, const int j) const;

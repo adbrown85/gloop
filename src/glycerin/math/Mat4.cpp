@@ -121,6 +121,30 @@ Mat4::Mat4(const float arr[16]) {
 }
 
 /**
+ * Constructs a matrix from a 3x3 matrix, filling in a one on the diagonal, and zeros elsewhere.
+ *
+ * @param mat 3x3 matrix to copy
+ */
+Mat4::Mat4(const Mat3& mat) {
+
+    // Copy 3x3 matrix to upper 3x3
+    for (int i = 0; i < Mat3::ORDER; ++i) {
+        for (int j = 0; j < Mat3::ORDER; ++j) {
+            elements[i][j] = mat.elements[i][j];
+        }
+    }
+
+    // Fill in a one on the diagonal
+    elements[ORDER_MINUS_ONE][ORDER_MINUS_ONE] = 1;
+
+    // Fill in zeros elsewhere
+    for (int i = 0; i < ORDER_MINUS_ONE; ++i) {
+        elements[i][ORDER_MINUS_ONE] = 0;
+        elements[ORDER_MINUS_ONE][i] = 0;
+    }
+}
+
+/**
  * Returns a column in the matrix.
  *
  * @param j Index of column to return
@@ -212,6 +236,21 @@ void Mat4::toArray(float arr[16]) const {
             ++ptr;
         }
     }
+}
+
+/**
+ * Creates a 3x3 matrix from the upper-left part of this matrix.
+ *
+ * @return 3x3 matrix containing same components as upper-left
+ */
+Mat3 Mat4::toMat3() const {
+    Mat3 m;
+    for (int i = 0; i < Mat3::ORDER; ++i) {
+        for (int j = 0; j < Mat3::ORDER; ++j) {
+            m.elements[i][j] = elements[i][j];
+        }
+    }
+    return m;
 }
 
 /**
