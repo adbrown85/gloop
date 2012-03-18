@@ -46,6 +46,7 @@ public:
     friend Mat3 inverse(const Mat3& mat);
     friend Mat3 transpose(const Mat3& mat);
     friend class Mat3Test;
+    friend class Mat4;
 private:
 // Types
     typedef std::pair<int,int> index_t;
