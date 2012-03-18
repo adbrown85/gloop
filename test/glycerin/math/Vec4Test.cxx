@@ -73,11 +73,26 @@ public:
         CPPUNIT_ASSERT(C.w != C.w);
     }
 
+    /**
+     * Ensures the unary plus operator works correctly.
+     */
+    void testOperatorUnaryPlus() {
+
+        Vec4 v1(1, 2, 3, 4);
+        Vec4 v2 = +v1;
+
+        CPPUNIT_ASSERT_EQUAL(1.0, v1.x);
+        CPPUNIT_ASSERT_EQUAL(2.0, v1.y);
+        CPPUNIT_ASSERT_EQUAL(3.0, v1.z);
+        CPPUNIT_ASSERT_EQUAL(4.0, v1.w);
+    }
+
     CPPUNIT_TEST_SUITE(Vec4Test);
     CPPUNIT_TEST(testAdd);
     CPPUNIT_TEST(testSubtract);
     CPPUNIT_TEST(testMultiply);
     CPPUNIT_TEST(testDivide);
+    CPPUNIT_TEST(testOperatorUnaryPlus);
     CPPUNIT_TEST_SUITE_END();
 };
 

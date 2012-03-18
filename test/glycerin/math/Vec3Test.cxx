@@ -199,6 +199,19 @@ public:
     }
 
     /**
+     * Ensures the unary plus operator works correctly.
+     */
+    void testOperatorUnaryPlus() {
+
+        Vec3 v1(1, 2, 3);
+        Vec3 v2 = +v1;
+
+        CPPUNIT_ASSERT_EQUAL(1.0, v2.x);
+        CPPUNIT_ASSERT_EQUAL(2.0, v2.y);
+        CPPUNIT_ASSERT_EQUAL(3.0, v2.z);
+    }
+
+    /**
      * Ensures cross works correctly with the X and Y axes.
      */
     void testCrossWithXY() {
@@ -316,6 +329,7 @@ public:
     CPPUNIT_TEST(testOperatorSubtractVec3Float);
     CPPUNIT_TEST(testOperatorMultiplyVec3Float);
     CPPUNIT_TEST(testOperatorDivideVec3Float);
+    CPPUNIT_TEST(testOperatorUnaryPlus);
     CPPUNIT_TEST(testCrossWithXY);
     CPPUNIT_TEST(testCrossWithYX);
     CPPUNIT_TEST(testDotWithXY);

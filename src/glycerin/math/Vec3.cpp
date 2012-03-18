@@ -225,6 +225,13 @@ bool Vec3::operator!=(const Vec3 &v) const {
 }
 
 /**
+ * Returns a copy of the vector with the same sign.
+ */
+Vec3 Vec3::operator+() const {
+    return Vec3(x, y, z);
+}
+
+/**
  * Returns the additive inverse of the vector.
  */
 Vec3 Vec3::operator-() const {

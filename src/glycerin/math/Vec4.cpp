@@ -229,6 +229,13 @@ bool Vec4::operator!=(const Vec4 &v) const {
 }
 
 /**
+ * Returns a copy of the vector with the same sign.
+ */
+Vec4 Vec4::operator+() const {
+    return Vec4(x, y, z, w);
+}
+
+/**
  * Returns the additive inverse of a vector.
  */
 Vec4 Vec4::operator-() const {
