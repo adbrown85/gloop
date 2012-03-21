@@ -522,11 +522,9 @@ const Mat4::index_t* Mat4::MinorChart::operator()(const int i, const int j) cons
  * Constructs a sign chart.
  */
 Mat4::SignChart::SignChart() {
-    int sign = -1;
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
-            sign *= -1;
-            signs[i][j] = sign;
+            signs[i][j] = ((i + j) % 2) ? -1 : +1;
         }
     }
 }
