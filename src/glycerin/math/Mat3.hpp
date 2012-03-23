@@ -38,8 +38,8 @@ public:
     void toArray(float arr[9]) const;
     std::string toString() const;
 // Operators
-    double operator()(const int i, const int j) const;
-    double& operator()(const int i, const int j);
+    const Vec3& operator[](int j) const;
+    Vec3& operator[](int j);
     Mat3 operator*(const Mat3& mat) const;
     Vec3 operator*(const Vec3& vec) const;
 // Friends
@@ -61,7 +61,7 @@ private:
     static double findDeterminant(double arr[2][2]);
     double findMinor(const int i, const int j) const;
 // Attributes
-    double elements[3][3];
+    Vec3 columns[3];
 };
 
 

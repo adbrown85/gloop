@@ -71,9 +71,9 @@ Quat Quat::fromAxisAngle(const Vec3& axis, const double angle) {
 Quat Quat::fromMat3(const Mat3& m) {
 
     // Fetch diagonal
-    const double m00 = m(0,0);
-    const double m11 = m(1,1);
-    const double m22 = m(2,2);
+    const double m00 = m[0][0];
+    const double m11 = m[1][1];
+    const double m22 = m[2][2];
 
     // Solve for scalar
     const double trace = m00 + m11 + m22;
@@ -264,13 +264,13 @@ Mat3 Quat::toMat3() const {
     // Calculate matrix
     double arr[3][3];
     arr[0][0] = 1.0 - yy2 - zz2;
-    arr[0][1] = xy2 - wz2;
-    arr[0][2] = xz2 + wy2;
-    arr[1][0] = xy2 + wz2;
+    arr[1][0] = xy2 - wz2;
+    arr[2][0] = xz2 + wy2;
+    arr[0][1] = xy2 + wz2;
     arr[1][1] = 1.0 - xx2 - zz2;
-    arr[1][2] = yz2 - wx2;
-    arr[2][0] = xz2 - wy2;
-    arr[2][1] = yz2 + wx2;
+    arr[2][1] = yz2 - wx2;
+    arr[0][2] = xz2 - wy2;
+    arr[1][2] = yz2 + wx2;
     arr[2][2] = 1.0 - xx2 - yy2;
 
     // Return matrix

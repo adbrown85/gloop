@@ -22,15 +22,7 @@ const Mat3::SignChart Mat3::SIGN_CHART;
  * Constructs an empty matrix.
  */
 Mat3::Mat3() {
-    elements[0][0] = 0.0;
-    elements[0][1] = 0.0;
-    elements[0][2] = 0.0;
-    elements[1][0] = 0.0;
-    elements[1][1] = 0.0;
-    elements[1][2] = 0.0;
-    elements[2][0] = 0.0;
-    elements[2][1] = 0.0;
-    elements[2][2] = 0.0;
+    // pass
 }
 
 /**
@@ -39,68 +31,62 @@ Mat3::Mat3() {
  * @param value Value to copy to each element on diagonal
  */
 Mat3::Mat3(const double value) {
-    elements[0][0] = value;
-    elements[0][1] = 0.0;
-    elements[0][2] = 0.0;
-    elements[1][0] = 0.0;
-    elements[1][1] = value;
-    elements[1][2] = 0.0;
-    elements[2][0] = 0.0;
-    elements[2][1] = 0.0;
-    elements[2][2] = value;
+    columns[0][0] = value;
+    columns[1][1] = value;
+    columns[2][2] = value;
 }
 
 /**
- * Constructs a matrix from a two-dimensional double array.
+ * Constructs a matrix from a two-dimensional double array packed in column-major order.
  *
  * @param arr Two-dimensional double array to copy
  */
 Mat3::Mat3(const double arr[3][3]) {
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
-            elements[i][j] = arr[i][j];
+            columns[j][i] = arr[j][i];
         }
     }
 }
 
 /**
- * Constructs a matrix from a two-dimensional float array.
+ * Constructs a matrix from a two-dimensional float array packed in column-major order.
  *
  * @param arr Two-dimensional float array to copy
  */
 Mat3::Mat3(const float arr[3][3]) {
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
-            elements[i][j] = arr[i][j];
+            columns[j][i] = arr[j][i];
         }
     }
 }
 
 /**
- * Constructs a matrix from a double array packed in row-major order.
+ * Constructs a matrix from a double array packed in column-major order.
  *
- * @param arr Double array packed in row-major order to copy
+ * @param arr Double array packed in column-major order to copy
  */
 Mat3::Mat3(const double arr[9]) {
     const double* ptr = arr;
-    for (int i = 0; i < ORDER; ++i) {
-        for (int j = 0; j < ORDER; ++j) {
-            elements[i][j] = (*ptr);
+    for (int j = 0; j < ORDER; ++j) {
+        for (int i = 0; i < ORDER; ++i) {
+            columns[j][i] = (*ptr);
             ++ptr;
         }
     }
 }
 
 /**
- * Constructs a matrix from a float array packed in row-major order.
+ * Constructs a matrix from a float array packed in column-major order.
  *
- * @param arr Float array packed in row-major order to copy
+ * @param arr Float array packed in column-major order to copy
  */
 Mat3::Mat3(const float arr[9]) {
     const float* ptr = arr;
-    for (int i = 0; i < ORDER; ++i) {
-        for (int j = 0; j < ORDER; ++j) {
-            elements[i][j] = (*ptr);
+    for (int j = 0; j < ORDER; ++j) {
+        for (int i = 0; i < ORDER; ++i) {
+            columns[j][i] = (*ptr);
             ++ptr;
         }
     }
@@ -117,10 +103,7 @@ Vec3 Mat3::getColumn(const int j) const {
     if (((unsigned int) j) > ORDER_MINUS_ONE) {
         throw Exception("[Mat3] Column index out of bounds!");
     } else {
-        const double x = elements[0][j];
-        const double y = elements[1][j];
-        const double z = elements[2][j];
-        return Vec3(x, y, z);
+        return columns[j];
     }
 }
 
@@ -135,64 +118,64 @@ Vec3 Mat3::getRow(const int i) const {
     if (((unsigned int) i) > ORDER_MINUS_ONE) {
         throw Exception("[Mat3] Row index out of bounds!");
     } else {
-        const double x = elements[i][0];
-        const double y = elements[i][1];
-        const double z = elements[i][2];
+        const double x = columns[0][i];
+        const double y = columns[1][i];
+        const double z = columns[2][i];
         return Vec3(x, y, z);
     }
 }
 
 /**
- * Copies the matrix into a two-dimensional double array.
+ * Copies the matrix into a two-dimensional double array packed in column-major order.
  *
  * @param arr Two-dimensional double array to copy to
  */
 void Mat3::toArray(double arr[3][3]) const {
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
-            arr[i][j] = elements[i][j];
+            arr[j][i] = columns[j][i];
         }
     }
 }
 
 /**
- * Copies the matrix into a two-dimensional float array.
+ * Copies the matrix into a two-dimensional float array packed in column-major order.
  *
  * @param arr Two-dimensional float array to copy to
  */
 void Mat3::toArray(float arr[3][3]) const {
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
-            arr[i][j] = (float) elements[i][j];
+            arr[j][i] = (float) columns[j][i];
         }
     }
 }
 
 /**
- * Copies the matrix into a double array in row-major order.
+ * Copies the matrix into a double array in column-major order.
  *
- * @param arr Double array to copy to in row-major order
+ * @param arr Double array to copy to in column-major order
  */
 void Mat3::toArray(double arr[9]) const {
     double *ptr = arr;
-    for (int i = 0; i < ORDER; ++i) {
-        for (int j = 0; j < ORDER; ++j) {
-            (*ptr) = elements[i][j];
+    for (int j = 0; j < ORDER; ++j) {
+        for (int i = 0; i < ORDER; ++i) {
+            (*ptr) = columns[j][i];
             ++ptr;
         }
     }
 }
 
 /**
- * Copies the matrix into a float array in row-major order.
+ * Copies the matrix into a float array in column-major order.
  *
- * @param arr Float array to copy to in row-major order
+ * @param arr Float array to copy to in column-major order
  */
 void Mat3::toArray(float arr[9]) const {
     float *ptr = arr;
-    for (int i = 0; i < ORDER; ++i) {
-        for (int j = 0; j < ORDER; ++j) {
-            (*ptr) = (float) elements[i][j];
+    for (int j = 0; j < ORDER; ++j) {
+        for (int i = 0; i < ORDER; ++i) {
+            (*ptr) = (float) columns[j][i];
             ++ptr;
         }
     }
@@ -210,42 +193,6 @@ string Mat3::toString() const {
 // OPERATORS
 
 /**
- * Returns a copy of an element in the matrix.
- *
- * @param i Row of element
- * @param j Column of element
- * @return Copy of element at row and column
- * @throw std::exception if either index is out of bounds
- */
-double Mat3::operator()(const int i, const int j) const {
-    if (((unsigned int) i) > ORDER_MINUS_ONE) {
-        throw Exception("[Mat3] Index i is out of bounds!");
-    } else if (((unsigned int) j) > ORDER_MINUS_ONE) {
-        throw Exception("[Mat3] Index j is out of bounds!");
-    } else {
-        return elements[i][j];
-    }
-}
-
-/**
- * Returns a reference to an element in the matrix.
- *
- * @param i Row of element
- * @param j Column of element
- * @return Reference to element at row and column
- * @throw std::exception if either index is out of bounds
- */
-double& Mat3::operator()(const int i, const int j) {
-    if (((unsigned int) i) > ORDER_MINUS_ONE) {
-        throw Exception("[Mat3] Index i is out of bounds!");
-    } else if (((unsigned int) j) > ORDER_MINUS_ONE) {
-        throw Exception("[Mat3] Index j is out of bounds!");
-    } else {
-        return elements[i][j];
-    }
-}
-
-/**
  * Multiplies this matrix by another matrix.
  *
  * @param mat Matrix to multiply by
@@ -258,9 +205,9 @@ Mat3 Mat3::operator*(const Mat3& mat) const {
     // Multiply rows of this matrix with columns of other matrix
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
-            result[i][j] = 0.0;
+            result[j][i] = 0.0;
             for (int k = 0; k < ORDER; ++k) {
-                result[i][j] += elements[i][k] * mat.elements[k][j];
+                result[j][i] += columns[k][i] * mat.columns[j][k];
             }
         }
     }
@@ -281,10 +228,40 @@ Vec3 Mat3::operator*(const Vec3& vec) const {
     for (int i = 0; i < ORDER; ++i) {
         arr[i] = 0.0;
         for (int k = 0; k < ORDER; ++k) {
-            arr[i] += elements[i][k] * vec[k];
+            arr[i] += columns[k][i] * vec[k];
         }
     }
     return Vec3(arr[0], arr[1], arr[2]);
+}
+
+/**
+ * Retrieves a constant reference to a column in the matrix.
+ *
+ * @param j Index of column, in the range [0 .. 2]
+ * @return Constant reference to the column
+ * @throws std::exception if index out of bounds
+ */
+const Vec3& Mat3::operator[](int j) const {
+    if (((unsigned int) j) > ORDER_MINUS_ONE) {
+        throw Exception("[Mat3] Index out of bounds!");
+    } else {
+        return columns[j];
+    }
+}
+
+/**
+ * Retrieves a reference to a column in the matrix.
+ *
+ * @param j Index of column, in the range [0 .. 2]
+ * @return Reference to the column
+ * @throws std::exception if index out of bounds
+ */
+Vec3& Mat3::operator[](int j) {
+    if (((unsigned int) j) > ORDER_MINUS_ONE) {
+        throw Exception("[Mat3] Index out of bounds!");
+    else {
+        return columns[j];
+    }
 }
 
 // FRIENDS
@@ -303,7 +280,7 @@ Mat3 inverse(const Mat3& mat) {
     double minors[ORDER][ORDER];
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
-            minors[i][j] = mat.findMinor(i, j);
+            minors[j][i] = mat.findMinor(i, j);
         }
     }
 
@@ -311,21 +288,21 @@ Mat3 inverse(const Mat3& mat) {
     double cofactors[ORDER][ORDER];
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
-            cofactors[i][j] = minors[i][j] * Mat3::SIGN_CHART(i, j);
+            cofactors[j][i] = minors[j][i] * Mat3::SIGN_CHART(i, j);
         }
     }
 
     // Find determinant using first row of original matrix and cofactors
     double determinant = 0;
     for (int j = 0; j < ORDER; ++j) {
-        determinant += mat.elements[0][j] * cofactors[0][j];
+        determinant += mat.columns[j][0] * cofactors[j][0];
     }
 
     // Find adjoint by transposing matrix of cofactors
     double adjoint[ORDER][ORDER];
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
-            adjoint[i][j] = cofactors[j][i];
+            adjoint[j][i] = cofactors[i][j];
         }
     }
 
@@ -334,7 +311,7 @@ Mat3 inverse(const Mat3& mat) {
     const double oneOverDeterminant = 1.0 / determinant;
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
-            inverse[i][j] = adjoint[i][j] * oneOverDeterminant;
+            inverse[j][i] = adjoint[j][i] * oneOverDeterminant;
         }
     }
 
@@ -355,7 +332,7 @@ Mat3 transpose(const Mat3& mat) {
 
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
-            transposed[i][j] = mat.elements[j][i];
+            transposed[j][i] = mat.columns[i][j];
         }
     }
     return Mat3(transposed);
@@ -399,7 +376,7 @@ double Mat3::findMinor(const int row, const int col) const {
     const index_t* idx = MINOR_CHART(row, col);
     for (int i = 0; i < ORDER_MINUS_ONE; ++i) {
         for (int j = 0; j < ORDER_MINUS_ONE; ++j) {
-            arr[i][j] = elements[idx->first][idx->second];
+            arr[i][j] = columns[idx->second][idx->first];
             ++idx;
         }
     }

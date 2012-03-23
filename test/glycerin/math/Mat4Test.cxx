@@ -32,11 +32,11 @@ public:
      */
     void setUp() {
 
-        double arr[4][4] = {
-            {4.0, 4.0, 8.0, 7.0},
-            {3.0, 2.0, 4.0, 6.0},
-            {1.0, 6.0, 4.0, 5.0},
-            {1.0, 2.0, 3.0, 4.0} };
+        double arr[4][4];
+        arr[0][0] = 4; arr[1][0] = 4; arr[2][0] = 8; arr[3][0] = 7;
+        arr[0][1] = 3; arr[1][1] = 2; arr[2][1] = 4; arr[3][1] = 6;
+        arr[0][2] = 1; arr[1][2] = 6; arr[2][2] = 4; arr[3][2] = 5;
+        arr[0][3] = 1; arr[1][3] = 2; arr[2][3] = 3; arr[3][3] = 4;
 
         m1 = Mat4(arr);
         m2 = Mat4(1.0);
@@ -273,28 +273,28 @@ public:
 
         // Make a 3x3 matrix
         Mat3 m3;
-        m3(0,0) = 1; m3(0,1) = 2; m3(0,2) = 3;
-        m3(1,0) = 4; m3(1,1) = 5; m3(1,2) = 6;
-        m3(2,0) = 7; m3(2,1) = 8; m3(2,2) = 9;
+        m3[0][0] = 1; m3[1][0] = 2; m3[2][0] = 3;
+        m3[0][1] = 4; m3[1][1] = 5; m3[2][1] = 6;
+        m3[0][2] = 7; m3[1][2] = 8; m3[2][2] = 9;
 
         // Make a 4x4 matrix from it
         const Mat4 m4(m3);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(1, m4(0,0), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(2, m4(0,1), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(3, m4(0,2), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4(0,3), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(4, m4(1,0), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(5, m4(1,1), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(6, m4(1,2), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4(1,3), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(7, m4(2,0), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(8, m4(2,1), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(9, m4(2,2), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4(2,3), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4(3,0), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4(3,1), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4(3,2), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(1, m4(3,3), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(1, m4[0][0], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(2, m4[1][0], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(3, m4[2][0], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4[3][0], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(4, m4[0][1], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(5, m4[1][1], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(6, m4[2][1], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4[3][1], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(7, m4[0][2], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(8, m4[1][2], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(9, m4[2][2], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4[3][2], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4[0][3], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4[1][3], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(0, m4[2][3], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(1, m4[3][3], TOLERANCE);
     }
 
     /**
@@ -306,18 +306,18 @@ public:
         m3 = m1 * m2;
 
         for (int i = 0; i < 4; ++i) {
-            CPPUNIT_ASSERT_DOUBLES_EQUAL(1.0, m3(i,i), TOLERANCE);
+            CPPUNIT_ASSERT_DOUBLES_EQUAL(1.0, m3[i][i], TOLERANCE);
         }
 
         for (int i = 0; i < 3; ++i) {
             for (int j = i + 1; j < 4; ++j) {
-                CPPUNIT_ASSERT_DOUBLES_EQUAL(0.0, m3(i,j), TOLERANCE);
+                CPPUNIT_ASSERT_DOUBLES_EQUAL(0.0, m3[j][i], TOLERANCE);
             }
         }
 
         for (int i = 1; i < 4; ++i) {
             for (int j = 0; j<i; ++j) {
-                CPPUNIT_ASSERT_DOUBLES_EQUAL(0.0, m3(i,j), TOLERANCE);
+                CPPUNIT_ASSERT_DOUBLES_EQUAL(0.0, m3[j][i], TOLERANCE);
             }
         }
 
@@ -337,7 +337,7 @@ public:
 
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
-                CPPUNIT_ASSERT_EQUAL(arr[i*4+j], m2(i,j));
+                CPPUNIT_ASSERT_EQUAL(arr[j * 4 + i], m2[j][i]);
             }
         }
     }
@@ -349,22 +349,22 @@ public:
 
         // Make the 4x4 matrix
         Mat4 m4;
-        m4(0,0) = 1; m4(0,1) = 2; m4(0,2) = 3; m4(0,3) = 4;
-        m4(1,0) = 5; m4(1,1) = 6; m4(1,2) = 7; m4(1,3) = 8;
-        m4(2,0) = 9; m4(2,1) = 10; m4(2,2) = 11; m4(2,3) = 12;
-        m4(3,0) = 13; m4(3,1) = 14; m4(3,2) = 15; m4(3,3) = 16;
+        m4[0][0] = 1; m4[1][0] = 2; m4[2][0] = 3; m4[3][0] = 4;
+        m4[0][1] = 5; m4[1][1] = 6; m4[2][1] = 7; m4[3][1] = 8;
+        m4[0][2] = 9; m4[1][2] = 10; m4[2][2] = 11; m4[3][2] = 12;
+        m4[0][3] = 13; m4[1][3] = 14; m4[2][3] = 15; m4[3][3] = 16;
 
         // Make the 3x3 matrix
         const Mat3 m3 = m4.toMat3();
-        CPPUNIT_ASSERT_DOUBLES_EQUAL( 1, m3(0,0), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL( 2, m3(0,1), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL( 3, m3(0,2), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL( 5, m3(1,0), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL( 6, m3(1,1), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL( 7, m3(1,2), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL( 9, m3(2,0), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(10, m3(2,1), TOLERANCE);
-        CPPUNIT_ASSERT_DOUBLES_EQUAL(11, m3(2,2), TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 1, m3[0][0], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 2, m3[1][0], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 3, m3[2][0], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 5, m3[0][1], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 6, m3[1][1], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 7, m3[2][1], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL( 9, m3[0][2], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(10, m3[1][2], TOLERANCE);
+        CPPUNIT_ASSERT_DOUBLES_EQUAL(11, m3[2][2], TOLERANCE);
 
     }
 
@@ -374,18 +374,18 @@ public:
     void testTranspose() {
 
         // Make the matrix
-        double arr[4][4] = {
-            {4.0, 3.0, 1.0, 1.0},
-            {4.0, 2.0, 6.0, 2.0},
-            {8.0, 4.0, 4.0, 3.0},
-            {7.0, 6.0, 5.0, 4.0}};
+        double arr[4][4];
+        arr[0][0] = 4; arr[1][0] = 3; arr[2][0] = 1; arr[3][0] = 1;
+        arr[0][1] = 4; arr[1][1] = 2; arr[2][1] = 6; arr[3][1] = 2;
+        arr[0][2] = 8; arr[1][2] = 4; arr[2][2] = 4; arr[3][2] = 3;
+        arr[0][3] = 7; arr[1][3] = 6; arr[2][3] = 5; arr[3][3] = 4;
         m2 = Mat4(arr);
 
         // Transpose it and compare
         m3 = transpose(m1);
         for (int i=0; i<4; ++i) {
             for (int j=0; j<4; ++j) {
-                CPPUNIT_ASSERT(m2(i,j) == m3(i,j));
+                CPPUNIT_ASSERT(m2[j][i] == m3[j][i]);
             }
         }
     }
@@ -399,7 +399,7 @@ public:
 
         for (int i = 0; i < Mat4::ORDER; ++i) {
             for (int j = 0; j < Mat4::ORDER; ++j) {
-                CPPUNIT_ASSERT_DOUBLES_EQUAL(m1(i,j), m3(i,j), TOLERANCE);
+                CPPUNIT_ASSERT_DOUBLES_EQUAL(m1[j][i], m3[j][i], TOLERANCE);
             }
         }
     }

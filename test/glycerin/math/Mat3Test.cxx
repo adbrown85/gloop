@@ -32,10 +32,10 @@ public:
      */
     void setUp() {
 
-        double arr[3][3] = {
-            {1.0, 6.0, 5.0},
-            {7.0, 2.0, 8.0},
-            {4.0, 9.0, 3.0} };
+        double arr[3][3];
+        arr[0][0] = 1; arr[1][0] = 6; arr[2][0] = 5;
+        arr[0][1] = 7; arr[1][1] = 2; arr[2][1] = 8;
+        arr[0][2] = 4; arr[1][2] = 9; arr[2][2] = 3;
 
         m1 = Mat3(arr);
         m2 = Mat3(1.0);
@@ -138,18 +138,18 @@ public:
         m3 = m1 * m2;
 
         for (int i = 0; i < Mat3::ORDER; ++i) {
-            CPPUNIT_ASSERT_DOUBLES_EQUAL(1.0, m3(i,i), TOLERANCE);
+            CPPUNIT_ASSERT_DOUBLES_EQUAL(1.0, m3[i][i], TOLERANCE);
         }
 
         for (int i = 0; i < Mat3::ORDER; ++i) {
             for (int j = i + 1; j < Mat3::ORDER; ++j) {
-                CPPUNIT_ASSERT_DOUBLES_EQUAL(0.0, m3(i,j), TOLERANCE);
+                CPPUNIT_ASSERT_DOUBLES_EQUAL(0.0, m3[j][i], TOLERANCE);
             }
         }
 
         for (int i = 1; i < Mat3::ORDER; ++i) {
             for (int j = 0; j < i; ++j) {
-                CPPUNIT_ASSERT_DOUBLES_EQUAL(0.0, m3(i,j), TOLERANCE);
+                CPPUNIT_ASSERT_DOUBLES_EQUAL(0.0, m3[j][i], TOLERANCE);
             }
         }
     }
@@ -167,7 +167,7 @@ public:
 
         for (int i = 0; i < Mat3::ORDER; ++i) {
             for (int j = 0; j < Mat3::ORDER; ++j) {
-                CPPUNIT_ASSERT_DOUBLES_EQUAL(arr[i * Mat3::ORDER + j], m2(i, j), TOLERANCE);
+                CPPUNIT_ASSERT_DOUBLES_EQUAL(arr[j * Mat3::ORDER + i], m2[j][i], TOLERANCE);
             }
         }
     }
@@ -179,7 +179,7 @@ public:
         m2 = transpose(m1);
         for (int i = 0; i < Mat3::ORDER; ++i) {
             for (int j = 0; j < Mat3::ORDER; ++j) {
-                CPPUNIT_ASSERT_DOUBLES_EQUAL(m1(j,i), m2(i,j), TOLERANCE);
+                CPPUNIT_ASSERT_DOUBLES_EQUAL(m1[j][i], m2[i][j], TOLERANCE);
             }
         }
     }
@@ -193,7 +193,7 @@ public:
 
         for (int i = 0; i < Mat3::ORDER; ++i) {
             for (int j = 0; j < Mat3::ORDER; ++j) {
-                CPPUNIT_ASSERT_DOUBLES_EQUAL(m1(i,j), m3(i,j), TOLERANCE);
+                CPPUNIT_ASSERT_DOUBLES_EQUAL(m1[j][i], m3[j][i], TOLERANCE);
             }
         }
     }
@@ -202,10 +202,11 @@ public:
      * Ensures multiplying a vector by a matrix works correctly.
      */
     void testMultiplyVector() {
-        double arr[3][3] = {
-            {1.0, 6.0, 5.0},
-            {7.0, 2.0, 8.0},
-            {4.0, 9.0, 3.0} };
+
+        double arr[3][3];
+        arr[0][0] = 1; arr[1][0] = 7; arr[2][0] = 4;
+        arr[0][1] = 6; arr[1][1] = 2; arr[2][1] = 9;
+        arr[0][2] = 5; arr[1][2] = 8; arr[2][2] = 3;
 
         Vec3 u(8.0, 3.0, 5.0);
         Vec3 v = m1 * u;

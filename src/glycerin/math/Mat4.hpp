@@ -40,8 +40,8 @@ public:
     Mat3 toMat3() const;
     std::string toString() const;
 // Operators
-    double operator()(const int i, const int j) const;
-    double& operator()(const int i, const int j);
+    const Vec4& operator[](int j) const;
+    Vec4& operator[](int j);
     Mat4 operator*(const Mat4& mat) const;
     Vec4 operator*(const Vec4& vec) const;
 // Friends
@@ -59,7 +59,7 @@ private:
     static const int ORDER_MINUS_ONE = 3;
     static const int ORDER_MINUS_ONE_SQUARED = 9;
 // Attributes
-    double elements[4][4];
+    Vec4 columns[4];
 // Helpers
     double findMinor(const int row, const int col) const;
     static double findDeterminant(const double [3][3]);
