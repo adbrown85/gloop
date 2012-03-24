@@ -316,7 +316,7 @@ public:
         }
 
         for (int i = 1; i < 4; ++i) {
-            for (int j = 0; j<i; ++j) {
+            for (int j = 0; j < i; ++j) {
                 CPPUNIT_ASSERT_DOUBLES_EQUAL(0.0, m3[j][i], TOLERANCE);
             }
         }
@@ -349,9 +349,9 @@ public:
 
         // Make the 4x4 matrix
         Mat4 m4;
-        m4[0][0] = 1; m4[1][0] = 2; m4[2][0] = 3; m4[3][0] = 4;
-        m4[0][1] = 5; m4[1][1] = 6; m4[2][1] = 7; m4[3][1] = 8;
-        m4[0][2] = 9; m4[1][2] = 10; m4[2][2] = 11; m4[3][2] = 12;
+        m4[0][0] =  1; m4[1][0] =  2; m4[2][0] =  3; m4[3][0] =  4;
+        m4[0][1] =  5; m4[1][1] =  6; m4[2][1] =  7; m4[3][1] =  8;
+        m4[0][2] =  9; m4[1][2] = 10; m4[2][2] = 11; m4[3][2] = 12;
         m4[0][3] = 13; m4[1][3] = 14; m4[2][3] = 15; m4[3][3] = 16;
 
         // Make the 3x3 matrix
@@ -365,7 +365,6 @@ public:
         CPPUNIT_ASSERT_DOUBLES_EQUAL( 9, m3[0][2], TOLERANCE);
         CPPUNIT_ASSERT_DOUBLES_EQUAL(10, m3[1][2], TOLERANCE);
         CPPUNIT_ASSERT_DOUBLES_EQUAL(11, m3[2][2], TOLERANCE);
-
     }
 
     /**
@@ -383,8 +382,8 @@ public:
 
         // Transpose it and compare
         m3 = transpose(m1);
-        for (int i=0; i<4; ++i) {
-            for (int j=0; j<4; ++j) {
+        for (int i = 0; i < 4; ++i) {
+            for (int j = 0; j < 4; ++j) {
                 CPPUNIT_ASSERT(m2[j][i] == m3[j][i]);
             }
         }
