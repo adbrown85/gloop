@@ -259,7 +259,7 @@ const Vec3& Mat3::operator[](int j) const {
 Vec3& Mat3::operator[](int j) {
     if (((unsigned int) j) > ORDER_MINUS_ONE) {
         throw Exception("[Mat3] Index out of bounds!");
-    else {
+    } else {
         return columns[j];
     }
 }
