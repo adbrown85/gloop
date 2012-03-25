@@ -465,11 +465,8 @@ string Vec3::toString() const {
  * @return Reference to the stream
  */
 ostream& operator<<(ostream &out, const Glycerin::Vec3 &u) {
-    out << fixed << setprecision(2);
     out << "[";
     out << u.x << ", " << u.y << ", " << u.z;
     out << "]";
-    out << resetiosflags(ios_base::floatfield);
-    out << setprecision(6);
     return out;
 }

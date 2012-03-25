@@ -479,11 +479,8 @@ string Vec4::toString() const {
  * @return Reference to the stream
  */
 ostream& operator<<(ostream &out, const Glycerin::Vec4 &v) {
-    out << fixed << setprecision(2);
     out << "[";
     out << v.x << ", " << v.y << ", " << v.z << ", " << v.w;
     out << "]";
-    out << resetiosflags(ios_base::floatfield);
-    out << setprecision(6);
     return out;
 }
