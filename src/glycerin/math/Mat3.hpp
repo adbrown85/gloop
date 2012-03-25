@@ -40,6 +40,10 @@ public:
     void toArrayInColumnMajor(float arr[3][3]) const;
     void toArrayInColumnMajor(double arr[9]) const;
     void toArrayInColumnMajor(float arr[9]) const;
+    void toArrayInRowMajor(double arr[9]) const;
+    void toArrayInRowMajor(float arr[9]) const;
+    void toArrayInRowMajor(double arr[3][3]) const;
+    void toArrayInRowMajor(float arr[3][3]) const;
     std::string toString() const;
 // Operators
     const Vec3& operator[](int j) const;

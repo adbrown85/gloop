@@ -262,6 +262,62 @@ void Mat3::toArrayInColumnMajor(float arr[9]) const {
 }
 
 /**
+ * Copies the matrix into a one-dimensional double array in column-major order.
+ *
+ * @param arr Array to copy to
+ */
+void Mat3::toArrayInRowMajor(double arr[9]) const {
+    double* ptr = arr;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            (*ptr) = columns[j][i];
+            ++ptr;
+        }
+    }
+}
+
+/**
+ * Copies the matrix into a one-dimensional float array in column-major order.
+ *
+ * @param arr Array to copy to
+ */
+void Mat3::toArrayInRowMajor(float arr[9]) const {
+    float* ptr = arr;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            (*ptr) = columns[j][i];
+            ++ptr;
+        }
+    }
+}
+
+/**
+ * Copies the matrix into a two-dimensional double array in column-major order.
+ *
+ * @param arr Array to copy to
+ */
+void Mat3::toArrayInRowMajor(double arr[3][3]) const {
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            arr[i][j] = columns[j][i];
+        }
+    }
+}
+
+/**
+ * Copies the matrix into a two-dimensional float array in column-major order.
+ *
+ * @param arr Array to copy to
+ */
+void Mat3::toArrayInRowMajor(float arr[3][3]) const {
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            arr[i][j] = columns[j][i];
+        }
+    }
+}
+
+/**
  * Returns a string representation of the matrix.
  */
 string Mat3::toString() const {

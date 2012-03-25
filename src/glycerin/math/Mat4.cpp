@@ -288,6 +288,62 @@ void Mat4::toArrayInColumnMajor(float arr[16]) const {
 }
 
 /**
+ * Copies the matrix into a one-dimensional double array in row-major order.
+ *
+ * @param arr Array to copy to
+ */
+void Mat4::toArrayInRowMajor(double arr[16]) const {
+    double* ptr = arr;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            (*ptr) = columns[j][i];
+            ++ptr;
+        }
+    }
+}
+
+/**
+ * Copies the matrix into a one-dimensional float array in row-major order.
+ *
+ * @param arr Array to copy to
+ */
+void Mat4::toArrayInRowMajor(float arr[16]) const {
+    float* ptr = arr;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            (*ptr) = columns[j][i];
+            ++ptr;
+        }
+    }
+}
+
+/**
+ * Copies the matrix into a two-dimensional double array in row-major order.
+ *
+ * @param arr Array to copy to
+ */
+void Mat4::toArrayInRowMajor(double arr[4][4]) const {
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            arr[i][j] = columns[j][i];
+        }
+    }
+}
+
+/**
+ * Copies the matrix into a two-dimensional float array in row-major order.
+ *
+ * @param arr Array to copy to
+ */
+void Mat4::toArrayInRowMajor(float arr[4][4]) const {
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            arr[i][j] = columns[j][i];
+        }
+    }
+}
+
+/**
  * Creates a 3x3 matrix from the upper-left part of this matrix.
  *
  * @return 3x3 matrix containing same components as upper-left

@@ -755,6 +755,146 @@ public:
     }
 
     /**
+     * Ensures toArrayInRowMajor works with a one-dimensional double array.
+     */
+    void testToArrayInRowMajorDoubleArray() {
+
+        // Make a matrix
+        Mat4 mat;
+        mat[0][0] =  1; mat[1][0] =  2; mat[2][0] =  3; mat[3][0] =  4;
+        mat[0][1] =  5; mat[1][1] =  6; mat[2][1] =  7; mat[3][1] =  8;
+        mat[0][2] =  9; mat[1][2] = 10; mat[2][2] = 11; mat[3][2] = 12;
+        mat[0][3] = 13; mat[1][3] = 14; mat[2][3] = 15; mat[3][3] = 16;
+
+        // Make an array from the matrix
+        double arr[16];
+        mat.toArrayInRowMajor(arr);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0, arr[ 0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0, arr[ 1]);
+        CPPUNIT_ASSERT_EQUAL( 3.0, arr[ 2]);
+        CPPUNIT_ASSERT_EQUAL( 4.0, arr[ 3]);
+        CPPUNIT_ASSERT_EQUAL( 5.0, arr[ 4]);
+        CPPUNIT_ASSERT_EQUAL( 6.0, arr[ 5]);
+        CPPUNIT_ASSERT_EQUAL( 7.0, arr[ 6]);
+        CPPUNIT_ASSERT_EQUAL( 8.0, arr[ 7]);
+        CPPUNIT_ASSERT_EQUAL( 9.0, arr[ 8]);
+        CPPUNIT_ASSERT_EQUAL(10.0, arr[ 9]);
+        CPPUNIT_ASSERT_EQUAL(11.0, arr[10]);
+        CPPUNIT_ASSERT_EQUAL(12.0, arr[11]);
+        CPPUNIT_ASSERT_EQUAL(13.0, arr[12]);
+        CPPUNIT_ASSERT_EQUAL(14.0, arr[13]);
+        CPPUNIT_ASSERT_EQUAL(15.0, arr[14]);
+        CPPUNIT_ASSERT_EQUAL(16.0, arr[15]);
+    }
+
+    /**
+     * Ensures toArrayInRowMajor works with a one-dimensional float array.
+     */
+    void testToArrayInRowMajorFloatArray() {
+
+        // Make a matrix
+        Mat4 mat;
+        mat[0][0] =  1; mat[1][0] =  2; mat[2][0] =  3; mat[3][0] =  4;
+        mat[0][1] =  5; mat[1][1] =  6; mat[2][1] =  7; mat[3][1] =  8;
+        mat[0][2] =  9; mat[1][2] = 10; mat[2][2] = 11; mat[3][2] = 12;
+        mat[0][3] = 13; mat[1][3] = 14; mat[2][3] = 15; mat[3][3] = 16;
+
+        // Make an array from the matrix
+        float arr[16];
+        mat.toArrayInRowMajor(arr);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0f, arr[ 0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0f, arr[ 1]);
+        CPPUNIT_ASSERT_EQUAL( 3.0f, arr[ 2]);
+        CPPUNIT_ASSERT_EQUAL( 4.0f, arr[ 3]);
+        CPPUNIT_ASSERT_EQUAL( 5.0f, arr[ 4]);
+        CPPUNIT_ASSERT_EQUAL( 6.0f, arr[ 5]);
+        CPPUNIT_ASSERT_EQUAL( 7.0f, arr[ 6]);
+        CPPUNIT_ASSERT_EQUAL( 8.0f, arr[ 7]);
+        CPPUNIT_ASSERT_EQUAL( 9.0f, arr[ 8]);
+        CPPUNIT_ASSERT_EQUAL(10.0f, arr[ 9]);
+        CPPUNIT_ASSERT_EQUAL(11.0f, arr[10]);
+        CPPUNIT_ASSERT_EQUAL(12.0f, arr[11]);
+        CPPUNIT_ASSERT_EQUAL(13.0f, arr[12]);
+        CPPUNIT_ASSERT_EQUAL(14.0f, arr[13]);
+        CPPUNIT_ASSERT_EQUAL(15.0f, arr[14]);
+        CPPUNIT_ASSERT_EQUAL(16.0f, arr[15]);
+    }
+
+    /**
+     * Ensures toArrayInRowMajor works with a two-dimensional double array.
+     */
+    void testToArrayInRowMajorDoubleArrayArray() {
+
+        // Make a matrix
+        Mat4 mat;
+        mat[0][0] =  1; mat[1][0] =  2; mat[2][0] =  3; mat[3][0] =  4;
+        mat[0][1] =  5; mat[1][1] =  6; mat[2][1] =  7; mat[3][1] =  8;
+        mat[0][2] =  9; mat[1][2] = 10; mat[2][2] = 11; mat[3][2] = 12;
+        mat[0][3] = 13; mat[1][3] = 14; mat[2][3] = 15; mat[3][3] = 16;
+
+        // Make an array from the matrix
+        double arr[4][4];
+        mat.toArrayInRowMajor(arr);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0, arr[0][0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0, arr[0][1]);
+        CPPUNIT_ASSERT_EQUAL( 3.0, arr[0][2]);
+        CPPUNIT_ASSERT_EQUAL( 4.0, arr[0][3]);
+        CPPUNIT_ASSERT_EQUAL( 5.0, arr[1][0]);
+        CPPUNIT_ASSERT_EQUAL( 6.0, arr[1][1]);
+        CPPUNIT_ASSERT_EQUAL( 7.0, arr[1][2]);
+        CPPUNIT_ASSERT_EQUAL( 8.0, arr[1][3]);
+        CPPUNIT_ASSERT_EQUAL( 9.0, arr[2][0]);
+        CPPUNIT_ASSERT_EQUAL(10.0, arr[2][1]);
+        CPPUNIT_ASSERT_EQUAL(11.0, arr[2][2]);
+        CPPUNIT_ASSERT_EQUAL(12.0, arr[2][3]);
+        CPPUNIT_ASSERT_EQUAL(13.0, arr[3][0]);
+        CPPUNIT_ASSERT_EQUAL(14.0, arr[3][1]);
+        CPPUNIT_ASSERT_EQUAL(15.0, arr[3][2]);
+        CPPUNIT_ASSERT_EQUAL(16.0, arr[3][3]);
+    }
+
+    /**
+     * Ensures toArrayInRowMajor works with a two-dimensional float array.
+     */
+    void testToArrayInRowMajorFloatArrayArray() {
+
+        // Make a matrix
+        Mat4 mat;
+        mat[0][0] =  1; mat[1][0] =  2; mat[2][0] =  3; mat[3][0] =  4;
+        mat[0][1] =  5; mat[1][1] =  6; mat[2][1] =  7; mat[3][1] =  8;
+        mat[0][2] =  9; mat[1][2] = 10; mat[2][2] = 11; mat[3][2] = 12;
+        mat[0][3] = 13; mat[1][3] = 14; mat[2][3] = 15; mat[3][3] = 16;
+
+        // Make an array from the matrix
+        float arr[4][4];
+        mat.toArrayInRowMajor(arr);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0f, arr[0][0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0f, arr[0][1]);
+        CPPUNIT_ASSERT_EQUAL( 3.0f, arr[0][2]);
+        CPPUNIT_ASSERT_EQUAL( 4.0f, arr[0][3]);
+        CPPUNIT_ASSERT_EQUAL( 5.0f, arr[1][0]);
+        CPPUNIT_ASSERT_EQUAL( 6.0f, arr[1][1]);
+        CPPUNIT_ASSERT_EQUAL( 7.0f, arr[1][2]);
+        CPPUNIT_ASSERT_EQUAL( 8.0f, arr[1][3]);
+        CPPUNIT_ASSERT_EQUAL( 9.0f, arr[2][0]);
+        CPPUNIT_ASSERT_EQUAL(10.0f, arr[2][1]);
+        CPPUNIT_ASSERT_EQUAL(11.0f, arr[2][2]);
+        CPPUNIT_ASSERT_EQUAL(12.0f, arr[2][3]);
+        CPPUNIT_ASSERT_EQUAL(13.0f, arr[3][0]);
+        CPPUNIT_ASSERT_EQUAL(14.0f, arr[3][1]);
+        CPPUNIT_ASSERT_EQUAL(15.0f, arr[3][2]);
+        CPPUNIT_ASSERT_EQUAL(16.0f, arr[3][3]);
+    }
+
+    /**
      * Ensures conversion to a 3x3 matrix works correctly.
      */
     void testToMat3() {
@@ -865,6 +1005,10 @@ public:
     CPPUNIT_TEST(testToArrayInColumnMajorFloatArray);
     CPPUNIT_TEST(testToArrayInColumnMajorDoubleArrayArray);
     CPPUNIT_TEST(testToArrayInColumnMajorFloatArrayArray);
+    CPPUNIT_TEST(testToArrayInRowMajorDoubleArray);
+    CPPUNIT_TEST(testToArrayInRowMajorFloatArray);
+    CPPUNIT_TEST(testToArrayInRowMajorDoubleArrayArray);
+    CPPUNIT_TEST(testToArrayInRowMajorFloatArrayArray);
     CPPUNIT_TEST(testToMat3);
     CPPUNIT_TEST(testToString);
     CPPUNIT_TEST(testTranspose);

@@ -41,6 +41,10 @@ public:
     void toArrayInColumnMajor(float arr[4][4]) const;
     void toArrayInColumnMajor(double arr[16]) const;
     void toArrayInColumnMajor(float arr[16]) const;
+    void toArrayInRowMajor(double arr[16]) const;
+    void toArrayInRowMajor(float arr[16]) const;
+    void toArrayInRowMajor(double arr[4][4]) const;
+    void toArrayInRowMajor(float arr[4][4]) const;
     Mat3 toMat3() const;
     std::string toString() const;
 // Operators
