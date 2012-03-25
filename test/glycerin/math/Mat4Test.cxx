@@ -640,6 +640,24 @@ public:
     }
 
     /**
+     * Ensures toString returns the correct string.
+     */
+    void testToString() {
+
+        // Make a matrix
+        Mat4 mat;
+        mat[0][0] =  1; mat[1][0] =  2; mat[2][0] =  3; mat[3][0] =  4;
+        mat[0][1] =  5; mat[1][1] =  6; mat[2][1] =  7; mat[3][1] =  8;
+        mat[0][2] =  9; mat[1][2] = 10; mat[2][2] = 11; mat[3][2] = 12;
+        mat[0][3] = 13; mat[1][3] = 14; mat[2][3] = 15; mat[3][3] = 16;
+
+        // Make expected and actual strings, and compare
+        const string expect = "[[1, 5, 9, 13], [2, 6, 10, 14], [3, 7, 11, 15], [4, 8, 12, 16]]";
+        const string result = mat.toString();
+        CPPUNIT_ASSERT_EQUAL(expect, result);
+    }
+
+    /**
      * Ensures transposing a matrix works correctly.
      */
     void testTranspose() {
@@ -704,6 +722,7 @@ public:
     CPPUNIT_TEST(testInverse);
     CPPUNIT_TEST(testSetArray);
     CPPUNIT_TEST(testToMat3);
+    CPPUNIT_TEST(testToString);
     CPPUNIT_TEST(testTranspose);
     CPPUNIT_TEST(testMultiplyVector);
     CPPUNIT_TEST(testMultiplyMatrix);

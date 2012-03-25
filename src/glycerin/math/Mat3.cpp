@@ -536,9 +536,9 @@ int Mat3::SignChart::operator()(const int i, const int j) const {
 
 ostream& operator<<(ostream &stream, const Glycerin::Mat3& mat) {
     stream << '[';
-    stream << mat.getRow(0);
-    for (int i = 1; i < Glycerin::Mat3::ORDER; ++i) {
-        stream << ", " << mat.getRow(i);
+    stream << mat[0];
+    for (int j = 1; j < Glycerin::Mat3::ORDER; ++j) {
+        stream << ", " << mat[j];
     }
     stream << ']';
     return stream;
