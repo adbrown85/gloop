@@ -36,10 +36,10 @@ public:
     static Mat3 fromArrayInRowMajor(const double arr[3][3]);
     Vec3 getColumn(const int j) const;
     Vec3 getRow(const int i) const;
-    void toArray(double arr[3][3]) const;
-    void toArray(float arr[3][3]) const;
-    void toArray(double arr[9]) const;
-    void toArray(float arr[9]) const;
+    void toArrayInColumnMajor(double arr[3][3]) const;
+    void toArrayInColumnMajor(float arr[3][3]) const;
+    void toArrayInColumnMajor(double arr[9]) const;
+    void toArrayInColumnMajor(float arr[9]) const;
     std::string toString() const;
 // Operators
     const Vec3& operator[](int j) const;

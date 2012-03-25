@@ -210,7 +210,7 @@ Vec3 Mat3::getRow(const int i) const {
  *
  * @param arr Two-dimensional double array to copy to
  */
-void Mat3::toArray(double arr[3][3]) const {
+void Mat3::toArrayInColumnMajor(double arr[3][3]) const {
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
             arr[j][i] = columns[j][i];
@@ -223,7 +223,7 @@ void Mat3::toArray(double arr[3][3]) const {
  *
  * @param arr Two-dimensional float array to copy to
  */
-void Mat3::toArray(float arr[3][3]) const {
+void Mat3::toArrayInColumnMajor(float arr[3][3]) const {
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
             arr[j][i] = (float) columns[j][i];
@@ -236,7 +236,7 @@ void Mat3::toArray(float arr[3][3]) const {
  *
  * @param arr Double array to copy to in column-major order
  */
-void Mat3::toArray(double arr[9]) const {
+void Mat3::toArrayInColumnMajor(double arr[9]) const {
     double *ptr = arr;
     for (int j = 0; j < ORDER; ++j) {
         for (int i = 0; i < ORDER; ++i) {
@@ -251,7 +251,7 @@ void Mat3::toArray(double arr[9]) const {
  *
  * @param arr Float array to copy to in column-major order
  */
-void Mat3::toArray(float arr[9]) const {
+void Mat3::toArrayInColumnMajor(float arr[9]) const {
     float *ptr = arr;
     for (int j = 0; j < ORDER; ++j) {
         for (int i = 0; i < ORDER; ++i) {

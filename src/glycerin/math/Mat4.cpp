@@ -236,7 +236,7 @@ Vec4 Mat4::getRow(const int i) const {
  *
  * @param arr Two-dimensional double array to copy to
  */
-void Mat4::toArray(double arr[4][4]) const {
+void Mat4::toArrayInColumnMajor(double arr[4][4]) const {
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
             arr[j][i] = columns[j][i];
@@ -249,7 +249,7 @@ void Mat4::toArray(double arr[4][4]) const {
  *
  * @param arr Two-dimensional float array to copy to
  */
-void Mat4::toArray(float arr[4][4]) const {
+void Mat4::toArrayInColumnMajor(float arr[4][4]) const {
     for (int i = 0; i < ORDER; ++i) {
         for (int j = 0; j < ORDER; ++j) {
             arr[j][i] = (float) columns[j][i];
@@ -262,7 +262,7 @@ void Mat4::toArray(float arr[4][4]) const {
  *
  * @param arr Double array to copy to in column-major order
  */
-void Mat4::toArray(double arr[16]) const {
+void Mat4::toArrayInColumnMajor(double arr[16]) const {
     double *ptr = arr;
     for (int j = 0; j < ORDER; ++j) {
         for (int i = 0; i < ORDER; ++i) {
@@ -277,7 +277,7 @@ void Mat4::toArray(double arr[16]) const {
  *
  * @param arr Float array to copy to in column-major order
  */
-void Mat4::toArray(float arr[16]) const {
+void Mat4::toArrayInColumnMajor(float arr[16]) const {
     float *ptr = arr;
     for (int j = 0; j < ORDER; ++j) {
         for (int i = 0; i < ORDER; ++i) {

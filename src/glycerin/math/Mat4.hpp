@@ -37,10 +37,10 @@ public:
     static Mat4 fromArrayInRowMajor(const float[4][4]);
     Vec4 getColumn(const int j) const;
     Vec4 getRow(const int i) const;
-    void toArray(double arr[4][4]) const;
-    void toArray(float arr[4][4]) const;
-    void toArray(double arr[16]) const;
-    void toArray(float arr[16]) const;
+    void toArrayInColumnMajor(double arr[4][4]) const;
+    void toArrayInColumnMajor(float arr[4][4]) const;
+    void toArrayInColumnMajor(double arr[16]) const;
+    void toArrayInColumnMajor(float arr[16]) const;
     Mat3 toMat3() const;
     std::string toString() const;
 // Operators
