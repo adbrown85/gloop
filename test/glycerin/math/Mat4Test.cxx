@@ -298,6 +298,278 @@ public:
     }
 
     /**
+     * Ensures fromArrayInColumnMajor works with a one-dimensional double array.
+     */
+    void testFromArrayInColumnMajorDoubleArray() {
+
+        // Make an array in column-major order
+        double arr[16];
+        arr[ 0] =  1; arr[ 4] =  2; arr[ 8] =  3; arr[12] =  4;
+        arr[ 1] =  5; arr[ 5] =  6; arr[ 9] =  7; arr[13] =  8;
+        arr[ 2] =  9; arr[ 6] = 10; arr[10] = 11; arr[14] = 12;
+        arr[ 3] = 13; arr[ 7] = 14; arr[11] = 15; arr[15] = 16;
+
+        // Make a matrix from the array
+        Mat4 m = Mat4::fromArrayInColumnMajor(arr);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0, m[0][0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0, m[1][0]);
+        CPPUNIT_ASSERT_EQUAL( 3.0, m[2][0]);
+        CPPUNIT_ASSERT_EQUAL( 4.0, m[3][0]);
+        CPPUNIT_ASSERT_EQUAL( 5.0, m[0][1]);
+        CPPUNIT_ASSERT_EQUAL( 6.0, m[1][1]);
+        CPPUNIT_ASSERT_EQUAL( 7.0, m[2][1]);
+        CPPUNIT_ASSERT_EQUAL( 8.0, m[3][1]);
+        CPPUNIT_ASSERT_EQUAL( 9.0, m[0][2]);
+        CPPUNIT_ASSERT_EQUAL(10.0, m[1][2]);
+        CPPUNIT_ASSERT_EQUAL(11.0, m[2][2]);
+        CPPUNIT_ASSERT_EQUAL(12.0, m[3][2]);
+        CPPUNIT_ASSERT_EQUAL(13.0, m[0][3]);
+        CPPUNIT_ASSERT_EQUAL(14.0, m[1][3]);
+        CPPUNIT_ASSERT_EQUAL(15.0, m[2][3]);
+        CPPUNIT_ASSERT_EQUAL(16.0, m[3][3]);
+    }
+
+    /**
+     * Ensures fromArrayInColumnMajor works with a one-dimensional float array.
+     */
+    void testFromArrayInColumnMajorFloatArray() {
+
+        // Make an array in column-major order
+        float arr[16];
+        arr[ 0] =  1; arr[ 4] =  2; arr[ 8] =  3; arr[12] =  4;
+        arr[ 1] =  5; arr[ 5] =  6; arr[ 9] =  7; arr[13] =  8;
+        arr[ 2] =  9; arr[ 6] = 10; arr[10] = 11; arr[14] = 12;
+        arr[ 3] = 13; arr[ 7] = 14; arr[11] = 15; arr[15] = 16;
+
+        // Make a matrix from the array
+        Mat4 m = Mat4::fromArrayInColumnMajor(arr);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0, m[0][0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0, m[1][0]);
+        CPPUNIT_ASSERT_EQUAL( 3.0, m[2][0]);
+        CPPUNIT_ASSERT_EQUAL( 4.0, m[3][0]);
+        CPPUNIT_ASSERT_EQUAL( 5.0, m[0][1]);
+        CPPUNIT_ASSERT_EQUAL( 6.0, m[1][1]);
+        CPPUNIT_ASSERT_EQUAL( 7.0, m[2][1]);
+        CPPUNIT_ASSERT_EQUAL( 8.0, m[3][1]);
+        CPPUNIT_ASSERT_EQUAL( 9.0, m[0][2]);
+        CPPUNIT_ASSERT_EQUAL(10.0, m[1][2]);
+        CPPUNIT_ASSERT_EQUAL(11.0, m[2][2]);
+        CPPUNIT_ASSERT_EQUAL(12.0, m[3][2]);
+        CPPUNIT_ASSERT_EQUAL(13.0, m[0][3]);
+        CPPUNIT_ASSERT_EQUAL(14.0, m[1][3]);
+        CPPUNIT_ASSERT_EQUAL(15.0, m[2][3]);
+        CPPUNIT_ASSERT_EQUAL(16.0, m[3][3]);
+    }
+
+    /**
+     * Ensures fromArrayInColumnMajor works with a two-dimensional double array.
+     */
+    void testFromArrayInColumnMajorDoubleArrayArray() {
+
+        // Make an array in column-major order
+        double arr[4][4];
+        arr[0][0] =  1; arr[1][0] =  2; arr[2][0] =  3; arr[3][0] =  4;
+        arr[0][1] =  5; arr[1][1] =  6; arr[2][1] =  7; arr[3][1] =  8;
+        arr[0][2] =  9; arr[1][2] = 10; arr[2][2] = 11; arr[3][2] = 12;
+        arr[0][3] = 13; arr[1][3] = 14; arr[2][3] = 15; arr[3][3] = 16;
+
+        // Make a matrix from the array
+        Mat4 m = Mat4::fromArrayInColumnMajor(arr);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0, m[0][0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0, m[1][0]);
+        CPPUNIT_ASSERT_EQUAL( 3.0, m[2][0]);
+        CPPUNIT_ASSERT_EQUAL( 4.0, m[3][0]);
+        CPPUNIT_ASSERT_EQUAL( 5.0, m[0][1]);
+        CPPUNIT_ASSERT_EQUAL( 6.0, m[1][1]);
+        CPPUNIT_ASSERT_EQUAL( 7.0, m[2][1]);
+        CPPUNIT_ASSERT_EQUAL( 8.0, m[3][1]);
+        CPPUNIT_ASSERT_EQUAL( 9.0, m[0][2]);
+        CPPUNIT_ASSERT_EQUAL(10.0, m[1][2]);
+        CPPUNIT_ASSERT_EQUAL(11.0, m[2][2]);
+        CPPUNIT_ASSERT_EQUAL(12.0, m[3][2]);
+        CPPUNIT_ASSERT_EQUAL(13.0, m[0][3]);
+        CPPUNIT_ASSERT_EQUAL(14.0, m[1][3]);
+        CPPUNIT_ASSERT_EQUAL(15.0, m[2][3]);
+        CPPUNIT_ASSERT_EQUAL(16.0, m[3][3]);
+    }
+
+    /**
+     * Ensures fromArrayInColumnMajor works with a two-dimensional float array.
+     */
+    void testFromArrayInColumnMajorFloatArrayArray() {
+
+        // Make an array in column-major order
+        float arr[4][4];
+        arr[0][0] =  1; arr[1][0] =  2; arr[2][0] =  3; arr[3][0] =  4;
+        arr[0][1] =  5; arr[1][1] =  6; arr[2][1] =  7; arr[3][1] =  8;
+        arr[0][2] =  9; arr[1][2] = 10; arr[2][2] = 11; arr[3][2] = 12;
+        arr[0][3] = 13; arr[1][3] = 14; arr[2][3] = 15; arr[3][3] = 16;
+
+        // Make a matrix from the array
+        Mat4 m = Mat4::fromArrayInColumnMajor(arr);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0, m[0][0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0, m[1][0]);
+        CPPUNIT_ASSERT_EQUAL( 3.0, m[2][0]);
+        CPPUNIT_ASSERT_EQUAL( 4.0, m[3][0]);
+        CPPUNIT_ASSERT_EQUAL( 5.0, m[0][1]);
+        CPPUNIT_ASSERT_EQUAL( 6.0, m[1][1]);
+        CPPUNIT_ASSERT_EQUAL( 7.0, m[2][1]);
+        CPPUNIT_ASSERT_EQUAL( 8.0, m[3][1]);
+        CPPUNIT_ASSERT_EQUAL( 9.0, m[0][2]);
+        CPPUNIT_ASSERT_EQUAL(10.0, m[1][2]);
+        CPPUNIT_ASSERT_EQUAL(11.0, m[2][2]);
+        CPPUNIT_ASSERT_EQUAL(12.0, m[3][2]);
+        CPPUNIT_ASSERT_EQUAL(13.0, m[0][3]);
+        CPPUNIT_ASSERT_EQUAL(14.0, m[1][3]);
+        CPPUNIT_ASSERT_EQUAL(15.0, m[2][3]);
+        CPPUNIT_ASSERT_EQUAL(16.0, m[3][3]);
+    }
+
+    /**
+     * Ensures fromArrayInRowMajor works with a one-dimensional double array.
+     */
+    void testFromArrayInRowMajorDoubleArray() {
+
+        // Make an array in row-major order
+        double arr[16];
+        arr[ 0] =  1; arr[ 1] =  2; arr[ 2] =  3; arr[ 3] =  4;
+        arr[ 4] =  5; arr[ 5] =  6; arr[ 6] =  7; arr[ 7] =  8;
+        arr[ 8] =  9; arr[ 9] = 10; arr[10] = 11; arr[11] = 12;
+        arr[12] = 13; arr[13] = 14; arr[14] = 15; arr[15] = 16;
+
+        // Make a matrix from the array
+        Mat4 m = Mat4::fromArrayInRowMajor(arr);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0, m[0][0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0, m[1][0]);
+        CPPUNIT_ASSERT_EQUAL( 3.0, m[2][0]);
+        CPPUNIT_ASSERT_EQUAL( 4.0, m[3][0]);
+        CPPUNIT_ASSERT_EQUAL( 5.0, m[0][1]);
+        CPPUNIT_ASSERT_EQUAL( 6.0, m[1][1]);
+        CPPUNIT_ASSERT_EQUAL( 7.0, m[2][1]);
+        CPPUNIT_ASSERT_EQUAL( 8.0, m[3][1]);
+        CPPUNIT_ASSERT_EQUAL( 9.0, m[0][2]);
+        CPPUNIT_ASSERT_EQUAL(10.0, m[1][2]);
+        CPPUNIT_ASSERT_EQUAL(11.0, m[2][2]);
+        CPPUNIT_ASSERT_EQUAL(12.0, m[3][2]);
+        CPPUNIT_ASSERT_EQUAL(13.0, m[0][3]);
+        CPPUNIT_ASSERT_EQUAL(14.0, m[1][3]);
+        CPPUNIT_ASSERT_EQUAL(15.0, m[2][3]);
+        CPPUNIT_ASSERT_EQUAL(16.0, m[3][3]);
+    }
+
+    /**
+     * Ensures fromArrayInRowMajor works with a one-dimensional float array.
+     */
+    void testFromArrayInRowMajorFloatArray() {
+
+        // Make an array in row-major order
+        float arr[16];
+        arr[ 0] =  1; arr[ 1] =  2; arr[ 2] =  3; arr[ 3] =  4;
+        arr[ 4] =  5; arr[ 5] =  6; arr[ 6] =  7; arr[ 7] =  8;
+        arr[ 8] =  9; arr[ 9] = 10; arr[10] = 11; arr[11] = 12;
+        arr[12] = 13; arr[13] = 14; arr[14] = 15; arr[15] = 16;
+
+        // Make a matrix from the array
+        Mat4 m = Mat4::fromArrayInRowMajor(arr);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0, m[0][0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0, m[1][0]);
+        CPPUNIT_ASSERT_EQUAL( 3.0, m[2][0]);
+        CPPUNIT_ASSERT_EQUAL( 4.0, m[3][0]);
+        CPPUNIT_ASSERT_EQUAL( 5.0, m[0][1]);
+        CPPUNIT_ASSERT_EQUAL( 6.0, m[1][1]);
+        CPPUNIT_ASSERT_EQUAL( 7.0, m[2][1]);
+        CPPUNIT_ASSERT_EQUAL( 8.0, m[3][1]);
+        CPPUNIT_ASSERT_EQUAL( 9.0, m[0][2]);
+        CPPUNIT_ASSERT_EQUAL(10.0, m[1][2]);
+        CPPUNIT_ASSERT_EQUAL(11.0, m[2][2]);
+        CPPUNIT_ASSERT_EQUAL(12.0, m[3][2]);
+        CPPUNIT_ASSERT_EQUAL(13.0, m[0][3]);
+        CPPUNIT_ASSERT_EQUAL(14.0, m[1][3]);
+        CPPUNIT_ASSERT_EQUAL(15.0, m[2][3]);
+        CPPUNIT_ASSERT_EQUAL(16.0, m[3][3]);
+    }
+
+    /**
+     * Ensures fromArrayInRowMajor works with a two-dimensional double array.
+     */
+    void testFromArrayInRowMajorDoubleArrayArray() {
+
+        // Make an array in row-major order
+        double arr[4][4];
+        arr[0][0] =  1; arr[0][1] =  2; arr[0][2] =  3; arr[0][3] =  4;
+        arr[1][0] =  5; arr[1][1] =  6; arr[1][2] =  7; arr[1][3] =  8;
+        arr[2][0] =  9; arr[2][1] = 10; arr[2][2] = 11; arr[2][3] = 12;
+        arr[3][0] = 13; arr[3][1] = 14; arr[3][2] = 15; arr[3][3] = 16;
+
+        // Make a matrix from the array
+        Mat4 m = Mat4::fromArrayInRowMajor(arr);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0, m[0][0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0, m[1][0]);
+        CPPUNIT_ASSERT_EQUAL( 3.0, m[2][0]);
+        CPPUNIT_ASSERT_EQUAL( 4.0, m[3][0]);
+        CPPUNIT_ASSERT_EQUAL( 5.0, m[0][1]);
+        CPPUNIT_ASSERT_EQUAL( 6.0, m[1][1]);
+        CPPUNIT_ASSERT_EQUAL( 7.0, m[2][1]);
+        CPPUNIT_ASSERT_EQUAL( 8.0, m[3][1]);
+        CPPUNIT_ASSERT_EQUAL( 9.0, m[0][2]);
+        CPPUNIT_ASSERT_EQUAL(10.0, m[1][2]);
+        CPPUNIT_ASSERT_EQUAL(11.0, m[2][2]);
+        CPPUNIT_ASSERT_EQUAL(12.0, m[3][2]);
+        CPPUNIT_ASSERT_EQUAL(13.0, m[0][3]);
+        CPPUNIT_ASSERT_EQUAL(14.0, m[1][3]);
+        CPPUNIT_ASSERT_EQUAL(15.0, m[2][3]);
+        CPPUNIT_ASSERT_EQUAL(16.0, m[3][3]);
+    }
+
+    /**
+     * Ensures fromArrayInRowMajor works with a two-dimensional float array.
+     */
+    void testFromArrayInRowMajorFloatArrayArray() {
+
+        // Make an array in row-major order
+        float arr[4][4];
+        arr[0][0] =  1; arr[0][1] =  2; arr[0][2] =  3; arr[0][3] =  4;
+        arr[1][0] =  5; arr[1][1] =  6; arr[1][2] =  7; arr[1][3] =  8;
+        arr[2][0] =  9; arr[2][1] = 10; arr[2][2] = 11; arr[2][3] = 12;
+        arr[3][0] = 13; arr[3][1] = 14; arr[3][2] = 15; arr[3][3] = 16;
+
+        // Make a matrix from the array
+        Mat4 m = Mat4::fromArrayInRowMajor(arr);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0, m[0][0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0, m[1][0]);
+        CPPUNIT_ASSERT_EQUAL( 3.0, m[2][0]);
+        CPPUNIT_ASSERT_EQUAL( 4.0, m[3][0]);
+        CPPUNIT_ASSERT_EQUAL( 5.0, m[0][1]);
+        CPPUNIT_ASSERT_EQUAL( 6.0, m[1][1]);
+        CPPUNIT_ASSERT_EQUAL( 7.0, m[2][1]);
+        CPPUNIT_ASSERT_EQUAL( 8.0, m[3][1]);
+        CPPUNIT_ASSERT_EQUAL( 9.0, m[0][2]);
+        CPPUNIT_ASSERT_EQUAL(10.0, m[1][2]);
+        CPPUNIT_ASSERT_EQUAL(11.0, m[2][2]);
+        CPPUNIT_ASSERT_EQUAL(12.0, m[3][2]);
+        CPPUNIT_ASSERT_EQUAL(13.0, m[0][3]);
+        CPPUNIT_ASSERT_EQUAL(14.0, m[1][3]);
+        CPPUNIT_ASSERT_EQUAL(15.0, m[2][3]);
+        CPPUNIT_ASSERT_EQUAL(16.0, m[3][3]);
+    }
+
+    /**
      * Ensures the inverse function works correctly.
      */
     void testInverse() {
@@ -421,6 +693,14 @@ public:
     CPPUNIT_TEST(testCreateSignChart);
     CPPUNIT_TEST(testCreateMinorChart);
     CPPUNIT_TEST(testConstructorMat3);
+    CPPUNIT_TEST(testFromArrayInColumnMajorDoubleArray);
+    CPPUNIT_TEST(testFromArrayInColumnMajorFloatArray);
+    CPPUNIT_TEST(testFromArrayInColumnMajorDoubleArrayArray);
+    CPPUNIT_TEST(testFromArrayInColumnMajorFloatArrayArray);
+    CPPUNIT_TEST(testFromArrayInRowMajorDoubleArray);
+    CPPUNIT_TEST(testFromArrayInRowMajorFloatArray);
+    CPPUNIT_TEST(testFromArrayInRowMajorDoubleArrayArray);
+    CPPUNIT_TEST(testFromArrayInRowMajorFloatArrayArray);
     CPPUNIT_TEST(testInverse);
     CPPUNIT_TEST(testSetArray);
     CPPUNIT_TEST(testToMat3);

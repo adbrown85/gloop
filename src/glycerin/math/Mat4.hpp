@@ -31,6 +31,14 @@ public:
     explicit Mat4(const double arr[16]);
     explicit Mat4(const float arr[16]);
     explicit Mat4(const Mat3& mat);
+    static Mat4 fromArrayInColumnMajor(const double[16]);
+    static Mat4 fromArrayInColumnMajor(const float[16]);
+    static Mat4 fromArrayInColumnMajor(const double[4][4]);
+    static Mat4 fromArrayInColumnMajor(const float[4][4]);
+    static Mat4 fromArrayInRowMajor(const double[16]);
+    static Mat4 fromArrayInRowMajor(const float[16]);
+    static Mat4 fromArrayInRowMajor(const double[4][4]);
+    static Mat4 fromArrayInRowMajor(const float[4][4]);
     Vec4 getColumn(const int j) const;
     Vec4 getRow(const int i) const;
     void toArray(double arr[4][4]) const;

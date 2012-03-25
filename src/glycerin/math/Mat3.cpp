@@ -93,6 +93,142 @@ Mat3::Mat3(const float arr[9]) {
 }
 
 /**
+ * Creates a matrix from a one-dimensional double array.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat3 Mat3::fromArrayInColumnMajor(const double arr[9]) {
+    Mat3 mat;
+    const double* ptr = arr;
+    for (int j = 0; j < ORDER; ++j) {
+        for (int i = 0; i < ORDER; ++i) {
+            mat[j][i] = (*ptr);
+            ++ptr;
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a one-dimensional float array.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat3 Mat3::fromArrayInColumnMajor(const float arr[9]) {
+    Mat3 mat;
+    const float* ptr = arr;
+    for (int j = 0; j < ORDER; ++j) {
+        for (int i = 0; i < ORDER; ++i) {
+            mat[j][i] = (*ptr);
+            ++ptr;
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a one-dimensional double array.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat3 Mat3::fromArrayInColumnMajor(const double arr[3][3]) {
+    Mat3 mat;
+    for (int j = 0; j < ORDER; ++j) {
+        for (int i = 0; i < ORDER; ++i) {
+            mat[j][i] = arr[j][i];
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a two-dimensional float array.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat3 Mat3::fromArrayInColumnMajor(const float arr[3][3]) {
+    Mat3 mat;
+    for (int j = 0; j < ORDER; ++j) {
+        for (int i = 0; i < ORDER; ++i) {
+            mat[j][i] = arr[j][i];
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a one-dimensional double array.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat3 Mat3::fromArrayInRowMajor(const double arr[9]) {
+    Mat3 mat;
+    const double* ptr = arr;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            mat[j][i] = (*ptr);
+            ++ptr;
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a one-dimensional float array.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat3 Mat3::fromArrayInRowMajor(const float arr[9]) {
+    Mat3 mat;
+    const float* ptr = arr;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            mat[j][i] = (*ptr);
+            ++ptr;
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a two-dimensional double array.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat3 Mat3::fromArrayInRowMajor(const double arr[3][3]) {
+    Mat3 mat;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            mat[j][i] = arr[i][j];
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a two-dimensional float array.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat3 Mat3::fromArrayInRowMajor(const float arr[3][3]) {
+    Mat3 mat;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            mat[j][i] = arr[i][j];
+        }
+    }
+    return mat;
+}
+
+/**
  * Returns a column in the matrix.
  *
  * @param j Index of column to return

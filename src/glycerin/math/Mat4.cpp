@@ -118,6 +118,142 @@ Mat4::Mat4(const Mat3& mat) {
 }
 
 /**
+ * Creates a matrix from a one-dimensional double array in column-major order.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat4 Mat4::fromArrayInColumnMajor(const double arr[16]) {
+    Mat4 mat;
+    const double* ptr = arr;
+    for (int j = 0; j < ORDER; ++j) {
+        for (int i = 0; i < ORDER; ++i) {
+            mat[j][i] = (*ptr);
+            ++ptr;
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a one-dimensional float array in column-major order.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat4 Mat4::fromArrayInColumnMajor(const float arr[16]) {
+    Mat4 mat;
+    const float* ptr = arr;
+    for (int j = 0; j < ORDER; ++j) {
+        for (int i = 0; i < ORDER; ++i) {
+            mat[j][i] = (*ptr);
+            ++ptr;
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a two-dimensional double array in column-major order.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat4 Mat4::fromArrayInColumnMajor(const double arr[4][4]) {
+    Mat4 mat;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            mat[j][i] = arr[j][i];
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a two-dimensional float array in column-major order.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat4 Mat4::fromArrayInColumnMajor(const float arr[4][4]) {
+    Mat4 mat;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            mat[j][i] = arr[j][i];
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a one-dimensional double array in row-major order.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat4 Mat4::fromArrayInRowMajor(const double arr[16]) {
+    Mat4 mat;
+    const double* ptr = arr;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            mat[j][i] = (*ptr);
+            ++ptr;
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a one-dimensional float array in row-major order.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat4 Mat4::fromArrayInRowMajor(const float arr[16]) {
+    Mat4 mat;
+    const float* ptr = arr;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            mat[j][i] = (*ptr);
+            ++ptr;
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a two-dimensional double array in row-major order.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat4 Mat4::fromArrayInRowMajor(const double arr[4][4]) {
+    Mat4 mat;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            mat[j][i] = arr[i][j];
+        }
+    }
+    return mat;
+}
+
+/**
+ * Creates a matrix from a two-dimensional float array in row-major order.
+ *
+ * @param arr Array to copy
+ * @return Matrix with same values as array
+ */
+Mat4 Mat4::fromArrayInRowMajor(const float arr[4][4]) {
+    Mat4 mat;
+    for (int i = 0; i < ORDER; ++i) {
+        for (int j = 0; j < ORDER; ++j) {
+            mat[j][i] = arr[i][j];
+        }
+    }
+    return mat;
+}
+
+/**
  * Returns a column in the matrix.
  *
  * @param j Index of column to return

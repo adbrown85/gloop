@@ -30,6 +30,14 @@ public:
     explicit Mat3(const float arr[3][3]);
     explicit Mat3(const double arr[9]);
     explicit Mat3(const float arr[9]);
+    static Mat3 fromArrayInColumnMajor(const float arr[9]);
+    static Mat3 fromArrayInColumnMajor(const double arr[9]);
+    static Mat3 fromArrayInColumnMajor(const double arr[3][3]);
+    static Mat3 fromArrayInColumnMajor(const float arr[3][3]);
+    static Mat3 fromArrayInRowMajor(const float arr[9]);
+    static Mat3 fromArrayInRowMajor(const double arr[9]);
+    static Mat3 fromArrayInRowMajor(const float arr[3][3]);
+    static Mat3 fromArrayInRowMajor(const double arr[3][3]);
     Vec3 getColumn(const int j) const;
     Vec3 getRow(const int i) const;
     void toArray(double arr[3][3]) const;
