@@ -26,10 +26,6 @@ public:
 // Methods
     explicit Mat3();
     explicit Mat3(const double value);
-    explicit Mat3(const double arr[3][3]);
-    explicit Mat3(const float arr[3][3]);
-    explicit Mat3(const double arr[9]);
-    explicit Mat3(const float arr[9]);
     static Mat3 fromArrayInColumnMajor(const float arr[9]);
     static Mat3 fromArrayInColumnMajor(const double arr[9]);
     static Mat3 fromArrayInColumnMajor(const double arr[3][3]);

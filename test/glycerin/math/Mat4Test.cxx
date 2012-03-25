@@ -38,7 +38,7 @@ public:
         arr[0][2] = 1; arr[1][2] = 6; arr[2][2] = 4; arr[3][2] = 5;
         arr[0][3] = 1; arr[1][3] = 2; arr[2][3] = 3; arr[3][3] = 4;
 
-        m1 = Mat4(arr);
+        m1 = Mat4::fromArrayInColumnMajor(arr);
         m2 = Mat4(1.0);
         m3 = Mat4(1.0);
     }
@@ -605,7 +605,7 @@ public:
             5.0,  6.0,  7.0,  8.0,
             9.0, 10.0, 11.0, 12.0,
             13.0, 14.0, 15.0, 16.0};
-        m2 = Mat4(arr);
+        m2 = Mat4::fromArrayInColumnMajor(arr);
 
         for (int i = 0; i < 4; ++i) {
             for (int j = 0; j < 4; ++j) {
@@ -650,7 +650,7 @@ public:
         arr[0][1] = 4; arr[1][1] = 2; arr[2][1] = 6; arr[3][1] = 2;
         arr[0][2] = 8; arr[1][2] = 4; arr[2][2] = 4; arr[3][2] = 3;
         arr[0][3] = 7; arr[1][3] = 6; arr[2][3] = 5; arr[3][3] = 4;
-        m2 = Mat4(arr);
+        m2 = Mat4::fromArrayInColumnMajor(arr);
 
         // Transpose it and compare
         m3 = transpose(m1);

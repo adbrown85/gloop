@@ -38,62 +38,6 @@ Mat4::Mat4(const double value) {
 }
 
 /**
- * Constructs a matrix from a two-dimensional double array packed in column-major order.
- *
- * @param arr Two-dimensional double array to copy
- */
-Mat4::Mat4(const double arr[4][4]) {
-    for (int i = 0; i < ORDER; ++i) {
-        for (int j = 0; j < ORDER; ++j) {
-            columns[j][i] = arr[j][i];
-        }
-    }
-}
-
-/**
- * Constructs a matrix from a two-dimensional float array packed in column-major order.
- *
- * @param arr Two-dimensional float array to copy
- */
-Mat4::Mat4(const float arr[4][4]) {
-    for (int i = 0; i < ORDER; ++i) {
-        for (int j = 0; j < ORDER; ++j) {
-            columns[j][i] = arr[j][i];
-        }
-    }
-}
-
-/**
- * Constructs a matrix from a double array packed in column-major order.
- *
- * @param arr Double array packed in column-major order to copy
- */
-Mat4::Mat4(const double arr[16]) {
-    const double* ptr = arr;
-    for (int j = 0; j < ORDER; ++j) {
-        for (int i = 0; i < ORDER; ++i) {
-            columns[j][i] = (*ptr);
-            ++ptr;
-        }
-    }
-}
-
-/**
- * Constructs a matrix from a float array packed in column-major order.
- *
- * @param arr Float array packed in column-major order to copy
- */
-Mat4::Mat4(const float arr[16]) {
-    const float* ptr = arr;
-    for (int j = 0; j < ORDER; ++j) {
-        for (int i = 0; i < ORDER; ++i) {
-            columns[j][i] = (*ptr);
-            ++ptr;
-        }
-    }
-}
-
-/**
  * Constructs a matrix from a 3x3 matrix, filling in a one on the diagonal, and zeros elsewhere.
  *
  * @param mat 3x3 matrix to copy
@@ -418,7 +362,7 @@ Mat4 Mat4::operator*(const Mat4& mat) const {
             }
         }
     }
-    return Mat4(result);
+    return Mat4::fromArrayInColumnMajor(result);
 }
 
 /**
@@ -493,7 +437,7 @@ Mat4 inverse(const Mat4& mat) {
     }
 
     // Return inverse as a Mat4
-    return Mat4(inverse);
+    return Mat4::fromArrayInColumnMajor(inverse);
 }
 
 /**
@@ -512,7 +456,7 @@ Mat4 transpose(const Mat4& mat) {
             transposed[j][i] = mat.columns[i][j];
         }
     }
-    return Mat4(transposed);
+    return Mat4::fromArrayInColumnMajor(transposed);
 }
 
 // HELPERS

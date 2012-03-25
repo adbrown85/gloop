@@ -26,10 +26,6 @@ public:
 // Methods
     explicit Mat4();
     explicit Mat4(const double value);
-    explicit Mat4(const double arr[4][4]);
-    explicit Mat4(const float arr[4][4]);
-    explicit Mat4(const double arr[16]);
-    explicit Mat4(const float arr[16]);
     explicit Mat4(const Mat3& mat);
     static Mat4 fromArrayInColumnMajor(const double[16]);
     static Mat4 fromArrayInColumnMajor(const float[16]);

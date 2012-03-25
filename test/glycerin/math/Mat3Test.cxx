@@ -37,7 +37,7 @@ public:
         arr[0][1] = 7; arr[1][1] = 2; arr[2][1] = 8;
         arr[0][2] = 4; arr[1][2] = 9; arr[2][2] = 3;
 
-        m1 = Mat3(arr);
+        m1 = Mat3::fromArrayInColumnMajor(arr);
         m2 = Mat3(1.0);
         m3 = Mat3(1.0);
     }
@@ -371,7 +371,7 @@ public:
                 1.0, 4.0, 7.0,
                 2.0, 5.0, 8.0,
                 3.0, 6.0, 9.0 };
-        m2 = Mat3(arr);
+        m2 = Mat3::fromArrayInColumnMajor(arr);
 
         for (int i = 0; i < Mat3::ORDER; ++i) {
             for (int j = 0; j < Mat3::ORDER; ++j) {

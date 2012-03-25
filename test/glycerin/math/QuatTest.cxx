@@ -50,7 +50,7 @@ private:
         a[2][0] = 0; a[2][1] = sin_t; a[2][2] = cos_t;
 
         // Make matrix
-        return Mat3(a);
+        return Mat3::fromArrayInColumnMajor(a);
     }
 
     /**
@@ -73,7 +73,7 @@ private:
         a[2][0] = -sin_t; a[2][1] = 0; a[2][2] = cos_t;
 
         // Make matrix
-        return Mat3(a);
+        return Mat3::fromArrayInColumnMajor(a);
     }
 
     /**
@@ -96,7 +96,7 @@ private:
         a[2][0] =     0; a[2][1] =      0; a[2][2] = 1;
 
         // Make matrix
-        return Mat3(a);
+        return Mat3::fromArrayInColumnMajor(a);
     }
 
 public:

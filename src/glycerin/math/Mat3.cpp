@@ -37,62 +37,6 @@ Mat3::Mat3(const double value) {
 }
 
 /**
- * Constructs a matrix from a two-dimensional double array packed in column-major order.
- *
- * @param arr Two-dimensional double array to copy
- */
-Mat3::Mat3(const double arr[3][3]) {
-    for (int i = 0; i < ORDER; ++i) {
-        for (int j = 0; j < ORDER; ++j) {
-            columns[j][i] = arr[j][i];
-        }
-    }
-}
-
-/**
- * Constructs a matrix from a two-dimensional float array packed in column-major order.
- *
- * @param arr Two-dimensional float array to copy
- */
-Mat3::Mat3(const float arr[3][3]) {
-    for (int i = 0; i < ORDER; ++i) {
-        for (int j = 0; j < ORDER; ++j) {
-            columns[j][i] = arr[j][i];
-        }
-    }
-}
-
-/**
- * Constructs a matrix from a double array packed in column-major order.
- *
- * @param arr Double array packed in column-major order to copy
- */
-Mat3::Mat3(const double arr[9]) {
-    const double* ptr = arr;
-    for (int j = 0; j < ORDER; ++j) {
-        for (int i = 0; i < ORDER; ++i) {
-            columns[j][i] = (*ptr);
-            ++ptr;
-        }
-    }
-}
-
-/**
- * Constructs a matrix from a float array packed in column-major order.
- *
- * @param arr Float array packed in column-major order to copy
- */
-Mat3::Mat3(const float arr[9]) {
-    const float* ptr = arr;
-    for (int j = 0; j < ORDER; ++j) {
-        for (int i = 0; i < ORDER; ++i) {
-            columns[j][i] = (*ptr);
-            ++ptr;
-        }
-    }
-}
-
-/**
  * Creates a matrix from a one-dimensional double array.
  *
  * @param arr Array to copy
@@ -347,7 +291,7 @@ Mat3 Mat3::operator*(const Mat3& mat) const {
             }
         }
     }
-    return Mat3(result);
+    return Mat3::fromArrayInColumnMajor(result);
 }
 
 /**
@@ -452,7 +396,7 @@ Mat3 inverse(const Mat3& mat) {
     }
 
     // Return inverse as a Mat3
-    return Mat3(inverse);
+    return Mat3::fromArrayInColumnMajor(inverse);
 }
 
 /**
@@ -471,7 +415,7 @@ Mat3 transpose(const Mat3& mat) {
             transposed[j][i] = mat.columns[i][j];
         }
     }
-    return Mat3(transposed);
+    return Mat3::fromArrayInColumnMajor(transposed);
 }
 
 // HELPERS

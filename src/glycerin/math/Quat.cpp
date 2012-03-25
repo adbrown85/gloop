@@ -274,7 +274,7 @@ Mat3 Quat::toMat3() const {
     arr[2][2] = 1.0 - xx2 - yy2;
 
     // Return matrix
-    return Mat3(arr);
+    return Mat3::fromArrayInColumnMajor(arr);
 }
 
 /**
