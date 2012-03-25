@@ -37,7 +37,7 @@ Mat3::Mat3(const double value) {
 }
 
 /**
- * Creates a matrix from a one-dimensional double array.
+ * Creates a matrix from a one-dimensional double array in column-major order.
  *
  * @param arr Array to copy
  * @return Matrix with same values as array
@@ -55,7 +55,7 @@ Mat3 Mat3::fromArrayInColumnMajor(const double arr[9]) {
 }
 
 /**
- * Creates a matrix from a one-dimensional float array.
+ * Creates a matrix from a one-dimensional float array in column-major order.
  *
  * @param arr Array to copy
  * @return Matrix with same values as array
@@ -73,7 +73,7 @@ Mat3 Mat3::fromArrayInColumnMajor(const float arr[9]) {
 }
 
 /**
- * Creates a matrix from a one-dimensional double array.
+ * Creates a matrix from a one-dimensional double array in column-major order.
  *
  * @param arr Array to copy
  * @return Matrix with same values as array
@@ -89,7 +89,7 @@ Mat3 Mat3::fromArrayInColumnMajor(const double arr[3][3]) {
 }
 
 /**
- * Creates a matrix from a two-dimensional float array.
+ * Creates a matrix from a two-dimensional float array in column-major order.
  *
  * @param arr Array to copy
  * @return Matrix with same values as array
@@ -105,7 +105,7 @@ Mat3 Mat3::fromArrayInColumnMajor(const float arr[3][3]) {
 }
 
 /**
- * Creates a matrix from a one-dimensional double array.
+ * Creates a matrix from a one-dimensional double array in row-major order.
  *
  * @param arr Array to copy
  * @return Matrix with same values as array
@@ -123,7 +123,7 @@ Mat3 Mat3::fromArrayInRowMajor(const double arr[9]) {
 }
 
 /**
- * Creates a matrix from a one-dimensional float array.
+ * Creates a matrix from a one-dimensional float array in row-major order.
  *
  * @param arr Array to copy
  * @return Matrix with same values as array
@@ -141,7 +141,7 @@ Mat3 Mat3::fromArrayInRowMajor(const float arr[9]) {
 }
 
 /**
- * Creates a matrix from a two-dimensional double array.
+ * Creates a matrix from a two-dimensional double array in row-major order.
  *
  * @param arr Array to copy
  * @return Matrix with same values as array
@@ -157,7 +157,7 @@ Mat3 Mat3::fromArrayInRowMajor(const double arr[3][3]) {
 }
 
 /**
- * Creates a matrix from a two-dimensional float array.
+ * Creates a matrix from a two-dimensional float array in row-major order.
  *
  * @param arr Array to copy
  * @return Matrix with same values as array
