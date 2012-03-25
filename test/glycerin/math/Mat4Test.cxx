@@ -570,6 +570,72 @@ public:
     }
 
     /**
+     * Ensures fromColumns works correctly.
+     */
+    void testFromColumns() {
+
+        // Define columns
+        const Vec4 c1(1, 5, 9, 13);
+        const Vec4 c2(2, 6, 10, 14);
+        const Vec4 c3(3, 7, 11, 15);
+        const Vec4 c4(4, 8, 12, 16);
+
+        // Make a matrix from the columns
+        const Mat4 mat = Mat4::fromColumns(c1, c2, c3, c4);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0, mat[0][0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0, mat[1][0]);
+        CPPUNIT_ASSERT_EQUAL( 3.0, mat[2][0]);
+        CPPUNIT_ASSERT_EQUAL( 4.0, mat[3][0]);
+        CPPUNIT_ASSERT_EQUAL( 5.0, mat[0][1]);
+        CPPUNIT_ASSERT_EQUAL( 6.0, mat[1][1]);
+        CPPUNIT_ASSERT_EQUAL( 7.0, mat[2][1]);
+        CPPUNIT_ASSERT_EQUAL( 8.0, mat[3][1]);
+        CPPUNIT_ASSERT_EQUAL( 9.0, mat[0][2]);
+        CPPUNIT_ASSERT_EQUAL(10.0, mat[1][2]);
+        CPPUNIT_ASSERT_EQUAL(11.0, mat[2][2]);
+        CPPUNIT_ASSERT_EQUAL(12.0, mat[3][2]);
+        CPPUNIT_ASSERT_EQUAL(13.0, mat[0][3]);
+        CPPUNIT_ASSERT_EQUAL(14.0, mat[1][3]);
+        CPPUNIT_ASSERT_EQUAL(15.0, mat[2][3]);
+        CPPUNIT_ASSERT_EQUAL(16.0, mat[3][3]);
+    }
+
+    /**
+     * Ensures fromRows works correctly.
+     */
+    void testFromRows() {
+
+        // Define rows
+        const Vec4 r1(1, 2, 3, 4);
+        const Vec4 r2(5, 6, 7, 8);
+        const Vec4 r3(9, 10, 11, 12);
+        const Vec4 r4(13, 14, 15, 16);
+
+        // Make a matrix from the rows
+        const Mat4 mat = Mat4::fromRows(r1, r2, r3, r4);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL( 1.0, mat[0][0]);
+        CPPUNIT_ASSERT_EQUAL( 2.0, mat[1][0]);
+        CPPUNIT_ASSERT_EQUAL( 3.0, mat[2][0]);
+        CPPUNIT_ASSERT_EQUAL( 4.0, mat[3][0]);
+        CPPUNIT_ASSERT_EQUAL( 5.0, mat[0][1]);
+        CPPUNIT_ASSERT_EQUAL( 6.0, mat[1][1]);
+        CPPUNIT_ASSERT_EQUAL( 7.0, mat[2][1]);
+        CPPUNIT_ASSERT_EQUAL( 8.0, mat[3][1]);
+        CPPUNIT_ASSERT_EQUAL( 9.0, mat[0][2]);
+        CPPUNIT_ASSERT_EQUAL(10.0, mat[1][2]);
+        CPPUNIT_ASSERT_EQUAL(11.0, mat[2][2]);
+        CPPUNIT_ASSERT_EQUAL(12.0, mat[3][2]);
+        CPPUNIT_ASSERT_EQUAL(13.0, mat[0][3]);
+        CPPUNIT_ASSERT_EQUAL(14.0, mat[1][3]);
+        CPPUNIT_ASSERT_EQUAL(15.0, mat[2][3]);
+        CPPUNIT_ASSERT_EQUAL(16.0, mat[3][3]);
+    }
+
+    /**
      * Ensures the inverse function works correctly.
      */
     void testInverse() {
@@ -999,6 +1065,8 @@ public:
     CPPUNIT_TEST(testFromArrayInRowMajorFloatArray);
     CPPUNIT_TEST(testFromArrayInRowMajorDoubleArrayArray);
     CPPUNIT_TEST(testFromArrayInRowMajorFloatArrayArray);
+    CPPUNIT_TEST(testFromColumns);
+    CPPUNIT_TEST(testFromRows);
     CPPUNIT_TEST(testInverse);
     CPPUNIT_TEST(testSetArray);
     CPPUNIT_TEST(testToArrayInColumnMajorDoubleArray);

@@ -182,6 +182,42 @@ Mat4 Mat4::fromArrayInRowMajor(const double arr[4][4]) {
 }
 
 /**
+ * Creates a matrix from four columns.
+ *
+ * @param c1 First column
+ * @param c2 Second column
+ * @param c3 Third column
+ * @param c4 Fourth column
+ * @return Resulting matrix
+ */
+Mat4 Mat4::fromColumns(const Vec4& c1, const Vec4& c2, const Vec4& c3, const Vec4& c4) {
+    Mat4 mat;
+    mat[0] = c1;
+    mat[1] = c2;
+    mat[2] = c3;
+    mat[3] = c4;
+    return mat;
+}
+
+/**
+ * Creates a matrix from four rows.
+ *
+ * @param r1 First row
+ * @param r2 Second row
+ * @param r3 Third row
+ * @param r4 Fourth row
+ * @return Resulting matrix
+ */
+Mat4 Mat4::fromRows(const Vec4& r1, const Vec4& r2, const Vec4& r3, const Vec4& r4) {
+    Mat4 mat;
+    mat[0][0] = r1.x; mat[1][0] = r1.y; mat[2][0] = r1.z; mat[3][0] = r1.w;
+    mat[0][1] = r2.x; mat[1][1] = r2.y; mat[2][1] = r2.z; mat[3][1] = r2.w;
+    mat[0][2] = r3.x; mat[1][2] = r3.y; mat[2][2] = r3.z; mat[3][2] = r3.w;
+    mat[0][3] = r4.x; mat[1][3] = r4.y; mat[2][3] = r4.z; mat[3][3] = r4.w;
+    return mat;
+}
+
+/**
  * Creates a matrix from a two-dimensional float array in row-major order.
  *
  * @param arr Array to copy

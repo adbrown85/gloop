@@ -338,6 +338,56 @@ public:
     }
 
     /**
+     * Ensures fromColumns works correctly.
+     */
+    void testFromColumns() {
+
+        // Make rows
+        const Vec3 c1(1, 4, 7);
+        const Vec3 c2(2, 5, 8);
+        const Vec3 c3(3, 6, 9);
+
+        // Make matrix from rows
+        const Mat3 mat = Mat3::fromColumns(c1, c2, c3);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL(1.0, mat[0][0]);
+        CPPUNIT_ASSERT_EQUAL(2.0, mat[1][0]);
+        CPPUNIT_ASSERT_EQUAL(3.0, mat[2][0]);
+        CPPUNIT_ASSERT_EQUAL(4.0, mat[0][1]);
+        CPPUNIT_ASSERT_EQUAL(5.0, mat[1][1]);
+        CPPUNIT_ASSERT_EQUAL(6.0, mat[2][1]);
+        CPPUNIT_ASSERT_EQUAL(7.0, mat[0][2]);
+        CPPUNIT_ASSERT_EQUAL(8.0, mat[1][2]);
+        CPPUNIT_ASSERT_EQUAL(9.0, mat[2][2]);
+    }
+
+    /**
+     * Ensures fromRows works correctly.
+     */
+    void testFromRows() {
+
+        // Make rows
+        const Vec3 r1(1, 2, 3);
+        const Vec3 r2(4, 5, 6);
+        const Vec3 r3(7, 8, 9);
+
+        // Make matrix from rows
+        const Mat3 mat = Mat3::fromRows(r1, r2, r3);
+
+        // Compare
+        CPPUNIT_ASSERT_EQUAL(1.0, mat[0][0]);
+        CPPUNIT_ASSERT_EQUAL(2.0, mat[1][0]);
+        CPPUNIT_ASSERT_EQUAL(3.0, mat[2][0]);
+        CPPUNIT_ASSERT_EQUAL(4.0, mat[0][1]);
+        CPPUNIT_ASSERT_EQUAL(5.0, mat[1][1]);
+        CPPUNIT_ASSERT_EQUAL(6.0, mat[2][1]);
+        CPPUNIT_ASSERT_EQUAL(7.0, mat[0][2]);
+        CPPUNIT_ASSERT_EQUAL(8.0, mat[1][2]);
+        CPPUNIT_ASSERT_EQUAL(9.0, mat[2][2]);
+    }
+
+    /**
      * Ensures the inverse function works correctly.
      */
     void testInverse() {
@@ -681,6 +731,8 @@ public:
     CPPUNIT_TEST(testFromArrayInRowMajorFloatArray);
     CPPUNIT_TEST(testFromArrayInRowMajorDoubleArrayArray);
     CPPUNIT_TEST(testFromArrayInRowMajorFloatArrayArray);
+    CPPUNIT_TEST(testFromColumns);
+    CPPUNIT_TEST(testFromRows);
     CPPUNIT_TEST(testInverse);
     CPPUNIT_TEST(testSetArray);
     CPPUNIT_TEST(testToArrayInColumnMajorDoubleArray);

@@ -173,6 +173,36 @@ Mat3 Mat3::fromArrayInRowMajor(const float arr[3][3]) {
 }
 
 /**
+ * Creates a matrix from three columns.
+ *
+ * @param c1 First column
+ * @param c2 Second column
+ * @param c3 Third column
+ */
+Mat3 Mat3::fromColumns(const Vec3& c1, const Vec3& c2, const Vec3& c3) {
+    Mat3 mat;
+    mat[0] = c1;
+    mat[1] = c2;
+    mat[2] = c3;
+    return mat;
+}
+
+/**
+ * Creates a matrix from three rows.
+ *
+ * @param r1 First row
+ * @param r2 Second row
+ * @param r3 Third row
+ */
+Mat3 Mat3::fromRows(const Vec3& r1, const Vec3 &r2, const Vec3& r3) {
+    Mat3 mat;
+    mat[0][0] = r1.x; mat[1][0] = r1.y; mat[2][0] = r1.z;
+    mat[0][1] = r2.x; mat[1][1] = r2.y; mat[2][1] = r2.z;
+    mat[0][2] = r3.x; mat[1][2] = r3.y; mat[2][2] = r3.z;
+    return mat;
+}
+
+/**
  * Returns a column in the matrix.
  *
  * @param j Index of column to return

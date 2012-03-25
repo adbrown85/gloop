@@ -35,6 +35,8 @@ public:
     static Mat4 fromArrayInRowMajor(const float[16]);
     static Mat4 fromArrayInRowMajor(const double[4][4]);
     static Mat4 fromArrayInRowMajor(const float[4][4]);
+    static Mat4 fromColumns(const Vec4& c1, const Vec4& c2, const Vec4& c3, const Vec4& c4);
+    static Mat4 fromRows(const Vec4& r1, const Vec4& r2, const Vec4& r3, const Vec4& r4);
     Vec4 getColumn(const int j) const;
     Vec4 getRow(const int i) const;
     void toArrayInColumnMajor(double arr[4][4]) const;
