@@ -8,7 +8,6 @@
 #define GLYCERIN_VEC4_HPP
 #include "glycerin/common.h"
 #include "glycerin/math/Vec3.hpp"
-#include "glycerin/system/Exception.hpp"
 namespace Glycerin {
 
 

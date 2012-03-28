@@ -8,6 +8,7 @@
 #include <cmath>
 #include <iomanip>
 #include <sstream>
+#include <stdexcept>
 #include "glycerin/math/Vec4.hpp"
 using namespace std;
 namespace Glycerin {
@@ -177,7 +178,7 @@ Vec4 normalize(const Vec4 &v) {
  *
  * @param i Index of component
  * @return Copy of the component
- * @throw std::exception if the index is out of bounds
+ * @throw std::out_of_range if the index is out of bounds
  */
 double Vec4::operator[](int i) const {
     switch (i) {
@@ -186,7 +187,7 @@ double Vec4::operator[](int i) const {
     case 2: return z;
     case 3: return w;
     default:
-        throw Exception("[Vec4] Index out of bounds!");
+        throw out_of_range("[Vec4] Index out of bounds!");
     }
 }
 
@@ -195,7 +196,7 @@ double Vec4::operator[](int i) const {
  *
  * @param i Index of component
  * @return Reference to the component
- * @throw std::exception if the index is out of bounds
+ * @throw std::out_of_range if the index is out of bounds
  */
 double& Vec4::operator[](int i) {
     switch (i) {
@@ -204,7 +205,7 @@ double& Vec4::operator[](int i) {
     case 2: return z;
     case 3: return w;
     default:
-        throw Exception("[Vec4] Index out of bounds!");
+        throw out_of_range("[Vec4] Index out of bounds!");
     }
 }
 

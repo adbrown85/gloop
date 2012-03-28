@@ -5,6 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "config.h"
+#include <stdexcept>
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/ui/text/TestRunner.h>
@@ -415,8 +416,8 @@ public:
         CPPUNIT_ASSERT_DOUBLES_EQUAL(2.0, q[1], TOLERANCE);
         CPPUNIT_ASSERT_DOUBLES_EQUAL(3.0, q[2], TOLERANCE);
         CPPUNIT_ASSERT_DOUBLES_EQUAL(4.0, q[3], TOLERANCE);
-        CPPUNIT_ASSERT_THROW(q[-1], Exception);
-        CPPUNIT_ASSERT_THROW(q[4], Exception);
+        CPPUNIT_ASSERT_THROW(q[-1], out_of_range);
+        CPPUNIT_ASSERT_THROW(q[4], out_of_range);
     }
 
     /**
@@ -428,8 +429,8 @@ public:
         CPPUNIT_ASSERT_DOUBLES_EQUAL(2.0, q[1], TOLERANCE);
         CPPUNIT_ASSERT_DOUBLES_EQUAL(3.0, q[2], TOLERANCE);
         CPPUNIT_ASSERT_DOUBLES_EQUAL(4.0, q[3], TOLERANCE);
-        CPPUNIT_ASSERT_THROW(q[-1], Exception);
-        CPPUNIT_ASSERT_THROW(q[4], Exception);
+        CPPUNIT_ASSERT_THROW(q[-1], out_of_range);
+        CPPUNIT_ASSERT_THROW(q[4], out_of_range);
     }
 
     /**

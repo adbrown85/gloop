@@ -9,7 +9,6 @@
 #include "glycerin/common.h"
 #include <cmath>
 #include <iomanip>
-#include "glycerin/system/Exception.hpp"
 namespace Glycerin {
 
 

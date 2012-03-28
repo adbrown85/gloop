@@ -9,7 +9,6 @@
 #include "glycerin/common.h"
 #include "glycerin/math/Mat3.hpp"
 #include "glycerin/math/Vec4.hpp"
-#include "glycerin/system/Exception.hpp"
 namespace Glycerin {
 
 

@@ -8,6 +8,7 @@
 #include <cmath>
 #include <iomanip>
 #include <sstream>
+#include <stdexcept>
 #include "glycerin/math/Mat3.hpp"
 using namespace std;
 namespace Glycerin {
@@ -207,11 +208,11 @@ Mat3 Mat3::fromRows(const Vec3& r1, const Vec3 &r2, const Vec3& r3) {
  *
  * @param j Index of column to return
  * @return Copy of the column as a vector
- * @throws std::exception if index is not in [0 .. 2]
+ * @throws std::out_of_range if index is not in [0 .. 2]
  */
 Vec3 Mat3::getColumn(const int j) const {
     if (((unsigned int) j) > ORDER_MINUS_ONE) {
-        throw Exception("[Mat3] Column index out of bounds!");
+        throw out_of_range("[Mat3] Column index out of bounds!");
     } else {
         return columns[j];
     }
@@ -222,11 +223,11 @@ Vec3 Mat3::getColumn(const int j) const {
  *
  * @param i Index of row to return
  * @return Copy of the row as a vector
- * @throws std::exception if index is not in [0 .. 2]
+ * @throws std::out_of_range if index is not in [0 .. 2]
  */
 Vec3 Mat3::getRow(const int i) const {
     if (((unsigned int) i) > ORDER_MINUS_ONE) {
-        throw Exception("[Mat3] Row index out of bounds!");
+        throw out_of_range("[Mat3] Row index out of bounds!");
     } else {
         const double x = columns[0][i];
         const double y = columns[1][i];
@@ -405,11 +406,11 @@ Vec3 Mat3::operator*(const Vec3& vec) const {
  *
  * @param j Index of column, in the range [0 .. 2]
  * @return Constant reference to the column
- * @throws std::exception if index out of bounds
+ * @throws std::out_of_range if index out of bounds
  */
 const Vec3& Mat3::operator[](int j) const {
     if (((unsigned int) j) > ORDER_MINUS_ONE) {
-        throw Exception("[Mat3] Index out of bounds!");
+        throw out_of_range("[Mat3] Index out of bounds!");
     } else {
         return columns[j];
     }
@@ -420,11 +421,11 @@ const Vec3& Mat3::operator[](int j) const {
  *
  * @param j Index of column, in the range [0 .. 2]
  * @return Reference to the column
- * @throws std::exception if index out of bounds
+ * @throws std::out_of_range if index out of bounds
  */
 Vec3& Mat3::operator[](int j) {
     if (((unsigned int) j) > ORDER_MINUS_ONE) {
-        throw Exception("[Mat3] Index out of bounds!");
+        throw out_of_range("[Mat3] Index out of bounds!");
     } else {
         return columns[j];
     }

@@ -6,6 +6,7 @@
  */
 #include "config.h"
 #include <sstream>
+#include <stdexcept>
 #include "glycerin/math/Vec3.hpp"
 using namespace std;
 namespace Glycerin {
@@ -175,7 +176,7 @@ Vec3 normalize(const Vec3 &v) {
  *
  * @param i Index of component
  * @return Copy of the component
- * @throw std::exception if the index is out of bounds
+ * @throw std::out_of_range if the index is out of bounds
  */
 double Vec3::operator[](int i) const {
     switch (i) {
@@ -183,7 +184,7 @@ double Vec3::operator[](int i) const {
     case 1: return y;
     case 2: return z;
     default:
-        throw Exception("[Vec3] Index out of bounds!");
+        throw out_of_range("[Vec3] Index out of bounds!");
     }
 }
 
@@ -192,7 +193,7 @@ double Vec3::operator[](int i) const {
  *
  * @param i Index of component
  * @return Reference to the component
- * @throw std::exception if the index is out of bounds
+ * @throw std::out_of_range if the index is out of bounds
  */
 double& Vec3::operator[](int i) {
     switch (i) {
@@ -200,7 +201,7 @@ double& Vec3::operator[](int i) {
     case 1: return y;
     case 2: return z;
     default:
-        throw Exception("[Vec3] Index out of bounds!");
+        throw out_of_range("[Vec3] Index out of bounds!");
     }
 }
 

@@ -6,6 +6,7 @@
  */
 #include "config.h"
 #include <algorithm>
+#include <stdexcept>
 #include "glycerin/math/Quat.hpp"
 using namespace std;
 namespace Glycerin {
@@ -158,7 +159,7 @@ bool Quat::operator!=(const Quat &q) const {
  *
  * @param i Index of the component, in [0 .. 3]
  * @return Copy of the component
- * @throws std::exception if index is out of bounds
+ * @throws std::out_of_range if index is out of bounds
  */
 double Quat::operator[](int i) const {
     switch (i) {
@@ -167,7 +168,7 @@ double Quat::operator[](int i) const {
     case 2: return z;
     case 3: return w;
     default:
-        throw Exception("[Quat] Index out of bounds!");
+        throw out_of_range("[Quat] Index out of bounds!");
     }
 }
 
@@ -176,7 +177,7 @@ double Quat::operator[](int i) const {
  *
  * @param i Index of the component, in [0 .. 3]
  * @return Reference to the component
- * @throws std::exception if index is out of bounds
+ * @throws std::out_of_range if index is out of bounds
  */
 double& Quat::operator[](int i) {
     switch (i) {
@@ -185,7 +186,7 @@ double& Quat::operator[](int i) {
     case 2: return z;
     case 3: return w;
     default:
-        throw Exception("[Quat] Index out of bounds!");
+        throw out_of_range("[Quat] Index out of bounds!");
     }
 }
 
