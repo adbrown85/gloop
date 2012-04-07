@@ -31,6 +31,9 @@ GLuint ShaderFactory::createShaderFromFile(GLenum type, const string& filename) 
 
     // Make a stream from the file
     ifstream fs(filename.c_str());
+    if (!fs) {
+        throw invalid_argument("[ShaderFactory] Could not open file!");
+    }
 
     // Make the shader from the stream
     return createShaderFromStream(type, fs);
