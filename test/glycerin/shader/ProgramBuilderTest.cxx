@@ -69,6 +69,7 @@ int main(int argc, char *argv[]) {
         test.testToProgramWithVertexAndFragmentShader();
     } catch (exception& e) {
         cerr << e.what() << endl;
+        throw;
     }
 
     // Exit

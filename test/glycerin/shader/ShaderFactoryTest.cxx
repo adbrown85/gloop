@@ -71,6 +71,7 @@ int main(int argc, char* argv[]) {
         test.testCreateShaderFromStringWithFragmentShader();
     } catch (exception& e) {
         cerr << e.what() << endl;
+        throw;
     }
 
     // Exit
