@@ -8,12 +8,14 @@
 #include <cassert>
 #include <fstream>
 #include <sstream>
+#include <boost/filesystem.hpp>
 #include <GL/glfw.h>
 #include "glycerin/common.h"
 #include "glycerin/shader/ProgramBuilder.hpp"
 #include "glycerin/shader/ShaderFactory.hpp"
 using namespace std;
 using namespace Glycerin;
+namespace bfs = boost::filesystem;
 
 /**
  * Unit test for ProgramBuilder.
@@ -51,11 +53,17 @@ public:
 
 int main(int argc, char *argv[]) {
 
+    // Capture the initial working directory before GLFW changes it
+    bfs::path dir = bfs::initial_path();
+
     // Initialize GLFW
     if (!glfwInit()) {
         cerr << "Could not initialize GLFW!" << endl;
         return 1;
     }
+
+    // Reset current directory
+    bfs::current_path(dir);
 
     // Open a window
     glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);

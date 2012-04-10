@@ -7,10 +7,12 @@
 #include "config.h"
 #include <cassert>
 #include <stdexcept>
+#include <boost/filesystem.hpp>
 #include <GL/glfw.h>
 #include "glycerin/shader/ShaderFactory.hpp"
 using namespace std;
 using namespace Glycerin;
+namespace bfs = boost::filesystem;
 
 
 /**
@@ -52,11 +54,17 @@ public:
 
 int main(int argc, char* argv[]) {
 
+    // Capture the initial working directory before GLFW changes it
+    bfs::path dir = bfs::initial_path();
+
     // Initialize GLFW
     if (!glfwInit()) {
         cerr << "Could not initialize GLFW!" << endl;
         return 1;
     }
+
+    // Reset current directory
+    bfs::current_path(dir);
 
     // Open a window
     glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3);
