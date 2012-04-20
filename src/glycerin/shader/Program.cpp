@@ -220,13 +220,13 @@ string Program::log() const {
 /**
  * Returns all the shaders attached to the program.
  */
-vector<GLuint> Program::shaders() const {
+vector<Shader> Program::shaders() const {
 
     // Determine how many shaders are attached
     GLint len;
     glGetProgramiv(_handle, GL_ATTACHED_SHADERS, &len);
     if (len == 0) {
-        return vector<GLuint>();
+        return vector<Shader>();
     }
 
     // Put attached shaders into array
@@ -234,9 +234,10 @@ vector<GLuint> Program::shaders() const {
     glGetAttachedShaders(_handle, len, NULL, arr);
 
     // Add them to a vector
-    vector<GLuint> vec;
+    vector<Shader> vec;
     for (int i = 0; i < len; ++i) {
-        vec.push_back(arr[i]);
+        Shader shader = Shader::wrap(arr[i]);
+        vec.push_back(shader);
     }
 
     // Delete the array

@@ -35,7 +35,7 @@ public:
     void link();
     bool linked() const;
     std::string log() const;
-    std::vector<GLuint> shaders() const;
+    std::vector<Shader> shaders() const;
     std::vector<Uniform> uniforms() const;
     void use() const;
     bool valid() const;
