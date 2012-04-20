@@ -16,6 +16,7 @@ namespace Glycerin {
 class Shader {
 public:
 // Methods
+    Shader(const Shader& shader);
     ~Shader();
     void compile();
     bool compiled() const;
@@ -23,17 +24,16 @@ public:
     void dispose();
     GLuint handle() const;
     std::string log() const;
+    Shader& operator=(const Shader& shader);
     std::string source() const;
     void source(const std::string& source);
     GLenum type() const;
     static Shader wrap(GLuint handle);
 private:
 // Attributes
-    const GLuint _handle;
+    GLuint _handle;
 // Methods
     Shader(GLuint handle);
-    Shader(const Shader& shader);
-    Shader& operator=(const Shader& shader);
 };
 
 } /* namespace Glycerin */

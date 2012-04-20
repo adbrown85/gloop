@@ -20,6 +20,15 @@ Shader::Shader(const GLuint handle) : _handle(handle) {
 }
 
 /**
+ * Constructs a shader by copying another shader.
+ *
+ * @param shader Shader to copy
+ */
+Shader::Shader(const Shader& shader) : _handle(shader._handle) {
+    // pass
+}
+
+/**
  * Destroys the shader.
  */
 Shader::~Shader() {
@@ -64,6 +73,16 @@ void Shader::dispose() {
  */
 GLuint Shader::handle() const {
     return _handle;
+}
+
+/**
+ * Copies the handle of another shader.
+ *
+ * @param shader Shader to copy
+ * @return Reference to this shader to support chaining
+ */
+Shader& Shader::operator=(const Shader &shader) {
+    _handle = shader._handle;
 }
 
 /**
