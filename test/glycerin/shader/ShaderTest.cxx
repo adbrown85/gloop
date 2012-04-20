@@ -21,45 +21,48 @@ public:
     /**
      * Ensures making a new fragment shader works.
      */
-    void testNewInstanceWithFragmentShader() {
-        Shader* const shader = Shader::newInstance(GL_FRAGMENT_SHADER);
+    void testCreateWithFragmentShader() {
+        Shader shader = Shader::create(GL_FRAGMENT_SHADER);
         if (glGetError() != 0) {
             throw new runtime_error("Could not create fragment shader!");
         }
+        shader.dispose();
     }
 
     /**
      * Ensures making a new geometry shader works.
      */
-    void testNewInstanceWithGeometryShader() {
-        Shader* const shader = Shader::newInstance(GL_GEOMETRY_SHADER);
+    void testCreateWithGeometryShader() {
+        Shader shader = Shader::create(GL_GEOMETRY_SHADER);
         if (glGetError() != 0) {
             throw new runtime_error("Could not create geometry shader!");
         }
+        shader.dispose();
     }
 
     /**
      * Ensures making a new vertex shader works.
      */
-    void testNewInstanceWithVertexShader() {
-        Shader* const shader = Shader::newInstance(GL_VERTEX_SHADER);
+    void testCreateWithVertexShader() {
+        Shader shader = Shader::create(GL_VERTEX_SHADER);
         if (glGetError() != 0) {
             throw new runtime_error("Could not create vertex shader!");
         }
+        shader.dispose();
     }
 
     /**
      * Ensures setSource works correctly.
      */
     void testSetSource() {
-        Shader* const shader = Shader::newInstance(GL_VERTEX_SHADER);
-        shader->source(
+        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        shader.source(
                 "#version 140\n"
                 "in vec4 MCVertex;\n"
                 "void main() {\n"
                 "    gl_Position = MCVertex;\n"
                 "}\n");
-        cout << shader->source() << endl;
+        cout << shader.source() << endl;
     }
 };
 
@@ -81,9 +84,9 @@ int main(int argc, char* argv[]) {
     // Run the test
     ShaderTest test;
     try {
-        test.testNewInstanceWithFragmentShader();
-        test.testNewInstanceWithGeometryShader();
-        test.testNewInstanceWithVertexShader();
+        test.testCreateWithFragmentShader();
+        test.testCreateWithGeometryShader();
+        test.testCreateWithVertexShader();
         test.testSetSource();
     } catch (exception& e) {
         cerr << e.what() << endl;

@@ -16,15 +16,17 @@ namespace Glycerin {
 class Shader {
 public:
 // Methods
-    static Shader* newInstance(GLenum type);
     ~Shader();
     void compile();
     bool compiled() const;
+    static Shader create(GLenum type);
+    void dispose();
     GLuint handle() const;
     std::string log() const;
     std::string source() const;
     void source(const std::string& source);
     GLenum type() const;
+    static Shader wrap(GLuint handle);
 private:
 // Attributes
     const GLuint _handle;

@@ -11,25 +11,6 @@ using namespace std;
 namespace Glycerin {
 
 /**
- * Creates a shader.
- *
- * @param type Kind of shader, e.g. GL_VERTEX_SHADER or GL_FRAGMENT_SHADER
- * @return Pointer to a new shader
- * @throw std::runtime_error if shader could not be created
- */
-Shader* Shader::newInstance(const GLenum type) {
-
-    // Create a handle
-    const GLuint handle = glCreateShader(type);
-    if (handle == 0) {
-        throw runtime_error("[Shader] Could not create shader!");
-    }
-
-    // Make the shader
-    return new Shader(handle);
-}
-
-/**
  * Constructs a shader.
  *
  * @param handle OpenGL identifier for shader
@@ -42,7 +23,7 @@ Shader::Shader(const GLuint handle) : _handle(handle) {
  * Destroys the shader.
  */
 Shader::~Shader() {
-    glDeleteShader(_handle);
+    // pass
 }
 
 /**
@@ -50,6 +31,32 @@ Shader::~Shader() {
  */
 void Shader::compile() {
     glCompileShader(_handle);
+}
+
+/**
+ * Creates a new shader of a particular type.
+ *
+ * @param type Kind of shader, e.g. GL_VERTEX_SHADER or GL_FRAGMENT_SHADER
+ * @return New shader of specified type
+ * @throw std::runtime_error if shader could not be created
+ */
+Shader Shader::create(const GLenum type) {
+
+    // Create a handle
+    const GLuint handle = glCreateShader(type);
+    if (handle == 0) {
+        throw runtime_error("[Shader] Could not create shader!");
+    }
+
+    // Make the shader
+    return Shader(handle);
+}
+
+/**
+ * Deletes the shader.
+ */
+void Shader::dispose() {
+    glDeleteShader(_handle);
 }
 
 /**
@@ -134,6 +141,20 @@ void Shader::source(const string& source) {
     const char* buf = source.c_str();
     const char** ptr = &buf;
     glShaderSource(_handle, 1, ptr, NULL);
+}
+
+/**
+ * Wraps an existing OpenGL shader.
+ *
+ * @param handle OpenGL identifier for shader
+ * @return Wrapper for OpenGL shader
+ * @throws runtime_error if handle is not a valid OpenGL shader
+ */
+Shader Shader::wrap(const GLuint handle) {
+    if (!glIsShader(handle)) {
+        throw runtime_error("[Shader] Handle is not a valid shader!");
+    }
+    return Shader(handle);
 }
 
 } /* namespace Glycerin */
