@@ -209,6 +209,24 @@ public:
     }
 
     /**
+     * Ensures equality operator returns true for shaders with the same handle.
+     */
+    void testOperatorEqualEqualWithEqual() {
+        Shader s1 = Shader::create(GL_VERTEX_SHADER);
+        Shader s2 = Shader::wrap(s1.handle());
+        assert (s1 == s2);
+    }
+
+    /**
+     * Ensures inequality operator returns true for shaders with different handles.
+     */
+    void testOperatorNotEqualWithUnequal() {
+        Shader s1 = Shader::create(GL_VERTEX_SHADER);
+        Shader s2 = Shader::create(GL_VERTEX_SHADER);
+        assert (s1 != s2);
+    }
+
+    /**
      * Ensures both forms of source works correctly.
      */
     void testSource() {
@@ -289,6 +307,8 @@ int main(int argc, char* argv[]) {
         test.testLogWithGoodFragmentShader();
         test.testLogWithBadVertexShader();
         test.testLogWithGoodVertexShader();
+        test.testOperatorEqualEqualWithEqual();
+        test.testOperatorNotEqualWithUnequal();
         test.testSource();
         test.testTypeWithFragmentShader();
         test.testTypeWithGeometryShader();
