@@ -25,8 +25,8 @@ public:
     GLuint handle() const;
     std::string log() const;
     Shader& operator=(const Shader& shader);
-    bool operator==(const Shader& shader);
-    bool operator!=(const Shader& shader);
+    bool operator==(const Shader& shader) const;
+    bool operator!=(const Shader& shader) const;
     std::string source() const;
     void source(const std::string& source);
     GLenum type() const;
