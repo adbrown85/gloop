@@ -39,8 +39,8 @@ public:
         Shader fs = sf.createShaderFromFile(GL_FRAGMENT_SHADER, dir + "ProgramBuilderTest.frag");
 
         // Add the shaders to the program
-        program.attachShader(vs.handle());
-        program.attachShader(fs.handle());
+        program.attachShader(vs);
+        program.attachShader(fs);
 
         // Delete the shaders
         vs.dispose();

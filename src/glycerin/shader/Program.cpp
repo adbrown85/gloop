@@ -38,10 +38,16 @@ Program::Program(const Program& program) : _handle(program._handle) {
  * @throw std::invalid_argument if shader is not valid
  */
 void Program::attachShader(GLuint shader) {
-    if (!glIsShader(shader)) {
-        throw invalid_argument("[Program] Not a valid shader!");
-    }
-    glAttachShader(_handle, shader);
+    attachShader(Shader::wrap(shader));
+}
+
+/**
+ * Attaches a shader to the program.
+ *
+ * @param shader Wrapper for an OpenGL shader
+ */
+void Program::attachShader(const Shader &shader) {
+    glAttachShader(_handle, shader.handle());
 }
 
 /**
@@ -134,10 +140,16 @@ Program Program::create() {
  * @throws invalid_argument if shader is not a valid shader
  */
 void Program::detachShader(GLuint shader) {
-    if (!glIsShader(shader)) {
-        throw invalid_argument("[Program] Not a valid shader!");
-    }
-    glDetachShader(_handle, shader);
+    detachShader(Shader::wrap(shader));
+}
+
+/**
+ * Detaches a shader from the program.
+ *
+ * @param shader Shader to detach
+ */
+void Program::detachShader(const Shader &shader) {
+    glDetachShader(_handle, shader.handle());
 }
 
 /**
