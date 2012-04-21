@@ -228,6 +228,26 @@ Program& Program::operator=(const Program& program) {
 }
 
 /**
+ * Checks if another program has the same handle as this one.
+ *
+ * @param program Program to check
+ * @return <tt>true</tt> if both programs have same handle
+ */
+bool Program::operator==(const Program& program) const {
+    return _handle == program.handle();
+}
+
+/**
+ * Checks if another program has a different handle than this one.
+ *
+ * @param program Program to check
+ * @return <tt>true</tt> if programs have different handles
+ */
+bool Program::operator!=(const Program& program) const {
+    return _handle != program.handle();
+}
+
+/**
  * Returns all the shaders attached to the program.
  */
 vector<Shader> Program::shaders() const {

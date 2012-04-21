@@ -36,6 +36,8 @@ public:
     bool linked() const;
     std::string log() const;
     Program& operator=(const Program& program);
+    bool operator==(const Program& program) const;
+    bool operator!=(const Program& program) const;
     std::vector<Shader> shaders() const;
     std::vector<Uniform> uniforms() const;
     void use() const;
