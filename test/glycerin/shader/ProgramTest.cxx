@@ -54,6 +54,57 @@ class ProgramTest {
 public:
 
     /**
+     * Ensures attaching a bad shader throws an exception.
+     */
+    void testAttachShaderWithBadShader() {
+        Program program = Program::create();
+        const GLuint shader = -1;
+        try {
+            program.attachShader(shader);
+        } catch (invalid_argument& e) {
+            // Exception caught
+            return;
+        }
+        throw runtime_error("Exception not caught!");
+    }
+
+    /**
+     * Ensures a good shader that hasn't been attached yet can be attached.
+     */
+    void testAttachShaderWithGoodUnattachedShader() {
+
+        // Attach a shader
+        Program program = Program::create();
+        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        program.attachShader(shader);
+
+        // Check if it was attached
+        GLint num;
+        glGetProgramiv(program.handle(), GL_ATTACHED_SHADERS, &num);
+        assert (num == 1);
+    }
+
+    /**
+     * Ensures a good shader that has already been attached can't be attached.
+     */
+    void testAttachShaderWithGoodAttachedShader() {
+
+        // Attach a shader
+        Program program = Program::create();
+        Shader shader = Shader::create(GL_FRAGMENT_SHADER);
+        program.attachShader(shader);
+
+        // Try to attach shader
+        try {
+            program.attachShader(shader);
+        } catch (invalid_argument& e) {
+            // Exception caught
+            return;
+        }
+        throw runtime_error("Exception not caught!");
+    }
+
+    /**
      * Ensures create returns a program with a valid handle.
      */
     void testCreate() {
@@ -187,6 +238,9 @@ int main(int argc, char *argv[]) {
     ProgramTest test;
     try {
         test.testCreate();
+        test.testAttachShaderWithBadShader();
+        test.testAttachShaderWithGoodUnattachedShader();
+        test.testAttachShaderWithGoodAttachedShader();
         test.testLinkWithGoodVertexAndFragmentShader();
         test.testLinkWithBadVertexAndFragmentShader();
         test.testWrapWithGoodHandle();
