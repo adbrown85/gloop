@@ -137,7 +137,7 @@ string Shader::log() const {
  */
 GLenum Shader::type() const {
     GLint type;
-    glGetShaderiv(type, GL_SHADER_TYPE, &type);
+    glGetShaderiv(_handle, GL_SHADER_TYPE, &type);
     return type;
 }
 
