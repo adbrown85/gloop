@@ -12,7 +12,6 @@
 #include <GL/glfw.h>
 #include "glycerin/common.h"
 #include "glycerin/shader/Program.hpp"
-#include "glycerin/shader/ShaderFactory.hpp"
 using namespace std;
 using namespace Glycerin;
 namespace bfs = boost::filesystem;
@@ -50,9 +49,12 @@ public:
         assert (program.handle() > 0);
 
         // Create shaders
-        ShaderFactory sf;
-        Shader vs = sf.createShaderFromString(GL_VERTEX_SHADER, VERTEX_SHADER);
-        Shader fs = sf.createShaderFromString(GL_FRAGMENT_SHADER, FRAGMENT_SHADER);
+        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        vs.source(VERTEX_SHADER);
+        vs.compile();
+        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        fs.source(FRAGMENT_SHADER);
+        fs.compile();
 
         // Add the shaders to the program
         program.attachShader(vs);
