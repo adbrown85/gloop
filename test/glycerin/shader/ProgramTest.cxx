@@ -29,7 +29,7 @@ public:
     void testWithVertexAndFragmentShader() {
 
         // Create a program builder
-        Program program;
+        Program program = Program::create();
         assert (program.handle() > 0);
 
         // Create shaders

@@ -20,13 +20,12 @@ namespace Glycerin {
 class Program {
 public:
 // Methods
-    explicit Program();
-    explicit Program(GLuint handle);
     Program(const Program& program);
     void attachShader(GLuint shader);
     GLuint attribLocation(const std::string& name) const;
     void attribLocation(const std::string& name, GLuint location);
     std::vector<Attribute> attributes() const;
+    static Program create();
     void detachShader(GLuint shader);
     void dispose();
     GLint fragDataLocation(const std::string& name) const;
@@ -43,10 +42,13 @@ public:
     void use() const;
     bool valid() const;
     void validate();
+    static Program wrap(GLuint handle);
 private:
 // Attributes
     GLuint _handle;
 // Methods
+    explicit Program(GLuint handle);
+    Program();
     static GLint getMaxDrawBuffers();
 };
 

@@ -11,17 +11,6 @@ using namespace std;
 namespace Glycerin {
 
 /**
- * Constructs a new program.
- *
- * @throws std::runtime_error if program could not be created
- */
-Program::Program() : _handle(glCreateProgram()) {
-    if (_handle == 0) {
-        throw runtime_error("[Program] Could not create program!");
-    }
-}
-
-/**
  * Constructs a program wrapping an existing shader program.
  *
  * @param handle Existing shader program to wrap
@@ -118,6 +107,24 @@ vector<Attribute> Program::attributes() const {
 
     // Return the vector
     return attribs;
+}
+
+/**
+ * Creates a new program.
+ *
+ * @return New program instance
+ * @throws std::runtime_error if program could not be created
+ */
+Program Program::create() {
+
+    // Create a handle
+    const GLuint handle = glCreateProgram();
+    if (handle == 0) {
+        throw runtime_error("[Program] Could not create program!");
+    }
+
+    // Make the program
+    return Program(handle);
 }
 
 /**
@@ -331,6 +338,17 @@ bool Program::valid() const {
  */
 void Program::validate() {
     glValidateProgram(_handle);
+}
+
+/**
+ * Wraps an existing OpenGL program.
+ *
+ * @param handle OpenGL identifier for program
+ * @return Wrapper for OpenGL program
+ * @throws std::invalid_argument if handle is not an OpenGL program
+ */
+Program Program::wrap(const GLuint handle) {
+    return Program(handle);
 }
 
 // HELPERS
