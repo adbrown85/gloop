@@ -17,6 +17,23 @@ using namespace std;
 using namespace Glycerin;
 namespace bfs = boost::filesystem;
 
+
+const char* VERTEX_SHADER =
+        "#version 140\n"
+        "uniform mat4 MVPMatrix = mat4(1);\n"
+        "in vec4 MCVertex;\n"
+        "void main() {\n"
+        "    gl_Position = MVPMatrix * MCVertex;\n"
+        "}\n";
+
+const char* FRAGMENT_SHADER =
+        "#version 140\n"
+        "uniform vec4 Color = vec4(1);\n"
+        "out vec4 FragColor;\n"
+        "void main() {\n"
+        "    FragColor = Color;\n"
+        "}\n";
+
 /**
  * Unit test for Program.
  */
@@ -33,10 +50,9 @@ public:
         assert (program.handle() > 0);
 
         // Create shaders
-        const string dir = "test/glycerin/shader/";
         ShaderFactory sf;
-        Shader vs = sf.createShaderFromFile(GL_VERTEX_SHADER, dir + "ProgramBuilderTest.vert");
-        Shader fs = sf.createShaderFromFile(GL_FRAGMENT_SHADER, dir + "ProgramBuilderTest.frag");
+        Shader vs = sf.createShaderFromString(GL_VERTEX_SHADER, VERTEX_SHADER);
+        Shader fs = sf.createShaderFromString(GL_FRAGMENT_SHADER, FRAGMENT_SHADER);
 
         // Add the shaders to the program
         program.attachShader(vs);
