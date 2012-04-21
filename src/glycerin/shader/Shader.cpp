@@ -187,11 +187,11 @@ void Shader::source(const string& source) {
  *
  * @param handle OpenGL identifier for shader
  * @return Wrapper for OpenGL shader
- * @throws runtime_error if handle is not a valid OpenGL shader
+ * @throws std::invalid_argument if handle is not a valid OpenGL shader
  */
 Shader Shader::wrap(const GLuint handle) {
     if (!glIsShader(handle)) {
-        throw runtime_error("[Shader] Handle is not a valid shader!");
+        throw invalid_argument("[Shader] Handle is not a valid shader!");
     }
     return Shader(handle);
 }
