@@ -105,6 +105,64 @@ public:
     }
 
     /**
+     * Ensures the location of a bad attribute is negative.
+     */
+    void testAttribLocationWithBadName() {
+
+        // Create program
+        Program program = Program::create();
+
+        // Create shaders
+        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        vs.source(GOOD_VERTEX_SHADER);
+        vs.compile();
+        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        fs.source(GOOD_FRAGMENT_SHADER);
+        fs.compile();
+
+        // Attach shaders
+        program.attachShader(vs);
+        program.attachShader(fs);
+
+        // Link
+        program.link();
+        assert (program.linked());
+
+        // Check attrib location
+        const GLint loc = program.attribLocation("mcVertex");
+        assert (loc < 0);
+    }
+
+    /**
+     * Ensures the location of a good attribute is non-negative.
+     */
+    void testAttribLocationWithGoodName() {
+
+        // Create program
+        Program program = Program::create();
+
+        // Create shaders
+        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        vs.source(GOOD_VERTEX_SHADER);
+        vs.compile();
+        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        fs.source(GOOD_FRAGMENT_SHADER);
+        fs.compile();
+
+        // Attach shaders
+        program.attachShader(vs);
+        program.attachShader(fs);
+
+        // Link
+        program.link();
+        assert (program.linked());
+
+        // Check attrib location
+        const GLint loc = program.attribLocation("MCVertex");
+        assert (loc >= 0);
+    }
+
+    /**
      * Ensures create returns a program with a valid handle.
      */
     void testCreate() {
@@ -279,6 +337,8 @@ int main(int argc, char *argv[]) {
         test.testDetachShaderWithUnattachedShader();
         test.testLinkWithGoodVertexAndFragmentShader();
         test.testLinkWithBadVertexAndFragmentShader();
+        test.testAttribLocationWithBadName();
+        test.testAttribLocationWithGoodName();
         test.testWrapWithGoodHandle();
         test.testWrapWithBadHandle();
     } catch (exception& e) {
