@@ -113,6 +113,40 @@ public:
     }
 
     /**
+     * Ensures detaching an attached shader works correctly.
+     */
+    void testDetachShaderWithAttachedShader() {
+
+        Program program = Program::create();
+        Shader shader = Shader::create(GL_VERTEX_SHADER);
+
+        GLint attached;
+        program.attachShader(shader);
+        glGetProgramiv(program.handle(), GL_ATTACHED_SHADERS, &attached);
+        assert (attached == 1);
+        program.detachShader(shader);
+        glGetProgramiv(program.handle(), GL_ATTACHED_SHADERS, &attached);
+        assert (attached == 0);
+    }
+
+    /**
+     * Ensures trying to detach an unattached shader throws an exception.
+     */
+    void testDetachShaderWithUnattachedShader() {
+
+        Program program = Program::create();
+        Shader shader = Shader::create(GL_VERTEX_SHADER);
+
+        try {
+            program.detachShader(shader);
+        } catch (invalid_argument &e) {
+            // Exception caught
+            return;
+        }
+        throw runtime_error("Exception not caught!");
+    }
+
+    /**
      * Ensures Program links with a vertex and fragment shader.
      */
     void testLinkWithGoodVertexAndFragmentShader() {
@@ -241,6 +275,8 @@ int main(int argc, char *argv[]) {
         test.testAttachShaderWithBadShader();
         test.testAttachShaderWithGoodUnattachedShader();
         test.testAttachShaderWithGoodAttachedShader();
+        test.testDetachShaderWithAttachedShader();
+        test.testDetachShaderWithUnattachedShader();
         test.testLinkWithGoodVertexAndFragmentShader();
         test.testLinkWithBadVertexAndFragmentShader();
         test.testWrapWithGoodHandle();
