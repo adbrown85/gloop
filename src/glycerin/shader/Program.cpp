@@ -218,6 +218,16 @@ string Program::log() const {
 }
 
 /**
+ * Copies the handle of another program.
+ *
+ * @param program Program to copy
+ * @return Reference to this program
+ */
+Program& Program::operator=(const Program& program) {
+    _handle = program.handle();
+}
+
+/**
  * Returns all the shaders attached to the program.
  */
 vector<Shader> Program::shaders() const {

@@ -35,6 +35,7 @@ public:
     void link();
     bool linked() const;
     std::string log() const;
+    Program& operator=(const Program& program);
     std::vector<Shader> shaders() const;
     std::vector<Uniform> uniforms() const;
     void use() const;
@@ -42,9 +43,8 @@ public:
     void validate();
 private:
 // Attributes
-    const GLuint _handle;
+    GLuint _handle;
 // Methods
-    Program& operator=(const Program& program);
     static GLint getMaxDrawBuffers();
 };
 
