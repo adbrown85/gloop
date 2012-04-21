@@ -26,14 +26,14 @@ public:
      */
     void testCreateShaderFromStringWithVertexShader() {
         ShaderFactory sf;
-        GLuint shader = sf.createShaderFromString(
+        Shader shader = sf.createShaderFromString(
                 GL_VERTEX_SHADER,
                 "#version 140\n"
                 "in vec4 MCVertex;\n"
                 "void main() {\n"
                 "   gl_Position = MCVertex;\n"
                 "}\n");
-        assert (shader != 0);
+        assert (shader.handle() != 0);
     }
 
     /**
@@ -41,14 +41,14 @@ public:
      */
     void testCreateShaderFromStringWithFragmentShader() {
         ShaderFactory sf;
-        GLuint shader = sf.createShaderFromString(
+        Shader shader = sf.createShaderFromString(
                 GL_FRAGMENT_SHADER,
                 "#version 140\n"
                 "out vec4 FragColor;\n"
                 "void main() {\n"
                 "    FragColor = vec4(1);\n"
                 "}\n");
-        assert (shader != 0);
+        assert (shader.handle() != 0);
     }
 };
 

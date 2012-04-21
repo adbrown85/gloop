@@ -34,16 +34,16 @@ public:
         // Create shaders
         const string dir = "test/glycerin/shader/";
         ShaderFactory sf;
-        GLuint vs = sf.createShaderFromFile(GL_VERTEX_SHADER, dir + "ProgramBuilderTest.vert");
-        GLuint fs = sf.createShaderFromFile(GL_FRAGMENT_SHADER, dir + "ProgramBuilderTest.frag");
+        Shader vs = sf.createShaderFromFile(GL_VERTEX_SHADER, dir + "ProgramBuilderTest.vert");
+        Shader fs = sf.createShaderFromFile(GL_FRAGMENT_SHADER, dir + "ProgramBuilderTest.frag");
 
         // Add the shaders to the program
-        pb.addShader(vs);
-        pb.addShader(fs);
+        pb.addShader(vs.handle());
+        pb.addShader(fs.handle());
 
         // Delete the shaders
-        glDeleteShader(vs);
-        glDeleteShader(fs);
+        vs.dispose();
+        fs.dispose();
 
         // Make the program
         GLuint program = pb.toProgram();

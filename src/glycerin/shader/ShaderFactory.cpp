@@ -27,7 +27,7 @@ ShaderFactory::ShaderFactory() {
  * @return OpenGL handle to the shader
  * @throw std::invalid_argument if filename is empty
  */
-GLuint ShaderFactory::createShaderFromFile(GLenum type, const string& filename) {
+Shader ShaderFactory::createShaderFromFile(GLenum type, const string& filename) {
 
     // Make a stream from the file
     ifstream fs(filename.c_str());
@@ -46,7 +46,7 @@ GLuint ShaderFactory::createShaderFromFile(GLenum type, const string& filename) 
  * @param stream Stream containing shader's source code
  * @return OpenGL handle to the shader
  */
-GLuint ShaderFactory::createShaderFromStream(GLenum type, istream& stream) {
+Shader ShaderFactory::createShaderFromStream(GLenum type, istream& stream) {
 
     // Make a string from the stream
     stringstream ss;
@@ -68,68 +68,23 @@ GLuint ShaderFactory::createShaderFromStream(GLenum type, istream& stream) {
  * @return OpenGL handle to the shader
  * @throw runtime_error if could not create or compile shader
  */
-GLuint ShaderFactory::createShaderFromString(GLenum type, const string &str) {
+Shader ShaderFactory::createShaderFromString(GLenum type, const string &str) {
 
     // Create the shader
-    const GLuint handle = glCreateShader(type);
-    if (handle == 0) {
-        throw runtime_error("[ShaderFactory] Could not create shader!");
-    }
+    Shader shader = Shader::create(type);
 
     // Load the source
-    const char* buf = str.c_str();
-    const char** ptr = &buf;
-    glShaderSource(handle, 1, ptr, NULL);
+    shader.source(str);
 
     // Compile
-    glCompileShader(handle);
-    if (!isCompiled(handle)) {
-        string log = getLog(handle);
+    shader.compile();
+    if (!shader.compiled()) {
+        string log = shader.log();
         throw runtime_error(log);
     }
 
     // Return the shader
-    return handle;
-}
-
-// HELPERS
-
-/**
- * Retrieves the log of a shader.
- *
- * @param handle Handle to shader
- * @return String containing log
- */
-string ShaderFactory::getLog(const GLuint handle) {
-
-    // Allocate a character buffer large enough for the log
-    GLsizei count;
-    glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &count);
-    GLchar* buf = new GLchar[count + 1];
-
-    // Put the log into the buffer and make a string from it
-    GLsizei returned;
-    glGetShaderInfoLog(handle, count, &returned, buf);
-    buf[returned] = '\0';
-    string str(buf);
-
-    // Delete the buffer
-    delete[] buf;
-
-    // Return the string
-    return str;
-}
-
-/**
- * Checks if a shader is compiled.
- *
- * @param handle Handle to shader
- * @return <tt>true</tt> if shader is compiled
- */
-bool ShaderFactory::isCompiled(const GLuint handle) {
-    GLint compiled;
-    glGetShaderiv(handle, GL_COMPILE_STATUS, &compiled);
-    return compiled;
+    return shader;
 }
 
 } /* namespace Glycerin */
