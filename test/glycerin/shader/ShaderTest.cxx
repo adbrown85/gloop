@@ -5,6 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "config.h"
+#include <cassert>
 #include <stdexcept>
 #include <GL/glfw.h>
 #include "glycerin/shader/Shader.hpp"
@@ -52,17 +53,18 @@ public:
     }
 
     /**
-     * Ensures setSource works correctly.
+     * Ensures both forms of source works correctly.
      */
-    void testSetSource() {
+    void testSource() {
         Shader shader = Shader::create(GL_VERTEX_SHADER);
-        shader.source(
+        string source =
                 "#version 140\n"
                 "in vec4 MCVertex;\n"
                 "void main() {\n"
                 "    gl_Position = MCVertex;\n"
-                "}\n");
-        cout << shader.source() << endl;
+                "}\n";
+        shader.source(source);
+        assert (shader.source() == source);
     }
 };
 
@@ -87,7 +89,7 @@ int main(int argc, char* argv[]) {
         test.testCreateWithFragmentShader();
         test.testCreateWithGeometryShader();
         test.testCreateWithVertexShader();
-        test.testSetSource();
+        test.testSource();
     } catch (exception& e) {
         cerr << e.what() << endl;
         throw e;
