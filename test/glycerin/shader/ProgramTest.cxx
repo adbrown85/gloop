@@ -62,10 +62,18 @@ public:
         vs.dispose();
         fs.dispose();
 
-        // Make the program
+        // Link the program
         program.link();
         if (!program.linked()) {
-            cout << program.log() << endl;
+            cerr << program.log() << endl;
+            throw runtime_error("Could not link program!");
+        }
+
+        // Validate it
+        program.validate();
+        if (!program.valid()) {
+            cerr << program.log() << endl;
+            throw runtime_error("Could not validate program!");
         }
 
         // Delete it
