@@ -22,7 +22,7 @@ public:
 // Methods
     explicit Program();
     explicit Program(GLuint handle);
-    explicit Program(const Program& program);
+    Program(const Program& program);
     void attachShader(GLuint shader);
     GLuint attribLocation(const std::string& name) const;
     void attribLocation(const std::string& name, GLuint location);
