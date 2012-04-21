@@ -268,10 +268,24 @@ public:
     /**
      * Ensures wrapping an existing shader works correctly.
      */
-    void testWrap() {
+    void testWrapWithGoodHandle() {
         const GLuint handle = glCreateShader(GL_FRAGMENT_SHADER);
         Shader shader = Shader::wrap(handle);
         assert (shader.handle() == handle);
+    }
+
+    /**
+     * Ensures wrapping a non-existent shader throws an exception.
+     */
+    void testWrapWithBadHandle() {
+        const GLuint handle = -1;
+        try {
+            Shader shader = Shader::wrap(handle);
+        } catch (std::invalid_argument &e) {
+            // Exception caught
+            return;
+        }
+        throw runtime_error("Exception not caught!");
     }
 };
 
@@ -313,7 +327,8 @@ int main(int argc, char* argv[]) {
         test.testTypeWithFragmentShader();
         test.testTypeWithGeometryShader();
         test.testTypeWithVertexShader();
-        test.testWrap();
+        test.testWrapWithGoodHandle();
+        test.testWrapWithBadHandle();
     } catch (exception& e) {
         cerr << e.what() << endl;
         throw e;
