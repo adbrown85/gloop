@@ -35,7 +35,7 @@ private:
 // Attributes
     GLuint _handle;
 // Methods
-    Shader(GLuint handle);
+    explicit Shader(GLuint handle);
 };
 
 } /* namespace Glycerin */
