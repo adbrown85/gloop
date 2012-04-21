@@ -54,6 +54,14 @@ class ProgramTest {
 public:
 
     /**
+     * Ensures create returns a program with a valid handle.
+     */
+    void testCreate() {
+        Program program = Program::create();
+        assert (program.handle() > 0);
+    }
+
+    /**
      * Ensures Program links with a vertex and fragment shader.
      */
     void testLinkWithGoodVertexAndFragmentShader() {
@@ -130,6 +138,29 @@ public:
         // Delete it
         program.dispose();
     }
+
+    /**
+     * Ensures wrap does not throw an exception with a good handle.
+     */
+    void testWrapWithGoodHandle() {
+        const GLuint handle = glCreateProgram();
+        assert (handle > 0);
+        Program program = Program::wrap(handle);
+    }
+
+    /**
+     * Ensures wrap throws an exception with a bad handle.
+     */
+    void testWrapWithBadHandle() {
+        const GLuint handle = -1;
+        try {
+            Program program = Program::wrap(handle);
+        } catch (std::invalid_argument) {
+            // Exception caught
+            return;
+        }
+        throw runtime_error("Exception not caught!");
+    }
 };
 
 int main(int argc, char *argv[]) {
@@ -155,8 +186,11 @@ int main(int argc, char *argv[]) {
     // Run the test
     ProgramTest test;
     try {
+        test.testCreate();
         test.testLinkWithGoodVertexAndFragmentShader();
         test.testLinkWithBadVertexAndFragmentShader();
+        test.testWrapWithGoodHandle();
+        test.testWrapWithBadHandle();
     } catch (exception& e) {
         cerr << e.what() << endl;
         throw;
