@@ -25,11 +25,11 @@ Program::Program() : _handle(glCreateProgram()) {
  * Constructs a program wrapping an existing shader program.
  *
  * @param handle Existing shader program to wrap
- * @throws invalid_argument if handle is <tt>null</tt>
+ * @throws invalid_argument if handle is not an existing OpenGL shader program
  */
 Program::Program(GLuint handle) : _handle(handle) {
     if (!glIsProgram(_handle)) {
-        throw invalid_argument("[Program] Handle is not a valid shader program!");
+        throw invalid_argument("[Program] Handle not an existing OpenGL shader program!");
     }
 }
 
