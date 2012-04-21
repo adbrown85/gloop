@@ -66,6 +66,30 @@ public:
         shader.source(source);
         assert (shader.source() == source);
     }
+
+    /**
+     * Ensures a fragment shader's type is GL_FRAGMENT_SHADER.
+     */
+    void testTypeWithFragmentShader() {
+        Shader shader = Shader::create(GL_FRAGMENT_SHADER);
+        assert(shader.type() == GL_FRAGMENT_SHADER);
+    }
+
+    /**
+     * Ensures a geometry shader's type is GL_GEOMETRY_SHADER.
+     */
+    void testTypeWithGeometryShader() {
+        Shader shader = Shader::create(GL_GEOMETRY_SHADER);
+        assert(shader.type() == GL_GEOMETRY_SHADER);
+    }
+
+    /**
+     * Ensures a vertex shader's type is GL_VERTEX_SHADER.
+     */
+    void testTypeWithVertexShader() {
+        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        assert(shader.type() == GL_VERTEX_SHADER);
+    }
 };
 
 
@@ -89,6 +113,9 @@ int main(int argc, char* argv[]) {
         test.testCreateWithFragmentShader();
         test.testCreateWithGeometryShader();
         test.testCreateWithVertexShader();
+        test.testTypeWithFragmentShader();
+        test.testTypeWithGeometryShader();
+        test.testTypeWithVertexShader();
         test.testSource();
     } catch (exception& e) {
         cerr << e.what() << endl;
