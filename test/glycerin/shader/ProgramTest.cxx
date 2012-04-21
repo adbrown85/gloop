@@ -24,9 +24,9 @@ class ProgramTest {
 public:
 
     /**
-     * Ensures Program works with a vertex and fragment shader.
+     * Ensures Program links with a vertex and fragment shader.
      */
-    void testWithVertexAndFragmentShader() {
+    void testLinkWithVertexAndFragmentShader() {
 
         // Create a program
         Program program = Program::create();
@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
     // Run the test
     ProgramTest test;
     try {
-        test.testWithVertexAndFragmentShader();
+        test.testLinkWithVertexAndFragmentShader();
     } catch (exception& e) {
         cerr << e.what() << endl;
         throw;
