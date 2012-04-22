@@ -79,6 +79,7 @@ public:
         assert (a.name == "MCVertex");
         assert (a.size == 1);
         assert (a.type == GL_FLOAT_VEC4);
+        assert (a.location >= 0);
     }
 
     /**
@@ -113,10 +114,12 @@ public:
         assert (u.name == "MVPMatrix");
         assert (u.type == GL_FLOAT_MAT4);
         assert (u.size == 1);
+        assert (u.location >= 0);
         u = uniforms.find("Color")->second;
         assert (u.name == "Color");
         assert (u.type == GL_FLOAT_VEC4);
         assert (u.size == 1);
+        assert (u.location >= 0);
     }
 
     /**

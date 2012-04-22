@@ -54,6 +54,7 @@ map<string,Attribute> Program::activeAttributes() const {
         Attribute attrib;
         glGetActiveAttrib(_handle, i, len, NULL, &attrib.size, &attrib.type, buf);
         attrib.name = buf;
+        attrib.location = glGetAttribLocation(_handle, buf);
         attribs[attrib.name] = attrib;
     }
 
@@ -87,6 +88,7 @@ map<string,Uniform> Program::activeUniforms() const {
         Uniform uniform;
         glGetActiveUniform(_handle, i, len, NULL, &uniform.size, &uniform.type, buf);
         uniform.name = buf;
+        uniform.location = glGetUniformLocation(_handle, buf);
         uniforms[uniform.name] = uniform;
     }
 

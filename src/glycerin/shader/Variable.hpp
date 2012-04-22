@@ -18,6 +18,7 @@ public:
     std::string name;
     GLint size;
     GLenum type;
+    GLint location;
 };
 
 } /* namespace Glycerin */
