@@ -19,6 +19,7 @@ public:
     GLint size;
     GLenum type;
     GLint location;
+    GLuint program;
 };
 
 } /* namespace Glycerin */
