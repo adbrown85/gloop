@@ -205,6 +205,64 @@ public:
     }
 
     /**
+     * Ensures the location of a bad fragment output is negative.
+     */
+    void testFragDataLocationWithBadName() {
+
+        // Make program
+        Program program = Program::create();
+
+        // Make shaders
+        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        vs.source(GOOD_VERTEX_SHADER);
+        vs.compile();
+        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        fs.source(GOOD_FRAGMENT_SHADER);
+        fs.compile();
+
+        // Attach shaders
+        program.attachShader(vs);
+        program.attachShader(fs);
+
+        // Link
+        program.link();
+        assert (program.linked());
+
+        // Check location
+        GLint location = program.fragDataLocation("fragColor");
+        assert (location < 0);
+    }
+
+    /**
+     * Ensures the location of a good fragment output is non-negative.
+     */
+    void testFragDataLocationWithGoodName() {
+
+        // Make program
+        Program program = Program::create();
+
+        // Make shaders
+        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        vs.source(GOOD_VERTEX_SHADER);
+        vs.compile();
+        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        fs.source(GOOD_FRAGMENT_SHADER);
+        fs.compile();
+
+        // Attach shaders
+        program.attachShader(vs);
+        program.attachShader(fs);
+
+        // Link
+        program.link();
+        assert (program.linked());
+
+        // Check location
+        GLint location = program.fragDataLocation("FragColor");
+        assert (location >= 0);
+    }
+
+    /**
      * Ensures Program links with a vertex and fragment shader.
      */
     void testLinkWithGoodVertexAndFragmentShader() {
@@ -339,6 +397,8 @@ int main(int argc, char *argv[]) {
         test.testLinkWithBadVertexAndFragmentShader();
         test.testAttribLocationWithBadName();
         test.testAttribLocationWithGoodName();
+        test.testFragDataLocationWithBadName();
+        test.testFragDataLocationWithGoodName();
         test.testWrapWithGoodHandle();
         test.testWrapWithBadHandle();
     } catch (exception& e) {
