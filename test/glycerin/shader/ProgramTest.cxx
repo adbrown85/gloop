@@ -54,6 +54,34 @@ class ProgramTest {
 public:
 
     /**
+     * Ensures the active attributes are returned correctly.
+     */
+    void testActiveAttributes() {
+
+        Program p = Program::create();
+
+        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        vs.source(GOOD_VERTEX_SHADER);
+        vs.compile();
+        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        fs.source(GOOD_FRAGMENT_SHADER);
+        fs.compile();
+
+        p.attachShader(vs);
+        p.attachShader(fs);
+
+        p.link();
+        assert (p.linked());
+
+        const map<string,Attribute> attribs = p.activeAttributes();
+        assert (attribs.size() == 1);
+        const Attribute a = attribs.find("MCVertex")->second;
+        assert (a.name == "MCVertex");
+        assert (a.size == 1);
+        assert (a.type == GL_FLOAT_VEC4);
+    }
+
+    /**
      * Ensures attaching a bad shader throws an exception.
      */
     void testAttachShaderWithBadShader() {
@@ -160,34 +188,6 @@ public:
         // Check attrib location
         const GLint loc = program.attribLocation("MCVertex");
         assert (loc >= 0);
-    }
-
-    /**
-     * Ensures the active attributes are returned correctly.
-     */
-    void testAttributes() {
-
-        Program p = Program::create();
-
-        Shader vs = Shader::create(GL_VERTEX_SHADER);
-        vs.source(GOOD_VERTEX_SHADER);
-        vs.compile();
-        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
-        fs.source(GOOD_FRAGMENT_SHADER);
-        fs.compile();
-
-        p.attachShader(vs);
-        p.attachShader(fs);
-
-        p.link();
-        assert (p.linked());
-
-        const map<string,Attribute> attribs = p.attributes();
-        assert (attribs.size() == 1);
-        const Attribute a = attribs.find("MCVertex")->second;
-        assert (a.name == "MCVertex");
-        assert (a.size == 1);
-        assert (a.type == GL_FLOAT_VEC4);
     }
 
     /**
@@ -521,7 +521,7 @@ int main(int argc, char *argv[]) {
         test.testLinkWithBadVertexAndFragmentShader();
         test.testAttribLocationWithBadName();
         test.testAttribLocationWithGoodName();
-        test.testAttributes();
+        test.testActiveAttributes();
         test.testFragDataLocationWithBadName();
         test.testFragDataLocationWithGoodName();
         test.testUniformLocationWithBadName();

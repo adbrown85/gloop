@@ -32,6 +32,39 @@ Program::Program(const Program& program) : _handle(program._handle) {
 }
 
 /**
+ * Returns all the active attributes in the program.
+ */
+map<string,Attribute> Program::activeAttributes() const {
+
+    // Get number of active attributes
+    GLint num;
+    glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTES, &num);
+    if (num == 0) {
+        return map<string,Attribute>();
+    }
+
+    // Make a buffer to hold name of an attribute
+    GLint len;
+    glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &len);
+    char* const buf = new char[len];
+
+    // Put active attributes into a map
+    map<string,Attribute> attribs;
+    for (int i = 0; i < num; ++i) {
+        Attribute attrib;
+        glGetActiveAttrib(_handle, i, len, NULL, &attrib.size, &attrib.type, buf);
+        attrib.name = buf;
+        attribs[attrib.name] = attrib;
+    }
+
+    // Delete the buffer
+    delete[] buf;
+
+    // Return the vector
+    return attribs;
+}
+
+/**
  * Attaches a shader to the program.
  *
  * @param shader OpenGL identifier for the shader to attach
@@ -85,39 +118,6 @@ void Program::attribLocation(const string& name, GLuint location) {
         throw invalid_argument("[Program] Name is empty!");
     }
     glBindAttribLocation(_handle, location, name.c_str());
-}
-
-/**
- * Returns all the attributes in the program.
- */
-map<string,Attribute> Program::attributes() const {
-
-    // Get number of active attributes
-    GLint num;
-    glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTES, &num);
-    if (num == 0) {
-        return map<string,Attribute>();
-    }
-
-    // Make a buffer to hold name of an attribute
-    GLint len;
-    glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &len);
-    char* const buf = new char[len];
-
-    // Put active attributes into a map
-    map<string,Attribute> attribs;
-    for (int i = 0; i < num; ++i) {
-        Attribute attrib;
-        glGetActiveAttrib(_handle, i, len, NULL, &attrib.size, &attrib.type, buf);
-        attrib.name = buf;
-        attribs[attrib.name] = attrib;
-    }
-
-    // Delete the buffer
-    delete[] buf;
-
-    // Return the vector
-    return attribs;
 }
 
 /**

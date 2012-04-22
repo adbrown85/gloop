@@ -21,11 +21,11 @@ class Program {
 public:
 // Methods
     Program(const Program& program);
+    std::map<std::string,Attribute> activeAttributes() const;
     void attachShader(GLuint shader);
     void attachShader(const Shader& shader);
     GLint attribLocation(const std::string& name) const;
     void attribLocation(const std::string& name, GLuint location);
-    std::map<std::string,Attribute> attributes() const;
     static Program create();
     void detachShader(GLuint shader);
     void detachShader(const Shader& shader);
