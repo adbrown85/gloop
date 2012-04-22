@@ -182,9 +182,9 @@ public:
         p.link();
         assert (p.linked());
 
-        const vector<Attribute> attribs = p.attributes();
+        const map<string,Attribute> attribs = p.attributes();
         assert (attribs.size() == 1);
-        Attribute a = attribs[0];
+        const Attribute a = attribs.find("MCVertex")->second;
         assert (a.name == "MCVertex");
         assert (a.size == 1);
         assert (a.type == GL_FLOAT_VEC4);
@@ -451,28 +451,17 @@ public:
         assert (p.linked());
 
         // Get uniforms
-        const vector<Uniform> uniforms = p.uniforms();
+        const map<string,Uniform> uniforms = p.uniforms();
         assert (uniforms.size() == 2);
-        map<string,GLenum> types;
-        map<string,GLuint> sizes;
-        for (vector<Uniform>::const_iterator it = uniforms.begin(); it != uniforms.end(); ++it) {
-            types[it->name] = it->type;
-            sizes[it->name] = it->size;
-        }
-        map<string,GLenum>::const_iterator ti;
-        map<string,GLuint>::const_iterator si;
-        ti = types.find("MVPMatrix");
-        si = sizes.find("MVPMatrix");
-        assert (ti != types.end());
-        assert (si != sizes.end());
-        assert (ti->second == GL_FLOAT_MAT4);
-        assert (si->second == 1);
-        ti = types.find("Color");
-        si = sizes.find("Color");
-        assert (ti != types.end());
-        assert (si != sizes.end());
-        assert (ti->second == GL_FLOAT_VEC4);
-        assert (si->second == 1);
+        Uniform u;
+        u = uniforms.find("MVPMatrix")->second;
+        assert (u.name == "MVPMatrix");
+        assert (u.type == GL_FLOAT_MAT4);
+        assert (u.size == 1);
+        u = uniforms.find("Color")->second;
+        assert (u.name == "Color");
+        assert (u.type == GL_FLOAT_VEC4);
+        assert (u.size == 1);
     }
 
     /**

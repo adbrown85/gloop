@@ -25,7 +25,7 @@ public:
     void attachShader(const Shader& shader);
     GLint attribLocation(const std::string& name) const;
     void attribLocation(const std::string& name, GLuint location);
-    std::vector<Attribute> attributes() const;
+    std::map<std::string,Attribute> attributes() const;
     static Program create();
     void detachShader(GLuint shader);
     void detachShader(const Shader& shader);
@@ -40,7 +40,7 @@ public:
     bool operator==(const Program& program) const;
     bool operator!=(const Program& program) const;
     std::vector<Shader> shaders() const;
-    std::vector<Uniform> uniforms() const;
+    std::map<std::string,Uniform> uniforms() const;
     GLint uniformLocation(const std::string& name) const;
     void use() const;
     bool valid() const;

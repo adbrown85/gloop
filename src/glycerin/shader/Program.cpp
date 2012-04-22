@@ -90,13 +90,13 @@ void Program::attribLocation(const string& name, GLuint location) {
 /**
  * Returns all the attributes in the program.
  */
-vector<Attribute> Program::attributes() const {
+map<string,Attribute> Program::attributes() const {
 
     // Get number of active attributes
     GLint num;
     glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTES, &num);
     if (num == 0) {
-        return vector<Attribute>(0);
+        return map<string,Attribute>();
     }
 
     // Make a buffer to hold name of an attribute
@@ -104,13 +104,13 @@ vector<Attribute> Program::attributes() const {
     glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &len);
     char* const buf = new char[len];
 
-    // Put active attributes into an array
-    vector<Attribute> attribs;
+    // Put active attributes into a map
+    map<string,Attribute> attribs;
     for (int i = 0; i < num; ++i) {
         Attribute attrib;
         glGetActiveAttrib(_handle, i, len, NULL, &attrib.size, &attrib.type, buf);
         attrib.name = buf;
-        attribs.push_back(attrib);
+        attribs[attrib.name] = attrib;
     }
 
     // Delete the buffer
@@ -319,13 +319,13 @@ GLint Program::uniformLocation(const string& name) const {
 /**
  * Returns the names of all the active uniforms in the program.
  */
-vector<Uniform> Program::uniforms() const {
+map<string,Uniform> Program::uniforms() const {
 
     // Get number of active uniforms
     GLint num;
     glGetProgramiv(_handle, GL_ACTIVE_UNIFORMS, &num);
     if (num == 0) {
-        return vector<Uniform>(0);
+        return map<string,Uniform>();
     }
 
     // Make a buffer to hold name of a uniform
@@ -333,13 +333,13 @@ vector<Uniform> Program::uniforms() const {
     glGetProgramiv(_handle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &len);
     char* const buf = new char[len];
 
-    // Put active uniforms into an array
-    vector<Uniform> uniforms;
+    // Put active uniforms into a map
+    map<string,Uniform> uniforms;
     for (int i = 0; i < num; ++i) {
         Uniform uniform;
         glGetActiveUniform(_handle, i, len, NULL, &uniform.size, &uniform.type, buf);
         uniform.name = buf;
-        uniforms.push_back(uniform);
+        uniforms[uniform.name] = uniform;
     }
 
     // Delete the buffer
