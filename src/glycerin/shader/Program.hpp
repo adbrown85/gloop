@@ -41,6 +41,7 @@ public:
     bool operator!=(const Program& program) const;
     std::vector<Shader> shaders() const;
     std::vector<Uniform> uniforms() const;
+    GLuint uniformLocation(const std::string& name) const;
     void use() const;
     bool valid() const;
     void validate();

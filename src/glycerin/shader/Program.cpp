@@ -307,6 +307,16 @@ vector<Shader> Program::shaders() const {
 }
 
 /**
+ * Determines the location of a uniform in the program.
+ *
+ * @param name Name of the uniform to look for
+ * @return Location of the uniform, or -1 if not in program
+ */
+GLuint Program::uniformLocation(const string& name) const {
+    return glGetUniformLocation(_handle, name.c_str());
+}
+
+/**
  * Returns the names of all the active uniforms in the program.
  */
 vector<Uniform> Program::uniforms() const {
