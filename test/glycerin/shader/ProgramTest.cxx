@@ -82,6 +82,44 @@ public:
     }
 
     /**
+     * Ensures the active uniforms are returned correctly.
+     */
+    void testActiveUniforms() {
+
+        // Make the program
+        Program p = Program::create();
+
+        // Make the shaders
+        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        vs.source(GOOD_VERTEX_SHADER);
+        vs.compile();
+        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        fs.source(GOOD_FRAGMENT_SHADER);
+        fs.compile();
+
+        // Attach the shaders
+        p.attachShader(vs);
+        p.attachShader(fs);
+
+        // Link
+        p.link();
+        assert (p.linked());
+
+        // Get uniforms
+        const map<string,Uniform> uniforms = p.activeUniforms();
+        assert (uniforms.size() == 2);
+        Uniform u;
+        u = uniforms.find("MVPMatrix")->second;
+        assert (u.name == "MVPMatrix");
+        assert (u.type == GL_FLOAT_MAT4);
+        assert (u.size == 1);
+        u = uniforms.find("Color")->second;
+        assert (u.name == "Color");
+        assert (u.type == GL_FLOAT_VEC4);
+        assert (u.size == 1);
+    }
+
+    /**
      * Ensures attaching a bad shader throws an exception.
      */
     void testAttachShaderWithBadShader() {
@@ -427,44 +465,6 @@ public:
     }
 
     /**
-     * Ensures the active uniforms are returned correctly.
-     */
-    void testUniforms() {
-
-        // Make the program
-        Program p = Program::create();
-
-        // Make the shaders
-        Shader vs = Shader::create(GL_VERTEX_SHADER);
-        vs.source(GOOD_VERTEX_SHADER);
-        vs.compile();
-        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
-        fs.source(GOOD_FRAGMENT_SHADER);
-        fs.compile();
-
-        // Attach the shaders
-        p.attachShader(vs);
-        p.attachShader(fs);
-
-        // Link
-        p.link();
-        assert (p.linked());
-
-        // Get uniforms
-        const map<string,Uniform> uniforms = p.uniforms();
-        assert (uniforms.size() == 2);
-        Uniform u;
-        u = uniforms.find("MVPMatrix")->second;
-        assert (u.name == "MVPMatrix");
-        assert (u.type == GL_FLOAT_MAT4);
-        assert (u.size == 1);
-        u = uniforms.find("Color")->second;
-        assert (u.name == "Color");
-        assert (u.type == GL_FLOAT_VEC4);
-        assert (u.size == 1);
-    }
-
-    /**
      * Ensures wrap does not throw an exception with a good handle.
      */
     void testWrapWithGoodHandle() {
@@ -526,7 +526,7 @@ int main(int argc, char *argv[]) {
         test.testFragDataLocationWithGoodName();
         test.testUniformLocationWithBadName();
         test.testUniformLocationWithGoodName();
-        test.testUniforms();
+        test.testActiveUniforms();
         test.testWrapWithGoodHandle();
         test.testWrapWithBadHandle();
     } catch (exception& e) {

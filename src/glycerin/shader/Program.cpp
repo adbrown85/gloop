@@ -65,6 +65,39 @@ map<string,Attribute> Program::activeAttributes() const {
 }
 
 /**
+ * Returns all the active uniforms in the program.
+ */
+map<string,Uniform> Program::activeUniforms() const {
+
+    // Get number of active uniforms
+    GLint num;
+    glGetProgramiv(_handle, GL_ACTIVE_UNIFORMS, &num);
+    if (num == 0) {
+        return map<string,Uniform>();
+    }
+
+    // Make a buffer to hold name of a uniform
+    GLint len;
+    glGetProgramiv(_handle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &len);
+    char* const buf = new char[len];
+
+    // Put active uniforms into a map
+    map<string,Uniform> uniforms;
+    for (int i = 0; i < num; ++i) {
+        Uniform uniform;
+        glGetActiveUniform(_handle, i, len, NULL, &uniform.size, &uniform.type, buf);
+        uniform.name = buf;
+        uniforms[uniform.name] = uniform;
+    }
+
+    // Delete the buffer
+    delete[] buf;
+
+    // Return the vector
+    return uniforms;
+}
+
+/**
  * Attaches a shader to the program.
  *
  * @param shader OpenGL identifier for the shader to attach
@@ -314,39 +347,6 @@ vector<Shader> Program::shaders() const {
  */
 GLint Program::uniformLocation(const string& name) const {
     return glGetUniformLocation(_handle, name.c_str());
-}
-
-/**
- * Returns the names of all the active uniforms in the program.
- */
-map<string,Uniform> Program::uniforms() const {
-
-    // Get number of active uniforms
-    GLint num;
-    glGetProgramiv(_handle, GL_ACTIVE_UNIFORMS, &num);
-    if (num == 0) {
-        return map<string,Uniform>();
-    }
-
-    // Make a buffer to hold name of a uniform
-    GLint len;
-    glGetProgramiv(_handle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &len);
-    char* const buf = new char[len];
-
-    // Put active uniforms into a map
-    map<string,Uniform> uniforms;
-    for (int i = 0; i < num; ++i) {
-        Uniform uniform;
-        glGetActiveUniform(_handle, i, len, NULL, &uniform.size, &uniform.type, buf);
-        uniform.name = buf;
-        uniforms[uniform.name] = uniform;
-    }
-
-    // Delete the buffer
-    delete[] buf;
-
-    // Return the vector
-    return uniforms;
 }
 
 /**

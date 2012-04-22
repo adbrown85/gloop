@@ -22,6 +22,7 @@ public:
 // Methods
     Program(const Program& program);
     std::map<std::string,Attribute> activeAttributes() const;
+    std::map<std::string,Uniform> activeUniforms() const;
     void attachShader(GLuint shader);
     void attachShader(const Shader& shader);
     GLint attribLocation(const std::string& name) const;
@@ -40,7 +41,6 @@ public:
     bool operator==(const Program& program) const;
     bool operator!=(const Program& program) const;
     std::vector<Shader> shaders() const;
-    std::map<std::string,Uniform> uniforms() const;
     GLint uniformLocation(const std::string& name) const;
     void use() const;
     bool valid() const;
