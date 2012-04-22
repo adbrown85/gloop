@@ -369,6 +369,64 @@ public:
     }
 
     /**
+     * Ensures the location of a bad uniform is negative.
+     */
+    void testUniformLocationWithBadName() {
+
+        // Make the program
+        Program p = Program::create();
+
+        // Make the shaders
+        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        vs.source(GOOD_VERTEX_SHADER);
+        vs.compile();
+        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        fs.source(GOOD_FRAGMENT_SHADER);
+        fs.compile();
+
+        // Attach the shaders
+        p.attachShader(vs);
+        p.attachShader(fs);
+
+        // Link
+        p.link();
+        assert (p.linked());
+
+        // Check uniform location
+        GLint loc = p.uniformLocation("mvpMatrix");
+        assert (loc < 0);
+    }
+
+    /**
+     * Ensures the location of a good uniform is non-negative.
+     */
+    void testUniformLocationWithGoodName() {
+
+        // Make the program
+        Program p = Program::create();
+
+        // Make the shaders
+        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        vs.source(GOOD_VERTEX_SHADER);
+        vs.compile();
+        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        fs.source(GOOD_FRAGMENT_SHADER);
+        fs.compile();
+
+        // Attach the shaders
+        p.attachShader(vs);
+        p.attachShader(fs);
+
+        // Link
+        p.link();
+        assert (p.linked());
+
+        // Check uniform location
+        GLint loc = p.uniformLocation("MVPMatrix");
+        assert (loc >= 0);
+    }
+
+    /**
      * Ensures the active uniforms are returned correctly.
      */
     void testUniforms() {
@@ -477,6 +535,8 @@ int main(int argc, char *argv[]) {
         test.testAttributes();
         test.testFragDataLocationWithBadName();
         test.testFragDataLocationWithGoodName();
+        test.testUniformLocationWithBadName();
+        test.testUniformLocationWithGoodName();
         test.testUniforms();
         test.testWrapWithGoodHandle();
         test.testWrapWithBadHandle();
