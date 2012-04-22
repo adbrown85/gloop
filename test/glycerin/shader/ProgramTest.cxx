@@ -369,6 +369,55 @@ public:
     }
 
     /**
+     * Ensures the active uniforms are returned correctly.
+     */
+    void testUniforms() {
+
+        // Make the program
+        Program p = Program::create();
+
+        // Make the shaders
+        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        vs.source(GOOD_VERTEX_SHADER);
+        vs.compile();
+        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        fs.source(GOOD_FRAGMENT_SHADER);
+        fs.compile();
+
+        // Attach the shaders
+        p.attachShader(vs);
+        p.attachShader(fs);
+
+        // Link
+        p.link();
+        assert (p.linked());
+
+        // Get uniforms
+        const vector<Uniform> uniforms = p.uniforms();
+        assert (uniforms.size() == 2);
+        map<string,GLenum> types;
+        map<string,GLuint> sizes;
+        for (vector<Uniform>::const_iterator it = uniforms.begin(); it != uniforms.end(); ++it) {
+            types[it->name] = it->type;
+            sizes[it->name] = it->size;
+        }
+        map<string,GLenum>::const_iterator ti;
+        map<string,GLuint>::const_iterator si;
+        ti = types.find("MVPMatrix");
+        si = sizes.find("MVPMatrix");
+        assert (ti != types.end());
+        assert (si != sizes.end());
+        assert (ti->second == GL_FLOAT_MAT4);
+        assert (si->second == 1);
+        ti = types.find("Color");
+        si = sizes.find("Color");
+        assert (ti != types.end());
+        assert (si != sizes.end());
+        assert (ti->second == GL_FLOAT_VEC4);
+        assert (si->second == 1);
+    }
+
+    /**
      * Ensures wrap does not throw an exception with a good handle.
      */
     void testWrapWithGoodHandle() {
@@ -428,6 +477,7 @@ int main(int argc, char *argv[]) {
         test.testAttributes();
         test.testFragDataLocationWithBadName();
         test.testFragDataLocationWithGoodName();
+        test.testUniforms();
         test.testWrapWithGoodHandle();
         test.testWrapWithBadHandle();
     } catch (exception& e) {
