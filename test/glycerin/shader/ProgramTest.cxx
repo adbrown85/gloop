@@ -163,6 +163,34 @@ public:
     }
 
     /**
+     * Ensures the active attributes are returned correctly.
+     */
+    void testAttributes() {
+
+        Program p = Program::create();
+
+        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        vs.source(GOOD_VERTEX_SHADER);
+        vs.compile();
+        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        fs.source(GOOD_FRAGMENT_SHADER);
+        fs.compile();
+
+        p.attachShader(vs);
+        p.attachShader(fs);
+
+        p.link();
+        assert (p.linked());
+
+        const vector<Attribute> attribs = p.attributes();
+        assert (attribs.size() == 1);
+        Attribute a = attribs[0];
+        assert (a.name == "MCVertex");
+        assert (a.size == 1);
+        assert (a.type == GL_FLOAT_VEC4);
+    }
+
+    /**
      * Ensures create returns a program with a valid handle.
      */
     void testCreate() {
@@ -397,6 +425,7 @@ int main(int argc, char *argv[]) {
         test.testLinkWithBadVertexAndFragmentShader();
         test.testAttribLocationWithBadName();
         test.testAttribLocationWithGoodName();
+        test.testAttributes();
         test.testFragDataLocationWithBadName();
         test.testFragDataLocationWithGoodName();
         test.testWrapWithGoodHandle();
