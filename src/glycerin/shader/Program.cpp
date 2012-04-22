@@ -36,6 +36,7 @@ Program::Program(const Program& program) : _handle(program._handle) {
  *
  * @param shader OpenGL identifier for the shader to attach
  * @throw std::invalid_argument if shader is not valid
+ * @throw std::invalid_argument if shader is already attached
  */
 void Program::attachShader(GLuint shader) {
     attachShader(Shader::wrap(shader));
@@ -45,8 +46,12 @@ void Program::attachShader(GLuint shader) {
  * Attaches a shader to the program.
  *
  * @param shader Wrapper for an OpenGL shader
+ * @throw std::invalid_argument if shader is already attached
  */
 void Program::attachShader(const Shader &shader) {
+    if (isAttached(shader)) {
+        throw invalid_argument("[Program] Shader is already attached!");
+    }
     glAttachShader(_handle, shader.handle());
 }
 
@@ -138,6 +143,7 @@ Program Program::create() {
  *
  * @param shader Shader to detach
  * @throws invalid_argument if shader is not a valid shader
+ * @throws invalid_argument if shader is not already attached
  */
 void Program::detachShader(GLuint shader) {
     detachShader(Shader::wrap(shader));
@@ -147,8 +153,12 @@ void Program::detachShader(GLuint shader) {
  * Detaches a shader from the program.
  *
  * @param shader Shader to detach
+ * @throws invalid_argument if shader is not already attached
  */
 void Program::detachShader(const Shader &shader) {
+    if (!isAttached(shader)) {
+        throw invalid_argument("[Program] Shader not already attached!");
+    }
     glDetachShader(_handle, shader.handle());
 }
 
@@ -364,6 +374,24 @@ Program Program::wrap(const GLuint handle) {
 }
 
 // HELPERS
+
+/**
+ * Checks if a shader is attached to the program.
+ *
+ * @param shader Shader to check
+ * @return <tt>true</tt> if shader is attached
+ */
+bool Program::isAttached(const Shader &shader) const {
+    const vector<Shader> attachedShaders = shaders();
+    vector<Shader>::const_iterator it = attachedShaders.begin();
+    while (it != attachedShaders.end()) {
+        if ((*it) == shader) {
+            return true;
+        }
+        ++it;
+    }
+    return false;
+}
 
 /**
  * Returns the value of GL_MAX_DRAW_BUFFERS.

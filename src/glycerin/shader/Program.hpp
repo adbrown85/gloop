@@ -52,6 +52,7 @@ private:
     explicit Program(GLuint handle);
     Program();
     static GLint getMaxDrawBuffers();
+    bool isAttached(const Shader& shader) const;
 };
 
 } /* namespace Glycerin */
