@@ -23,7 +23,7 @@ public:
     Program(const Program& program);
     void attachShader(GLuint shader);
     void attachShader(const Shader& shader);
-    GLuint attribLocation(const std::string& name) const;
+    GLint attribLocation(const std::string& name) const;
     void attribLocation(const std::string& name, GLuint location);
     std::vector<Attribute> attributes() const;
     static Program create();
@@ -41,7 +41,7 @@ public:
     bool operator!=(const Program& program) const;
     std::vector<Shader> shaders() const;
     std::vector<Uniform> uniforms() const;
-    GLuint uniformLocation(const std::string& name) const;
+    GLint uniformLocation(const std::string& name) const;
     void use() const;
     bool valid() const;
     void validate();

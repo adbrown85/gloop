@@ -62,7 +62,7 @@ void Program::attachShader(const Shader &shader) {
  * @throws invalid_argument if name empty
  * @throws runtime_error if program has not been linked yet
  */
-GLuint Program::attribLocation(const string &name) const {
+GLint Program::attribLocation(const string &name) const {
 
     if (name.empty()) {
         throw invalid_argument("[Program] Name is empty!");
@@ -312,7 +312,7 @@ vector<Shader> Program::shaders() const {
  * @param name Name of the uniform to look for
  * @return Location of the uniform, or -1 if not in program
  */
-GLuint Program::uniformLocation(const string& name) const {
+GLint Program::uniformLocation(const string& name) const {
     return glGetUniformLocation(_handle, name.c_str());
 }
 
