@@ -7,17 +7,15 @@
 #ifndef GLYCERIN_UNIFORM_HPP
 #define GLYCERIN_UNIFORM_HPP
 #include "glycerin/common.h"
+#include "glycerin/shader/Variable.hpp"
 namespace Glycerin {
 
 
 /**
  * OpenGL uniform information.
  */
-struct Uniform {
-public:
-    std::string name;
-    GLint size;
-    GLenum type;
+struct Uniform : public Variable {
+    // pass
 };
 
 } /* namespace Glycerin */

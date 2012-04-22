@@ -7,17 +7,15 @@
 #ifndef GLYCERIN_ATTRIBUTE_HPP
 #define GLYCERIN_ATTRIBUTE_HPP
 #include "glycerin/common.h"
+#include "glycerin/shader/Uniform.hpp"
 namespace Glycerin {
 
 
 /**
  * OpenGL vertex attribute.
  */
-struct Attribute {
-public:
-    std::string name;
-    GLint size;
-    GLenum type;
+struct Attribute : public Variable {
+    // pass
 };
 
 } /* namespace Glycerin */
