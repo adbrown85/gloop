@@ -1,0 +1,229 @@
+/*
+ * Buffer.cpp
+ *
+ * Author
+ *     Andrew Brown <adb1413@rit.edu>
+ */
+#include "config.h"
+#include <cassert>
+#include <stdexcept>
+#include "glycerin/buffer/Buffer.hpp"
+using namespace std;
+namespace Glycerin {
+
+/**
+ * Constructs an invalid buffer handle.
+ */
+Buffer::Buffer() {
+    throw runtime_error("[Buffer] Default constructor should not be called!");
+}
+
+/**
+ * Constructs a buffer handle representing an OpenGL buffer.
+ *
+ * @param name Enumeration for the OpenGL buffer, e.g. GL_ARRAY_BUFFER
+ * @param binding Enumeration used to look up the current binding, e.g. GL_ARRAY_BUFFER_BINDING
+ */
+Buffer::Buffer(GLenum name, GLenum binding) : _name(name), _binding(binding) {
+    // pass
+}
+
+/**
+ * Constructs a buffer handle representing the same OpenGL buffer as another one.
+ *
+ * @param bt Other buffer handle to copy
+ */
+Buffer::Buffer(const Buffer& bt) : _name(bt._name), _binding(bt._binding) {
+    // pass
+}
+
+/**
+ * Destructs a buffer handle, leaving the corresponding OpenGL buffer unaffected.
+ */
+Buffer::~Buffer() {
+    // pass
+}
+
+/**
+ * Uses a buffer object as the data store for the OpenGL buffer this handle represents.
+ *
+ * @param bo Handle for the buffer object to use
+ */
+void Buffer::bind(const BufferObject& bo) const {
+    glBindBuffer(_name, bo.id());
+}
+
+/**
+ * Determines the buffer object currently being used as the data store for the buffer.
+ *
+ * @return Identifier of the buffer object, or zero if nothing bound
+ */
+GLuint Buffer::binding() const {
+    GLint i;
+    glGetIntegerv(_binding, &i);
+    return i;
+}
+
+/**
+ * Checks if any buffer object is currently being used as the data store for the buffer.
+ *
+ * @return <tt>true</tt> if a buffer object is being used
+ */
+bool Buffer::bound() const {
+    return binding() != 0;
+}
+
+/**
+ * Checks if a specific buffer object is currently being used as the data store for the buffer.
+ *
+ * @param bo Handle for buffer object to check for
+ * @return <tt>true</tt> if the buffer object is being used
+ */
+bool Buffer::bound(const BufferObject& bo) const {
+    return binding() == bo.id();
+}
+
+/**
+ * Allocates or reallocates memory for the data store currently bound to the buffer.
+ *
+ * @param size Number of bytes to allocate or reallocate
+ * @param data Data to initialize memory with, or <tt>NULL</tt> to leave it uninitialized
+ * @param usage Hint for how the memory will be used, e.g. <tt>GL_STATIC_DRAW</tt>
+ * @pre A buffer object is currently bound to the buffer as its data store
+ */
+void Buffer::data(GLsizeiptr size, const GLvoid* data, GLenum usage) const {
+    assert (bound());
+    glBufferData(_name, size, data, usage);
+}
+
+/**
+ * Changes which OpenGL buffer this handle represents.
+ *
+ * @param bt Other buffer handle to copy name from
+ * @return Reference to this handle
+ */
+Buffer& Buffer::operator=(const Buffer& bt) {
+    _name = bt._name;
+    _binding = bt._binding;
+}
+
+/**
+ * Checks if another buffer represents the same OpenGL buffer as this one.
+ *
+ * @param bt Other buffer handle to check
+ * @return <tt>true</tt> if the other handle represents the same OpenGL buffer
+ */
+bool Buffer::operator==(const Buffer& bt) const {
+    return _name == bt._name;
+}
+
+/**
+ * Checks if another buffer does not represent the same OpenGL buffer as this one.
+ *
+ * @param bt Other buffer handle to check
+ * @return <tt>true</tt> if the other handle does not represent the same OpenGL buffer
+ */
+bool Buffer::operator!=(const Buffer& bt) const {
+    return _name != bt._name;
+}
+
+/**
+ * Compares the name of this buffer handle to that of another one.
+ *
+ * @param bt Other buffer handle to compare to
+ * @return <tt>true</tt> if this handle's identifier is less than the other one's
+ */
+bool Buffer::operator<(const Buffer& bt) const {
+    return _name < bt._name;
+}
+
+/**
+ * Changes all or some of the data in the buffer object currently bound to the buffer.
+ *
+ * @param offset Number of bytes from the start of the buffer object to start replacing data
+ * @param size Number of bytes to copy into the buffer object
+ * @param data Pointer to the data to copy into the buffer object
+ * @pre A buffer object is currently bound to the buffer as its data store
+ */
+void Buffer::subData(GLintptr offset, GLsizeiptr size, const GLvoid* data) const {
+    assert (bound());
+    glBufferSubData(_name, offset, size, data);
+}
+
+/**
+ * Unbinds a buffer object from the OpenGL buffer this handle represents.
+ *
+ * @param bo Handle for the buffer object to unbind
+ * @pre Specified buffer object is currently bound to the buffer
+ */
+void Buffer::unbind(const BufferObject& bo) const {
+    assert (bound(bo));
+    glBindBuffer(_name, 0);
+}
+
+// INSTANCES
+
+/**
+ * Returns a handle for the <tt>GL_ARRAY_BUFFER</tt> buffer.
+ */
+Buffer Buffer::arrayBuffer() {
+    return Buffer(GL_ARRAY_BUFFER, GL_ARRAY_BUFFER_BINDING);
+}
+
+/**
+ * Returns a handle for the <tt>GL_COPY_READ_BUFFER</tt> buffer.
+ */
+Buffer Buffer::copyReadBuffer() {
+    return Buffer(GL_COPY_READ_BUFFER, GL_COPY_READ_BUFFER);
+}
+
+/**
+ * Returns a handle for the <tt>GL_COPY_WRITE_BUFFER</tt> buffer.
+ */
+Buffer Buffer::copyWriteBuffer() {
+    return Buffer(GL_COPY_WRITE_BUFFER, GL_COPY_WRITE_BUFFER);
+}
+
+/**
+ * Returns a handle for the <tt>GL_ELEMENT_ARRAY_BUFFER</tt> buffer.
+ */
+Buffer Buffer::elementArrayBuffer() {
+    return Buffer(GL_ELEMENT_ARRAY_BUFFER, GL_ELEMENT_ARRAY_BUFFER_BINDING);
+}
+
+/**
+ * Returns a handle for the <tt>GL_PIXEL_PACK_BUFFER</tt>.
+ */
+Buffer Buffer::pixelPackBuffer() {
+    return Buffer(GL_PIXEL_PACK_BUFFER, GL_PIXEL_PACK_BUFFER_BINDING);
+}
+
+/**
+ * Returns a handle for the <tt>GL_PIXEL_UNPACK_BUFFER</tt>.
+ */
+Buffer Buffer::pixelUnpackBuffer() {
+    return Buffer(GL_PIXEL_UNPACK_BUFFER, GL_PIXEL_UNPACK_BUFFER_BINDING);
+}
+
+/**
+ * Returns a handle for the <tt>GL_TEXTURE_BUFFER</tt> buffer.
+ */
+Buffer Buffer::textureBuffer() {
+    return Buffer(GL_TEXTURE_BUFFER, GL_TEXTURE_BUFFER);
+}
+
+/**
+ * Returns a handle for the <tt>GL_TRANSFORM_FEEDBACK_BUFFER</tt>.
+ */
+Buffer Buffer::transformFeedbackBuffer() {
+    return Buffer(GL_TRANSFORM_FEEDBACK_BUFFER, GL_TRANSFORM_FEEDBACK_BUFFER_BINDING);
+}
+
+/**
+ * Returns a handle for the <tt>GL_UNIFORM_BUFFER</tt> buffer.
+ */
+Buffer Buffer::uniformBuffer() {
+    return Buffer(GL_UNIFORM_BUFFER, GL_UNIFORM_BUFFER_BINDING);
+}
+
+} /* namespace Glycerin */
