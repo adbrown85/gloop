@@ -6,6 +6,7 @@
  */
 #include "config.h"
 #include <stdexcept>
+#include <limits>
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/ui/text/TestRunner.h>
