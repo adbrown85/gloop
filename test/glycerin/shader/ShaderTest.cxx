@@ -331,7 +331,7 @@ int main(int argc, char* argv[]) {
         test.testWrapWithBadHandle();
     } catch (exception& e) {
         cerr << e.what() << endl;
-        throw e;
+        throw;
     }
 
     // Exit
