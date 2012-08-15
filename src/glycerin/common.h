@@ -22,6 +22,10 @@
 #include <GL/glx.h>
 #endif
 
+#ifndef SIZE_MAX
+#define SIZE_MAX ((size_t) -1)
+#endif
+
 /**
  * @defgroup geometry
  * @defgroup image
