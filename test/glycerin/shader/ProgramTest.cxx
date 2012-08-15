@@ -9,9 +9,9 @@
 #include <fstream>
 #include <sstream>
 #include <boost/filesystem.hpp>
-#include <GL/glfw.h>
 #include "glycerin/common.h"
 #include "glycerin/shader/Program.hpp"
+#include <GL/glfw.h>
 using namespace std;
 using namespace Glycerin;
 namespace bfs = boost::filesystem;
