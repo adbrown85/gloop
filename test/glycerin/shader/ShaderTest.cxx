@@ -32,7 +32,7 @@ public:
                 "}\n");
         shader.compile();
         if (shader.compiled()) {
-            throw new runtime_error("Compiled bad fragment shader!");
+            throw runtime_error("Compiled bad fragment shader!");
         }
     }
 
@@ -49,7 +49,7 @@ public:
                 "}\n");
         shader.compile();
         if (!shader.compiled()) {
-            throw new runtime_error("Could not compile good fragment shader!");
+            throw runtime_error("Could not compile good fragment shader!");
         }
     }
 
@@ -66,7 +66,7 @@ public:
                 "}\n");
         shader.compile();
         if (shader.compiled()) {
-            throw new runtime_error("Compiled bad vertex shader!");
+            throw runtime_error("Compiled bad vertex shader!");
         }
     }
 
@@ -83,7 +83,7 @@ public:
                 "}\n");
         shader.compile();
         if (!shader.compiled()) {
-            throw new runtime_error("Could not compile good vertex shader!");
+            throw runtime_error("Could not compile good vertex shader!");
         }
     }
 
@@ -93,7 +93,7 @@ public:
     void testCreateWithFragmentShader() {
         Shader shader = Shader::create(GL_FRAGMENT_SHADER);
         if (glGetError() != 0) {
-            throw new runtime_error("Could not create fragment shader!");
+            throw runtime_error("Could not create fragment shader!");
         }
         shader.dispose();
     }
@@ -104,7 +104,7 @@ public:
     void testCreateWithGeometryShader() {
         Shader shader = Shader::create(GL_GEOMETRY_SHADER);
         if (glGetError() != 0) {
-            throw new runtime_error("Could not create geometry shader!");
+            throw runtime_error("Could not create geometry shader!");
         }
         shader.dispose();
     }
@@ -115,7 +115,7 @@ public:
     void testCreateWithVertexShader() {
         Shader shader = Shader::create(GL_VERTEX_SHADER);
         if (glGetError() != 0) {
-            throw new runtime_error("Could not create vertex shader!");
+            throw runtime_error("Could not create vertex shader!");
         }
         shader.dispose();
     }
