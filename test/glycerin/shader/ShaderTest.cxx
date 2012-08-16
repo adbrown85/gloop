@@ -28,7 +28,7 @@ public:
                 "#version 140\n"
                 "out vec4 FragColor;\n"
                 "void main() {\n"
-                "    gl_Position = vec4(1);\n"
+                "    FragColor = vec4(1)\n"
                 "}\n");
         shader.compile();
         if (shader.compiled()) {
@@ -153,7 +153,7 @@ public:
                 "#version 140\n"
                 "out vec4 FragColor;\n"
                 "void main() {\n"
-                "    gl_Position = vec4(1);\n"
+                "    FragColor = vec4(1)\n"
                 "}\n");
         shader.compile();
         const string log = shader.log();
