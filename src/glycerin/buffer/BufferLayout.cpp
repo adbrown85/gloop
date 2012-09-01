@@ -30,7 +30,7 @@ BufferLayout::BufferLayout(const_iterator_pair regions, bool interleaved) {
 }
 
 /**
- * Constructs a buffer layout by coping another one.
+ * Constructs a buffer layout by copying another one.
  *
  * @param layout Other buffer layout to copy
  */
