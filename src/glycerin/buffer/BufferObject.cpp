@@ -30,7 +30,7 @@ BufferObject::BufferObject(GLuint id) : _id(id) {
 /**
  * Constructs a buffer object handle representing the same OpenGL buffer object as another one.
  *
- * @param bo Handle for  buffer object to copy identifier from
+ * @param bo Handle for buffer object to copy identifier from
  */
 BufferObject::BufferObject(const BufferObject& bo) : _id(bo._id) {
     // pass
