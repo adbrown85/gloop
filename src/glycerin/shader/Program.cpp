@@ -132,7 +132,7 @@ void Program::attachShader(const Shader &shader) {
  * @throws invalid_argument if name empty
  * @throws runtime_error if program has not been linked yet
  */
-GLint Program::attribLocation(const string &name) const {
+GLint Program::attribLocation(const std::string &name) const {
 
     if (name.empty()) {
         throw invalid_argument("[Program] Name is empty!");
@@ -150,7 +150,7 @@ GLint Program::attribLocation(const string &name) const {
  * @param location Location to bind to
  * @throw invalid_argument if name is empty
  */
-void Program::attribLocation(const string& name, GLuint location) {
+void Program::attribLocation(const std::string& name, GLuint location) {
     if (name.empty()) {
         throw invalid_argument("[Program] Name is empty!");
     }
@@ -212,7 +212,7 @@ void Program::dispose() {
  * @param name Name of output variable
  * @return Location of output variable, or -1 if name is not an active output variable
  */
-GLint Program::fragDataLocation(const string& name) const {
+GLint Program::fragDataLocation(const std::string& name) const {
     return glGetFragDataLocation(_handle, name.c_str());
 }
 
@@ -224,7 +224,7 @@ GLint Program::fragDataLocation(const string& name) const {
  * @throws invalid_argument if location greater than GL_MAX_DRAW_BUFFERS
  * @throws invalid_argument if name is empty or starts with 'gl_'
  */
-void Program::fragDataLocation(const string &name, GLuint location) {
+void Program::fragDataLocation(const std::string &name, GLuint location) {
 
     if (location > getMaxDrawBuffers()) {
         throw invalid_argument("[Program] Location greater than GL_MAX_DRAW_BUFFERS");

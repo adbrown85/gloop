@@ -176,7 +176,7 @@ bool Shader::compiled() const {
  * @param source Code for shader
  * @throws invalid_argument if source code is empty
  */
-void Shader::source(const string& source) {
+void Shader::source(const std::string& source) {
     const char* buf = source.c_str();
     const char** ptr = &buf;
     glShaderSource(_handle, 1, ptr, NULL);
