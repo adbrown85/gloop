@@ -213,7 +213,7 @@ double& Vec4::operator[](int i) {
  * Checks if another vector is equal to this one.
  *
  * @param v Vector to check
- * @return <tt>true</tt> if vectors are equal
+ * @return `true` if vectors are equal
  */
 bool Vec4::operator==(const Vec4 &v) const {
     return (x == v.x) && (y == v.y) && (z == v.z) && (w == v.w);
@@ -223,7 +223,7 @@ bool Vec4::operator==(const Vec4 &v) const {
  * Checks if another vector is not equal to this one.
  *
  * @param v Vector to check
- * @return <tt>true</tt> if vectors are not equal
+ * @return `true` if vectors are not equal
  */
 bool Vec4::operator!=(const Vec4 &v) const {
     return (x != v.x) || (y != v.y) || (z != v.z) || (w != v.w);

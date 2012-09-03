@@ -93,7 +93,7 @@ BufferObject& BufferObject::operator=(const BufferObject& bo) {
  * Checks if another handle represents the same OpenGL buffer object as this one.
  *
  * @param bo Other buffer object handle to check
- * @return <tt>true</tt> if the other handle represents the same OpenGL buffer object
+ * @return `true` if the other handle represents the same OpenGL buffer object
  */
 bool BufferObject::operator==(const BufferObject& bo) const {
     return _id == bo._id;
@@ -103,7 +103,7 @@ bool BufferObject::operator==(const BufferObject& bo) const {
  * Checks if another handle does not represent the same OpenGL buffer object as this one.
  *
  * @param bo Other buffer object handle to check
- * @return <tt>true</tt> if the other handle does not represent the same OpenGL buffer object
+ * @return `true` if the other handle does not represent the same OpenGL buffer object
  */
 bool BufferObject::operator!=(const BufferObject& bo) const {
     return _id != bo._id;
@@ -113,7 +113,7 @@ bool BufferObject::operator!=(const BufferObject& bo) const {
  * Compares the identifier of this handle's OpenGL buffer object to that of another one.
  *
  * @param bo Handle for buffer object to compare to
- * @return <tt>true</tt> if this handle's identifier is less than the other one's
+ * @return `true` if this handle's identifier is less than the other one's
  */
 bool BufferObject::operator<(const BufferObject& bo) const {
     return _id < bo._id;

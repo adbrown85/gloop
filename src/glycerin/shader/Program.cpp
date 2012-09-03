@@ -252,7 +252,7 @@ void Program::link() {
 }
 
 /**
- * Returns <tt>true</tt> if program is linked.
+ * Returns `true` if program is linked.
  */
 bool Program::linked() const {
     GLint linked;
@@ -297,7 +297,7 @@ Program& Program::operator=(const Program& program) {
  * Checks if another program has the same handle as this one.
  *
  * @param program Program to check
- * @return <tt>true</tt> if both programs have same handle
+ * @return `true` if both programs have same handle
  */
 bool Program::operator==(const Program& program) const {
     return _handle == program.handle();
@@ -307,7 +307,7 @@ bool Program::operator==(const Program& program) const {
  * Checks if another program has a different handle than this one.
  *
  * @param program Program to check
- * @return <tt>true</tt> if programs have different handles
+ * @return `true` if programs have different handles
  */
 bool Program::operator!=(const Program& program) const {
     return _handle != program.handle();
@@ -347,7 +347,7 @@ vector<Shader> Program::shaders() const {
  * Determines the location of a uniform in the program.
  *
  * @param name Name of the uniform to look for
- * @return Location of the uniform, or -1 if not in program
+ * @return Location of the uniform, or `-1` if not in program
  */
 GLint Program::uniformLocation(const string& name) const {
     return glGetUniformLocation(_handle, name.c_str());
@@ -393,7 +393,7 @@ Program Program::wrap(const GLuint handle) {
  * Checks if a shader is attached to the program.
  *
  * @param shader Shader to check
- * @return <tt>true</tt> if shader is attached
+ * @return `true` if shader is attached
  */
 bool Program::isAttached(const Shader &shader) const {
     const vector<Shader> attachedShaders = shaders();

@@ -16,99 +16,98 @@ namespace Glycerin {
 /**
  * Utility for building a buffer layout.
  *
- * <i>BufferLayoutBuilder</i> creates <i>BufferLayout</i> instances.  The user
- * defines the desired properties for the regions, and then directs the builder
- * to create the layout.  The state of each property is maintained from region
- * to region unless changed by the user, making most layouts very easy to make.
+ * _BufferLayoutBuilder_ creates _BufferLayout_ instances.  The user defines
+ * the desired properties for the regions, and then directs the builder to
+ * create the layout.  The state of each property is maintained from region to
+ * region unless changed by the user, making most layouts very easy to make.
  *
- * To get started with <i>BufferLayoutBuilder</i>, first create one.
- * @code
+ * To get started with _BufferLayoutBuilder_, first create one.
+ *
+ * ~~~
  * BufferLayoutBuilder builder;
- * @endcode
+ * ~~~
  *
  * Then start defining the properties of the first region you'd like in the
  * buffer layout.  You can specify the number of components per vector with
- * <i>components</i>, the number of vectors per region with <i>count</i>,
- * whether the vector components should be normalized with <i>normalized</i>,
- * and the data type of the vector components with <i>type</i>.
+ * _components_, the number of vectors per region with _count_, whether the
+ * vector components should be normalized with _normalized_, and the data type
+ * of the vector components with _type_.
  *
- * @code
+ * ~~~
  * builder.components(3);
  * builder.count(24);
  * builder.normalized(false);
  * builder.type(GL_FLOAT);
- * @endcode
+ * ~~~
  *
- * Since the builder starts with valid default values for the <i>component</i>,
- * <i>normalized</i>, and <i>type</i> properties, the user can leave them
- * unspecified if desired.  The <i>components</i> property starts with <i>4</i>,
- * <i>normalized</i> starts with <i>false</i>, and <i>type</i> starts with
- * <i>GL_FLOAT</i>.  Therefore the following code segment is equivalent to the
- * one above.
+ * Since the builder starts with valid default values for the _component_,
+ * _normalized_, and _type_ properties, the user can leave them unspecified if
+ * desired.  The _components_ property starts with `4`, _normalized_ starts
+ * with `false`, and _type_ starts with `GL_FLOAT`.  Therefore the following
+ * code segment is equivalent to the one above.
  *
- * @code
+ * ~~~
  * builder.components(3);
  * builder.count(24);
- * @endcode
+ * ~~~
  *
- * Then add the first region using <i>region</i>, giving it the name that you
- * want to refer to it by later.  The current state of the builder's properties
- * will be captured and used for the region when the buffer layout is built
- * later.
+ * Then add the first region using _region_, giving it the name that you want
+ * to refer to it by later.  The current state of the builder's properties will
+ * be captured and used for the region when the buffer layout is built later.
  *
- * @code
+ * ~~~
  * builder.region("MCVertex");
- * @endcode
+ * ~~~
  *
  * From there, more regions can be added by changing properties and calling
- * <i>region</i> again with different names.  If you don't change a property
- * when you add a new region, that property will have the same value as the
- * previous region.  For example, the two regions that are added below will
- * still include <i>24</i> vectors, be of type <i>GL_FLOAT</i>, and should not
- * be normalized.  However, the <i>Normal</i> region will have three components
- * per vector whereas the <i>TexCoord0</i> region will only have two.
+ * _region_ again with different names.  If you don't change a property when
+ * you add a new region, that property will have the same value as the previous
+ * region.  For example, the two regions that are added below will still
+ * include _24_ vectors, be of type `GL_FLOAT`, and should not be normalized.
+ * However, the _Normal_ region will have three components per vector whereas
+ * the _TexCoord0_ region will only have two.
  *
- * @code
+ * ~~~
  * builder.region("Normal");
  * builder.components(2);
  * builder.region("TexCoord0");
- * @endcode
+ * ~~~
  *
- * To make things even easier, most calls can be chained together.  For example,
- * the first three regions could have been added with the more compact form
- * below.  Notice that often the only property that needs to change is
- * <i>components</i>.
+ * To make things even easier, most calls can be chained together.  For
+ * example, the first three regions could have been added with the more compact
+ * form below.  Notice that often the only property that needs to change is
+ * _components_.
  *
- * @code
+ * ~~~
  * builder.count(24);
  * builder.components(3).region("MCVertex");
  * builder.components(4).region("Color");
  * builder.components(2).region("TexCoord0");
- * @endcode
+ * ~~~
  *
  * In addtion, if the number of vectors in each region is the same, the regions
- * can be interleaved.  An interleaved buffer layout will alternate vectors from
- * each region, often making it easier for the video card to iterate through.
- * However, it is generally harder to update an interleaved buffer, since all
- * the vectors for one region are no longer together.
+ * can be interleaved.  An interleaved buffer layout will alternate vectors
+ * from each region, often making it easier for the video card to iterate
+ * through.  However, it is generally harder to update an interleaved buffer,
+ * since all the vectors for one region are no longer together.
  *
- * @code
+ * ~~~
  * builder.interleaved(true);
- * @endcode
+ * ~~~
  *
- * When all the regions have been added, call <i>build</i> to make the buffer
+ * When all the regions have been added, call _build_ to make the buffer
  * layout.
  *
- * @code
+ * ~~~
  * const BufferLayout layout = builder.build();
- * @endcode
+ * ~~~
  *
  * The offset and stride, as well as all the properties you specified can be
- * retrieved using the accessors of each region.  The code segment below sets up
- * vertex attribute pointers for a buffer by iterating through the regions in
- * the layout.
+ * retrieved using the accessors of each region.  The code segment below sets
+ * up vertex attribute pointers for a buffer by iterating through the regions
+ * in the layout.
  *
- * @code
+ * ~~~
  * for (BufferLayout::const_iterator r = layout.begin(); r != layout.end(); ++r) {
  *     const char* name = r->name().c_str();
  *     const GLuint location = glGetAttribLocation(program, name);
@@ -121,7 +120,7 @@ namespace Glycerin {
  *             r->stride(),
  *             r->offset());
  * }
- * @endcode
+ * ~~~
  */
 class BufferLayoutBuilder {
 public:

@@ -209,7 +209,7 @@ double& Vec3::operator[](int i) {
  * Checks if another vector is equal to this one.
  *
  * @param v Vector to check
- * @return <tt>true</tt> if vectors are equal
+ * @return `true` if vectors are equal
  */
 bool Vec3::operator==(const Vec3 &v) const {
     return (x == v.x) && (y == v.y) && (z == v.z);
@@ -219,7 +219,7 @@ bool Vec3::operator==(const Vec3 &v) const {
  * Checks if another vector is not equal to this one.
  *
  * @param v Vector to check
- * @return <tt>true</tt> if vectors are not equal
+ * @return `true` if vectors are not equal
  */
 bool Vec3::operator!=(const Vec3 &v) const {
     return (x != v.x) || (y != v.y) || (z != v.z);

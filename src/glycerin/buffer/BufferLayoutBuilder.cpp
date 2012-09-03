@@ -190,7 +190,7 @@ BufferLayoutBuilder::const_iterator_pair BufferLayoutBuilder::regions() const {
 /**
  * Changes the data type of components in subsequent regions.
  *
- * @param type Data type of components in subsequent regions, e.g. GL_FLOAT
+ * @param type Data type of components in subsequent regions, e.g. `GL_FLOAT`
  * @return Reference to this builder to support chaining
  * @throws invalid_argument if type is not recognized
  */
@@ -206,7 +206,7 @@ BufferLayoutBuilder& BufferLayoutBuilder::type(const GLenum type) {
  * Checks if a component type is valid.
  *
  * @param type Type to check
- * @return <tt>true</tt> if type is a valid component type
+ * @return `true` if type is a valid component type
  */
 bool BufferLayoutBuilder::isValidType(const GLenum type) {
     switch (type) {

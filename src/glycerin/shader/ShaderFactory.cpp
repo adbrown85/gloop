@@ -22,7 +22,7 @@ ShaderFactory::ShaderFactory() {
 /**
  * Creates a shader from a file.
  *
- * @param type Kind of shader, e.g. GL_VERTEX_SHADER or GL_FRAGMENT_SHADER
+ * @param type Kind of shader, e.g. `GL_VERTEX_SHADER` or `GL_FRAGMENT_SHADER`
  * @param filename Path to the file containing shader's source code
  * @return OpenGL handle to the shader
  * @throw std::invalid_argument if filename is empty
@@ -42,7 +42,7 @@ Shader ShaderFactory::createShaderFromFile(GLenum type, const string& filename) 
 /**
  * Creates a shader from a stream.
  *
- * @param type Kind of shader, e.g. GL_VERTEX_SHADER or GL_FRAGMENT_SHADER
+ * @param type Kind of shader, e.g. `GL_VERTEX_SHADER` or `GL_FRAGMENT_SHADER`
  * @param stream Stream containing shader's source code
  * @return OpenGL handle to the shader
  */
@@ -63,7 +63,7 @@ Shader ShaderFactory::createShaderFromStream(GLenum type, istream& stream) {
 /**
  * Creates a shader from a string.
  *
- * @param type Kind of shader, e.g. GL_VERTEX_SHADER or GL_FRAGMENT_SHADER
+ * @param type Kind of shader, e.g. `GL_VERTEX_SHADER` or `GL_FRAGMENT_SHADER`
  * @param str String containing shader's source code
  * @return OpenGL handle to the shader
  * @throw runtime_error if could not create or compile shader

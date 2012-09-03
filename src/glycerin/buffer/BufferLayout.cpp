@@ -79,7 +79,7 @@ BufferLayout::const_iterator BufferLayout::find(const std::string& name) const {
 /**
  * Checks if the layout is interleaved.
  *
- * @return <tt>true</tt> if layout is interleaved
+ * @return `true` if layout is interleaved
  */
 bool BufferLayout::interleaved() const {
     return _interleaved;

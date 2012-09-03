@@ -53,7 +53,7 @@ GLsizei BufferRegion::stride() const {
 }
 
 /**
- * Returns the base type of the components in each vector in the region, such as <tt>GL_FLOAT</tt>.
+ * Returns the base type of the components in each vector in the region, such as `GL_FLOAT`.
  */
 GLenum BufferRegion::type() const {
     return _type;

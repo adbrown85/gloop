@@ -110,7 +110,7 @@ Quat Quat::identity() {
 /**
  * Checks if the quaternion is the identity quaternion.
  *
- * @return <tt>true</tt> if exactly equal to the identity quaternion
+ * @return `true` if exactly equal to the identity quaternion
  */
 bool Quat::isIdentity() const {
     return (x == 0) && (y == 0) && (z == 0) && (w == 1);
@@ -119,7 +119,7 @@ bool Quat::isIdentity() const {
 /**
  * Checks if the quaternion has any infinite components.
  *
- * @return <tt>true</tt> if any component is infinite
+ * @return `true` if any component is infinite
  */
 bool Quat::isInfinite() const {
     return isinf(x) || isinf(y) || isinf(z) || isinf(w);
@@ -128,7 +128,7 @@ bool Quat::isInfinite() const {
 /**
  * Checks if the quaternion has any Not-a-Number (NaN) components.
  *
- * @return <tt>true</tt> if any component is Not-a-Number (NaN)
+ * @return `true` if any component is Not-a-Number (NaN)
  */
 bool Quat::isNaN() const {
     return isnan(x) || isnan(y) || isnan(z) || isnan(w);
@@ -138,7 +138,7 @@ bool Quat::isNaN() const {
  * Checks if a quaternion equals this one.
  *
  * @param q Quaternion to check
- * @return <tt>true</tt> if quaternion is exactly equal
+ * @return `true` if quaternion is exactly equal
  */
 bool Quat::operator==(const Quat &q) const {
     return (x == q.x) && (y == q.y) && (z == q.z) && (w == q.w);
@@ -148,7 +148,7 @@ bool Quat::operator==(const Quat &q) const {
  * Checks if a quaternion does not equal this one.
  *
  * @param q Quaternion to check
- * @return <tt>true</tt> if quaternion is not exactly equal
+ * @return `true` if quaternion is not exactly equal
  */
 bool Quat::operator!=(const Quat &q) const {
     return (x != q.x) || (y != q.y) || (z != q.z) || (w != q.w);

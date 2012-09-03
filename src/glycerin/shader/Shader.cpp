@@ -45,7 +45,7 @@ void Shader::compile() {
 /**
  * Creates a new shader of a particular type.
  *
- * @param type Kind of shader, e.g. GL_VERTEX_SHADER or GL_FRAGMENT_SHADER
+ * @param type Kind of shader, e.g. `GL_VERTEX_SHADER` or `GL_FRAGMENT_SHADER`
  * @return New shader of specified type
  * @throw std::runtime_error if shader could not be created
  */
@@ -89,7 +89,7 @@ Shader& Shader::operator=(const Shader &shader) {
  * Checks if another shader is equal to this one.
  *
  * @param shader Shader to check
- * @return <tt>true</tt> if shaders represent same OpenGL shader
+ * @return `true` if shaders represent same OpenGL shader
  */
 bool Shader::operator==(const Shader &shader) const {
     return _handle == shader.handle();
@@ -99,7 +99,7 @@ bool Shader::operator==(const Shader &shader) const {
  * Checks if another shader is not equal to this one.
  *
  * @param shader Shader to check
- * @return <tt>true</tt> if shaders do not represent same OpenGL shader
+ * @return `true` if shaders do not represent same OpenGL shader
  */
 bool Shader::operator!=(const Shader &shader) const {
     return _handle != shader.handle();
@@ -153,7 +153,7 @@ string Shader::log() const {
 }
 
 /**
- * Returns the kind of this shader, e.g. GL_VERTEX_SHADER or GL_FRAGMENT_SHADER.
+ * Returns the kind of this shader, e.g. `GL_VERTEX_SHADER` or `GL_FRAGMENT_SHADER`.
  */
 GLenum Shader::type() const {
     GLint type;
@@ -162,7 +162,7 @@ GLenum Shader::type() const {
 }
 
 /**
- * Returns <tt>true</tt> if shader is compiled.
+ * Returns `true` if shader is compiled.
  */
 bool Shader::compiled() const {
     GLint compiled;

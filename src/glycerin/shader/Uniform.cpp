@@ -14,7 +14,7 @@ namespace Glycerin {
  *
  * @param x Value to load
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT
+ * @pre Uniform's type is `GL_FLOAT`
  */
 void Uniform::load1f(GLfloat x) {
     assert (currentProgram() == program);
@@ -28,7 +28,7 @@ void Uniform::load1f(GLfloat x) {
  * @param x First value to load
  * @param y Second value to load
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_VEC2
+ * @pre Uniform's type is `GL_FLOAT_VEC2`
  */
 void Uniform::load2f(GLfloat x, GLfloat y) {
     assert (currentProgram() == program);
@@ -43,7 +43,7 @@ void Uniform::load2f(GLfloat x, GLfloat y) {
  * @param y Second value to load
  * @param z Third value to load
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_VEC3
+ * @pre Uniform's type is `GL_FLOAT_VEC3`
  */
 void Uniform::load3f(GLfloat x, GLfloat y, GLfloat z) {
     assert (currentProgram() == program);
@@ -59,7 +59,7 @@ void Uniform::load3f(GLfloat x, GLfloat y, GLfloat z) {
  * @param z Third value to load
  * @param w Fourth value to load
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_VEC4
+ * @pre Uniform's type is `GL_FLOAT_VEC4`
  */
 void Uniform::load4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w) {
     assert (currentProgram() == program);
@@ -72,7 +72,7 @@ void Uniform::load4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w) {
  *
  * @param x Value to load
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_INT
+ * @pre Uniform's type is `GL_INT`
  */
 void Uniform::load1i(GLint x) {
     assert (currentProgram() == program);
@@ -86,7 +86,7 @@ void Uniform::load1i(GLint x) {
  * @param x First value to load
  * @param y Second value to load
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_INT_VEC2
+ * @pre Uniform's type is `GL_INT_VEC2`
  */
 void Uniform::load2i(GLint x, GLint y) {
     assert (currentProgram() == program);
@@ -101,7 +101,7 @@ void Uniform::load2i(GLint x, GLint y) {
  * @param y Second value to load
  * @param z Third value to load
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_INT_VEC3
+ * @pre Uniform's type is `GL_INT_VEC3`
  */
 void Uniform::load3i(GLint x, GLint y, GLint z) {
     assert (currentProgram() == program);
@@ -117,7 +117,7 @@ void Uniform::load3i(GLint x, GLint y, GLint z) {
  * @param z Third value to load
  * @param w Fourth value to load
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_INT_VEC4
+ * @pre Uniform's type is `GL_INT_VEC4`
  */
 void Uniform::load4i(GLint x, GLint y, GLint z, GLint w) {
     assert (currentProgram() == program);
@@ -130,7 +130,7 @@ void Uniform::load4i(GLint x, GLint y, GLint z, GLint w) {
  *
  * @param x Value to load
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_UNSIGNED_INT
+ * @pre Uniform's type is `GL_UNSIGNED_INT`
  */
 void Uniform::load1ui(GLuint x) {
     assert (currentProgram() == program);
@@ -144,7 +144,7 @@ void Uniform::load1ui(GLuint x) {
  * @param x First value to load
  * @param y Second value to load
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_UNSIGNED_INT_VEC2
+ * @pre Uniform's type is `GL_UNSIGNED_INT_VEC2`
  */
 void Uniform::load2ui(GLuint x, GLuint y) {
     assert (currentProgram() == program);
@@ -159,7 +159,7 @@ void Uniform::load2ui(GLuint x, GLuint y) {
  * @param y Second value to load
  * @param z Third value to load
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_UNSIGNED_INT_VEC3
+ * @pre Uniform's type is `GL_UNSIGNED_INT_VEC3`
  */
 void Uniform::load3ui(GLuint x, GLuint y, GLuint z) {
     assert (currentProgram() == program);
@@ -175,7 +175,7 @@ void Uniform::load3ui(GLuint x, GLuint y, GLuint z) {
  * @param z Third value to load
  * @param w Fourth value to load
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_UNSIGNED_INT_VEC4
+ * @pre Uniform's type is `GL_UNSIGNED_INT_VEC4`
  */
 void Uniform::load4ui(GLuint x, GLuint y, GLuint z, GLuint w) {
     assert (currentProgram() == program);
@@ -189,7 +189,7 @@ void Uniform::load4ui(GLuint x, GLuint y, GLuint z, GLuint w) {
  * @param count Number of values to load
  * @param value Pointer to array with values
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT
+ * @pre Uniform's type is `GL_FLOAT`
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load1fv(GLsizei count, const GLfloat* value) {
@@ -205,7 +205,7 @@ void Uniform::load1fv(GLsizei count, const GLfloat* value) {
  * @param count Number of vectors to load
  * @param value Pointer to array with vectors
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_VEC2
+ * @pre Uniform's type is `GL_FLOAT_VEC2`
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load2fv(GLsizei count, const GLfloat* value) {
@@ -221,7 +221,7 @@ void Uniform::load2fv(GLsizei count, const GLfloat* value) {
  * @param count Number of vectors to load
  * @param value Pointer to array with vectors
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_VEC3
+ * @pre Uniform's type is `GL_FLOAT_VEC3`
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load3fv(GLsizei count, const GLfloat* value) {
@@ -237,7 +237,7 @@ void Uniform::load3fv(GLsizei count, const GLfloat* value) {
  * @param count Number of vectors to load
  * @param value Pointer to array with vectors
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_VEC4
+ * @pre Uniform's type is `GL_FLOAT_VEC4`
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load4fv(GLsizei count, const GLfloat* value) {
@@ -253,7 +253,7 @@ void Uniform::load4fv(GLsizei count, const GLfloat* value) {
  * @param count Number of values to load
  * @param value Pointer to array with values
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_INT
+ * @pre Uniform's type is `GL_INT`
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load1iv(GLsizei count, const GLint* value) {
@@ -269,7 +269,7 @@ void Uniform::load1iv(GLsizei count, const GLint* value) {
  * @param count Number of vectors to load
  * @param value Pointer to array with vectors
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_INT_VEC2
+ * @pre Uniform's type is `GL_INT_VEC2`
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load2iv(GLsizei count, const GLint* value) {
@@ -285,7 +285,7 @@ void Uniform::load2iv(GLsizei count, const GLint* value) {
  * @param count Number of vectors to load
  * @param value Pointer to array with vectors
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_INT_VEC3
+ * @pre Uniform's type is `GL_INT_VEC3`
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load3iv(GLsizei count, const GLint* value) {
@@ -301,7 +301,7 @@ void Uniform::load3iv(GLsizei count, const GLint* value) {
  * @param count Number of vectors to load
  * @param value Pointer to array with vectors
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_INT_VEC4
+ * @pre Uniform's type is `GL_INT_VEC4`
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load4iv(GLsizei count, const GLint* value) {
@@ -317,7 +317,7 @@ void Uniform::load4iv(GLsizei count, const GLint* value) {
  * @param count Number of values to load
  * @param value Pointer to array with values
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_UNSIGNED_INT
+ * @pre Uniform's type is `GL_UNSIGNED_INT`
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load1uiv(GLsizei count, const GLuint* value) {
@@ -333,7 +333,7 @@ void Uniform::load1uiv(GLsizei count, const GLuint* value) {
  * @param count Number of vectors to load
  * @param value Pointer to array with vectors
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_UNSIGNED_INT_VEC2
+ * @pre Uniform's type is `GL_UNSIGNED_INT_VEC2`
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load2uiv(GLsizei count, const GLuint* value) {
@@ -349,7 +349,7 @@ void Uniform::load2uiv(GLsizei count, const GLuint* value) {
  * @param count Number of vectors to load
  * @param value Pointer to array with vectors
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_UNSIGNED_INT_VEC3
+ * @pre Uniform's type is `GL_UNSIGNED_INT_VEC3`
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load3uiv(GLsizei count, const GLuint* value) {
@@ -365,7 +365,7 @@ void Uniform::load3uiv(GLsizei count, const GLuint* value) {
  * @param count Number of vectors to load
  * @param value Pointer to array with vectors
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_UNSIGNED_INT_VEC4
+ * @pre Uniform's type is `GL_UNSIGNED_INT_VEC4`
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load4uiv(GLsizei count, const GLuint* value) {
@@ -379,10 +379,10 @@ void Uniform::load4uiv(GLsizei count, const GLuint* value) {
  * Loads one or more 2x2 float matrices into the uniform.
  *
  * @param count Number of matrices to load
- * @param transpose <tt>true</tt> if matrices should be transposed
+ * @param transpose `true` if matrices should be transposed
  * @param value Pointer to the array of matrices
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_MAT2
+ * @pre Uniform's type is `GL_FLOAT_MAT2`
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix2fv(GLsizei count, GLboolean transpose, const GLfloat* value) {
@@ -396,10 +396,10 @@ void Uniform::loadMatrix2fv(GLsizei count, GLboolean transpose, const GLfloat* v
  * Loads one or more 3x3 float matrices into the uniform.
  *
  * @param count Number of matrices to load
- * @param transpose <tt>true</tt> if matrices should be transposed
+ * @param transpose `true` if matrices should be transposed
  * @param value Pointer to the array of matrices
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_MAT3
+ * @pre Uniform's type is `GL_FLOAT_MAT3`
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix3fv(GLsizei count, GLboolean transpose, const GLfloat* value) {
@@ -413,10 +413,10 @@ void Uniform::loadMatrix3fv(GLsizei count, GLboolean transpose, const GLfloat* v
  * Loads one or more 4x4 float matrices into the uniform.
  *
  * @param count Number of matrices to load
- * @param transpose <tt>true</tt> if matrices should be transposed
+ * @param transpose `true` if matrices should be transposed
  * @param value Pointer to the array of matrices
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_MAT4
+ * @pre Uniform's type is `GL_FLOAT_MAT4`
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix4fv(GLsizei count, GLboolean transpose, const GLfloat* value) {
@@ -430,10 +430,10 @@ void Uniform::loadMatrix4fv(GLsizei count, GLboolean transpose, const GLfloat* v
  * Loads one or more 2x3 float matrices into the uniform.
  *
  * @param count Number of matrices to load
- * @param transpose <tt>true</tt> if matrices should be transposed
+ * @param transpose `true` if matrices should be transposed
  * @param value Pointer to the array of matrices
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_MAT2x3
+ * @pre Uniform's type is `GL_FLOAT_MAT2x3`
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix2x3fv(GLsizei count, GLboolean transpose, const GLfloat *value) {
@@ -447,10 +447,10 @@ void Uniform::loadMatrix2x3fv(GLsizei count, GLboolean transpose, const GLfloat 
  * Loads one or more 3x2 float matrices into the uniform.
  *
  * @param count Number of matrices to load
- * @param transpose <tt>true</tt> if matrices should be transposed
+ * @param transpose `true` if matrices should be transposed
  * @param value Pointer to the array of matrices
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_MAT3x2
+ * @pre Uniform's type is `GL_FLOAT_MAT3x2`
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix3x2fv(GLsizei count, GLboolean transpose, const GLfloat *value) {
@@ -464,10 +464,10 @@ void Uniform::loadMatrix3x2fv(GLsizei count, GLboolean transpose, const GLfloat 
  * Loads one or more 2x4 float matrices into the uniform.
  *
  * @param count Number of matrices to load
- * @param transpose <tt>true</tt> if matrices should be transposed
+ * @param transpose `true` if matrices should be transposed
  * @param value Pointer to the array of matrices
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_MAT2x4
+ * @pre Uniform's type is `GL_FLOAT_MAT2x4`
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix2x4fv(GLsizei count, GLboolean transpose, const GLfloat *value) {
@@ -481,10 +481,10 @@ void Uniform::loadMatrix2x4fv(GLsizei count, GLboolean transpose, const GLfloat 
  * Loads one or more 4x2 float matrices into the uniform.
  *
  * @param count Number of matrices to load
- * @param transpose <tt>true</tt> if matrices should be transposed
+ * @param transpose `true` if matrices should be transposed
  * @param value Pointer to the array of matrices
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_MAT4x2
+ * @pre Uniform's type is `GL_FLOAT_MAT4x2`
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix4x2fv(GLsizei count, GLboolean transpose, const GLfloat *value) {
@@ -498,10 +498,10 @@ void Uniform::loadMatrix4x2fv(GLsizei count, GLboolean transpose, const GLfloat 
  * Loads one or more 3x4 float matrices into the uniform.
  *
  * @param count Number of matrices to load
- * @param transpose <tt>true</tt> if matrices should be transposed
+ * @param transpose `true` if matrices should be transposed
  * @param value Pointer to the array of matrices
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_MAT3x4
+ * @pre Uniform's type is `GL_FLOAT_MAT3x4`
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix3x4fv(GLsizei count, GLboolean transpose, const GLfloat *value) {
@@ -515,10 +515,10 @@ void Uniform::loadMatrix3x4fv(GLsizei count, GLboolean transpose, const GLfloat 
  * Loads one or more 4x3 float matrices into the uniform.
  *
  * @param count Number of matrices to load
- * @param transpose <tt>true</tt> if matrices should be transposed
+ * @param transpose `true` if matrices should be transposed
  * @param value Pointer to the array of matrices
  * @pre Current program is this uniform's program
- * @pre Uniform's type is GL_FLOAT_MAT4x3
+ * @pre Uniform's type is `GL_FLOAT_MAT4x3`
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix4x3fv(GLsizei count, GLboolean transpose, const GLfloat *value) {
