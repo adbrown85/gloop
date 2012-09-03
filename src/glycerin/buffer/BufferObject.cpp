@@ -39,7 +39,7 @@ BufferObject::BufferObject(const BufferObject& bo) : _id(bo._id) {
 /**
  * Destructs a buffer object handle, leaving the corresponding OpenGL buffer object unaffected.
  *
- * @see dispose
+ * @see @ref dispose
  */
 BufferObject::~BufferObject() {
     // pass

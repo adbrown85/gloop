@@ -16,12 +16,12 @@ namespace Glycerin {
 /**
  * Utility for building a buffer layout.
  *
- * <i>%BufferLayoutBuilder</i> creates <i>%BufferLayout</i> instances.  The user
+ * <i>BufferLayoutBuilder</i> creates <i>BufferLayout</i> instances.  The user
  * defines the desired properties for the regions, and then directs the builder
  * to create the layout.  The state of each property is maintained from region
  * to region unless changed by the user, making most layouts very easy to make.
  *
- * To get started with <i>%BufferLayoutBuilder</i>, first create one.
+ * To get started with <i>BufferLayoutBuilder</i>, first create one.
  * @code
  * BufferLayoutBuilder builder;
  * @endcode
