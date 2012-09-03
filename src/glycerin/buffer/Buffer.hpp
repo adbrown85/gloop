@@ -14,7 +14,7 @@ namespace Glycerin {
 /**
  * Handle for one of the OpenGL buffers.
  *
- * To use <i>%Buffer</i>, first get a handle to one of the standard OpenGL
+ * To use <i>Buffer</i>, first get a handle to one of the standard OpenGL
  * buffers.  Unless you're planning to change what buffer it represents, the
  * handle can be marked const because it's just an alias, similar to a reference
  * or pointer, not the actual buffer itself.
