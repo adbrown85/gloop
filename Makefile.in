@@ -15,16 +15,14 @@ libdir       := @libdir@
 includedir   := @includedir@
 myincludedir := $(includedir)/$(tarname)
 srcdir       := src
-testdir      := test
 builddir     := build
 srcmods      := $(srcdir)/ $(srcdir)/$(tarname)/
-testmods     := $(testdir)/ $(testdir)/$(tarname)/
-VPATH        := $(srcdir) $(testdir) $(builddir) $(srcmods) $(testmods)
+VPATH        := $(srcdir) $(builddir) $(srcmods)
 pkgcfgdir    := $(libdir)/pkgconfig
 
 # Tools
 CXX          := @CXX@
-INCLUDES     := -I./ -I$(srcdir)/ -I$(testdir)/
+INCLUDES     := -I./ -I$(srcdir)/
 DEFS         := @DEFS@
 CPPFLAGS     := @CPPFLAGS@
 DEPS_CFLAGS  := @DEPS_CFLAGS@
@@ -38,7 +36,7 @@ INSTALL      := @INSTALL@
 sources      := ${foreach m,$(srcmods),${wildcard $(m)*.cpp}}
 headers      := ${subst .cpp,.hpp,$(sources)}
 objects      := ${notdir ${subst .cpp,.lo,$(sources)}}
-fixtures     := ${foreach m,$(testmods),${wildcard $(m)*.cxx}}
+fixtures     := ${foreach m,$(srcmods),${wildcard $(m)*.cxx}}
 tests        := ${notdir ${subst .cxx,,$(fixtures)}}
 depends      := ${subst .lo,.d,$(objects)} ${addsuffix .d,$(tests)}
 library      := lib$(tarname).la
