@@ -13,7 +13,6 @@ exec_prefix  := @exec_prefix@
 bindir       := @bindir@
 libdir       := @libdir@
 includedir   := @includedir@
-myincludedir := $(includedir)/$(tarname)
 srcdir       := @srcdir@
 builddir     := build
 VPATH        := $(srcdir) $(builddir) $(srcdir)/$(tarname)
@@ -109,9 +108,9 @@ install:
 	@libtool --mode=install --quiet \
 			$(INSTALL) $(builddir)/$(library) $(libdir)
 	@libtool --mode=finish -n --quiet $(libdir)
-	@$(INSTALL) -d $(myincludedir)
-	@$(INSTALL) -m 0644 $(tarname)/common.h $(myincludedir)
-	@$(INSTALL) -m 0644 $(headers) $(myincludedir)
+	@$(INSTALL) -d $(includedir)/$(tarname)
+	@$(INSTALL) -m 0644 $(tarname)/common.h $(includedir)/$(tarname)
+	@$(INSTALL) -m 0644 $(headers) $(includedir)/$(tarname)
 	@echo "  INSTALL $(pkgcfgfile)"
 	@$(INSTALL) -d $(pkgcfgdir)
 	@$(INSTALL) -m 0644 $(pkgcfgfile) $(pkgcfgdir)
