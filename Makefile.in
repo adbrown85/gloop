@@ -135,8 +135,9 @@ $(builddir)/%.d: %.hpp
 	@$(INSTALL) -d $(builddir)
 	@$(CXX) \
             $(CXXOPTS) \
-            -MM ${subst .hpp,.cpp,$<} \
+            -MM \
             -MP \
+            ${subst .hpp,.cpp,$<} \
             | sed 's|\([[:alnum:]]*\)\.o|\1.o build/\1.d|' \
             > $@
 $(builddir)/%.d: %.cxx
@@ -144,8 +145,9 @@ $(builddir)/%.d: %.cxx
 	@$(INSTALL) -d $(builddir)
 	@$(CXX) \
             $(CXXOPTS) \
-            -MM $< \
+            -MM \
             -MP \
+            $< \
             | sed 's|\([[:alnum:]]*\)\.o|\1 build/\1.d|' \
             | sed 's|\.hpp|\.lo|g' \
             | sed 's|[[:alnum:]/]*/||g' \
