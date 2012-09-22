@@ -7,7 +7,7 @@
 #ifndef GLYCERIN_BUFFERLAYOUT_HPP
 #define GLYCERIN_BUFFERLAYOUT_HPP
 #include "glycerin/common.h"
-#include "glycerin/buffer/BufferRegion.hpp"
+#include "glycerin/BufferRegion.hpp"
 namespace Glycerin {
 
 

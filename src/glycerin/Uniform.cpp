@@ -6,7 +6,7 @@
  */
 #include "config.h"
 #include <cassert>
-#include "glycerin/shader/Uniform.hpp"
+#include "glycerin/Uniform.hpp"
 namespace Glycerin {
 
 /**

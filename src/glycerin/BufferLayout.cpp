@@ -6,7 +6,7 @@
  */
 #include "config.h"
 #include <stdexcept>
-#include "glycerin/buffer/BufferLayout.hpp"
+#include "glycerin/BufferLayout.hpp"
 using namespace std;
 namespace Glycerin {
 

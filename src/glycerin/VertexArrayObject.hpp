@@ -7,8 +7,8 @@
 #ifndef GLYCERIN_VERTEXARRAYOBJECT_HPP
 #define GLYCERIN_VERTEXARRAYOBJECT_HPP
 #include "glycerin/common.h"
-#include "glycerin/buffer/VertexAttribPointer.hpp"
-#include "glycerin/buffer/Buffer.hpp"
+#include "glycerin/VertexAttribPointer.hpp"
+#include "glycerin/Buffer.hpp"
 namespace Glycerin {
 
 

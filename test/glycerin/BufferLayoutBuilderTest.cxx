@@ -9,8 +9,8 @@
 #include <cppunit/TestFixture.h>
 #include <cppunit/extensions/HelperMacros.h>
 #include <cppunit/ui/text/TestRunner.h>
-#include "glycerin/buffer/BufferLayout.hpp"
-#include "glycerin/buffer/BufferLayoutBuilder.hpp"
+#include "glycerin/BufferLayout.hpp"
+#include "glycerin/BufferLayoutBuilder.hpp"
 using namespace std;
 namespace Glycerin {
 

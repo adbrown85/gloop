@@ -5,7 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "config.h"
-#include "glycerin/buffer/VertexAttribPointer.hpp"
+#include "glycerin/VertexAttribPointer.hpp"
 namespace Glycerin {
 
 /**

@@ -8,8 +8,8 @@
 #define GLYCERIN_BUFFERLAYOUTBUILDER_HPP
 #include <set>
 #include "glycerin/common.h"
-#include "glycerin/buffer/BufferRegion.hpp"
-#include "glycerin/buffer/BufferLayout.hpp"
+#include "glycerin/BufferRegion.hpp"
+#include "glycerin/BufferLayout.hpp"
 namespace Glycerin {
 
 

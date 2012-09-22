@@ -10,7 +10,7 @@
 #include <sstream>
 #include <boost/filesystem.hpp>
 #include "glycerin/common.h"
-#include "glycerin/shader/Program.hpp"
+#include "glycerin/Program.hpp"
 #include <GL/glfw.h>
 using namespace std;
 using namespace Glycerin;

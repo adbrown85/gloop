@@ -8,7 +8,7 @@
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
-#include "glycerin/shader/ShaderFactory.hpp"
+#include "glycerin/ShaderFactory.hpp"
 using namespace std;
 namespace Glycerin {
 

@@ -8,9 +8,9 @@
 #define GLYCERIN_PROGRAM_HPP
 #include "glycerin/common.h"
 #include <vector>
-#include "glycerin/shader/Attribute.hpp"
-#include "glycerin/shader/Shader.hpp"
-#include "glycerin/shader/Uniform.hpp"
+#include "glycerin/Attribute.hpp"
+#include "glycerin/Shader.hpp"
+#include "glycerin/Uniform.hpp"
 namespace Glycerin {
 
 

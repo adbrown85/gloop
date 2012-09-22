@@ -6,7 +6,7 @@
  */
 #include "config.h"
 #include <stdexcept>
-#include "glycerin/buffer/VertexArrayObject.hpp"
+#include "glycerin/VertexArrayObject.hpp"
 using namespace std;
 namespace Glycerin {
 

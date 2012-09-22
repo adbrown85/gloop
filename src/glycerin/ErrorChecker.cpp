@@ -5,7 +5,7 @@
  *     Andrew Brown <adb1413@rit.edu>
  */
 #include "config.h"
-#include "glycerin/system/ErrorChecker.hpp"
+#include "glycerin/ErrorChecker.hpp"
 using namespace std;
 using namespace Glycerin;
 

@@ -7,7 +7,7 @@
 #ifndef SHADER_FACTORY_HPP
 #define SHADER_FACTORY_HPP
 #include "glycerin/common.h"
-#include "glycerin/shader/Shader.hpp"
+#include "glycerin/Shader.hpp"
 namespace Glycerin {
 
 

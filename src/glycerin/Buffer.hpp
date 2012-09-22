@@ -7,7 +7,7 @@
 #ifndef GLYCERIN_BUFFER_HPP
 #define GLYCERIN_BUFFER_HPP
 #include "glycerin/common.h"
-#include "glycerin/buffer/BufferObject.hpp"
+#include "glycerin/BufferObject.hpp"
 namespace Glycerin {
 
 

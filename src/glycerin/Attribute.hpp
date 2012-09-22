@@ -7,7 +7,7 @@
 #ifndef GLYCERIN_ATTRIBUTE_HPP
 #define GLYCERIN_ATTRIBUTE_HPP
 #include "glycerin/common.h"
-#include "glycerin/shader/Uniform.hpp"
+#include "glycerin/Uniform.hpp"
 namespace Glycerin {
 
 

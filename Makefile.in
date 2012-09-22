@@ -17,12 +17,8 @@ myincludedir := $(includedir)/$(tarname)
 srcdir       := src
 testdir      := test
 builddir     := build
-srcmods      := $(srcdir)/ \
-                    ${filter %/,${wildcard $(srcdir)/*/}} \
-                    ${filter %/,${wildcard $(srcdir)/*/*/}}
-testmods     := $(testdir)/ \
-                    ${filter %/,${wildcard $(testdir)/*/}} \
-                    ${filter %/,${wildcard $(testdir)/*/*/}}
+srcmods      := $(srcdir)/ $(srcdir)/$(tarname)/
+testmods     := $(testdir)/ $(testdir)/$(tarname)/
 VPATH        := $(srcdir) $(testdir) $(builddir) $(srcmods) $(testmods)
 pkgcfgdir    := $(libdir)/pkgconfig
 
