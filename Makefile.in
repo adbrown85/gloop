@@ -20,15 +20,21 @@ pkgcfgdir    := $(libdir)/pkgconfig
 
 # Tools
 CXX          := @CXX@
+INSTALL      := @INSTALL@
+
+# Compiler options
+CPPFLAGS     := @CPPFLAGS@
+CXXFLAGS     := @CXXFLAGS@
 INCLUDES     := -I$(srcdir)/
 DEFS         := @DEFS@
-CPPFLAGS     := @CPPFLAGS@
 DEPS_CFLAGS  := @DEPS_CFLAGS@
-CXXFLAGS     := @CXXFLAGS@ $(DEFS) $(INCLUDES) $(DEPS_CFLAGS)
-DEPS_LIBS    := @DEPS_LIBS@
-LIBS         := @LIBS@ $(DEPS_LIBS)
+CXXOPTS      := $(CPPFLAGS) $(CXXFLAGS) $(INCLUDES) $(DEFS) $(DEPS_CFLAGS)
+
+# Linker options
+LIBS         := @LIBS@
 LDFLAGS      := @LDFLAGS@
-INSTALL      := @INSTALL@
+DEPS_LIBS    := @DEPS_LIBS@
+LDOPTS       := $(LDFLAGS) $(LIBS) $(DEPS_LIBS)
 
 # Files
 sources      := ${wildcard $(srcdir)/$(tarname)/*.cpp}
@@ -72,7 +78,7 @@ objects: $(objects)
 %.lo: %.cpp %.hpp
 	@echo "  CXX   $@"
 	@libtool --mode=compile --quiet \
-            $(CXX) $(CPPFLAGS) $(CXXFLAGS) \
+            $(CXX) $(CXXOPTS) \
             -c $< -o $(builddir)/$@
 
 # Tests
@@ -82,10 +88,9 @@ tests: $(tests)
 	@echo "  CXX   $@"
 	@libtool --mode=link --quiet \
         $(CXX) \
-        $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) \
+        $(CXXOPTS) $(LDOPTS) \
         $< -o $(builddir)/$@ \
-        ${addprefix $(builddir)/,${notdir ${filter %.lo,$^}}} \
-        $(LIBS)
+        ${addprefix $(builddir)/,${notdir ${filter %.lo,$^}}}
 
 # Library
 .PHONY: library
@@ -94,7 +99,7 @@ $(library): $(objects)
 	@echo "  LD    $@"
 	@libtool --mode=link --quiet \
 			$(CXX) \
-			$(LDFLAGS) \
+			$(LDOPTS) \
             -o $(builddir)/$(library) \
             ${addprefix $(builddir)/,$(objects)} \
 			-rpath $(libdir) \
@@ -129,7 +134,7 @@ $(builddir)/%.d: %.hpp
 	@echo "  GEN   $@"
 	@$(INSTALL) -d $(builddir)
 	@$(CXX) \
-            $(CPPFLAGS) $(CXXFLAGS) \
+            $(CXXOPTS) \
             -MM ${subst .hpp,.cpp,$<} \
             | sed 's|\([[:alnum:]]*\)\.o|\1.o build/\1.d|' \
             > $@
@@ -137,7 +142,7 @@ $(builddir)/%.d: %.cxx
 	@echo "  GEN   $@"
 	@$(INSTALL) -d $(builddir)
 	@$(CXX) \
-            $(CPPFLAGS) $(CXXFLAGS) \
+            $(CXXOPTS) \
             -MM $< \
             | sed 's|\([[:alnum:]]*\)\.o|\1 build/\1.d|' \
             | sed 's|\.hpp|\.lo|g' \
