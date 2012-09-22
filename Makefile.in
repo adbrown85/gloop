@@ -14,15 +14,14 @@ bindir       := @bindir@
 libdir       := @libdir@
 includedir   := @includedir@
 myincludedir := $(includedir)/$(tarname)
-srcdir       := src
+srcdir       := @srcdir@
 builddir     := build
-srcmods      := $(srcdir)/ $(srcdir)/$(tarname)/
-VPATH        := $(srcdir) $(builddir) $(srcmods)
+VPATH        := $(srcdir) $(builddir) $(srcdir)/$(tarname)
 pkgcfgdir    := $(libdir)/pkgconfig
 
 # Tools
 CXX          := @CXX@
-INCLUDES     := -I./ -I$(srcdir)/
+INCLUDES     := -I$(srcdir)/
 DEFS         := @DEFS@
 CPPFLAGS     := @CPPFLAGS@
 DEPS_CFLAGS  := @DEPS_CFLAGS@
@@ -33,10 +32,10 @@ LDFLAGS      := @LDFLAGS@
 INSTALL      := @INSTALL@
 
 # Files
-sources      := ${foreach m,$(srcmods),${wildcard $(m)*.cpp}}
+sources      := ${wildcard $(srcdir)/$(tarname)/*.cpp}
 headers      := ${subst .cpp,.hpp,$(sources)}
 objects      := ${notdir ${subst .cpp,.lo,$(sources)}}
-fixtures     := ${foreach m,$(srcmods),${wildcard $(m)*.cxx}}
+fixtures     := ${wildcard $(srcdir)/$(tarname)/*.cxx}
 tests        := ${notdir ${subst .cxx,,$(fixtures)}}
 depends      := ${subst .lo,.d,$(objects)} ${addsuffix .d,$(tests)}
 library      := lib$(tarname).la
@@ -111,18 +110,8 @@ install:
 			$(INSTALL) $(builddir)/$(library) $(libdir)
 	@libtool --mode=finish -n --quiet $(libdir)
 	@$(INSTALL) -d $(myincludedir)
-	@for i in $(srcmods); do \
-            mod=`echo $$i | sed 's|$(srcdir)/||'`; \
-            if test -n "$$mod"; then \
-                $(INSTALL) -d $(myincludedir)/$$mod; \
-                for j in $$i*.h $$i*.hpp; do \
-                    if test -e $$j; then \
-                        echo "  INSTALL $$j"; \
-                        $(INSTALL) -m 0644 $$j $(myincludedir)/$$mod; \
-                    fi \
-                done \
-            fi \
-        done
+	@$(INSTALL) -m 0644 $(tarname)/common.h $(myincludedir)
+	@$(INSTALL) -m 0644 $(headers) $(myincludedir)
 	@echo "  INSTALL $(pkgcfgfile)"
 	@$(INSTALL) -d $(pkgcfgdir)
 	@$(INSTALL) -m 0644 $(pkgcfgfile) $(pkgcfgdir)
