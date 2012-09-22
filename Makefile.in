@@ -15,7 +15,7 @@ libdir       := @libdir@
 includedir   := @includedir@
 srcdir       := @srcdir@
 builddir     := build
-VPATH        := $(srcdir) $(builddir) $(srcdir)/$(tarname)
+VPATH        := $(srcdir) $(srcdir)/$(tarname) $(builddir)
 pkgcfgdir    := $(libdir)/pkgconfig
 
 # Tools
