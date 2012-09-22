@@ -29,7 +29,6 @@
 /**
  * @defgroup geometry
  * @defgroup image
- * @defgroup math
  * @defgroup shader
  * @defgroup system
  * @defgroup texture
