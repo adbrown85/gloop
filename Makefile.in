@@ -103,7 +103,7 @@ $(library): $(objects)
 	@echo "  LD    $@"
 	@libtool --mode=link --quiet \
             $(CXX) \
-            -o $(builddir)/$(library) \
+            -o $(builddir)/$@ \
             $(LDOPTS) \
             -rpath $(libdir) \
             -version-info $(minor):0:0 \
