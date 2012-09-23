@@ -1,6 +1,7 @@
 name=@PACKAGE_NAME@
 tarname=@PACKAGE_TARNAME@
 version=@PACKAGE_VERSION@
+major=@PACKAGE_MAJOR_VERSION@
 description=@PACKAGE_DESCRIPTION@
 
 prefix=@prefix@
@@ -11,5 +12,5 @@ includedir=@includedir@
 Name: ${name}
 Description: ${description}
 Version: ${version}
-Libs: -L${libdir} -l${tarname}
-Cflags: -I${includedir}
+Libs: -L${libdir} -l${tarname}-${major}
+Cflags: -I${includedir}/${tarname}-${major}

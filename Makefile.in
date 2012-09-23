@@ -43,8 +43,8 @@ objects      := ${notdir ${subst .cpp,.lo,$(sources)}}
 fixtures     := ${wildcard $(srcdir)/$(tarname)/*.cxx}
 tests        := ${notdir ${subst .cxx,,$(fixtures)}}
 depends      := ${subst .lo,.d,$(objects)} ${addsuffix .d,$(tests)}
-library      := lib$(tarname).la
-pkgcfgfile   := $(tarname).pc
+library      := lib$(tarname)-$(major).la
+pkgcfgfile   := $(tarname)-$(major).pc
 
 # Interface
 .PHONY: all clean distclean maintainer-clean
@@ -113,18 +113,18 @@ install:
 	@libtool --mode=install --quiet \
 			$(INSTALL) $(builddir)/$(library) $(libdir)
 	@libtool --mode=finish -n --quiet $(libdir)
-	@echo "  INSTALL $(includedir)/$(tarname)"
-	@$(INSTALL) -d $(includedir)/$(tarname)
-	@$(INSTALL) -m 0644 $(tarname)/common.h $(includedir)/$(tarname)
-	@$(INSTALL) -m 0644 $(headers) $(includedir)/$(tarname)
+	@echo "  INSTALL $(includedir)/$(tarname)-$(major)"
+	@$(INSTALL) -d $(includedir)/$(tarname)-$(major)/$(tarname)
+	@$(INSTALL) -m 0644 $(tarname)/common.h $(includedir)/$(tarname)-$(major)/$(tarname)
+	@$(INSTALL) -m 0644 $(headers) $(includedir)/$(tarname)-$(major)/$(tarname)
 	@echo "  INSTALL $(pkgcfgdir)/$(pkgcfgfile)"
 	@$(INSTALL) -d $(pkgcfgdir)
 	@$(INSTALL) -m 0644 $(pkgcfgfile) $(pkgcfgdir)
 uninstall:
 	@echo "  UNINSTALL $(libdir)/$(library)"
 	@libtool --mode=uninstall $(RM) $(library)
-	@echo "  UNINSTALL $(includedir)/$(tarname)"
-	@$(RM) -r $(includedir)/$(tarname)
+	@echo "  UNINSTALL $(includedir)/$(tarname)-$(major)"
+	@$(RM) -r $(includedir)/$(tarname)-$(major)
 	@echo "  UNINSTALL $(pkgcfgdir)/$(pkgcfgfile)"
 	@$(RM) $(pkgcfgdir)/$(pkgcfgfile)
 

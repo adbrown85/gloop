@@ -84,7 +84,7 @@ AC_MSG_CHECKING([for CppUnit])
 PKG_CHECK_EXISTS([cppunit], [AC_MSG_RESULT([yes])], [error_no_cppunit])
 
 # Finish
-AC_CONFIG_FILES(MY_TARNAME.pc [Makefile])
+AC_CONFIG_FILES(MY_TARNAME-MY_MAJOR_VERSION.pc [Makefile])
 PKG_CHECK_MODULES([DEPS], libglfw cppunit)
 AC_OUTPUT
 
