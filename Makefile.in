@@ -113,6 +113,7 @@ install:
 	@libtool --mode=install --quiet \
 			$(INSTALL) $(builddir)/$(library) $(libdir)
 	@libtool --mode=finish -n --quiet $(libdir)
+	@echo "  INSTALL *.hpp *.h"
 	@$(INSTALL) -d $(includedir)/$(tarname)
 	@$(INSTALL) -m 0644 $(tarname)/common.h $(includedir)/$(tarname)
 	@$(INSTALL) -m 0644 $(headers) $(includedir)/$(tarname)
