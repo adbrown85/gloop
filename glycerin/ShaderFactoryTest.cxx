@@ -9,7 +9,7 @@
 #include <stdexcept>
 #include <boost/filesystem.hpp>
 #include <GL/glfw.h>
-#include "glycerin/ShaderFactory.hpp"
+#include "glycerin/ShaderFactory.hxx"
 using namespace std;
 using namespace Glycerin;
 namespace bfs = boost::filesystem;

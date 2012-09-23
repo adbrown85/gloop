@@ -1,5 +1,5 @@
 /*
- * Attribute.hpp
+ * Attribute.hxx
  *
  * Author
  *     Andrew Brown <adb1413@rit.edu>
@@ -7,7 +7,7 @@
 #ifndef GLYCERIN_ATTRIBUTE_HPP
 #define GLYCERIN_ATTRIBUTE_HPP
 #include "glycerin/common.h"
-#include "glycerin/Uniform.hpp"
+#include "glycerin/Uniform.hxx"
 namespace Glycerin {
 
 

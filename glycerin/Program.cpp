@@ -6,7 +6,7 @@
  */
 #include "config.h"
 #include <stdexcept>
-#include "glycerin/Program.hpp"
+#include "glycerin/Program.hxx"
 using namespace std;
 namespace Glycerin {
 

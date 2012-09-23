@@ -7,7 +7,7 @@
 #include "config.h"
 #include <cassert>
 #include <stdexcept>
-#include "glycerin/BufferObject.hpp"
+#include "glycerin/BufferObject.hxx"
 #include <GL/glfw.h>
 using namespace std;
 using namespace Glycerin;

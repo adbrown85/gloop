@@ -1,5 +1,5 @@
 /**
- * Shader.hpp
+ * Shader.hxx
  *
  * Author
  *     Andrew Brown <adb1413@rit.edu>

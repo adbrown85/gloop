@@ -1,5 +1,5 @@
 /*
- * BufferRegion.hpp
+ * BufferRegion.hxx
  *
  * Author
  *     Andrew Brown <adb1413@rit.edu>

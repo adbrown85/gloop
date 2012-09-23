@@ -1,5 +1,5 @@
 /*
- * Program.hpp
+ * Program.hxx
  *
  * Author
  *     Andrew Brown <adb1413@rit.edu>
@@ -8,9 +8,9 @@
 #define GLYCERIN_PROGRAM_HPP
 #include "glycerin/common.h"
 #include <vector>
-#include "glycerin/Attribute.hpp"
-#include "glycerin/Shader.hpp"
-#include "glycerin/Uniform.hpp"
+#include "glycerin/Attribute.hxx"
+#include "glycerin/Shader.hxx"
+#include "glycerin/Uniform.hxx"
 namespace Glycerin {
 
 

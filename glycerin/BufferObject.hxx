@@ -1,5 +1,5 @@
 /*
- * BufferObject.hpp
+ * BufferObject.hxx
  *
  * Author
  *     Andrew Brown <adb1413@rit.edu>

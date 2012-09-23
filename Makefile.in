@@ -38,7 +38,7 @@ LDOPTS       := $(LDFLAGS) $(LIBS) $(DEPS_LIBS)
 
 # Files
 sources      := $(wildcard $(srcdir)/$(tarname)/*.cpp)
-headers      := $(subst .cpp,.hpp,$(sources))
+headers      := $(subst .cpp,.hxx,$(sources))
 objects      := $(notdir $(subst .cpp,.lo,$(sources)))
 fixtures     := $(wildcard $(srcdir)/$(tarname)/*.cxx)
 tests        := $(notdir $(subst .cxx,,$(fixtures)))
@@ -75,7 +75,7 @@ maintainer-clean: distclean
 # Objects
 .PHONY: objects
 objects: $(objects)
-%.lo: %.cpp %.hpp
+%.lo: %.cpp %.hxx
 	@echo "  CXX   $@"
 	@libtool --mode=compile --quiet \
             $(CXX) \
@@ -135,14 +135,14 @@ uninstall:
 # Dependencies
 .PHONY: depends
 depends: $(depends)
-$(builddir)/%.d: %.hpp
+$(builddir)/%.d: %.hxx
 	@echo "  GEN   $@"
 	@$(INSTALL) -d $(builddir)
 	@$(CXX) \
             $(CXXOPTS) \
             -MM \
             -MP \
-            $(subst .hpp,.cpp,$<) \
+            $(subst .hxx,.cpp,$<) \
             | sed 's|[[:alnum:]/]*/||g' \
             | sed 's|\([[:alnum:]]*\)\.o|\1.lo build/\1.d|' \
             > $@
@@ -156,7 +156,7 @@ $(builddir)/%.d: %.cxx
             $< \
             | sed 's|[[:alnum:]/]*/||g' \
             | sed 's|\([[:alnum:]]*\)\.o|\1 build/\1.d|' \
-            | sed 's|\.hpp|\.lo|g' \
+            | sed 's|\.hxx|\.lo|g' \
             > $@
 ifneq (clean,$(findstring clean,$(MAKECMDGOALS)))
   -include $(addprefix $(builddir)/,$(depends))

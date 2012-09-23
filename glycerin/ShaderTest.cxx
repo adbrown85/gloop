@@ -7,7 +7,7 @@
 #include "config.h"
 #include <cassert>
 #include <stdexcept>
-#include "glycerin/Shader.hpp"
+#include "glycerin/Shader.hxx"
 #include <GL/glfw.h>
 using namespace std;
 using namespace Glycerin;

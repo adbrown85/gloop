@@ -1,5 +1,5 @@
 /*
- * ErrorChecker.hpp
+ * ErrorChecker.hxx
  *
  * Author
  *     Andrew Brown <adb1413@rit.edu>

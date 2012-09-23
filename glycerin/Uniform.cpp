@@ -6,7 +6,7 @@
  */
 #include "config.h"
 #include <cassert>
-#include "glycerin/Uniform.hpp"
+#include "glycerin/Uniform.hxx"
 namespace Glycerin {
 
 /**

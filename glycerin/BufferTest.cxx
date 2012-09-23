@@ -8,8 +8,8 @@
 #include <cassert>
 #include <stdexcept>
 #include <GL/glfw.h>
-#include "glycerin/Buffer.hpp"
-#include "glycerin/BufferObject.hpp"
+#include "glycerin/Buffer.hxx"
+#include "glycerin/BufferObject.hxx"
 using namespace std;
 using namespace Glycerin;
 

@@ -1,5 +1,5 @@
 /*
- * ShaderFactory.hpp
+ * ShaderFactory.hxx
  *
  * Author
  *     Andrew Brown <adb1413@rit.edu>
@@ -7,7 +7,7 @@
 #ifndef SHADER_FACTORY_HPP
 #define SHADER_FACTORY_HPP
 #include "glycerin/common.h"
-#include "glycerin/Shader.hpp"
+#include "glycerin/Shader.hxx"
 namespace Glycerin {
 
 

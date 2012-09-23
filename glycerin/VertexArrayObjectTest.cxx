@@ -7,7 +7,7 @@
 #include "config.h"
 #include <cassert>
 #include <stdexcept>
-#include "glycerin/VertexArrayObject.hpp"
+#include "glycerin/VertexArrayObject.hxx"
 #include <GL/glfw.h>
 using namespace std;
 using namespace Glycerin;

@@ -1,5 +1,5 @@
 /*
- * Variable.hpp
+ * Variable.hxx
  *
  * Author
  *     Andrew Brown <adb1413@rit.edu>

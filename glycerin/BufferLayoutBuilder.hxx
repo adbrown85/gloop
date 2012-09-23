@@ -1,5 +1,5 @@
 /*
- * BufferLayoutBuilder.hpp
+ * BufferLayoutBuilder.hxx
  *
  * Author
  *     Andrew Brown <adb1413@rit.edu>
@@ -8,8 +8,8 @@
 #define GLYCERIN_BUFFERLAYOUTBUILDER_HPP
 #include <set>
 #include "glycerin/common.h"
-#include "glycerin/BufferRegion.hpp"
-#include "glycerin/BufferLayout.hpp"
+#include "glycerin/BufferRegion.hxx"
+#include "glycerin/BufferLayout.hxx"
 namespace Glycerin {
 
 

@@ -1,5 +1,5 @@
 /**
- * VertexAttribPointer.hpp
+ * VertexAttribPointer.hxx
  *
  * Author
  *     Andrew Brown <adb1413@rit.edu>
