@@ -138,6 +138,7 @@ $(builddir)/%.d: %.hpp
             -MM \
             -MP \
             ${subst .hpp,.cpp,$<} \
+            | sed 's|[[:alnum:]/]*/||g' \
             | sed 's|\([[:alnum:]]*\)\.o|\1.lo build/\1.d|' \
             > $@
 $(builddir)/%.d: %.cxx
