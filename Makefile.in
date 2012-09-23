@@ -107,7 +107,7 @@ $(library): $(objects)
 
 # Installation
 .PHONY: install uninstall
-install:
+install: all
 	@echo "  INSTALL $(libdir)/$(library)"
 	@$(INSTALL) -d $(libdir)
 	@libtool --mode=install --quiet \
