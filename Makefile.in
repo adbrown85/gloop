@@ -37,12 +37,12 @@ DEPS_LIBS    := @DEPS_LIBS@
 LDOPTS       := $(LDFLAGS) $(LIBS) $(DEPS_LIBS)
 
 # Files
-sources      := ${wildcard $(srcdir)/$(tarname)/*.cpp}
-headers      := ${subst .cpp,.hpp,$(sources)}
-objects      := ${notdir ${subst .cpp,.lo,$(sources)}}
-fixtures     := ${wildcard $(srcdir)/$(tarname)/*.cxx}
-tests        := ${notdir ${subst .cxx,,$(fixtures)}}
-depends      := ${subst .lo,.d,$(objects)} ${addsuffix .d,$(tests)}
+sources      := $(wildcard $(srcdir)/$(tarname)/*.cpp)
+headers      := $(subst .cpp,.hpp,$(sources))
+objects      := $(notdir $(subst .cpp,.lo,$(sources)))
+fixtures     := $(wildcard $(srcdir)/$(tarname)/*.cxx)
+tests        := $(notdir $(subst .cxx,,$(fixtures)))
+depends      := $(subst .lo,.d,$(objects)) $(addsuffix .d,$(tests))
 library      := lib$(tarname)-$(major).la
 pkgcfgfile   := $(tarname)-$(major).pc
 
@@ -94,7 +94,7 @@ tests: $(tests)
             -o $(builddir)/$@ \
             $(CXXOPTS) $(LDOPTS) \
             $< \
-            ${addprefix $(builddir)/,${notdir ${filter %.lo,$^}}}
+            $(addprefix $(builddir)/,$(notdir $(filter %.lo,$^)))
 
 # Library
 .PHONY: library
@@ -107,7 +107,7 @@ $(library): $(objects)
             $(LDOPTS) \
             -rpath $(libdir) \
             -version-info $(minor):0:0 \
-            ${addprefix $(builddir)/,$(objects)}
+            $(addprefix $(builddir)/,$(objects))
 
 # Installation
 .PHONY: install uninstall
@@ -142,7 +142,7 @@ $(builddir)/%.d: %.hpp
             $(CXXOPTS) \
             -MM \
             -MP \
-            ${subst .hpp,.cpp,$<} \
+            $(subst .hpp,.cpp,$<) \
             | sed 's|[[:alnum:]/]*/||g' \
             | sed 's|\([[:alnum:]]*\)\.o|\1.lo build/\1.d|' \
             > $@
@@ -158,6 +158,6 @@ $(builddir)/%.d: %.cxx
             | sed 's|\([[:alnum:]]*\)\.o|\1 build/\1.d|' \
             | sed 's|\.hpp|\.lo|g' \
             > $@
-ifneq (clean,${findstring clean,$(MAKECMDGOALS)})
-  -include ${addprefix $(builddir)/,$(depends)}
+ifneq (clean,$(findstring clean,$(MAKECMDGOALS)))
+  -include $(addprefix $(builddir)/,$(depends))
 endif
