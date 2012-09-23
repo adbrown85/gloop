@@ -6,7 +6,7 @@ description=@PACKAGE_DESCRIPTION@
 prefix=@prefix@
 exec_prefix=@exec_prefix@
 libdir=@libdir@
-includedir=@includedir@/${tarname}
+includedir=@includedir@
 
 Name: ${name}
 Description: ${description}
