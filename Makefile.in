@@ -79,7 +79,8 @@ objects: $(objects)
 	@echo "  CXX   $@"
 	@libtool --mode=compile --quiet \
             $(CXX) $(CXXOPTS) \
-            -c $< -o $(builddir)/$@
+            -c -o $(builddir)/$@ \
+            $<
 
 # Tests
 .PHONY: tests
@@ -89,7 +90,8 @@ tests: $(tests)
 	@libtool --mode=link --quiet \
             $(CXX) \
             $(CXXOPTS) $(LDOPTS) \
-            $< -o $(builddir)/$@ \
+            -o $(builddir)/$@ \
+            $< \
             ${addprefix $(builddir)/,${notdir ${filter %.lo,$^}}}
 
 # Library
@@ -101,9 +103,9 @@ $(library): $(objects)
             $(CXX) \
             $(LDOPTS) \
             -o $(builddir)/$(library) \
-            ${addprefix $(builddir)/,$(objects)} \
             -rpath $(libdir) \
-            -version-info $(minor):0:0
+            -version-info $(minor):0:0 \
+            ${addprefix $(builddir)/,$(objects)}
 
 # Installation
 .PHONY: install uninstall
