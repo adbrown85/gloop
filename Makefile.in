@@ -78,8 +78,10 @@ objects: $(objects)
 %.lo: %.cpp %.hpp
 	@echo "  CXX   $@"
 	@libtool --mode=compile --quiet \
-            $(CXX) $(CXXOPTS) \
-            -c -o $(builddir)/$@ \
+            $(CXX) \
+            -o $(builddir)/$@ \
+            $(CXXOPTS) \
+            -c \
             $<
 
 # Tests
@@ -89,8 +91,8 @@ tests: $(tests)
 	@echo "  CXX   $@"
 	@libtool --mode=link --quiet \
             $(CXX) \
-            $(CXXOPTS) $(LDOPTS) \
             -o $(builddir)/$@ \
+            $(CXXOPTS) $(LDOPTS) \
             $< \
             ${addprefix $(builddir)/,${notdir ${filter %.lo,$^}}}
 
@@ -101,8 +103,8 @@ $(library): $(objects)
 	@echo "  LD    $@"
 	@libtool --mode=link --quiet \
             $(CXX) \
-            $(LDOPTS) \
             -o $(builddir)/$(library) \
+            $(LDOPTS) \
             -rpath $(libdir) \
             -version-info $(minor):0:0 \
             ${addprefix $(builddir)/,$(objects)}
