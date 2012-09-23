@@ -37,11 +37,12 @@ DEPS_LIBS    := @DEPS_LIBS@
 LDOPTS       := $(LDFLAGS) $(LIBS) $(DEPS_LIBS)
 
 # Files
-sources      := $(wildcard $(srcdir)/$(tarname)/*.cpp)
-headers      := $(subst .cpp,.hxx,$(sources))
-objects      := $(notdir $(subst .cpp,.lo,$(sources)))
-fixtures     := $(wildcard $(srcdir)/$(tarname)/*.cxx)
-tests        := $(notdir $(subst .cxx,,$(fixtures)))
+all_sources  := $(wildcard $(srcdir)/$(tarname)/*.cxx)
+main_sources := $(filter-out %Test.cxx,$(all_sources))
+test_sources := $(filter %Test.cxx,$(all_sources))
+headers      := $(subst .cxx,.hxx,$(main_sources))
+objects      := $(notdir $(subst .cxx,.lo,$(main_sources)))
+tests        := $(notdir $(subst .cxx,,$(test_sources)))
 depends      := $(subst .lo,.d,$(objects)) $(addsuffix .d,$(tests))
 library      := lib$(tarname)-$(major).la
 pkgcfgfile   := $(tarname)-$(major).pc
@@ -75,7 +76,7 @@ maintainer-clean: distclean
 # Objects
 .PHONY: objects
 objects: $(objects)
-%.lo: %.cpp %.hxx
+%.lo: %.cxx %.hxx
 	@echo "  CXX   $@"
 	@libtool --mode=compile --quiet \
             $(CXX) \
@@ -87,7 +88,7 @@ objects: $(objects)
 # Tests
 .PHONY: tests
 tests: $(tests)
-%: %.cxx
+%Test: %Test.cxx
 	@echo "  CXX   $@"
 	@libtool --mode=link --quiet \
             $(CXX) \
@@ -142,11 +143,11 @@ $(builddir)/%.d: %.hxx
             $(CXXOPTS) \
             -MM \
             -MP \
-            $(subst .hxx,.cpp,$<) \
+            $(subst .hxx,.cxx,$<) \
             | sed 's|[[:alnum:]/]*/||g' \
             | sed 's|\([[:alnum:]]*\)\.o|\1.lo build/\1.d|' \
             > $@
-$(builddir)/%.d: %.cxx
+$(builddir)/%Test.d: %Test.cxx
 	@echo "  GEN   $@"
 	@$(INSTALL) -d $(builddir)
 	@$(CXX) \
