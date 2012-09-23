@@ -148,9 +148,9 @@ $(builddir)/%.d: %.cxx
             -MM \
             -MP \
             $< \
+            | sed 's|[[:alnum:]/]*/||g' \
             | sed 's|\([[:alnum:]]*\)\.o|\1 build/\1.d|' \
             | sed 's|\.hpp|\.lo|g' \
-            | sed 's|[[:alnum:]/]*/||g' \
             > $@
 ifneq (clean,${findstring clean,$(MAKECMDGOALS)})
   -include ${addprefix $(builddir)/,$(depends)}
