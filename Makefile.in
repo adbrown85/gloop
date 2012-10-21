@@ -16,12 +16,17 @@ includedir   := @includedir@
 srcdir       := @srcdir@
 builddir     := build
 docdir       := doc
+distdir      := dist
+tardir       := $(tarname)-$(version)
 VPATH        := $(srcdir) $(srcdir)/$(tarname) $(builddir)
 pkgcfgdir    := $(libdir)/pkgconfig
 
 # Tools
 CXX          := @CXX@
 INSTALL      := @INSTALL@
+MKDIR        := mkdir -p
+CP           := cp
+TAR          := tar
 
 # Compiler options
 CPPFLAGS     := @CPPFLAGS@
@@ -47,6 +52,7 @@ tests        := $(notdir $(subst .cxx,,$(test_sources)))
 depends      := $(subst .lo,.d,$(objects)) $(addsuffix .d,$(tests))
 library      := lib$(tarname)-$(major).la
 pkgcfgfile   := $(tarname)-$(major).pc
+tarfile      := $(tarname)-$(version).tar.gz
 
 # Interface
 .PHONY: all clean distclean maintainer-clean
@@ -55,6 +61,7 @@ all: objects tests library
 clean:
 	$(RM) -r $(builddir)
 	$(RM) -r $(docdir)
+	$(RM) -r $(distdir)
 distclean: clean
 	$(RM) config.h
 	$(RM) config.log
@@ -169,3 +176,26 @@ endif
 .PHONY: html
 html:
 	@doxygen
+
+# Distribution
+.PHONY: dist
+dist: all
+	@echo "  TAR   $(tarfile)"
+	$(MKDIR) $(tardir)
+	$(MKDIR) $(tardir)/$(tarname)
+	$(CP) $(tarname)/common.h $(tardir)/$(tarname)
+	$(CP) $(main_sources) $(tardir)/$(tarname)
+	$(CP) $(headers) $(tardir)/$(tarname)
+	$(CP) $(test_sources) $(tardir)/$(tarname)
+	$(CP) README $(tardir)
+	$(CP) Makefile.in $(tardir)
+	$(CP) configure $(tardir)
+	$(CP) config.guess $(tardir)
+	$(CP) config.h.in $(tardir)
+	$(CP) config.sub $(tardir)
+	$(CP) Doxyfile $(tardir)
+	$(CP) install-sh $(tardir)
+	$(CP) $(pkgcfgfile).in $(tardir)
+	$(MKDIR) $(distdir)
+	$(TAR) -czf $(distdir)/$(tarfile) $(tardir)
+	$(RM) -r $(tardir)
