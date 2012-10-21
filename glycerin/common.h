@@ -27,12 +27,8 @@
 #endif
 
 /**
- * @defgroup geometry
- * @defgroup image
- * @defgroup shader
- * @defgroup system
- * @defgroup texture
- * @defgroup transform
+ * @defgroup core
+ * @defgroup extensions
  */
 
 #endif

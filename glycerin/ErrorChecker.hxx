@@ -13,7 +13,7 @@ namespace Glycerin {
 /**
  * Utility for checking for OpenGL errors.
  *
- * @ingroup system
+ * @ingroup extensions
  */
 class ErrorChecker {
 public:

@@ -12,6 +12,8 @@ namespace Glycerin {
 
 /**
  * OpenGL shader.
+ *
+ * @ingroup core
  */
 class Shader {
 public:

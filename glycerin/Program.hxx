@@ -16,6 +16,8 @@ namespace Glycerin {
 
 /**
  * Wrapper around an OpenGL shader program.
+ *
+ * @ingroup core
  */
 class Program {
 public:

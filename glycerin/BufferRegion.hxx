@@ -12,6 +12,8 @@ namespace Glycerin {
 
 /**
  * Section in a buffer.
+ *
+ * @ingroup extensions
  */
 class BufferRegion {
 public:

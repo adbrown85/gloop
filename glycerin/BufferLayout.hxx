@@ -13,6 +13,8 @@ namespace Glycerin {
 
 /**
  * Layout of a buffer.
+ *
+ * @ingroup extensions
  */
 class BufferLayout {
 public:

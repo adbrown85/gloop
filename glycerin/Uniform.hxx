@@ -13,6 +13,8 @@ namespace Glycerin {
 
 /**
  * OpenGL uniform information.
+ *
+ * @ingroup core
  */
 struct Uniform : public Variable {
 public:

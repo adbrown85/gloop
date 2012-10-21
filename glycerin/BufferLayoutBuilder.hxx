@@ -121,6 +121,8 @@ namespace Glycerin {
  *             r->offset());
  * }
  * ~~~
+ *
+ * @ingroup extensions
  */
 class BufferLayoutBuilder {
 public:

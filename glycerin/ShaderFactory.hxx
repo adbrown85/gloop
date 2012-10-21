@@ -13,6 +13,8 @@ namespace Glycerin {
 
 /**
  * Utility for creating shaders.
+ *
+ * @ingroup extensions
  */
 class ShaderFactory {
 public:

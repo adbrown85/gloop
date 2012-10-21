@@ -13,6 +13,8 @@ namespace Glycerin {
 
 /**
  * OpenGL vertex attribute.
+ *
+ * @ingroup core
  */
 struct Attribute : public Variable {
     // pass

@@ -79,6 +79,8 @@ namespace Glycerin {
  * ~~~
  *     vao.unbind();
  * ~~~
+ *
+ * @ingroup core
  */
 class VertexArrayObject {
 public:

@@ -12,6 +12,8 @@ namespace Glycerin {
 
 /**
  * Input to a shader program.
+ *
+ * @ingroup core
  */
 struct Variable {
 public:

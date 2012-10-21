@@ -52,6 +52,8 @@ namespace Glycerin {
  * ~~~
  *    buf.unbind(bo);
  * ~~~
+ *
+ * @ingroup core
  */
 class Buffer {
 public:
