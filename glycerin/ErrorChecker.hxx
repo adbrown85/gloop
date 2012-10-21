@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GLYCERIN_ERRORCHECKER_HPP
-#define GLYCERIN_ERRORCHECKER_HPP
+#ifndef GLYCERIN_ERRORCHECKER_HXX
+#define GLYCERIN_ERRORCHECKER_HXX
 #include "glycerin/common.h"
 namespace Glycerin {
 

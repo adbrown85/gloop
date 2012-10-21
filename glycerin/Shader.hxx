@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GLYCERIN_SHADER_HPP
-#define GLYCERIN_SHADER_HPP
+#ifndef GLYCERIN_SHADER_HXX
+#define GLYCERIN_SHADER_HXX
 #include "glycerin/common.h"
 namespace Glycerin {
 

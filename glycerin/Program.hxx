@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GLYCERIN_PROGRAM_HPP
-#define GLYCERIN_PROGRAM_HPP
+#ifndef GLYCERIN_PROGRAM_HXX
+#define GLYCERIN_PROGRAM_HXX
 #include "glycerin/common.h"
 #include <vector>
 #include "glycerin/Attribute.hxx"

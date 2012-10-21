@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GLYCERIN_BUFFER_HPP
-#define GLYCERIN_BUFFER_HPP
+#ifndef GLYCERIN_BUFFER_HXX
+#define GLYCERIN_BUFFER_HXX
 #include "glycerin/common.h"
 #include "glycerin/BufferObject.hxx"
 namespace Glycerin {

@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GLYCERIN_BUFFERLAYOUTBUILDER_HPP
-#define GLYCERIN_BUFFERLAYOUTBUILDER_HPP
+#ifndef GLYCERIN_BUFFERLAYOUTBUILDER_HXX
+#define GLYCERIN_BUFFERLAYOUTBUILDER_HXX
 #include <set>
 #include "glycerin/common.h"
 #include "glycerin/BufferRegion.hxx"

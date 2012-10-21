@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GLYCERIN_VERTEXATTRIBPOINTER_HPP
-#define GLYCERIN_VERTEXATTRIBPOINTER_HPP
+#ifndef GLYCERIN_VERTEXATTRIBPOINTER_HXX
+#define GLYCERIN_VERTEXATTRIBPOINTER_HXX
 #include "glycerin/common.h"
 namespace Glycerin {
 

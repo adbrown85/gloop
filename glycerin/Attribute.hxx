@@ -4,8 +4,8 @@
  * Author
  *     Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GLYCERIN_ATTRIBUTE_HPP
-#define GLYCERIN_ATTRIBUTE_HPP
+#ifndef GLYCERIN_ATTRIBUTE_HXX
+#define GLYCERIN_ATTRIBUTE_HXX
 #include "glycerin/common.h"
 #include "glycerin/Uniform.hxx"
 namespace Glycerin {

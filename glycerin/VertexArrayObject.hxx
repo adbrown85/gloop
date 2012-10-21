@@ -4,8 +4,8 @@
  * Author
  *    Andrew Brown <adb1413@rit.edu>
  */
-#ifndef GLYCERIN_VERTEXARRAYOBJECT_HPP
-#define GLYCERIN_VERTEXARRAYOBJECT_HPP
+#ifndef GLYCERIN_VERTEXARRAYOBJECT_HXX
+#define GLYCERIN_VERTEXARRAYOBJECT_HXX
 #include "glycerin/common.h"
 #include "glycerin/VertexAttribPointer.hxx"
 #include "glycerin/Buffer.hxx"
