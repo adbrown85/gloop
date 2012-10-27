@@ -16,7 +16,9 @@ namespace Glycerin {
  *
  * @ingroup core
  */
-struct Uniform : public Variable {
+class Uniform : public Variable {
+// Friends
+    friend class Program;
 public:
 // Methods
     void load1f(GLfloat x);
@@ -54,6 +56,7 @@ public:
     void loadMatrix4x3fv(GLsizei count, GLboolean transpose, const GLfloat *value);
 private:
 // Methods
+    Uniform(GLint location, const std::string& name, GLuint program, GLint size, GLenum type);
     static GLuint currentProgram();
 };
 

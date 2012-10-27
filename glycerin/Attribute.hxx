@@ -16,8 +16,12 @@ namespace Glycerin {
  *
  * @ingroup core
  */
-struct Attribute : public Variable {
-    // pass
+class Attribute : public Variable {
+// Friends
+    friend class Program;
+private:
+// Methods
+    Attribute(GLint location, const std::string& name, GLuint program, GLint size, GLenum type);
 };
 
 } /* namespace Glycerin */

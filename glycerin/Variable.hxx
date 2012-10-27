@@ -15,13 +15,25 @@ namespace Glycerin {
  *
  * @ingroup core
  */
-struct Variable {
+class Variable {
 public:
-    std::string name;
-    GLint size;
-    GLenum type;
-    GLint location;
-    GLuint program;
+// Methods
+    virtual GLint location() const;
+    virtual std::string name() const;
+    virtual GLuint program() const;
+    virtual GLint size() const;
+    virtual GLenum type() const;
+protected:
+// Methods
+    Variable(GLint location, const std::string& name, GLuint program, GLint size, GLenum type);
+    virtual ~Variable();
+private:
+// Attributes
+    GLint _location;
+    std::string _name;
+    GLuint _program;
+    GLint _size;
+    GLenum _type;
 };
 
 } /* namespace Glycerin */

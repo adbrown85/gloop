@@ -10,6 +10,24 @@
 namespace Glycerin {
 
 /**
+ * Constructs a uniform.
+ *
+ * @param location Location in program
+ * @param name Name of uniform in shader
+ * @param program ID of the program uniform is from
+ * @param size Number of components
+ * @param type Data type of components, as in `GL_FLOAT`
+ */
+Uniform::Uniform(GLint location,
+                 const std::string& name,
+                 GLuint program,
+                 GLint size,
+                 GLenum type)
+        : Variable(location, name, program, size, type) {
+    // empty
+}
+
+/**
  * Loads a float value into the uniform's location in the current program.
  *
  * @param x Value to load
@@ -17,9 +35,9 @@ namespace Glycerin {
  * @pre Uniform's type is `GL_FLOAT`
  */
 void Uniform::load1f(GLfloat x) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT);
-    glUniform1f(location, x);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT);
+    glUniform1f(location(), x);
 }
 
 /**
@@ -31,9 +49,9 @@ void Uniform::load1f(GLfloat x) {
  * @pre Uniform's type is `GL_FLOAT_VEC2`
  */
 void Uniform::load2f(GLfloat x, GLfloat y) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_VEC2);
-    glUniform2f(location, x, y);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_VEC2);
+    glUniform2f(location(), x, y);
 }
 
 /**
@@ -46,9 +64,9 @@ void Uniform::load2f(GLfloat x, GLfloat y) {
  * @pre Uniform's type is `GL_FLOAT_VEC3`
  */
 void Uniform::load3f(GLfloat x, GLfloat y, GLfloat z) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_VEC3);
-    glUniform3f(location, x, y, z);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_VEC3);
+    glUniform3f(location(), x, y, z);
 }
 
 /**
@@ -62,9 +80,9 @@ void Uniform::load3f(GLfloat x, GLfloat y, GLfloat z) {
  * @pre Uniform's type is `GL_FLOAT_VEC4`
  */
 void Uniform::load4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_VEC4);
-    glUniform4f(location, x, y, z, w);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_VEC4);
+    glUniform4f(location(), x, y, z, w);
 }
 
 /**
@@ -75,9 +93,9 @@ void Uniform::load4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w) {
  * @pre Uniform's type is `GL_INT`
  */
 void Uniform::load1i(GLint x) {
-    assert (currentProgram() == program);
-    assert (type == GL_INT);
-    glUniform1i(location, x);
+    assert (currentProgram() == program());
+    assert (type() == GL_INT);
+    glUniform1i(location(), x);
 }
 
 /**
@@ -89,9 +107,9 @@ void Uniform::load1i(GLint x) {
  * @pre Uniform's type is `GL_INT_VEC2`
  */
 void Uniform::load2i(GLint x, GLint y) {
-    assert (currentProgram() == program);
-    assert (type == GL_INT_VEC2);
-    glUniform2i(location, x, y);
+    assert (currentProgram() == program());
+    assert (type() == GL_INT_VEC2);
+    glUniform2i(location(), x, y);
 }
 
 /**
@@ -104,9 +122,9 @@ void Uniform::load2i(GLint x, GLint y) {
  * @pre Uniform's type is `GL_INT_VEC3`
  */
 void Uniform::load3i(GLint x, GLint y, GLint z) {
-    assert (currentProgram() == program);
-    assert (type == GL_INT_VEC3);
-    glUniform3i(location, x, y, z);
+    assert (currentProgram() == program());
+    assert (type() == GL_INT_VEC3);
+    glUniform3i(location(), x, y, z);
 }
 
 /**
@@ -120,9 +138,9 @@ void Uniform::load3i(GLint x, GLint y, GLint z) {
  * @pre Uniform's type is `GL_INT_VEC4`
  */
 void Uniform::load4i(GLint x, GLint y, GLint z, GLint w) {
-    assert (currentProgram() == program);
-    assert (type == GL_INT_VEC4);
-    glUniform4i(location, x, y, z, w);
+    assert (currentProgram() == program());
+    assert (type() == GL_INT_VEC4);
+    glUniform4i(location(), x, y, z, w);
 }
 
 /**
@@ -133,9 +151,9 @@ void Uniform::load4i(GLint x, GLint y, GLint z, GLint w) {
  * @pre Uniform's type is `GL_UNSIGNED_INT`
  */
 void Uniform::load1ui(GLuint x) {
-    assert (currentProgram() == program);
-    assert (type == GL_UNSIGNED_INT);
-    glUniform1ui(location, x);
+    assert (currentProgram() == program());
+    assert (type() == GL_UNSIGNED_INT);
+    glUniform1ui(location(), x);
 }
 
 /**
@@ -147,9 +165,9 @@ void Uniform::load1ui(GLuint x) {
  * @pre Uniform's type is `GL_UNSIGNED_INT_VEC2`
  */
 void Uniform::load2ui(GLuint x, GLuint y) {
-    assert (currentProgram() == program);
-    assert (type == GL_UNSIGNED_INT_VEC2);
-    glUniform2ui(location, x, y);
+    assert (currentProgram() == program());
+    assert (type() == GL_UNSIGNED_INT_VEC2);
+    glUniform2ui(location(), x, y);
 }
 
 /**
@@ -162,9 +180,9 @@ void Uniform::load2ui(GLuint x, GLuint y) {
  * @pre Uniform's type is `GL_UNSIGNED_INT_VEC3`
  */
 void Uniform::load3ui(GLuint x, GLuint y, GLuint z) {
-    assert (currentProgram() == program);
-    assert (type == GL_UNSIGNED_INT_VEC3);
-    glUniform3ui(location, x, y, z);
+    assert (currentProgram() == program());
+    assert (type() == GL_UNSIGNED_INT_VEC3);
+    glUniform3ui(location(), x, y, z);
 }
 
 /**
@@ -178,9 +196,9 @@ void Uniform::load3ui(GLuint x, GLuint y, GLuint z) {
  * @pre Uniform's type is `GL_UNSIGNED_INT_VEC4`
  */
 void Uniform::load4ui(GLuint x, GLuint y, GLuint z, GLuint w) {
-    assert (currentProgram() == program);
-    assert (type == GL_UNSIGNED_INT_VEC4);
-    glUniform4ui(location, x, y, z, w);
+    assert (currentProgram() == program());
+    assert (type() == GL_UNSIGNED_INT_VEC4);
+    glUniform4ui(location(), x, y, z, w);
 }
 
 /**
@@ -193,10 +211,10 @@ void Uniform::load4ui(GLuint x, GLuint y, GLuint z, GLuint w) {
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load1fv(GLsizei count, const GLfloat* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT);
-    assert (count <= size);
-    glUniform1fv(location, count, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT);
+    assert (count <= size());
+    glUniform1fv(location(), count, value);
 }
 
 /**
@@ -209,10 +227,10 @@ void Uniform::load1fv(GLsizei count, const GLfloat* value) {
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load2fv(GLsizei count, const GLfloat* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_VEC2);
-    assert (count <= size);
-    glUniform2fv(location, count, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_VEC2);
+    assert (count <= size());
+    glUniform2fv(location(), count, value);
 }
 
 /**
@@ -225,10 +243,10 @@ void Uniform::load2fv(GLsizei count, const GLfloat* value) {
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load3fv(GLsizei count, const GLfloat* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_VEC3);
-    assert (count <= size);
-    glUniform3fv(location, count, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_VEC3);
+    assert (count <= size());
+    glUniform3fv(location(), count, value);
 }
 
 /**
@@ -241,10 +259,10 @@ void Uniform::load3fv(GLsizei count, const GLfloat* value) {
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load4fv(GLsizei count, const GLfloat* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_VEC4);
-    assert (count <= size);
-    glUniform4fv(location, count, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_VEC4);
+    assert (count <= size());
+    glUniform4fv(location(), count, value);
 }
 
 /**
@@ -257,10 +275,10 @@ void Uniform::load4fv(GLsizei count, const GLfloat* value) {
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load1iv(GLsizei count, const GLint* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_INT);
-    assert (count <= size);
-    glUniform1iv(location, count, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_INT);
+    assert (count <= size());
+    glUniform1iv(location(), count, value);
 }
 
 /**
@@ -273,10 +291,10 @@ void Uniform::load1iv(GLsizei count, const GLint* value) {
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load2iv(GLsizei count, const GLint* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_INT_VEC2);
-    assert (count <= size);
-    glUniform2iv(location, count, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_INT_VEC2);
+    assert (count <= size());
+    glUniform2iv(location(), count, value);
 }
 
 /**
@@ -289,10 +307,10 @@ void Uniform::load2iv(GLsizei count, const GLint* value) {
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load3iv(GLsizei count, const GLint* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_INT_VEC3);
-    assert (count <= size);
-    glUniform3iv(location, count, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_INT_VEC3);
+    assert (count <= size());
+    glUniform3iv(location(), count, value);
 }
 
 /**
@@ -305,10 +323,10 @@ void Uniform::load3iv(GLsizei count, const GLint* value) {
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load4iv(GLsizei count, const GLint* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_INT_VEC4);
-    assert (count <= size);
-    glUniform4iv(location, count, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_INT_VEC4);
+    assert (count <= size());
+    glUniform4iv(location(), count, value);
 }
 
 /**
@@ -321,10 +339,10 @@ void Uniform::load4iv(GLsizei count, const GLint* value) {
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load1uiv(GLsizei count, const GLuint* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_UNSIGNED_INT);
-    assert (count <= size);
-    glUniform1uiv(location, count, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_UNSIGNED_INT);
+    assert (count <= size());
+    glUniform1uiv(location(), count, value);
 }
 
 /**
@@ -337,10 +355,10 @@ void Uniform::load1uiv(GLsizei count, const GLuint* value) {
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load2uiv(GLsizei count, const GLuint* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_UNSIGNED_INT_VEC2);
-    assert (count <= size);
-    glUniform2uiv(location, count, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_UNSIGNED_INT_VEC2);
+    assert (count <= size());
+    glUniform2uiv(location(), count, value);
 }
 
 /**
@@ -353,10 +371,10 @@ void Uniform::load2uiv(GLsizei count, const GLuint* value) {
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load3uiv(GLsizei count, const GLuint* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_UNSIGNED_INT_VEC3);
-    assert (count <= size);
-    glUniform3uiv(location, count, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_UNSIGNED_INT_VEC3);
+    assert (count <= size());
+    glUniform3uiv(location(), count, value);
 }
 
 /**
@@ -369,10 +387,10 @@ void Uniform::load3uiv(GLsizei count, const GLuint* value) {
  * @pre Number of values to load is less than or equal to size of uniform
  */
 void Uniform::load4uiv(GLsizei count, const GLuint* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_UNSIGNED_INT_VEC4);
-    assert (count <= size);
-    glUniform4uiv(location, count, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_UNSIGNED_INT_VEC4);
+    assert (count <= size());
+    glUniform4uiv(location(), count, value);
 }
 
 /**
@@ -386,10 +404,10 @@ void Uniform::load4uiv(GLsizei count, const GLuint* value) {
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix2fv(GLsizei count, GLboolean transpose, const GLfloat* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_MAT2);
-    assert (count <= size);
-    glUniformMatrix2fv(location, count, transpose, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_MAT2);
+    assert (count <= size());
+    glUniformMatrix2fv(location(), count, transpose, value);
 }
 
 /**
@@ -403,10 +421,10 @@ void Uniform::loadMatrix2fv(GLsizei count, GLboolean transpose, const GLfloat* v
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix3fv(GLsizei count, GLboolean transpose, const GLfloat* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_MAT3);
-    assert (count <= size);
-    glUniformMatrix3fv(location, count, transpose, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_MAT3);
+    assert (count <= size());
+    glUniformMatrix3fv(location(), count, transpose, value);
 }
 
 /**
@@ -420,10 +438,10 @@ void Uniform::loadMatrix3fv(GLsizei count, GLboolean transpose, const GLfloat* v
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix4fv(GLsizei count, GLboolean transpose, const GLfloat* value) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_MAT4);
-    assert (count <= size);
-    glUniformMatrix4fv(location, count, transpose, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_MAT4);
+    assert (count <= size());
+    glUniformMatrix4fv(location(), count, transpose, value);
 }
 
 /**
@@ -437,10 +455,10 @@ void Uniform::loadMatrix4fv(GLsizei count, GLboolean transpose, const GLfloat* v
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix2x3fv(GLsizei count, GLboolean transpose, const GLfloat *value) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_MAT2x3);
-    assert (count <= size);
-    glUniformMatrix2x3fv(location, count, transpose, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_MAT2x3);
+    assert (count <= size());
+    glUniformMatrix2x3fv(location(), count, transpose, value);
 }
 
 /**
@@ -454,10 +472,10 @@ void Uniform::loadMatrix2x3fv(GLsizei count, GLboolean transpose, const GLfloat 
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix3x2fv(GLsizei count, GLboolean transpose, const GLfloat *value) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_MAT3x2);
-    assert (count <= size);
-    glUniformMatrix3x2fv(location, count, transpose, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_MAT3x2);
+    assert (count <= size());
+    glUniformMatrix3x2fv(location(), count, transpose, value);
 }
 
 /**
@@ -471,10 +489,10 @@ void Uniform::loadMatrix3x2fv(GLsizei count, GLboolean transpose, const GLfloat 
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix2x4fv(GLsizei count, GLboolean transpose, const GLfloat *value) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_MAT2x4);
-    assert (count <= size);
-    glUniformMatrix2x4fv(location, count, transpose, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_MAT2x4);
+    assert (count <= size());
+    glUniformMatrix2x4fv(location(), count, transpose, value);
 }
 
 /**
@@ -488,10 +506,10 @@ void Uniform::loadMatrix2x4fv(GLsizei count, GLboolean transpose, const GLfloat 
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix4x2fv(GLsizei count, GLboolean transpose, const GLfloat *value) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_MAT4x2);
-    assert (count <= size);
-    glUniformMatrix4x2fv(location, count, transpose, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_MAT4x2);
+    assert (count <= size());
+    glUniformMatrix4x2fv(location(), count, transpose, value);
 }
 
 /**
@@ -505,10 +523,10 @@ void Uniform::loadMatrix4x2fv(GLsizei count, GLboolean transpose, const GLfloat 
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix3x4fv(GLsizei count, GLboolean transpose, const GLfloat *value) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_MAT3x4);
-    assert (count <= size);
-    glUniformMatrix3x4fv(location, count, transpose, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_MAT3x4);
+    assert (count <= size());
+    glUniformMatrix3x4fv(location(), count, transpose, value);
 }
 
 /**
@@ -522,10 +540,10 @@ void Uniform::loadMatrix3x4fv(GLsizei count, GLboolean transpose, const GLfloat 
  * @pre Number of matrices to load is less than or equal to size of uniform
  */
 void Uniform::loadMatrix4x3fv(GLsizei count, GLboolean transpose, const GLfloat *value) {
-    assert (currentProgram() == program);
-    assert (type == GL_FLOAT_MAT4x3);
-    assert (count <= size);
-    glUniformMatrix4x3fv(location, count, transpose, value);
+    assert (currentProgram() == program());
+    assert (type() == GL_FLOAT_MAT4x3);
+    assert (count <= size());
+    glUniformMatrix4x3fv(location(), count, transpose, value);
 }
 
 // HELPERS

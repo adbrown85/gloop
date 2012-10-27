@@ -48,15 +48,18 @@ map<string,Attribute> Program::activeAttributes() const {
     glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &len);
     char* const buf = new char[len];
 
+    // Make variables to hold size and type of an attribute
+    GLint size;
+    GLenum type;
+
     // Put active attributes into a map
     map<string,Attribute> attribs;
     for (int i = 0; i < num; ++i) {
-        Attribute attrib;
-        glGetActiveAttrib(_handle, i, len, NULL, &attrib.size, &attrib.type, buf);
-        attrib.name = buf;
-        attrib.location = glGetAttribLocation(_handle, buf);
-        attrib.program = _handle;
-        attribs[attrib.name] = attrib;
+        glGetActiveAttrib(_handle, i, len, NULL, &size, &type, buf);
+        const GLint location = glGetAttribLocation(_handle, buf);
+        const string name = buf;
+        const Attribute attrib(location, name, _handle, size, type);
+        attribs.insert(pair<string,Attribute>(name, attrib));
     }
 
     // Delete the buffer
@@ -83,15 +86,18 @@ map<string,Uniform> Program::activeUniforms() const {
     glGetProgramiv(_handle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &len);
     char* const buf = new char[len];
 
+    // Make variables to hold size and type of a uniform
+    GLint size;
+    GLenum type;
+
     // Put active uniforms into a map
     map<string,Uniform> uniforms;
     for (int i = 0; i < num; ++i) {
-        Uniform uniform;
-        glGetActiveUniform(_handle, i, len, NULL, &uniform.size, &uniform.type, buf);
-        uniform.name = buf;
-        uniform.location = glGetUniformLocation(_handle, buf);
-        uniform.program = _handle;
-        uniforms[uniform.name] = uniform;
+        glGetActiveUniform(_handle, i, len, NULL, &size, &type, buf);
+        const GLint location = glGetUniformLocation(_handle, buf);
+        const string name = buf;
+        const Uniform uniform(location, name, _handle, size, type);
+        uniforms.insert(pair<string,Uniform>(name, uniform));
     }
 
     // Delete the buffer
