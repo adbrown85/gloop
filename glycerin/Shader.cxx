@@ -212,13 +212,13 @@ void Shader::source(const std::string& source) const {
 }
 
 /**
- * Wraps an existing OpenGL shader.
+ * Creates a shader handle from the ID of an existing OpenGL shader.
  *
- * @param id OpenGL identifier for shader
- * @return Wrapper for OpenGL shader
+ * @param id ID of existing OpenGL shader
+ * @return Handle for OpenGL shader
  * @throws invalid_argument if ID is not a valid OpenGL shader
  */
-Shader Shader::wrap(const GLuint id) {
+Shader Shader::fromId(const GLuint id) {
     if (!glIsShader(id)) {
         throw invalid_argument("[Shader] ID is not a valid shader!");
     }

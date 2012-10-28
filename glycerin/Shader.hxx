@@ -24,6 +24,7 @@ public:
     bool compiled() const;
     static Shader create(GLenum type);
     void dispose() const;
+    static Shader fromId(GLuint id);
     GLuint id() const;
     std::string log() const;
     Shader& operator=(const Shader& shader);
@@ -33,7 +34,6 @@ public:
     std::string source() const;
     void source(const std::string& source) const;
     GLenum type() const;
-    static Shader wrap(GLuint id);
 private:
 // Attributes
     GLuint _id;

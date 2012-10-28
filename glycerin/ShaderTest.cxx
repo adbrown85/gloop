@@ -213,7 +213,7 @@ public:
      */
     void testOperatorEqualEqualWithEqual() {
         const Shader s1 = Shader::create(GL_VERTEX_SHADER);
-        const Shader s2 = Shader::wrap(s1.id());
+        const Shader s2 = Shader::fromId(s1.id());
         assert (s1 == s2);
     }
 
@@ -268,19 +268,19 @@ public:
     /**
      * Ensures wrapping an existing shader works correctly.
      */
-    void testWrapWithGoodId() {
+    void testFromIdWithGoodId() {
         const GLuint id = glCreateShader(GL_FRAGMENT_SHADER);
-        const Shader shader = Shader::wrap(id);
+        const Shader shader = Shader::fromId(id);
         assert (shader.id() == id);
     }
 
     /**
      * Ensures wrapping a non-existent shader throws an exception.
      */
-    void testWrapWithBadId() {
+    void testFromIdWithBadId() {
         const GLuint id = -1;
         try {
-            const Shader shader = Shader::wrap(id);
+            const Shader shader = Shader::fromId(id);
         } catch (std::invalid_argument &e) {
             // Exception caught
             return;
@@ -327,8 +327,8 @@ int main(int argc, char* argv[]) {
         test.testTypeWithFragmentShader();
         test.testTypeWithGeometryShader();
         test.testTypeWithVertexShader();
-        test.testWrapWithGoodId();
-        test.testWrapWithBadId();
+        test.testFromIdWithGoodId();
+        test.testFromIdWithBadId();
     } catch (exception& e) {
         cerr << e.what() << endl;
         throw;

@@ -131,7 +131,7 @@ map<string,Uniform> Program::activeUniforms() const {
  * @see http://www.opengl.org/sdk/docs/man3/xhtml/glAttachShader.xml
  */
 void Program::attachShader(GLuint shader) const {
-    attachShader(Shader::wrap(shader));
+    attachShader(Shader::fromId(shader));
 }
 
 /**
@@ -211,7 +211,7 @@ Program Program::create() {
  * @see http://www.opengl.org/sdk/docs/man3/xhtml/glDetachShader.xml
  */
 void Program::detachShader(GLuint shader) const {
-    detachShader(Shader::wrap(shader));
+    detachShader(Shader::fromId(shader));
 }
 
 /**
@@ -392,7 +392,7 @@ vector<Shader> Program::shaders() const {
     // Add them to a vector
     vector<Shader> vec;
     for (int i = 0; i < len; ++i) {
-        const Shader shader = Shader::wrap(arr[i]);
+        const Shader shader = Shader::fromId(arr[i]);
         vec.push_back(shader);
     }
 
