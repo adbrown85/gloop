@@ -76,9 +76,9 @@ GLuint Shader::id() const {
 }
 
 /**
- * Copies the ID of another shader.
+ * Changes which OpenGL shader this shader represents.
  *
- * @param shader Shader to copy
+ * @param shader Shader to copy ID from
  * @return Reference to this shader to support chaining
  */
 Shader& Shader::operator=(const Shader &shader) {
