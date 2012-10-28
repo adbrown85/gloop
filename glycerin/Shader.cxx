@@ -92,7 +92,7 @@ Shader& Shader::operator=(const Shader &shader) {
  * @return `true` if shaders represent same OpenGL shader
  */
 bool Shader::operator==(const Shader &shader) const {
-    return _handle == shader.handle();
+    return _handle == shader._handle;
 }
 
 /**
@@ -102,7 +102,7 @@ bool Shader::operator==(const Shader &shader) const {
  * @return `true` if shaders do not represent same OpenGL shader
  */
 bool Shader::operator!=(const Shader &shader) const {
-    return _handle != shader.handle();
+    return _handle != shader._handle;
 }
 
 /**
