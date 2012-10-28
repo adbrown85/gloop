@@ -120,7 +120,9 @@ bool Shader::operator<(const Shader &shader) const {
 }
 
 /**
- * Returns this shader's source code.
+ * Retrieves a copy of this shader's source code.
+ *
+ * @return Copy of this shader's source code
  */
 string Shader::source() const {
 
