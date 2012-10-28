@@ -175,6 +175,7 @@ endif
 # Documentation
 .PHONY: html
 html:
+	@$(MKDIR) $(docdir)
 	@doxygen
 
 # Distribution
