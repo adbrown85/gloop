@@ -132,7 +132,7 @@ void VertexArrayObject::enableVertexAttribArray(const GLuint index) const {
  *
  * @return Handle representing the vertex array object that was generated
  * @throws runtime_error if could not generate new vertex array object
- * @see @ref wrap
+ * @see @ref fromId
  */
 VertexArrayObject VertexArrayObject::generate() {
 
@@ -288,7 +288,7 @@ void VertexArrayObject::vertexAttribPointer(const VertexAttribPointer& pointer) 
  * @throws invalid_argument if identifier is not a valid vertex array object
  * @see @ref generate
  */
-VertexArrayObject VertexArrayObject::wrap(const GLuint id) {
+VertexArrayObject VertexArrayObject::fromId(const GLuint id) {
     if (!glIsVertexArray(id)) {
         throw invalid_argument("[VertexArrayObject] ID is not a valid vertex array object!");
     }

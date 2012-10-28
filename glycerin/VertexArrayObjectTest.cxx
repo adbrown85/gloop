@@ -196,10 +196,10 @@ public:
     /**
      * Ensures wrapping a bad vertex array object ID throws an exception.
      */
-    void testWrapWithBadId() {
+    void testFromIdWithBadId() {
         const GLuint id = -1;
         try {
-            VertexArrayObject::wrap(id);
+            VertexArrayObject::fromId(id);
         } catch (invalid_argument& e) {
             // Exception caught
             return;
@@ -210,12 +210,12 @@ public:
     /**
      * Ensures wrapping a good vertex array object ID does not throw an exception.
      */
-    void testWrapWithGoodId() {
+    void testFromIdWithGoodId() {
         GLuint id;
         glGenVertexArrays(1, &id);
         assert (id > 0);
         glBindVertexArray(id);
-        const VertexArrayObject vao = VertexArrayObject::wrap(id);
+        const VertexArrayObject vao = VertexArrayObject::fromId(id);
         assert (vao.id() == id);
     }
 };
@@ -239,8 +239,8 @@ int main(int argc, char* argv[]) {
     VertexArrayObjectTest test;
     try {
         test.testGenerate();
-        test.testWrapWithBadId();
-        test.testWrapWithGoodId();
+        test.testFromIdWithBadId();
+        test.testFromIdWithGoodId();
         test.testAddToStlMap();
         test.testAddToStlVector();
         test.testUnbindWhileBound();

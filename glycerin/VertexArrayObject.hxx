@@ -92,6 +92,7 @@ public:
     void disableVertexAttribArray(GLuint index) const;
     void dispose() const;
     void enableVertexAttribArray(GLuint index) const;
+    static VertexArrayObject fromId(GLuint id);
     static VertexArrayObject generate();
     GLuint id() const;
     VertexArrayObject& operator=(const VertexArrayObject& vao);
@@ -100,7 +101,6 @@ public:
     bool operator<(const VertexArrayObject& vao) const;
     void unbind() const;
     void vertexAttribPointer(const VertexAttribPointer& pointer) const;
-    static VertexArrayObject wrap(GLuint id);
 private:
 // Attributes
     GLuint _id;
