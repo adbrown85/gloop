@@ -16,7 +16,7 @@ namespace Glycerin {
 
 
 /**
- * Wrapper around an OpenGL shader program.
+ * Handle for an OpenGL shader program.
  *
  * @ingroup core
  */
@@ -36,7 +36,7 @@ public:
     void dispose();
     GLint fragDataLocation(const std::string& name) const;
     void fragDataLocation(const std::string& name, GLuint location);
-    GLuint handle() const;
+    GLuint id() const;
     void link();
     bool linked() const;
     std::string log() const;
@@ -48,12 +48,12 @@ public:
     void use() const;
     bool valid() const;
     void validate();
-    static Program wrap(GLuint handle);
+    static Program wrap(GLuint id);
 private:
 // Attributes
-    GLuint _handle;
+    GLuint _id;
 // Methods
-    explicit Program(GLuint handle);
+    explicit Program(GLuint id);
     Program();
     static GLint getMaxDrawBuffers();
     bool isAttached(const Shader& shader) const;

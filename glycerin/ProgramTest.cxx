@@ -81,7 +81,7 @@ public:
         assert (a.size() == 1);
         assert (a.type() == GL_FLOAT_VEC4);
         assert (a.location() >= 0);
-        assert (a.program() == p.handle());
+        assert (a.program() == p.id());
     }
 
     /**
@@ -116,13 +116,13 @@ public:
         assert (u1.type() == GL_FLOAT_MAT4);
         assert (u1.size() == 1);
         assert (u1.location() >= 0);
-        assert (u1.program() == p.handle());
+        assert (u1.program() == p.id());
         const Uniform u2 = uniforms.find("Color")->second;
         assert (u2.name() == "Color");
         assert (u2.type() == GL_FLOAT_VEC4);
         assert (u2.size() == 1);
         assert (u2.location() >= 0);
-        assert (u2.program() == p.handle());
+        assert (u2.program() == p.id());
     }
 
     /**
@@ -152,7 +152,7 @@ public:
 
         // Check if it was attached
         GLint num;
-        glGetProgramiv(program.handle(), GL_ATTACHED_SHADERS, &num);
+        glGetProgramiv(program.id(), GL_ATTACHED_SHADERS, &num);
         assert (num == 1);
     }
 
@@ -235,11 +235,11 @@ public:
     }
 
     /**
-     * Ensures create returns a program with a valid handle.
+     * Ensures create returns a program with a valid ID.
      */
     void testCreate() {
         Program program = Program::create();
-        assert (program.handle() > 0);
+        assert (program.id() > 0);
     }
 
     /**
@@ -252,10 +252,10 @@ public:
 
         GLint attached;
         program.attachShader(shader);
-        glGetProgramiv(program.handle(), GL_ATTACHED_SHADERS, &attached);
+        glGetProgramiv(program.id(), GL_ATTACHED_SHADERS, &attached);
         assert (attached == 1);
         program.detachShader(shader);
-        glGetProgramiv(program.handle(), GL_ATTACHED_SHADERS, &attached);
+        glGetProgramiv(program.id(), GL_ATTACHED_SHADERS, &attached);
         assert (attached == 0);
     }
 
@@ -341,7 +341,7 @@ public:
 
         // Create a program
         Program program = Program::create();
-        assert (program.handle() > 0);
+        assert (program.id() > 0);
 
         // Create shaders
         Shader vs = Shader::create(GL_VERTEX_SHADER);
@@ -386,7 +386,7 @@ public:
 
         // Create a program
         Program program = Program::create();
-        assert (program.handle() > 0);
+        assert (program.id() > 0);
 
         // Create shaders
         Shader vs = Shader::create(GL_VERTEX_SHADER);
@@ -473,21 +473,21 @@ public:
     }
 
     /**
-     * Ensures wrap does not throw an exception with a good handle.
+     * Ensures wrap does not throw an exception with a good ID.
      */
-    void testWrapWithGoodHandle() {
-        const GLuint handle = glCreateProgram();
-        assert (handle > 0);
-        Program program = Program::wrap(handle);
+    void testWrapWithGoodId() {
+        const GLuint id = glCreateProgram();
+        assert (id > 0);
+        Program program = Program::wrap(id);
     }
 
     /**
-     * Ensures wrap throws an exception with a bad handle.
+     * Ensures wrap throws an exception with a bad ID.
      */
-    void testWrapWithBadHandle() {
-        const GLuint handle = -1;
+    void testWrapWithBadId() {
+        const GLuint id = -1;
         try {
-            Program program = Program::wrap(handle);
+            Program program = Program::wrap(id);
         } catch (std::invalid_argument) {
             // Exception caught
             return;
@@ -535,8 +535,8 @@ int main(int argc, char *argv[]) {
         test.testUniformLocationWithBadName();
         test.testUniformLocationWithGoodName();
         test.testActiveUniforms();
-        test.testWrapWithGoodHandle();
-        test.testWrapWithBadHandle();
+        test.testWrapWithGoodId();
+        test.testWrapWithBadId();
     } catch (exception& e) {
         cerr << e.what() << endl;
         throw;

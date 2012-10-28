@@ -13,12 +13,12 @@ namespace Glycerin {
 /**
  * Constructs a program wrapping an existing shader program.
  *
- * @param handle Existing shader program to wrap
- * @throws invalid_argument if handle is not an existing OpenGL shader program
+ * @param id ID of existing shader program to wrap
+ * @throws invalid_argument if ID is not an existing OpenGL shader program
  */
-Program::Program(GLuint handle) : _handle(handle) {
-    if (!glIsProgram(_handle)) {
-        throw invalid_argument("[Program] Handle not an existing OpenGL shader program!");
+Program::Program(GLuint id) : _id(id) {
+    if (!glIsProgram(_id)) {
+        throw invalid_argument("[Program] ID not an existing OpenGL shader program!");
     }
 }
 
@@ -27,7 +27,7 @@ Program::Program(GLuint handle) : _handle(handle) {
  *
  * @param program Program to copy
  */
-Program::Program(const Program& program) : _handle(program._handle) {
+Program::Program(const Program& program) : _id(program._id) {
     // pass
 }
 
@@ -38,14 +38,14 @@ map<string,Attribute> Program::activeAttributes() const {
 
     // Get number of active attributes
     GLint num;
-    glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTES, &num);
+    glGetProgramiv(_id, GL_ACTIVE_ATTRIBUTES, &num);
     if (num == 0) {
         return map<string,Attribute>();
     }
 
     // Make a buffer to hold name of an attribute
     GLint len;
-    glGetProgramiv(_handle, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &len);
+    glGetProgramiv(_id, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &len);
     char* const buf = new char[len];
 
     // Make variables to hold size and type of an attribute
@@ -55,10 +55,10 @@ map<string,Attribute> Program::activeAttributes() const {
     // Put active attributes into a map
     map<string,Attribute> attribs;
     for (int i = 0; i < num; ++i) {
-        glGetActiveAttrib(_handle, i, len, NULL, &size, &type, buf);
-        const GLint location = glGetAttribLocation(_handle, buf);
+        glGetActiveAttrib(_id, i, len, NULL, &size, &type, buf);
+        const GLint location = glGetAttribLocation(_id, buf);
         const string name = buf;
-        const Attribute attrib(location, name, _handle, size, type);
+        const Attribute attrib(location, name, _id, size, type);
         attribs.insert(pair<string,Attribute>(name, attrib));
     }
 
@@ -76,14 +76,14 @@ map<string,Uniform> Program::activeUniforms() const {
 
     // Get number of active uniforms
     GLint num;
-    glGetProgramiv(_handle, GL_ACTIVE_UNIFORMS, &num);
+    glGetProgramiv(_id, GL_ACTIVE_UNIFORMS, &num);
     if (num == 0) {
         return map<string,Uniform>();
     }
 
     // Make a buffer to hold name of a uniform
     GLint len;
-    glGetProgramiv(_handle, GL_ACTIVE_UNIFORM_MAX_LENGTH, &len);
+    glGetProgramiv(_id, GL_ACTIVE_UNIFORM_MAX_LENGTH, &len);
     char* const buf = new char[len];
 
     // Make variables to hold size and type of a uniform
@@ -93,10 +93,10 @@ map<string,Uniform> Program::activeUniforms() const {
     // Put active uniforms into a map
     map<string,Uniform> uniforms;
     for (int i = 0; i < num; ++i) {
-        glGetActiveUniform(_handle, i, len, NULL, &size, &type, buf);
-        const GLint location = glGetUniformLocation(_handle, buf);
+        glGetActiveUniform(_id, i, len, NULL, &size, &type, buf);
+        const GLint location = glGetUniformLocation(_id, buf);
         const string name = buf;
-        const Uniform uniform(location, name, _handle, size, type);
+        const Uniform uniform(location, name, _id, size, type);
         uniforms.insert(pair<string,Uniform>(name, uniform));
     }
 
@@ -128,7 +128,7 @@ void Program::attachShader(const Shader &shader) {
     if (isAttached(shader)) {
         throw invalid_argument("[Program] Shader is already attached!");
     }
-    glAttachShader(_handle, shader.handle());
+    glAttachShader(_id, shader.handle());
 }
 
 /**
@@ -146,7 +146,7 @@ GLint Program::attribLocation(const std::string &name) const {
         throw runtime_error("[Program] Program not linked yet!");
     }
 
-    return glGetAttribLocation(_handle, name.c_str());
+    return glGetAttribLocation(_id, name.c_str());
 }
 
 /**
@@ -160,7 +160,7 @@ void Program::attribLocation(const std::string& name, GLuint location) {
     if (name.empty()) {
         throw invalid_argument("[Program] Name is empty!");
     }
-    glBindAttribLocation(_handle, location, name.c_str());
+    glBindAttribLocation(_id, location, name.c_str());
 }
 
 /**
@@ -171,14 +171,14 @@ void Program::attribLocation(const std::string& name, GLuint location) {
  */
 Program Program::create() {
 
-    // Create a handle
-    const GLuint handle = glCreateProgram();
-    if (handle == 0) {
+    // Create an ID
+    const GLuint id = glCreateProgram();
+    if (id == 0) {
         throw runtime_error("[Program] Could not create program!");
     }
 
     // Make the program
-    return Program(handle);
+    return Program(id);
 }
 
 /**
@@ -202,14 +202,14 @@ void Program::detachShader(const Shader &shader) {
     if (!isAttached(shader)) {
         throw invalid_argument("[Program] Shader not already attached!");
     }
-    glDetachShader(_handle, shader.handle());
+    glDetachShader(_id, shader.handle());
 }
 
 /**
  * Deletes the underlying OpenGL shader program.
  */
 void Program::dispose() {
-    glDeleteProgram(_handle);
+    glDeleteProgram(_id);
 }
 
 /**
@@ -219,7 +219,7 @@ void Program::dispose() {
  * @return Location of output variable, or -1 if name is not an active output variable
  */
 GLint Program::fragDataLocation(const std::string& name) const {
-    return glGetFragDataLocation(_handle, name.c_str());
+    return glGetFragDataLocation(_id, name.c_str());
 }
 
 /**
@@ -240,21 +240,21 @@ void Program::fragDataLocation(const std::string &name, GLuint location) {
         throw invalid_argument("[Program] Name starts with 'gl_'");
     }
 
-    glBindFragDataLocation(_handle, location, name.c_str());
+    glBindFragDataLocation(_id, location, name.c_str());
 }
 
 /**
  * Returns the OpenGL identifier for this program.
  */
-GLuint Program::handle() const {
-    return _handle;
+GLuint Program::id() const {
+    return _id;
 }
 
 /**
  * Links this program.
  */
 void Program::link() {
-    glLinkProgram(_handle);
+    glLinkProgram(_id);
 }
 
 /**
@@ -262,7 +262,7 @@ void Program::link() {
  */
 bool Program::linked() const {
     GLint linked;
-    glGetProgramiv(_handle, GL_LINK_STATUS, &linked);
+    glGetProgramiv(_id, GL_LINK_STATUS, &linked);
     return linked;
 }
 
@@ -273,12 +273,12 @@ string Program::log() const {
 
     // Make a buffer big enough to hold the log
     GLint len;
-    glGetProgramiv(_handle, GL_INFO_LOG_LENGTH, &len);
+    glGetProgramiv(_id, GL_INFO_LOG_LENGTH, &len);
     GLchar* const buf = new GLchar[len + 1];
 
     // Put the log into the buffer
     GLint num;
-    glGetProgramInfoLog(_handle, len, &num, buf);
+    glGetProgramInfoLog(_id, len, &num, buf);
     buf[num] = '\0';
 
     // Make a string from the buffer and then delete it
@@ -290,33 +290,33 @@ string Program::log() const {
 }
 
 /**
- * Copies the handle of another program.
+ * Copies the ID of another program.
  *
  * @param program Program to copy
  * @return Reference to this program
  */
 Program& Program::operator=(const Program& program) {
-    _handle = program._handle;
+    _id = program._id;
 }
 
 /**
- * Checks if another program has the same handle as this one.
+ * Checks if another program has the same ID as this one.
  *
  * @param program Program to check
- * @return `true` if both programs have same handle
+ * @return `true` if both programs have same ID
  */
 bool Program::operator==(const Program& program) const {
-    return _handle == program._handle;
+    return _id == program._id;
 }
 
 /**
- * Checks if another program has a different handle than this one.
+ * Checks if another program has a different ID than this one.
  *
  * @param program Program to check
- * @return `true` if programs have different handles
+ * @return `true` if programs have different IDs
  */
 bool Program::operator!=(const Program& program) const {
-    return _handle != program._handle;
+    return _id != program._id;
 }
 
 /**
@@ -326,14 +326,14 @@ vector<Shader> Program::shaders() const {
 
     // Determine how many shaders are attached
     GLint len;
-    glGetProgramiv(_handle, GL_ATTACHED_SHADERS, &len);
+    glGetProgramiv(_id, GL_ATTACHED_SHADERS, &len);
     if (len == 0) {
         return vector<Shader>();
     }
 
     // Put attached shaders into array
     GLuint* const arr = new GLuint[len];
-    glGetAttachedShaders(_handle, len, NULL, arr);
+    glGetAttachedShaders(_id, len, NULL, arr);
 
     // Add them to a vector
     vector<Shader> vec;
@@ -356,14 +356,14 @@ vector<Shader> Program::shaders() const {
  * @return Location of the uniform, or `-1` if not in program
  */
 GLint Program::uniformLocation(const string& name) const {
-    return glGetUniformLocation(_handle, name.c_str());
+    return glGetUniformLocation(_id, name.c_str());
 }
 
 /**
  * Activates this program.
  */
 void Program::use() const {
-    glUseProgram(_handle);
+    glUseProgram(_id);
 }
 
 /**
@@ -371,7 +371,7 @@ void Program::use() const {
  */
 bool Program::valid() const {
     GLint valid;
-    glGetProgramiv(_handle, GL_VALIDATE_STATUS, &valid);
+    glGetProgramiv(_id, GL_VALIDATE_STATUS, &valid);
     return valid;
 }
 
@@ -379,18 +379,18 @@ bool Program::valid() const {
  * Ensures this program is valid.
  */
 void Program::validate() {
-    glValidateProgram(_handle);
+    glValidateProgram(_id);
 }
 
 /**
  * Wraps an existing OpenGL program.
  *
- * @param handle OpenGL identifier for program
+ * @param id OpenGL identifier for program
  * @return Wrapper for OpenGL program
- * @throws std::invalid_argument if handle is not an OpenGL program
+ * @throws std::invalid_argument if ID is not an OpenGL program
  */
-Program Program::wrap(const GLuint handle) {
-    return Program(handle);
+Program Program::wrap(const GLuint id) {
+    return Program(id);
 }
 
 // HELPERS
