@@ -232,8 +232,8 @@ GLint Program::fragDataLocation(const std::string& name) const {
  *
  * @param name Name of output variable to bind
  * @param location Location of draw buffer to bind to
- * @throws invalid_argument if location greater than GL_MAX_DRAW_BUFFERS
- * @throws invalid_argument if name is empty or starts with 'gl_'
+ * @throws invalid_argument if location greater than `GL_MAX_DRAW_BUFFERS`
+ * @throws invalid_argument if name is empty or starts with `gl_`
  */
 void Program::fragDataLocation(const std::string &name, GLuint location) const {
 
