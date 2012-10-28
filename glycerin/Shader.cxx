@@ -29,14 +29,14 @@ Shader::Shader(const Shader& shader) : _handle(shader._handle) {
 }
 
 /**
- * Destroys the shader.
+ * Destroys this shader.
  */
 Shader::~Shader() {
     // pass
 }
 
 /**
- * Compiles the shader.
+ * Compiles this shader.
  */
 void Shader::compile() {
     glCompileShader(_handle);
@@ -62,14 +62,14 @@ Shader Shader::create(const GLenum type) {
 }
 
 /**
- * Deletes the shader.
+ * Deletes this shader.
  */
 void Shader::dispose() {
     glDeleteShader(_handle);
 }
 
 /**
- * Returns the OpenGL identifier for the shader.
+ * Returns the OpenGL identifier for this shader.
  */
 GLuint Shader::handle() const {
     return _handle;
@@ -106,7 +106,7 @@ bool Shader::operator!=(const Shader &shader) const {
 }
 
 /**
- * Returns the shader's source code.
+ * Returns this shader's source code.
  */
 string Shader::source() const {
 
@@ -130,7 +130,7 @@ string Shader::source() const {
 }
 
 /**
- * Returns the shader's log.
+ * Returns this shader's log.
  */
 string Shader::log() const {
 
@@ -171,7 +171,7 @@ bool Shader::compiled() const {
 }
 
 /**
- * Changes the shader's source code.
+ * Changes this shader's source code.
  *
  * @param source Code for shader
  * @throws invalid_argument if source code is empty
