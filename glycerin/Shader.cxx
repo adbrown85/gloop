@@ -106,6 +106,16 @@ bool Shader::operator!=(const Shader &shader) const {
 }
 
 /**
+ * Checks if this shader's ID is less than another shader's ID.
+ *
+ * @param shader Shader to check
+ * @return `true` if this shader's ID is less than the other shader's ID
+ */
+bool Shader::operator<(const Shader &shader) const {
+    return _id < shader._id;
+}
+
+/**
  * Returns this shader's source code.
  */
 string Shader::source() const {
