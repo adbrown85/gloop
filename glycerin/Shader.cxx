@@ -76,6 +76,20 @@ void Shader::dispose() const {
 }
 
 /**
+ * Creates a shader handle from the ID of an existing OpenGL shader.
+ *
+ * @param id ID of existing OpenGL shader
+ * @return Handle for OpenGL shader
+ * @throws invalid_argument if ID is not a valid OpenGL shader
+ */
+Shader Shader::fromId(const GLuint id) {
+    if (!glIsShader(id)) {
+        throw invalid_argument("[Shader] ID is not a valid shader!");
+    }
+    return Shader(id);
+}
+
+/**
  * Determines the ID of the underlying OpenGL shader this shader handle represents.
  *
  * @return ID of the underlying OpenGL shader this shader handle represents
@@ -209,20 +223,6 @@ void Shader::source(const std::string& source) const {
     const char* buf = source.c_str();
     const char** ptr = &buf;
     glShaderSource(_id, 1, ptr, NULL);
-}
-
-/**
- * Creates a shader handle from the ID of an existing OpenGL shader.
- *
- * @param id ID of existing OpenGL shader
- * @return Handle for OpenGL shader
- * @throws invalid_argument if ID is not a valid OpenGL shader
- */
-Shader Shader::fromId(const GLuint id) {
-    if (!glIsShader(id)) {
-        throw invalid_argument("[Shader] ID is not a valid shader!");
-    }
-    return Shader(id);
 }
 
 } /* namespace Glycerin */
