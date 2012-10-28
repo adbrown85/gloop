@@ -99,6 +99,32 @@ GLuint Shader::id() const {
 }
 
 /**
+ * Retrieves a copy of this shader's log.
+ *
+ * @return Copy of this shader's log
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetShaderInfoLog.xml
+ */
+string Shader::log() const {
+
+    // Allocate a character buffer large enough for the log
+    GLsizei count;
+    glGetShaderiv(_id, GL_INFO_LOG_LENGTH, &count);
+    GLchar* buf = new GLchar[count + 1];
+
+    // Put the log into the buffer and make a string from it
+    GLsizei returned;
+    glGetShaderInfoLog(_id, count, &returned, buf);
+    buf[returned] = '\0';
+    string str(buf);
+
+    // Delete the buffer
+    delete[] buf;
+
+    // Return the string
+    return str;
+}
+
+/**
  * Changes which OpenGL shader this shader represents.
  *
  * @param shader Shader to copy ID from
@@ -157,32 +183,6 @@ string Shader::source() const {
     char* const buf = new char[len];
     glGetShaderSource(_id, len, NULL, buf);
     const string str(buf);
-
-    // Delete the buffer
-    delete[] buf;
-
-    // Return the string
-    return str;
-}
-
-/**
- * Retrieves a copy of this shader's log.
- *
- * @return Copy of this shader's log
- * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetShaderInfoLog.xml
- */
-string Shader::log() const {
-
-    // Allocate a character buffer large enough for the log
-    GLsizei count;
-    glGetShaderiv(_id, GL_INFO_LOG_LENGTH, &count);
-    GLchar* buf = new GLchar[count + 1];
-
-    // Put the log into the buffer and make a string from it
-    GLsizei returned;
-    glGetShaderInfoLog(_id, count, &returned, buf);
-    buf[returned] = '\0';
-    string str(buf);
 
     // Delete the buffer
     delete[] buf;
