@@ -454,13 +454,13 @@ void Program::validate() const {
 }
 
 /**
- * Wraps an existing OpenGL program.
+ * Creates a program handle from the ID of an existing OpenGL program.
  *
- * @param id OpenGL identifier for program
- * @return Wrapper for OpenGL program
+ * @param id ID of existing OpenGL program
+ * @return Handle for OpenGL program
  * @throws invalid_argument if ID is not an OpenGL program
  */
-Program Program::wrap(const GLuint id) {
+Program Program::fromId(const GLuint id) {
     return Program(id);
 }
 

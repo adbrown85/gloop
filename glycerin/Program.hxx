@@ -37,6 +37,7 @@ public:
     void dispose() const;
     GLint fragDataLocation(const std::string& name) const;
     void fragDataLocation(const std::string& name, GLuint location) const;
+    static Program fromId(GLuint id);
     GLuint id() const;
     void link() const;
     bool linked() const;
@@ -50,7 +51,6 @@ public:
     void use() const;
     bool valid() const;
     void validate() const;
-    static Program wrap(GLuint id);
 private:
 // Attributes
     GLuint _id;

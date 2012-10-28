@@ -473,21 +473,21 @@ public:
     }
 
     /**
-     * Ensures wrap does not throw an exception with a good ID.
+     * Ensures fromId does not throw an exception with a good ID.
      */
-    void testWrapWithGoodId() {
+    void testFromIdWithGoodId() {
         const GLuint id = glCreateProgram();
         assert (id > 0);
-        const Program program = Program::wrap(id);
+        const Program program = Program::fromId(id);
     }
 
     /**
-     * Ensures wrap throws an exception with a bad ID.
+     * Ensures fromId throws an exception with a bad ID.
      */
-    void testWrapWithBadId() {
+    void testFromIdWithBadId() {
         const GLuint id = -1;
         try {
-            const Program program = Program::wrap(id);
+            const Program program = Program::fromId(id);
         } catch (std::invalid_argument) {
             // Exception caught
             return;
@@ -535,8 +535,8 @@ int main(int argc, char *argv[]) {
         test.testUniformLocationWithBadName();
         test.testUniformLocationWithGoodName();
         test.testActiveUniforms();
-        test.testWrapWithGoodId();
-        test.testWrapWithBadId();
+        test.testFromIdWithGoodId();
+        test.testFromIdWithBadId();
     } catch (exception& e) {
         cerr << e.what() << endl;
         throw;
