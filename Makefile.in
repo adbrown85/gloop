@@ -168,7 +168,11 @@ $(builddir)/%Test.d: %Test.cxx
             | sed 's|\([[:alnum:]]*\)\.o|\1 build/\1.d|' \
             | sed 's|\.hxx|\.lo|g' \
             > $@
-ifneq (clean,$(findstring clean,$(MAKECMDGOALS)))
+ifeq (clean,$(findstring clean,$(MAKECMDGOALS)))
+  # empty
+else ifeq (html,$(findstring html,$(MAKECMDGOALS)))
+  # empty
+else
   -include $(addprefix $(builddir)/,$(depends))
 endif
 
