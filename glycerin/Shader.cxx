@@ -47,6 +47,18 @@ void Shader::compile() const {
 }
 
 /**
+ * Checks if this shader is compiled.
+ *
+ * @return `true` if this shader is compiled
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetShader.xml
+ */
+bool Shader::compiled() const {
+    GLint compiled;
+    glGetShaderiv(_id, GL_COMPILE_STATUS, &compiled);
+    return compiled;
+}
+
+/**
  * Creates a new shader of a particular type.
  *
  * @param type Kind of shader, e.g. `GL_VERTEX_SHADER` or `GL_FRAGMENT_SHADER`
@@ -198,18 +210,6 @@ GLenum Shader::type() const {
     GLint type;
     glGetShaderiv(_id, GL_SHADER_TYPE, &type);
     return type;
-}
-
-/**
- * Checks if this shader is compiled.
- *
- * @return `true` if this shader is compiled
- * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetShader.xml
- */
-bool Shader::compiled() const {
-    GLint compiled;
-    glGetShaderiv(_id, GL_COMPILE_STATUS, &compiled);
-    return compiled;
 }
 
 /**
