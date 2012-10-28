@@ -19,7 +19,7 @@ namespace Glycerin {
 class BufferLayout {
 public:
 // Types
-    typedef std::vector<BufferRegion>::const_iterator const_iterator;
+    typedef std::vector<BufferRegion>::const_iterator const_iterator; ///< Iterator over regions in layout
 // Methods
     BufferLayout(const BufferLayout& layout);
     virtual ~BufferLayout();
