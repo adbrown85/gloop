@@ -163,7 +163,7 @@ string Shader::log() const {
 }
 
 /**
- * Returns the kind of this shader, e.g. `GL_VERTEX_SHADER` or `GL_FRAGMENT_SHADER`.
+ * Returns the kind of this shader, as in `GL_VERTEX_SHADER` or `GL_FRAGMENT_SHADER`.
  */
 GLenum Shader::type() const {
     GLint type;
