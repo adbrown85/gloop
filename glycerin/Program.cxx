@@ -218,8 +218,12 @@ void Program::dispose() const {
  *
  * @param name Name of output variable
  * @return Location of output variable, or `-1` if name is not an active output variable
+ * @throws invalid_argument if name is empty
  */
 GLint Program::fragDataLocation(const std::string& name) const {
+    if (name.empty()) {
+        throw invalid_argument("[Program] Name is empty!");
+    }
     return glGetFragDataLocation(_id, name.c_str());
 }
 
