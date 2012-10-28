@@ -146,7 +146,9 @@ string Shader::source() const {
 }
 
 /**
- * Returns this shader's log.
+ * Retrieves a copy of this shader's log.
+ *
+ * @return Copy of this shader's log
  */
 string Shader::log() const {
 
