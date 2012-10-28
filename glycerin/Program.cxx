@@ -289,7 +289,9 @@ bool Program::linked() const {
 }
 
 /**
- * Returns this program's log.
+ * Retrieves a copy of this program's log.
+ *
+ * @return Copy of this program's log
  */
 string Program::log() const {
 
