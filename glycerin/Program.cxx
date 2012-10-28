@@ -81,7 +81,9 @@ map<string,Attribute> Program::activeAttributes() const {
 }
 
 /**
- * Returns all the active uniforms in this program.
+ * Retrieves all the active uniforms in this program.
+ *
+ * @return Mapping of all the active uniforms in this program by name
  */
 map<string,Uniform> Program::activeUniforms() const {
 
