@@ -296,7 +296,7 @@ string Program::log() const {
  * @return Reference to this program
  */
 Program& Program::operator=(const Program& program) {
-    _handle = program.handle();
+    _handle = program._handle;
 }
 
 /**
@@ -306,7 +306,7 @@ Program& Program::operator=(const Program& program) {
  * @return `true` if both programs have same handle
  */
 bool Program::operator==(const Program& program) const {
-    return _handle == program.handle();
+    return _handle == program._handle;
 }
 
 /**
@@ -316,7 +316,7 @@ bool Program::operator==(const Program& program) const {
  * @return `true` if programs have different handles
  */
 bool Program::operator!=(const Program& program) const {
-    return _handle != program.handle();
+    return _handle != program._handle;
 }
 
 /**
