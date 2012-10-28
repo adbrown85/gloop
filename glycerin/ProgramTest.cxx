@@ -169,7 +169,7 @@ public:
         // Try to attach shader
         try {
             program.attachShader(shader);
-        } catch (invalid_argument& e) {
+        } catch (logic_error& e) {
             // Exception caught
             return;
         }
