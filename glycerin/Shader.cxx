@@ -39,6 +39,8 @@ Shader::~Shader() {
 
 /**
  * Compiles this shader.
+ *
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glCompileShader.xml
  */
 void Shader::compile() const {
     glCompileShader(_id);
@@ -50,6 +52,7 @@ void Shader::compile() const {
  * @param type Kind of shader, e.g. `GL_VERTEX_SHADER` or `GL_FRAGMENT_SHADER`
  * @return New shader of specified type
  * @throw runtime_error if shader could not be created
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glCreateShader.xml
  */
 Shader Shader::create(const GLenum type) {
 
@@ -65,6 +68,8 @@ Shader Shader::create(const GLenum type) {
 
 /**
  * Deletes the underlying OpenGL shader.
+ *
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glDeleteShader.xml
  */
 void Shader::dispose() const {
     glDeleteShader(_id);
@@ -123,6 +128,7 @@ bool Shader::operator<(const Shader &shader) const {
  * Retrieves a copy of this shader's source code.
  *
  * @return Copy of this shader's source code
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetShaderSource.xml
  */
 string Shader::source() const {
 
@@ -149,6 +155,7 @@ string Shader::source() const {
  * Retrieves a copy of this shader's log.
  *
  * @return Copy of this shader's log
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetShaderInfoLog.xml
  */
 string Shader::log() const {
 
@@ -183,6 +190,7 @@ GLenum Shader::type() const {
  * Checks if this shader is compiled.
  *
  * @return `true` if this shader is compiled
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetShader.xml
  */
 bool Shader::compiled() const {
     GLint compiled;
@@ -195,6 +203,7 @@ bool Shader::compiled() const {
  *
  * @param source Code for shader
  * @throws invalid_argument if source code is empty
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glShaderSource.xml
  */
 void Shader::source(const std::string& source) const {
     const char* buf = source.c_str();
