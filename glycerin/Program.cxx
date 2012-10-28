@@ -135,6 +135,7 @@ void Program::attachShader(const Shader &shader) const {
  * Determines the location of an attribute.
  *
  * @param name Name of attribute
+ * @return Location of the attribute in this program, or `-1` if attribute is not in this program
  * @throws invalid_argument if name empty
  * @throws runtime_error if program has not been linked yet
  */
