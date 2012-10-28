@@ -7,6 +7,7 @@
 #ifndef GLYCERIN_PROGRAM_HXX
 #define GLYCERIN_PROGRAM_HXX
 #include "glycerin/common.h"
+#include <map>
 #include <vector>
 #include "glycerin/Attribute.hxx"
 #include "glycerin/Shader.hxx"
