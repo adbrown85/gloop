@@ -33,7 +33,7 @@ public:
                 "void main() {\n"
                 "   gl_Position = MCVertex;\n"
                 "}\n");
-        assert (shader.handle() != 0);
+        assert (shader.id() != 0);
     }
 
     /**
@@ -48,7 +48,7 @@ public:
                 "void main() {\n"
                 "    FragColor = vec4(1);\n"
                 "}\n");
-        assert (shader.handle() != 0);
+        assert (shader.id() != 0);
     }
 };
 

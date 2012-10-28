@@ -24,8 +24,8 @@ public:
     Shader createShaderFromString(GLenum type, const std::string& str);
 private:
 // Helpers
-    static std::string getLog(const GLuint handle);
-    static bool isCompiled(const GLuint handle);
+    static std::string getLog(const GLuint id);
+    static bool isCompiled(const GLuint id);
 // Operators
     ShaderFactory& operator=(const ShaderFactory&);
 };

@@ -13,9 +13,9 @@ namespace Glycerin {
 /**
  * Constructs a shader.
  *
- * @param handle OpenGL identifier for shader
+ * @param id OpenGL identifier for shader
  */
-Shader::Shader(const GLuint handle) : _handle(handle) {
+Shader::Shader(const GLuint id) : _id(id) {
     // pass
 }
 
@@ -24,7 +24,7 @@ Shader::Shader(const GLuint handle) : _handle(handle) {
  *
  * @param shader Shader to copy
  */
-Shader::Shader(const Shader& shader) : _handle(shader._handle) {
+Shader::Shader(const Shader& shader) : _id(shader._id) {
     // pass
 }
 
@@ -39,7 +39,7 @@ Shader::~Shader() {
  * Compiles this shader.
  */
 void Shader::compile() {
-    glCompileShader(_handle);
+    glCompileShader(_id);
 }
 
 /**
@@ -51,38 +51,38 @@ void Shader::compile() {
  */
 Shader Shader::create(const GLenum type) {
 
-    // Create a handle
-    const GLuint handle = glCreateShader(type);
-    if (handle == 0) {
+    // Create an ID
+    const GLuint id = glCreateShader(type);
+    if (id == 0) {
         throw runtime_error("[Shader] Could not create shader!");
     }
 
     // Make the shader
-    return Shader(handle);
+    return Shader(id);
 }
 
 /**
  * Deletes this shader.
  */
 void Shader::dispose() {
-    glDeleteShader(_handle);
+    glDeleteShader(_id);
 }
 
 /**
  * Returns the OpenGL identifier for this shader.
  */
-GLuint Shader::handle() const {
-    return _handle;
+GLuint Shader::id() const {
+    return _id;
 }
 
 /**
- * Copies the handle of another shader.
+ * Copies the ID of another shader.
  *
  * @param shader Shader to copy
  * @return Reference to this shader to support chaining
  */
 Shader& Shader::operator=(const Shader &shader) {
-    _handle = shader._handle;
+    _id = shader._id;
 }
 
 /**
@@ -92,7 +92,7 @@ Shader& Shader::operator=(const Shader &shader) {
  * @return `true` if shaders represent same OpenGL shader
  */
 bool Shader::operator==(const Shader &shader) const {
-    return _handle == shader._handle;
+    return _id == shader._id;
 }
 
 /**
@@ -102,7 +102,7 @@ bool Shader::operator==(const Shader &shader) const {
  * @return `true` if shaders do not represent same OpenGL shader
  */
 bool Shader::operator!=(const Shader &shader) const {
-    return _handle != shader._handle;
+    return _id != shader._id;
 }
 
 /**
@@ -112,14 +112,14 @@ string Shader::source() const {
 
     // Get the size of the source code
     GLint len;
-    glGetShaderiv(_handle, GL_SHADER_SOURCE_LENGTH, &len);
+    glGetShaderiv(_id, GL_SHADER_SOURCE_LENGTH, &len);
     if (len == 0) {
         return "";
     }
 
     // Put the source code into a buffer and make a string from it
     char* const buf = new char[len];
-    glGetShaderSource(_handle, len, NULL, buf);
+    glGetShaderSource(_id, len, NULL, buf);
     const string str(buf);
 
     // Delete the buffer
@@ -136,12 +136,12 @@ string Shader::log() const {
 
     // Allocate a character buffer large enough for the log
     GLsizei count;
-    glGetShaderiv(_handle, GL_INFO_LOG_LENGTH, &count);
+    glGetShaderiv(_id, GL_INFO_LOG_LENGTH, &count);
     GLchar* buf = new GLchar[count + 1];
 
     // Put the log into the buffer and make a string from it
     GLsizei returned;
-    glGetShaderInfoLog(_handle, count, &returned, buf);
+    glGetShaderInfoLog(_id, count, &returned, buf);
     buf[returned] = '\0';
     string str(buf);
 
@@ -157,7 +157,7 @@ string Shader::log() const {
  */
 GLenum Shader::type() const {
     GLint type;
-    glGetShaderiv(_handle, GL_SHADER_TYPE, &type);
+    glGetShaderiv(_id, GL_SHADER_TYPE, &type);
     return type;
 }
 
@@ -166,7 +166,7 @@ GLenum Shader::type() const {
  */
 bool Shader::compiled() const {
     GLint compiled;
-    glGetShaderiv(_handle, GL_COMPILE_STATUS, &compiled);
+    glGetShaderiv(_id, GL_COMPILE_STATUS, &compiled);
     return compiled;
 }
 
@@ -179,21 +179,21 @@ bool Shader::compiled() const {
 void Shader::source(const std::string& source) {
     const char* buf = source.c_str();
     const char** ptr = &buf;
-    glShaderSource(_handle, 1, ptr, NULL);
+    glShaderSource(_id, 1, ptr, NULL);
 }
 
 /**
  * Wraps an existing OpenGL shader.
  *
- * @param handle OpenGL identifier for shader
+ * @param id OpenGL identifier for shader
  * @return Wrapper for OpenGL shader
- * @throws std::invalid_argument if handle is not a valid OpenGL shader
+ * @throws std::invalid_argument if ID is not a valid OpenGL shader
  */
-Shader Shader::wrap(const GLuint handle) {
-    if (!glIsShader(handle)) {
-        throw invalid_argument("[Shader] Handle is not a valid shader!");
+Shader Shader::wrap(const GLuint id) {
+    if (!glIsShader(id)) {
+        throw invalid_argument("[Shader] ID is not a valid shader!");
     }
-    return Shader(handle);
+    return Shader(id);
 }
 
 } /* namespace Glycerin */

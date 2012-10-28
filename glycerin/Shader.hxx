@@ -24,7 +24,7 @@ public:
     bool compiled() const;
     static Shader create(GLenum type);
     void dispose();
-    GLuint handle() const;
+    GLuint id() const;
     std::string log() const;
     Shader& operator=(const Shader& shader);
     bool operator==(const Shader& shader) const;
@@ -32,12 +32,12 @@ public:
     std::string source() const;
     void source(const std::string& source);
     GLenum type() const;
-    static Shader wrap(GLuint handle);
+    static Shader wrap(GLuint id);
 private:
 // Attributes
-    GLuint _handle;
+    GLuint _id;
 // Methods
-    explicit Shader(GLuint handle);
+    explicit Shader(GLuint id);
 };
 
 } /* namespace Glycerin */

@@ -121,27 +121,27 @@ public:
     }
 
     /**
-     * Ensures handle returns a valid handle with a fragment shader.
+     * Ensures id returns a valid ID with a fragment shader.
      */
-    void testHandleWithFragmentShader() {
+    void testIdWithFragmentShader() {
         Shader shader = Shader::create(GL_FRAGMENT_SHADER);
-        assert (shader.handle() > 0);
+        assert (shader.id() > 0);
     }
 
     /**
-     * Ensures handle returns a valid handle with a geometry shader.
+     * Ensures id returns a valid ID with a geometry shader.
      */
-    void testHandleWithGeometryShader() {
+    void testIdWithGeometryShader() {
         Shader shader = Shader::create(GL_GEOMETRY_SHADER);
-        assert (shader.handle() > 0);
+        assert (shader.id() > 0);
     }
 
     /**
-     * Ensures handle returns a valid handle with a vertex shader.
+     * Ensures id returns a valid ID with a vertex shader.
      */
-    void testHandleWithVertexShader() {
+    void testIdWithVertexShader() {
         Shader shader = Shader::create(GL_VERTEX_SHADER);
-        assert (shader.handle() > 0);
+        assert (shader.id() > 0);
     }
 
     /**
@@ -209,16 +209,16 @@ public:
     }
 
     /**
-     * Ensures equality operator returns true for shaders with the same handle.
+     * Ensures equality operator returns true for shaders with the same ID.
      */
     void testOperatorEqualEqualWithEqual() {
         Shader s1 = Shader::create(GL_VERTEX_SHADER);
-        Shader s2 = Shader::wrap(s1.handle());
+        Shader s2 = Shader::wrap(s1.id());
         assert (s1 == s2);
     }
 
     /**
-     * Ensures inequality operator returns true for shaders with different handles.
+     * Ensures inequality operator returns true for shaders with different IDs.
      */
     void testOperatorNotEqualWithUnequal() {
         Shader s1 = Shader::create(GL_VERTEX_SHADER);
@@ -268,19 +268,19 @@ public:
     /**
      * Ensures wrapping an existing shader works correctly.
      */
-    void testWrapWithGoodHandle() {
-        const GLuint handle = glCreateShader(GL_FRAGMENT_SHADER);
-        Shader shader = Shader::wrap(handle);
-        assert (shader.handle() == handle);
+    void testWrapWithGoodId() {
+        const GLuint id = glCreateShader(GL_FRAGMENT_SHADER);
+        Shader shader = Shader::wrap(id);
+        assert (shader.id() == id);
     }
 
     /**
      * Ensures wrapping a non-existent shader throws an exception.
      */
-    void testWrapWithBadHandle() {
-        const GLuint handle = -1;
+    void testWrapWithBadId() {
+        const GLuint id = -1;
         try {
-            Shader shader = Shader::wrap(handle);
+            Shader shader = Shader::wrap(id);
         } catch (std::invalid_argument &e) {
             // Exception caught
             return;
@@ -314,9 +314,9 @@ int main(int argc, char* argv[]) {
         test.testCreateWithFragmentShader();
         test.testCreateWithGeometryShader();
         test.testCreateWithVertexShader();
-        test.testHandleWithFragmentShader();
-        test.testHandleWithGeometryShader();
-        test.testHandleWithVertexShader();
+        test.testIdWithFragmentShader();
+        test.testIdWithGeometryShader();
+        test.testIdWithVertexShader();
         test.testLogWithBadFragmentShader();
         test.testLogWithGoodFragmentShader();
         test.testLogWithBadVertexShader();
@@ -327,8 +327,8 @@ int main(int argc, char* argv[]) {
         test.testTypeWithFragmentShader();
         test.testTypeWithGeometryShader();
         test.testTypeWithVertexShader();
-        test.testWrapWithGoodHandle();
-        test.testWrapWithBadHandle();
+        test.testWrapWithGoodId();
+        test.testWrapWithBadId();
     } catch (exception& e) {
         cerr << e.what() << endl;
         throw;

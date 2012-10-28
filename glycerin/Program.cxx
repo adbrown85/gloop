@@ -128,7 +128,7 @@ void Program::attachShader(const Shader &shader) {
     if (isAttached(shader)) {
         throw invalid_argument("[Program] Shader is already attached!");
     }
-    glAttachShader(_id, shader.handle());
+    glAttachShader(_id, shader.id());
 }
 
 /**
@@ -202,7 +202,7 @@ void Program::detachShader(const Shader &shader) {
     if (!isAttached(shader)) {
         throw invalid_argument("[Program] Shader not already attached!");
     }
-    glDetachShader(_id, shader.handle());
+    glDetachShader(_id, shader.id());
 }
 
 /**
