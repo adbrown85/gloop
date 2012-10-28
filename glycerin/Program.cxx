@@ -41,7 +41,9 @@ Program::Program(const Program& program) : _id(program._id) {
 }
 
 /**
- * Returns all the active attributes in this program.
+ * Retrieves all the active attributes in this program.
+ *
+ * @return Mapping of all the active attributes in this program by name
  */
 map<string,Attribute> Program::activeAttributes() const {
 
