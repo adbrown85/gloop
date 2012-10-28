@@ -413,6 +413,8 @@ void Program::use() const {
 
 /**
  * Checks if this program is valid.
+ *
+ * @return `true` if this program is valid
  */
 bool Program::valid() const {
     GLint valid;
