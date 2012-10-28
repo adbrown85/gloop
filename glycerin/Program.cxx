@@ -149,7 +149,7 @@ void Program::attachShader(const Shader &shader) const {
 }
 
 /**
- * Determines the location of an attribute in this program.
+ * Gets the location of an attribute in this program.
  *
  * @param name Name of attribute to look up
  * @return Location of the attribute in this program, or `-1` if attribute is not in this program
@@ -238,7 +238,7 @@ void Program::dispose() const {
 }
 
 /**
- * Determines the location of an output variable in this program.
+ * Gets the location of an output variable in this program.
  *
  * @param name Name of output variable to look up
  * @return Location of output variable, or `-1` if name is not an active output variable
@@ -415,7 +415,7 @@ vector<Shader> Program::shaders() const {
 }
 
 /**
- * Determines the location of a uniform in this program.
+ * Gets the location of a uniform in this program.
  *
  * @param name Name of uniform to look up
  * @return Location of the uniform in this program, or `-1` if uniform is not in this program
