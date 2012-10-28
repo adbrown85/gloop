@@ -32,7 +32,7 @@ Program::Program(const Program& program) : _handle(program._handle) {
 }
 
 /**
- * Returns all the active attributes in the program.
+ * Returns all the active attributes in this program.
  */
 map<string,Attribute> Program::activeAttributes() const {
 
@@ -70,7 +70,7 @@ map<string,Attribute> Program::activeAttributes() const {
 }
 
 /**
- * Returns all the active uniforms in the program.
+ * Returns all the active uniforms in this program.
  */
 map<string,Uniform> Program::activeUniforms() const {
 
@@ -108,7 +108,7 @@ map<string,Uniform> Program::activeUniforms() const {
 }
 
 /**
- * Attaches a shader to the program.
+ * Attaches a shader to this program.
  *
  * @param shader OpenGL identifier for the shader to attach
  * @throw std::invalid_argument if shader is not valid
@@ -119,7 +119,7 @@ void Program::attachShader(GLuint shader) {
 }
 
 /**
- * Attaches a shader to the program.
+ * Attaches a shader to this program.
  *
  * @param shader Wrapper for an OpenGL shader
  * @throw std::invalid_argument if shader is already attached
@@ -182,7 +182,7 @@ Program Program::create() {
 }
 
 /**
- * Detaches a shader from the program.
+ * Detaches a shader from this program.
  *
  * @param shader Shader to detach
  * @throws invalid_argument if shader is not a valid shader
@@ -193,7 +193,7 @@ void Program::detachShader(GLuint shader) {
 }
 
 /**
- * Detaches a shader from the program.
+ * Detaches a shader from this program.
  *
  * @param shader Shader to detach
  * @throws invalid_argument if shader is not already attached
@@ -244,14 +244,14 @@ void Program::fragDataLocation(const std::string &name, GLuint location) {
 }
 
 /**
- * Returns the OpenGL identifier for the program.
+ * Returns the OpenGL identifier for this program.
  */
 GLuint Program::handle() const {
     return _handle;
 }
 
 /**
- * Links the program.
+ * Links this program.
  */
 void Program::link() {
     glLinkProgram(_handle);
@@ -267,7 +267,7 @@ bool Program::linked() const {
 }
 
 /**
- * Returns the program's log.
+ * Returns this program's log.
  */
 string Program::log() const {
 
@@ -320,7 +320,7 @@ bool Program::operator!=(const Program& program) const {
 }
 
 /**
- * Returns all the shaders attached to the program.
+ * Returns all the shaders attached to this program.
  */
 vector<Shader> Program::shaders() const {
 
@@ -350,7 +350,7 @@ vector<Shader> Program::shaders() const {
 }
 
 /**
- * Determines the location of a uniform in the program.
+ * Determines the location of a uniform in this program.
  *
  * @param name Name of the uniform to look for
  * @return Location of the uniform, or `-1` if not in program
@@ -360,14 +360,14 @@ GLint Program::uniformLocation(const string& name) const {
 }
 
 /**
- * Activates the program.
+ * Activates this program.
  */
 void Program::use() const {
     glUseProgram(_handle);
 }
 
 /**
- * Checks if the program is valid.
+ * Checks if this program is valid.
  */
 bool Program::valid() const {
     GLint valid;
@@ -376,7 +376,7 @@ bool Program::valid() const {
 }
 
 /**
- * Ensures the program is valid.
+ * Ensures this program is valid.
  */
 void Program::validate() {
     glValidateProgram(_handle);
@@ -396,7 +396,7 @@ Program Program::wrap(const GLuint handle) {
 // HELPERS
 
 /**
- * Checks if a shader is attached to the program.
+ * Checks if a shader is attached to this program.
  *
  * @param shader Shader to check
  * @return `true` if shader is attached
