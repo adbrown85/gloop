@@ -24,6 +24,7 @@ class Program {
 public:
 // Methods
     Program(const Program& program);
+    ~Program();
     std::map<std::string,Attribute> activeAttributes() const;
     std::map<std::string,Uniform> activeUniforms() const;
     void attachShader(GLuint shader) const;

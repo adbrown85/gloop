@@ -23,6 +23,13 @@ Program::Program(GLuint id) : _id(id) {
 }
 
 /**
+ * Destroys this program.
+ */
+Program::~Program() {
+    // empty
+}
+
+/**
  * Constructs a program by copying another program.
  *
  * @param program Program to copy
