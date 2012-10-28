@@ -7,7 +7,7 @@
 #ifndef GLYCERIN_ATTRIBUTE_HXX
 #define GLYCERIN_ATTRIBUTE_HXX
 #include "glycerin/common.h"
-#include "glycerin/Uniform.hxx"
+#include "glycerin/Variable.hxx"
 namespace Glycerin {
 
 
