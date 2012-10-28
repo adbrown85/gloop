@@ -284,6 +284,7 @@ void VertexArrayObject::vertexAttribPointer(const VertexAttribPointer& pointer) 
  * Creates a vertex array object handle from the identifier of an existing vertex array object.
  *
  * @param id Identifier of an existing vertex array object
+ * @return Vertex array object handle for the existing vertex array object
  * @throws invalid_argument if identifier is not a valid vertex array object
  * @see @ref generate
  */
