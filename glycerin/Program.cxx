@@ -370,14 +370,14 @@ vector<Shader> Program::shaders() const {
  * @param name Name of uniform to look up
  * @return Location of the uniform in this program, or `-1` if uniform is not in this program
  * @throws invalid_argument if name is empty
- * @throws runtime_error if program has not been linked yet
+ * @throws logic_error if program has not been linked yet
  */
 GLint Program::uniformLocation(const string& name) const {
 
     if (name.empty()) {
         throw invalid_argument("[Program] Name is empty!");
     } else if (!linked()) {
-        throw runtime_error("[Program] Program not linked yet!");
+        throw logic_error("[Program] Program not linked yet!");
     }
 
     return glGetUniformLocation(_id, name.c_str());
