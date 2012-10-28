@@ -308,7 +308,7 @@ Program& Program::operator=(const Program& program) {
  * Checks if another program has the same ID as this one.
  *
  * @param program Program to check
- * @return `true` if both programs have same ID
+ * @return `true` if both programs have the same ID
  */
 bool Program::operator==(const Program& program) const {
     return _id == program._id;
