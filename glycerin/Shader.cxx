@@ -204,15 +204,6 @@ string Shader::source() const {
 }
 
 /**
- * Returns the kind of this shader, as in `GL_VERTEX_SHADER` or `GL_FRAGMENT_SHADER`.
- */
-GLenum Shader::type() const {
-    GLint type;
-    glGetShaderiv(_id, GL_SHADER_TYPE, &type);
-    return type;
-}
-
-/**
  * Changes this shader's source code.
  *
  * @param source Code for shader
@@ -223,6 +214,15 @@ void Shader::source(const std::string& source) const {
     const char* buf = source.c_str();
     const char** ptr = &buf;
     glShaderSource(_id, 1, ptr, NULL);
+}
+
+/**
+ * Returns the kind of this shader, as in `GL_VERTEX_SHADER` or `GL_FRAGMENT_SHADER`.
+ */
+GLenum Shader::type() const {
+    GLint type;
+    glGetShaderiv(_id, GL_SHADER_TYPE, &type);
+    return type;
 }
 
 } /* namespace Glycerin */
