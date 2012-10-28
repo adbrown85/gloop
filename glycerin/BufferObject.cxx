@@ -126,7 +126,7 @@ bool BufferObject::operator<(const BufferObject& bo) const {
  * @return Resulting buffer object handle
  * @throws std::invalid_argument if identifier is not an existing OpenGL buffer object
  */
-BufferObject BufferObject::wrap(const GLuint id) {
+BufferObject BufferObject::fromId(const GLuint id) {
     if (!glIsBuffer(id)) {
         throw invalid_argument("[BufferObject] ID is not an OpenGL buffer object!");
     }

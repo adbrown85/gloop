@@ -21,13 +21,13 @@ public:
     BufferObject(const BufferObject& bo);
     ~BufferObject();
     void dispose() const;
+    static BufferObject fromId(GLuint id);
     static BufferObject generate();
     GLuint id() const;
     BufferObject& operator=(const BufferObject& bo);
     bool operator==(const BufferObject& bo) const;
     bool operator!=(const BufferObject& bo) const;
     bool operator<(const BufferObject& bo) const;
-    static BufferObject wrap(GLuint id);
 private:
 // Attributes
     GLuint _id;

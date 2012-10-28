@@ -30,10 +30,10 @@ public:
     /**
      * Ensures wrapping a bad buffer object ID throws an exception.
      */
-    void testWrapWithBadId() {
+    void testFromIdWithBadId() {
         const GLuint id = -1;
         try {
-            BufferObject::wrap(id);
+            BufferObject::fromId(id);
         } catch (invalid_argument& e) {
             // Exception caught
             return;
@@ -44,12 +44,12 @@ public:
     /**
      * Ensures wrapping a good buffer object ID does not throw an exception.
      */
-    void testWrapWithGoodId() {
+    void testFromIdWithGoodId() {
         GLuint id;
         glGenBuffers(1, &id);
         glBindBuffer(GL_ARRAY_BUFFER, id);
         assert (id > 0);
-        const BufferObject bo = BufferObject::wrap(id);
+        const BufferObject bo = BufferObject::fromId(id);
         assert (bo.id() == id);
     }
 
@@ -93,8 +93,8 @@ int main(int argc, char* argv[]) {
     BufferObjectTest test;
     try {
         test.testGenerate();
-        test.testWrapWithBadId();
-        test.testWrapWithGoodId();
+        test.testFromIdWithBadId();
+        test.testFromIdWithGoodId();
         test.testAddToStlMap();
         test.testAddToStlVector();
     } catch (exception& e) {
