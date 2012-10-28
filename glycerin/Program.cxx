@@ -338,7 +338,7 @@ vector<Shader> Program::shaders() const {
     // Add them to a vector
     vector<Shader> vec;
     for (int i = 0; i < len; ++i) {
-        Shader shader = Shader::wrap(arr[i]);
+        const Shader shader = Shader::wrap(arr[i]);
         vec.push_back(shader);
     }
 

@@ -20,17 +20,17 @@ public:
 // Methods
     Shader(const Shader& shader);
     ~Shader();
-    void compile();
+    void compile() const;
     bool compiled() const;
     static Shader create(GLenum type);
-    void dispose();
+    void dispose() const;
     GLuint id() const;
     std::string log() const;
     Shader& operator=(const Shader& shader);
     bool operator==(const Shader& shader) const;
     bool operator!=(const Shader& shader) const;
     std::string source() const;
-    void source(const std::string& source);
+    void source(const std::string& source) const;
     GLenum type() const;
     static Shader wrap(GLuint id);
 private:

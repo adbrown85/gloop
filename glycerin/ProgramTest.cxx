@@ -61,10 +61,10 @@ public:
 
         const Program p = Program::create();
 
-        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        const Shader vs = Shader::create(GL_VERTEX_SHADER);
         vs.source(GOOD_VERTEX_SHADER);
         vs.compile();
-        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader fs = Shader::create(GL_FRAGMENT_SHADER);
         fs.source(GOOD_FRAGMENT_SHADER);
         fs.compile();
 
@@ -93,10 +93,10 @@ public:
         const Program p = Program::create();
 
         // Make the shaders
-        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        const Shader vs = Shader::create(GL_VERTEX_SHADER);
         vs.source(GOOD_VERTEX_SHADER);
         vs.compile();
-        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader fs = Shader::create(GL_FRAGMENT_SHADER);
         fs.source(GOOD_FRAGMENT_SHADER);
         fs.compile();
 
@@ -147,7 +147,7 @@ public:
 
         // Attach a shader
         const Program program = Program::create();
-        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        const Shader shader = Shader::create(GL_VERTEX_SHADER);
         program.attachShader(shader);
 
         // Check if it was attached
@@ -163,7 +163,7 @@ public:
 
         // Attach a shader
         const Program program = Program::create();
-        Shader shader = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader shader = Shader::create(GL_FRAGMENT_SHADER);
         program.attachShader(shader);
 
         // Try to attach shader
@@ -185,10 +185,10 @@ public:
         const Program program = Program::create();
 
         // Create shaders
-        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        const Shader vs = Shader::create(GL_VERTEX_SHADER);
         vs.source(GOOD_VERTEX_SHADER);
         vs.compile();
-        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader fs = Shader::create(GL_FRAGMENT_SHADER);
         fs.source(GOOD_FRAGMENT_SHADER);
         fs.compile();
 
@@ -214,10 +214,10 @@ public:
         const Program program = Program::create();
 
         // Create shaders
-        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        const Shader vs = Shader::create(GL_VERTEX_SHADER);
         vs.source(GOOD_VERTEX_SHADER);
         vs.compile();
-        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader fs = Shader::create(GL_FRAGMENT_SHADER);
         fs.source(GOOD_FRAGMENT_SHADER);
         fs.compile();
 
@@ -248,7 +248,7 @@ public:
     void testDetachShaderWithAttachedShader() {
 
         const Program program = Program::create();
-        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        const Shader shader = Shader::create(GL_VERTEX_SHADER);
 
         GLint attached;
         program.attachShader(shader);
@@ -265,7 +265,7 @@ public:
     void testDetachShaderWithUnattachedShader() {
 
         const Program program = Program::create();
-        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        const Shader shader = Shader::create(GL_VERTEX_SHADER);
 
         try {
             program.detachShader(shader);
@@ -285,10 +285,10 @@ public:
         const Program program = Program::create();
 
         // Make shaders
-        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        const Shader vs = Shader::create(GL_VERTEX_SHADER);
         vs.source(GOOD_VERTEX_SHADER);
         vs.compile();
-        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader fs = Shader::create(GL_FRAGMENT_SHADER);
         fs.source(GOOD_FRAGMENT_SHADER);
         fs.compile();
 
@@ -314,10 +314,10 @@ public:
         const Program program = Program::create();
 
         // Make shaders
-        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        const Shader vs = Shader::create(GL_VERTEX_SHADER);
         vs.source(GOOD_VERTEX_SHADER);
         vs.compile();
-        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader fs = Shader::create(GL_FRAGMENT_SHADER);
         fs.source(GOOD_FRAGMENT_SHADER);
         fs.compile();
 
@@ -344,10 +344,10 @@ public:
         assert (program.id() > 0);
 
         // Create shaders
-        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        const Shader vs = Shader::create(GL_VERTEX_SHADER);
         vs.source(GOOD_VERTEX_SHADER);
         vs.compile();
-        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader fs = Shader::create(GL_FRAGMENT_SHADER);
         fs.source(GOOD_FRAGMENT_SHADER);
         fs.compile();
 
@@ -389,10 +389,10 @@ public:
         assert (program.id() > 0);
 
         // Create shaders
-        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        const Shader vs = Shader::create(GL_VERTEX_SHADER);
         vs.source(BAD_VERTEX_SHADER);
         vs.compile();
-        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader fs = Shader::create(GL_FRAGMENT_SHADER);
         fs.source(BAD_FRAGMENT_SHADER);
         fs.compile();
 
@@ -423,10 +423,10 @@ public:
         const Program p = Program::create();
 
         // Make the shaders
-        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        const Shader vs = Shader::create(GL_VERTEX_SHADER);
         vs.source(GOOD_VERTEX_SHADER);
         vs.compile();
-        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader fs = Shader::create(GL_FRAGMENT_SHADER);
         fs.source(GOOD_FRAGMENT_SHADER);
         fs.compile();
 
@@ -452,10 +452,10 @@ public:
         const Program p = Program::create();
 
         // Make the shaders
-        Shader vs = Shader::create(GL_VERTEX_SHADER);
+        const Shader vs = Shader::create(GL_VERTEX_SHADER);
         vs.source(GOOD_VERTEX_SHADER);
         vs.compile();
-        Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader fs = Shader::create(GL_FRAGMENT_SHADER);
         fs.source(GOOD_FRAGMENT_SHADER);
         fs.compile();
 

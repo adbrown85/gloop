@@ -71,7 +71,7 @@ Shader ShaderFactory::createShaderFromStream(GLenum type, istream& stream) {
 Shader ShaderFactory::createShaderFromString(GLenum type, const string &str) {
 
     // Create the shader
-    Shader shader = Shader::create(type);
+    const Shader shader = Shader::create(type);
 
     // Load the source
     shader.source(str);

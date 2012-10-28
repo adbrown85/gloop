@@ -38,7 +38,7 @@ Shader::~Shader() {
 /**
  * Compiles this shader.
  */
-void Shader::compile() {
+void Shader::compile() const {
     glCompileShader(_id);
 }
 
@@ -64,7 +64,7 @@ Shader Shader::create(const GLenum type) {
 /**
  * Deletes this shader.
  */
-void Shader::dispose() {
+void Shader::dispose() const {
     glDeleteShader(_id);
 }
 
@@ -176,7 +176,7 @@ bool Shader::compiled() const {
  * @param source Code for shader
  * @throws invalid_argument if source code is empty
  */
-void Shader::source(const std::string& source) {
+void Shader::source(const std::string& source) const {
     const char* buf = source.c_str();
     const char** ptr = &buf;
     glShaderSource(_id, 1, ptr, NULL);

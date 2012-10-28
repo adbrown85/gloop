@@ -26,7 +26,7 @@ public:
      */
     void testCreateShaderFromStringWithVertexShader() {
         ShaderFactory sf;
-        Shader shader = sf.createShaderFromString(
+        const Shader shader = sf.createShaderFromString(
                 GL_VERTEX_SHADER,
                 "#version 140\n"
                 "in vec4 MCVertex;\n"
@@ -41,7 +41,7 @@ public:
      */
     void testCreateShaderFromStringWithFragmentShader() {
         ShaderFactory sf;
-        Shader shader = sf.createShaderFromString(
+        const Shader shader = sf.createShaderFromString(
                 GL_FRAGMENT_SHADER,
                 "#version 140\n"
                 "out vec4 FragColor;\n"

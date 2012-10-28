@@ -23,7 +23,7 @@ public:
      * Ensures a bad fragment shader does not compile correctly.
      */
     void testCompileWithBadFragmentShader() {
-        Shader shader = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader shader = Shader::create(GL_FRAGMENT_SHADER);
         shader.source(
                 "#version 140\n"
                 "out vec4 FragColor;\n"
@@ -40,7 +40,7 @@ public:
      * Ensures a good fragment shader compiles correctly.
      */
     void testCompileWithGoodFragmentShader() {
-        Shader shader = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader shader = Shader::create(GL_FRAGMENT_SHADER);
         shader.source(
                 "#version 140\n"
                 "out vec4 FragColor;\n"
@@ -57,7 +57,7 @@ public:
      * Ensures a bad vertex shader does not compile correctly.
      */
     void testCompileWithBadVertexShader() {
-        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        const Shader shader = Shader::create(GL_VERTEX_SHADER);
         shader.source(
                 "#version 140\n"
                 "in vec4 MCVertex;\n"
@@ -74,7 +74,7 @@ public:
      * Ensures a good vertex shader compiles correctly.
      */
     void testCompileWithGoodVertexShader() {
-        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        const Shader shader = Shader::create(GL_VERTEX_SHADER);
         shader.source(
                 "#version 140\n"
                 "in vec4 MCVertex;\n"
@@ -91,7 +91,7 @@ public:
      * Ensures making a new fragment shader works.
      */
     void testCreateWithFragmentShader() {
-        Shader shader = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader shader = Shader::create(GL_FRAGMENT_SHADER);
         if (glGetError() != 0) {
             throw runtime_error("Could not create fragment shader!");
         }
@@ -102,7 +102,7 @@ public:
      * Ensures making a new geometry shader works.
      */
     void testCreateWithGeometryShader() {
-        Shader shader = Shader::create(GL_GEOMETRY_SHADER);
+        const Shader shader = Shader::create(GL_GEOMETRY_SHADER);
         if (glGetError() != 0) {
             throw runtime_error("Could not create geometry shader!");
         }
@@ -113,7 +113,7 @@ public:
      * Ensures making a new vertex shader works.
      */
     void testCreateWithVertexShader() {
-        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        const Shader shader = Shader::create(GL_VERTEX_SHADER);
         if (glGetError() != 0) {
             throw runtime_error("Could not create vertex shader!");
         }
@@ -124,7 +124,7 @@ public:
      * Ensures id returns a valid ID with a fragment shader.
      */
     void testIdWithFragmentShader() {
-        Shader shader = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader shader = Shader::create(GL_FRAGMENT_SHADER);
         assert (shader.id() > 0);
     }
 
@@ -132,7 +132,7 @@ public:
      * Ensures id returns a valid ID with a geometry shader.
      */
     void testIdWithGeometryShader() {
-        Shader shader = Shader::create(GL_GEOMETRY_SHADER);
+        const Shader shader = Shader::create(GL_GEOMETRY_SHADER);
         assert (shader.id() > 0);
     }
 
@@ -140,7 +140,7 @@ public:
      * Ensures id returns a valid ID with a vertex shader.
      */
     void testIdWithVertexShader() {
-        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        const Shader shader = Shader::create(GL_VERTEX_SHADER);
         assert (shader.id() > 0);
     }
 
@@ -148,7 +148,7 @@ public:
      * Ensures compiling a bad fragment shader generates a log.
      */
     void testLogWithBadFragmentShader() {
-        Shader shader = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader shader = Shader::create(GL_FRAGMENT_SHADER);
         shader.source(
                 "#version 140\n"
                 "out vec4 FragColor;\n"
@@ -164,7 +164,7 @@ public:
      * Ensures compiling a good fragment shader generates an empty log.
      */
     void testLogWithGoodFragmentShader() {
-        Shader shader = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader shader = Shader::create(GL_FRAGMENT_SHADER);
         shader.source(
                 "#version 140\n"
                 "out vec4 FragColor;\n"
@@ -180,7 +180,7 @@ public:
      * Ensures compiling a bad vertex shader generates a log.
      */
     void testLogWithBadVertexShader() {
-        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        const Shader shader = Shader::create(GL_VERTEX_SHADER);
         shader.source(
                 "#version 140\n"
                 "in vec4 MCVertex;\n"
@@ -196,7 +196,7 @@ public:
      * Ensures compiling a good vertex shader generates an empty log.
      */
     void testLogWithGoodVertexShader() {
-        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        const Shader shader = Shader::create(GL_VERTEX_SHADER);
         shader.source(
                 "#version 140\n"
                 "out vec4 MCVertex;\n"
@@ -212,8 +212,8 @@ public:
      * Ensures equality operator returns true for shaders with the same ID.
      */
     void testOperatorEqualEqualWithEqual() {
-        Shader s1 = Shader::create(GL_VERTEX_SHADER);
-        Shader s2 = Shader::wrap(s1.id());
+        const Shader s1 = Shader::create(GL_VERTEX_SHADER);
+        const Shader s2 = Shader::wrap(s1.id());
         assert (s1 == s2);
     }
 
@@ -221,8 +221,8 @@ public:
      * Ensures inequality operator returns true for shaders with different IDs.
      */
     void testOperatorNotEqualWithUnequal() {
-        Shader s1 = Shader::create(GL_VERTEX_SHADER);
-        Shader s2 = Shader::create(GL_VERTEX_SHADER);
+        const Shader s1 = Shader::create(GL_VERTEX_SHADER);
+        const Shader s2 = Shader::create(GL_VERTEX_SHADER);
         assert (s1 != s2);
     }
 
@@ -230,7 +230,7 @@ public:
      * Ensures both forms of source works correctly.
      */
     void testSource() {
-        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        const Shader shader = Shader::create(GL_VERTEX_SHADER);
         string source =
                 "#version 140\n"
                 "in vec4 MCVertex;\n"
@@ -245,7 +245,7 @@ public:
      * Ensures a fragment shader's type is GL_FRAGMENT_SHADER.
      */
     void testTypeWithFragmentShader() {
-        Shader shader = Shader::create(GL_FRAGMENT_SHADER);
+        const Shader shader = Shader::create(GL_FRAGMENT_SHADER);
         assert(shader.type() == GL_FRAGMENT_SHADER);
     }
 
@@ -253,7 +253,7 @@ public:
      * Ensures a geometry shader's type is GL_GEOMETRY_SHADER.
      */
     void testTypeWithGeometryShader() {
-        Shader shader = Shader::create(GL_GEOMETRY_SHADER);
+        const Shader shader = Shader::create(GL_GEOMETRY_SHADER);
         assert(shader.type() == GL_GEOMETRY_SHADER);
     }
 
@@ -261,7 +261,7 @@ public:
      * Ensures a vertex shader's type is GL_VERTEX_SHADER.
      */
     void testTypeWithVertexShader() {
-        Shader shader = Shader::create(GL_VERTEX_SHADER);
+        const Shader shader = Shader::create(GL_VERTEX_SHADER);
         assert(shader.type() == GL_VERTEX_SHADER);
     }
 
@@ -270,7 +270,7 @@ public:
      */
     void testWrapWithGoodId() {
         const GLuint id = glCreateShader(GL_FRAGMENT_SHADER);
-        Shader shader = Shader::wrap(id);
+        const Shader shader = Shader::wrap(id);
         assert (shader.id() == id);
     }
 
@@ -280,7 +280,7 @@ public:
     void testWrapWithBadId() {
         const GLuint id = -1;
         try {
-            Shader shader = Shader::wrap(id);
+            const Shader shader = Shader::wrap(id);
         } catch (std::invalid_argument &e) {
             // Exception caught
             return;
