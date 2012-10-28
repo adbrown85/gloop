@@ -59,7 +59,7 @@ public:
      */
     void testActiveAttributes() {
 
-        Program p = Program::create();
+        const Program p = Program::create();
 
         Shader vs = Shader::create(GL_VERTEX_SHADER);
         vs.source(GOOD_VERTEX_SHADER);
@@ -90,7 +90,7 @@ public:
     void testActiveUniforms() {
 
         // Make the program
-        Program p = Program::create();
+        const Program p = Program::create();
 
         // Make the shaders
         Shader vs = Shader::create(GL_VERTEX_SHADER);
@@ -129,7 +129,7 @@ public:
      * Ensures attaching a bad shader throws an exception.
      */
     void testAttachShaderWithBadShader() {
-        Program program = Program::create();
+        const Program program = Program::create();
         const GLuint shader = -1;
         try {
             program.attachShader(shader);
@@ -146,7 +146,7 @@ public:
     void testAttachShaderWithGoodUnattachedShader() {
 
         // Attach a shader
-        Program program = Program::create();
+        const Program program = Program::create();
         Shader shader = Shader::create(GL_VERTEX_SHADER);
         program.attachShader(shader);
 
@@ -162,7 +162,7 @@ public:
     void testAttachShaderWithGoodAttachedShader() {
 
         // Attach a shader
-        Program program = Program::create();
+        const Program program = Program::create();
         Shader shader = Shader::create(GL_FRAGMENT_SHADER);
         program.attachShader(shader);
 
@@ -182,7 +182,7 @@ public:
     void testAttribLocationWithBadName() {
 
         // Create program
-        Program program = Program::create();
+        const Program program = Program::create();
 
         // Create shaders
         Shader vs = Shader::create(GL_VERTEX_SHADER);
@@ -211,7 +211,7 @@ public:
     void testAttribLocationWithGoodName() {
 
         // Create program
-        Program program = Program::create();
+        const Program program = Program::create();
 
         // Create shaders
         Shader vs = Shader::create(GL_VERTEX_SHADER);
@@ -238,7 +238,7 @@ public:
      * Ensures create returns a program with a valid ID.
      */
     void testCreate() {
-        Program program = Program::create();
+        const Program program = Program::create();
         assert (program.id() > 0);
     }
 
@@ -247,7 +247,7 @@ public:
      */
     void testDetachShaderWithAttachedShader() {
 
-        Program program = Program::create();
+        const Program program = Program::create();
         Shader shader = Shader::create(GL_VERTEX_SHADER);
 
         GLint attached;
@@ -264,7 +264,7 @@ public:
      */
     void testDetachShaderWithUnattachedShader() {
 
-        Program program = Program::create();
+        const Program program = Program::create();
         Shader shader = Shader::create(GL_VERTEX_SHADER);
 
         try {
@@ -282,7 +282,7 @@ public:
     void testFragDataLocationWithBadName() {
 
         // Make program
-        Program program = Program::create();
+        const Program program = Program::create();
 
         // Make shaders
         Shader vs = Shader::create(GL_VERTEX_SHADER);
@@ -311,7 +311,7 @@ public:
     void testFragDataLocationWithGoodName() {
 
         // Make program
-        Program program = Program::create();
+        const Program program = Program::create();
 
         // Make shaders
         Shader vs = Shader::create(GL_VERTEX_SHADER);
@@ -340,7 +340,7 @@ public:
     void testLinkWithGoodVertexAndFragmentShader() {
 
         // Create a program
-        Program program = Program::create();
+        const Program program = Program::create();
         assert (program.id() > 0);
 
         // Create shaders
@@ -385,7 +385,7 @@ public:
     void testLinkWithBadVertexAndFragmentShader() {
 
         // Create a program
-        Program program = Program::create();
+        const Program program = Program::create();
         assert (program.id() > 0);
 
         // Create shaders
@@ -420,7 +420,7 @@ public:
     void testUniformLocationWithBadName() {
 
         // Make the program
-        Program p = Program::create();
+        const Program p = Program::create();
 
         // Make the shaders
         Shader vs = Shader::create(GL_VERTEX_SHADER);
@@ -449,7 +449,7 @@ public:
     void testUniformLocationWithGoodName() {
 
         // Make the program
-        Program p = Program::create();
+        const Program p = Program::create();
 
         // Make the shaders
         Shader vs = Shader::create(GL_VERTEX_SHADER);
@@ -478,7 +478,7 @@ public:
     void testWrapWithGoodId() {
         const GLuint id = glCreateProgram();
         assert (id > 0);
-        Program program = Program::wrap(id);
+        const Program program = Program::wrap(id);
     }
 
     /**
@@ -487,7 +487,7 @@ public:
     void testWrapWithBadId() {
         const GLuint id = -1;
         try {
-            Program program = Program::wrap(id);
+            const Program program = Program::wrap(id);
         } catch (std::invalid_argument) {
             // Exception caught
             return;

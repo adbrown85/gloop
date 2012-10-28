@@ -26,18 +26,18 @@ public:
     Program(const Program& program);
     std::map<std::string,Attribute> activeAttributes() const;
     std::map<std::string,Uniform> activeUniforms() const;
-    void attachShader(GLuint shader);
-    void attachShader(const Shader& shader);
+    void attachShader(GLuint shader) const;
+    void attachShader(const Shader& shader) const;
     GLint attribLocation(const std::string& name) const;
-    void attribLocation(const std::string& name, GLuint location);
+    void attribLocation(const std::string& name, GLuint location) const;
     static Program create();
-    void detachShader(GLuint shader);
-    void detachShader(const Shader& shader);
-    void dispose();
+    void detachShader(GLuint shader) const;
+    void detachShader(const Shader& shader) const;
+    void dispose() const;
     GLint fragDataLocation(const std::string& name) const;
-    void fragDataLocation(const std::string& name, GLuint location);
+    void fragDataLocation(const std::string& name, GLuint location) const;
     GLuint id() const;
-    void link();
+    void link() const;
     bool linked() const;
     std::string log() const;
     Program& operator=(const Program& program);
@@ -47,7 +47,7 @@ public:
     GLint uniformLocation(const std::string& name) const;
     void use() const;
     bool valid() const;
-    void validate();
+    void validate() const;
     static Program wrap(GLuint id);
 private:
 // Attributes

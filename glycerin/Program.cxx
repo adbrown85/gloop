@@ -114,7 +114,7 @@ map<string,Uniform> Program::activeUniforms() const {
  * @throw std::invalid_argument if shader is not valid
  * @throw std::invalid_argument if shader is already attached
  */
-void Program::attachShader(GLuint shader) {
+void Program::attachShader(GLuint shader) const {
     attachShader(Shader::wrap(shader));
 }
 
@@ -124,7 +124,7 @@ void Program::attachShader(GLuint shader) {
  * @param shader Wrapper for an OpenGL shader
  * @throw std::invalid_argument if shader is already attached
  */
-void Program::attachShader(const Shader &shader) {
+void Program::attachShader(const Shader &shader) const {
     if (isAttached(shader)) {
         throw invalid_argument("[Program] Shader is already attached!");
     }
@@ -156,7 +156,7 @@ GLint Program::attribLocation(const std::string &name) const {
  * @param location Location to bind to
  * @throw invalid_argument if name is empty
  */
-void Program::attribLocation(const std::string& name, GLuint location) {
+void Program::attribLocation(const std::string& name, GLuint location) const {
     if (name.empty()) {
         throw invalid_argument("[Program] Name is empty!");
     }
@@ -188,7 +188,7 @@ Program Program::create() {
  * @throws invalid_argument if shader is not a valid shader
  * @throws invalid_argument if shader is not already attached
  */
-void Program::detachShader(GLuint shader) {
+void Program::detachShader(GLuint shader) const {
     detachShader(Shader::wrap(shader));
 }
 
@@ -198,7 +198,7 @@ void Program::detachShader(GLuint shader) {
  * @param shader Shader to detach
  * @throws invalid_argument if shader is not already attached
  */
-void Program::detachShader(const Shader &shader) {
+void Program::detachShader(const Shader &shader) const {
     if (!isAttached(shader)) {
         throw invalid_argument("[Program] Shader not already attached!");
     }
@@ -208,7 +208,7 @@ void Program::detachShader(const Shader &shader) {
 /**
  * Deletes the underlying OpenGL shader program.
  */
-void Program::dispose() {
+void Program::dispose() const {
     glDeleteProgram(_id);
 }
 
@@ -230,7 +230,7 @@ GLint Program::fragDataLocation(const std::string& name) const {
  * @throws invalid_argument if location greater than GL_MAX_DRAW_BUFFERS
  * @throws invalid_argument if name is empty or starts with 'gl_'
  */
-void Program::fragDataLocation(const std::string &name, GLuint location) {
+void Program::fragDataLocation(const std::string &name, GLuint location) const {
 
     if (location > getMaxDrawBuffers()) {
         throw invalid_argument("[Program] Location greater than GL_MAX_DRAW_BUFFERS");
@@ -253,7 +253,7 @@ GLuint Program::id() const {
 /**
  * Links this program.
  */
-void Program::link() {
+void Program::link() const {
     glLinkProgram(_id);
 }
 
@@ -378,7 +378,7 @@ bool Program::valid() const {
 /**
  * Ensures this program is valid.
  */
-void Program::validate() {
+void Program::validate() const {
     glValidateProgram(_id);
 }
 
