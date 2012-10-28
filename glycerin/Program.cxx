@@ -23,7 +23,9 @@ Program::Program(GLuint id) : _id(id) {
 }
 
 /**
- * Destroys this program.
+ * Destroys this program handle, leaving the underlying OpenGL shader program unaffected.
+ *
+ * @see @ref dispose
  */
 Program::~Program() {
     // empty

@@ -29,7 +29,9 @@ Shader::Shader(const Shader& shader) : _id(shader._id) {
 }
 
 /**
- * Destroys this shader.
+ * Destroys this shader handle, leaving the underlying OpenGL shader unaffected.
+ *
+ * @see @ref dispose
  */
 Shader::~Shader() {
     // pass
