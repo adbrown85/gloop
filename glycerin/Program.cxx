@@ -258,7 +258,9 @@ void Program::fragDataLocation(const std::string &name, GLuint location) const {
 }
 
 /**
- * Returns the OpenGL identifier for this program.
+ * Determines the ID of the underlying OpenGL shader program this program handle represents.
+ *
+ * @return ID of the underlying OpenGL shader program this program handle represents
  */
 GLuint Program::id() const {
     return _id;

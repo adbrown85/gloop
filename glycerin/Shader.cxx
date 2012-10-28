@@ -71,7 +71,9 @@ void Shader::dispose() const {
 }
 
 /**
- * Returns the OpenGL identifier for this shader.
+ * Determines the ID of the underlying OpenGL shader this shader handle represents.
+ *
+ * @return ID of the underlying OpenGL shader this shader handle represents
  */
 GLuint Shader::id() const {
     return _id;
