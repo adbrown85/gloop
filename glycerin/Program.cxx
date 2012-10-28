@@ -278,7 +278,9 @@ void Program::link() const {
 }
 
 /**
- * Returns `true` if program is linked.
+ * Checks if this program is linked.
+ *
+ * @return `true` if this program is linked
  */
 bool Program::linked() const {
     GLint linked;
