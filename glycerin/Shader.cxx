@@ -62,7 +62,7 @@ Shader Shader::create(const GLenum type) {
 }
 
 /**
- * Deletes this shader.
+ * Deletes the underlying OpenGL shader.
  */
 void Shader::dispose() const {
     glDeleteShader(_id);
