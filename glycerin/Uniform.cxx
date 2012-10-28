@@ -18,7 +18,7 @@ namespace Glycerin {
  */
 void Uniform::load1f(GLfloat x) {
     assert (currentProgram() == program);
-    assert (type = GL_FLOAT);
+    assert (type == GL_FLOAT);
     glUniform1f(location, x);
 }
 
@@ -32,7 +32,7 @@ void Uniform::load1f(GLfloat x) {
  */
 void Uniform::load2f(GLfloat x, GLfloat y) {
     assert (currentProgram() == program);
-    assert (type = GL_FLOAT_VEC2);
+    assert (type == GL_FLOAT_VEC2);
     glUniform2f(location, x, y);
 }
 
@@ -47,7 +47,7 @@ void Uniform::load2f(GLfloat x, GLfloat y) {
  */
 void Uniform::load3f(GLfloat x, GLfloat y, GLfloat z) {
     assert (currentProgram() == program);
-    assert (type = GL_FLOAT_VEC3);
+    assert (type == GL_FLOAT_VEC3);
     glUniform3f(location, x, y, z);
 }
 
@@ -63,7 +63,7 @@ void Uniform::load3f(GLfloat x, GLfloat y, GLfloat z) {
  */
 void Uniform::load4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w) {
     assert (currentProgram() == program);
-    assert (type = GL_FLOAT_VEC4);
+    assert (type == GL_FLOAT_VEC4);
     glUniform4f(location, x, y, z, w);
 }
 
@@ -76,7 +76,7 @@ void Uniform::load4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w) {
  */
 void Uniform::load1i(GLint x) {
     assert (currentProgram() == program);
-    assert (type = GL_INT);
+    assert (type == GL_INT);
     glUniform1i(location, x);
 }
 
@@ -90,7 +90,7 @@ void Uniform::load1i(GLint x) {
  */
 void Uniform::load2i(GLint x, GLint y) {
     assert (currentProgram() == program);
-    assert (type = GL_INT_VEC2);
+    assert (type == GL_INT_VEC2);
     glUniform2i(location, x, y);
 }
 
@@ -105,7 +105,7 @@ void Uniform::load2i(GLint x, GLint y) {
  */
 void Uniform::load3i(GLint x, GLint y, GLint z) {
     assert (currentProgram() == program);
-    assert (type = GL_INT_VEC3);
+    assert (type == GL_INT_VEC3);
     glUniform3i(location, x, y, z);
 }
 
@@ -121,7 +121,7 @@ void Uniform::load3i(GLint x, GLint y, GLint z) {
  */
 void Uniform::load4i(GLint x, GLint y, GLint z, GLint w) {
     assert (currentProgram() == program);
-    assert (type = GL_INT_VEC4);
+    assert (type == GL_INT_VEC4);
     glUniform4i(location, x, y, z, w);
 }
 
@@ -134,7 +134,7 @@ void Uniform::load4i(GLint x, GLint y, GLint z, GLint w) {
  */
 void Uniform::load1ui(GLuint x) {
     assert (currentProgram() == program);
-    assert (type = GL_UNSIGNED_INT);
+    assert (type == GL_UNSIGNED_INT);
     glUniform1ui(location, x);
 }
 
@@ -148,7 +148,7 @@ void Uniform::load1ui(GLuint x) {
  */
 void Uniform::load2ui(GLuint x, GLuint y) {
     assert (currentProgram() == program);
-    assert (type = GL_UNSIGNED_INT_VEC2);
+    assert (type == GL_UNSIGNED_INT_VEC2);
     glUniform2ui(location, x, y);
 }
 
@@ -163,7 +163,7 @@ void Uniform::load2ui(GLuint x, GLuint y) {
  */
 void Uniform::load3ui(GLuint x, GLuint y, GLuint z) {
     assert (currentProgram() == program);
-    assert (type = GL_UNSIGNED_INT_VEC3);
+    assert (type == GL_UNSIGNED_INT_VEC3);
     glUniform3ui(location, x, y, z);
 }
 
@@ -179,7 +179,7 @@ void Uniform::load3ui(GLuint x, GLuint y, GLuint z) {
  */
 void Uniform::load4ui(GLuint x, GLuint y, GLuint z, GLuint w) {
     assert (currentProgram() == program);
-    assert (type = GL_UNSIGNED_INT_VEC4);
+    assert (type == GL_UNSIGNED_INT_VEC4);
     glUniform4ui(location, x, y, z, w);
 }
 
