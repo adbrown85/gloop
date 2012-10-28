@@ -53,13 +53,6 @@ void BufferObject::dispose() const {
 }
 
 /**
- * Returns the identifer of the OpenGL buffer object this handle represents.
- */
-GLuint BufferObject::id() const {
-    return _id;
-}
-
-/**
  * Creates a buffer object handle representing a new OpenGL buffer object.
  *
  * @return Handle for new OpenGL buffer object
@@ -76,6 +69,13 @@ BufferObject BufferObject::generate() {
 
     // Make the handle
     return BufferObject(id);
+}
+
+/**
+ * Returns the identifer of the OpenGL buffer object this handle represents.
+ */
+GLuint BufferObject::id() const {
+    return _id;
 }
 
 /**
