@@ -128,6 +128,21 @@ void VertexArrayObject::enableVertexAttribArray(const GLuint index) const {
 }
 
 /**
+ * Creates a vertex array object handle from the identifier of an existing vertex array object.
+ *
+ * @param id Identifier of an existing vertex array object
+ * @return Vertex array object handle for the existing vertex array object
+ * @throws invalid_argument if identifier is not a valid vertex array object
+ * @see @ref generate
+ */
+VertexArrayObject VertexArrayObject::fromId(const GLuint id) {
+    if (!glIsVertexArray(id)) {
+        throw invalid_argument("[VertexArrayObject] ID is not a valid vertex array object!");
+    }
+    return VertexArrayObject(id);
+}
+
+/**
  * Generates a new vertex array object.
  *
  * @return Handle representing the vertex array object that was generated
@@ -278,21 +293,6 @@ void VertexArrayObject::vertexAttribPointer(const VertexAttribPointer& pointer) 
             pointer.normalized,
             pointer.stride,
             (const GLvoid*) pointer.offset);
-}
-
-/**
- * Creates a vertex array object handle from the identifier of an existing vertex array object.
- *
- * @param id Identifier of an existing vertex array object
- * @return Vertex array object handle for the existing vertex array object
- * @throws invalid_argument if identifier is not a valid vertex array object
- * @see @ref generate
- */
-VertexArrayObject VertexArrayObject::fromId(const GLuint id) {
-    if (!glIsVertexArray(id)) {
-        throw invalid_argument("[VertexArrayObject] ID is not a valid vertex array object!");
-    }
-    return VertexArrayObject(id);
 }
 
 } /* namespace Glycerin */
