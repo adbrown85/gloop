@@ -23,7 +23,7 @@ Program::Program(GLuint handle) : _handle(handle) {
 }
 
 /**
- * Construcs a program by copying another program.
+ * Constructs a program by copying another program.
  *
  * @param program Program to copy
  */
