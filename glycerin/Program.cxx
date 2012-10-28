@@ -44,6 +44,7 @@ Program::Program(const Program& program) : _id(program._id) {
  * Retrieves all the active attributes in this program.
  *
  * @return Mapping of all the active attributes in this program by name
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetActiveAttrib.xml
  */
 map<string,Attribute> Program::activeAttributes() const {
 
@@ -84,6 +85,7 @@ map<string,Attribute> Program::activeAttributes() const {
  * Retrieves all the active uniforms in this program.
  *
  * @return Mapping of all the active uniforms in this program by name
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetActiveUniform.xml
  */
 map<string,Uniform> Program::activeUniforms() const {
 
@@ -126,6 +128,7 @@ map<string,Uniform> Program::activeUniforms() const {
  * @param shader OpenGL identifier for the shader to attach
  * @throw invalid_argument if shader is not valid
  * @throw logic_error if shader is already attached
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glAttachShader.xml
  */
 void Program::attachShader(GLuint shader) const {
     attachShader(Shader::wrap(shader));
@@ -136,6 +139,7 @@ void Program::attachShader(GLuint shader) const {
  *
  * @param shader Wrapper for an OpenGL shader
  * @throw logic_error if shader is already attached
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glAttachShader.xml
  */
 void Program::attachShader(const Shader &shader) const {
     if (isAttached(shader)) {
@@ -151,6 +155,7 @@ void Program::attachShader(const Shader &shader) const {
  * @return Location of the attribute in this program, or `-1` if attribute is not in this program
  * @throws invalid_argument if name is empty
  * @throws logic_error if program has not been linked yet
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetAttribLocation.xml
  */
 GLint Program::attribLocation(const std::string &name) const {
 
@@ -169,6 +174,7 @@ GLint Program::attribLocation(const std::string &name) const {
  * @param name Name of attribute
  * @param location Location to bind to
  * @throw invalid_argument if name is empty
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glBindAttribLocation.xml
  */
 void Program::attribLocation(const std::string& name, GLuint location) const {
     if (name.empty()) {
@@ -182,6 +188,7 @@ void Program::attribLocation(const std::string& name, GLuint location) const {
  *
  * @return New program instance
  * @throws runtime_error if program could not be created
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glCreateProgram.xml
  */
 Program Program::create() {
 
@@ -201,6 +208,7 @@ Program Program::create() {
  * @param shader Shader to detach
  * @throws invalid_argument if shader is not a valid shader
  * @throws logic_error if shader is not already attached
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glDetachShader.xml
  */
 void Program::detachShader(GLuint shader) const {
     detachShader(Shader::wrap(shader));
@@ -211,6 +219,7 @@ void Program::detachShader(GLuint shader) const {
  *
  * @param shader Shader to detach
  * @throws logic_error if shader is not already attached
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glDetachShader.xml
  */
 void Program::detachShader(const Shader &shader) const {
     if (!isAttached(shader)) {
@@ -221,6 +230,8 @@ void Program::detachShader(const Shader &shader) const {
 
 /**
  * Deletes the underlying OpenGL shader program.
+ *
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glDeleteProgram.xml
  */
 void Program::dispose() const {
     glDeleteProgram(_id);
@@ -232,6 +243,7 @@ void Program::dispose() const {
  * @param name Name of output variable to look up
  * @return Location of output variable, or `-1` if name is not an active output variable
  * @throws invalid_argument if name is empty
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetFragDataLocation.xml
  */
 GLint Program::fragDataLocation(const std::string& name) const {
     if (name.empty()) {
@@ -247,6 +259,7 @@ GLint Program::fragDataLocation(const std::string& name) const {
  * @param location Location of draw buffer to bind to
  * @throws invalid_argument if name is empty or starts with `gl_`
  * @throws invalid_argument if location greater than `GL_MAX_DRAW_BUFFERS`
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glBindFragDataLocation.xml
  */
 void Program::fragDataLocation(const std::string &name, GLuint location) const {
 
@@ -272,6 +285,8 @@ GLuint Program::id() const {
 
 /**
  * Links this program.
+ *
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glLinkProgram.xml
  */
 void Program::link() const {
     glLinkProgram(_id);
@@ -281,6 +296,7 @@ void Program::link() const {
  * Checks if this program is linked.
  *
  * @return `true` if this program is linked
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetProgram.xml
  */
 bool Program::linked() const {
     GLint linked;
@@ -292,6 +308,7 @@ bool Program::linked() const {
  * Retrieves a copy of this program's log.
  *
  * @return Copy of this program's log
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetProgramInfoLog.xml
  */
 string Program::log() const {
 
@@ -357,6 +374,7 @@ bool Program::operator<(const Program& program) const {
  * Retrieves all the shaders attached to this program.
  *
  * @return Vector of all the shaders attached to this program
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetAttachedShaders.xml
  */
 vector<Shader> Program::shaders() const {
 
@@ -392,6 +410,7 @@ vector<Shader> Program::shaders() const {
  * @return Location of the uniform in this program, or `-1` if uniform is not in this program
  * @throws invalid_argument if name is empty
  * @throws logic_error if program has not been linked yet
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetUniformLocation.xml
  */
 GLint Program::uniformLocation(const string& name) const {
 
@@ -406,6 +425,8 @@ GLint Program::uniformLocation(const string& name) const {
 
 /**
  * Activates this program.
+ *
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glUseProgram.xml
  */
 void Program::use() const {
     glUseProgram(_id);
@@ -415,6 +436,7 @@ void Program::use() const {
  * Checks if this program is valid.
  *
  * @return `true` if this program is valid
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glGetProgram.xml
  */
 bool Program::valid() const {
     GLint valid;
@@ -424,6 +446,8 @@ bool Program::valid() const {
 
 /**
  * Ensures this program is valid.
+ *
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glValidateProgram.xml
  */
 void Program::validate() const {
     glValidateProgram(_id);
