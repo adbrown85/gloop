@@ -290,10 +290,10 @@ string Program::log() const {
 }
 
 /**
- * Copies the ID of another program.
+ * Changes which OpenGL shader program this program represents.
  *
- * @param program Program to copy
- * @return Reference to this program
+ * @param program Program to copy ID from
+ * @return Reference to this program to support chaining
  */
 Program& Program::operator=(const Program& program) {
     _id = program._id;
