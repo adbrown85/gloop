@@ -354,7 +354,9 @@ bool Program::operator<(const Program& program) const {
 }
 
 /**
- * Returns all the shaders attached to this program.
+ * Retrieves all the shaders attached to this program.
+ *
+ * @return Vector of all the shaders attached to this program
  */
 vector<Shader> Program::shaders() const {
 
