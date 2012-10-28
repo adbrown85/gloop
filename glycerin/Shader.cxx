@@ -174,7 +174,9 @@ GLenum Shader::type() const {
 }
 
 /**
- * Returns `true` if shader is compiled.
+ * Checks if this shader is compiled.
+ *
+ * @return `true` if this shader is compiled
  */
 bool Shader::compiled() const {
     GLint compiled;
