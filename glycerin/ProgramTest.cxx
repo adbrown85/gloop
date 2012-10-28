@@ -269,7 +269,7 @@ public:
 
         try {
             program.detachShader(shader);
-        } catch (invalid_argument &e) {
+        } catch (logic_error &e) {
             // Exception caught
             return;
         }
