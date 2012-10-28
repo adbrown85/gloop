@@ -112,7 +112,7 @@ map<string,Uniform> Program::activeUniforms() const {
  *
  * @param shader OpenGL identifier for the shader to attach
  * @throw std::invalid_argument if shader is not valid
- * @throw std::invalid_argument if shader is already attached
+ * @throw std::logic_error if shader is already attached
  */
 void Program::attachShader(GLuint shader) const {
     attachShader(Shader::wrap(shader));
@@ -122,11 +122,11 @@ void Program::attachShader(GLuint shader) const {
  * Attaches a shader to this program.
  *
  * @param shader Wrapper for an OpenGL shader
- * @throw std::invalid_argument if shader is already attached
+ * @throw std::logic_error if shader is already attached
  */
 void Program::attachShader(const Shader &shader) const {
     if (isAttached(shader)) {
-        throw invalid_argument("[Program] Shader is already attached!");
+        throw logic_error("[Program] Shader is already attached!");
     }
     glAttachShader(_id, shader.id());
 }
@@ -187,7 +187,7 @@ Program Program::create() {
  *
  * @param shader Shader to detach
  * @throws invalid_argument if shader is not a valid shader
- * @throws invalid_argument if shader is not already attached
+ * @throws logic_error if shader is not already attached
  */
 void Program::detachShader(GLuint shader) const {
     detachShader(Shader::wrap(shader));
@@ -197,11 +197,11 @@ void Program::detachShader(GLuint shader) const {
  * Detaches a shader from this program.
  *
  * @param shader Shader to detach
- * @throws invalid_argument if shader is not already attached
+ * @throws logic_error if shader is not already attached
  */
 void Program::detachShader(const Shader &shader) const {
     if (!isAttached(shader)) {
-        throw invalid_argument("[Program] Shader not already attached!");
+        throw logic_error("[Program] Shader not already attached!");
     }
     glDetachShader(_id, shader.id());
 }
