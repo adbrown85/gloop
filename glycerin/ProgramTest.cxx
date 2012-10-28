@@ -11,6 +11,7 @@
 #include <boost/filesystem.hpp>
 #include "glycerin/common.h"
 #include "glycerin/Program.hxx"
+#include "glycerin/VertexArrayObject.hxx"
 #include <GL/glfw.h>
 using namespace std;
 using namespace Glycerin;
@@ -367,6 +368,8 @@ public:
         }
 
         // Validate it
+        const VertexArrayObject vao = VertexArrayObject::generate();
+        vao.bind();
         program.validate();
         if (!program.valid()) {
             cerr << program.log() << endl;
