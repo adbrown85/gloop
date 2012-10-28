@@ -47,7 +47,7 @@ void Shader::compile() const {
  *
  * @param type Kind of shader, e.g. `GL_VERTEX_SHADER` or `GL_FRAGMENT_SHADER`
  * @return New shader of specified type
- * @throw std::runtime_error if shader could not be created
+ * @throw runtime_error if shader could not be created
  */
 Shader Shader::create(const GLenum type) {
 
@@ -197,7 +197,7 @@ void Shader::source(const std::string& source) const {
  *
  * @param id OpenGL identifier for shader
  * @return Wrapper for OpenGL shader
- * @throws std::invalid_argument if ID is not a valid OpenGL shader
+ * @throws invalid_argument if ID is not a valid OpenGL shader
  */
 Shader Shader::wrap(const GLuint id) {
     if (!glIsShader(id)) {

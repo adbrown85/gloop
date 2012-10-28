@@ -111,8 +111,8 @@ map<string,Uniform> Program::activeUniforms() const {
  * Attaches a shader to this program.
  *
  * @param shader OpenGL identifier for the shader to attach
- * @throw std::invalid_argument if shader is not valid
- * @throw std::logic_error if shader is already attached
+ * @throw invalid_argument if shader is not valid
+ * @throw logic_error if shader is already attached
  */
 void Program::attachShader(GLuint shader) const {
     attachShader(Shader::wrap(shader));
@@ -122,7 +122,7 @@ void Program::attachShader(GLuint shader) const {
  * Attaches a shader to this program.
  *
  * @param shader Wrapper for an OpenGL shader
- * @throw std::logic_error if shader is already attached
+ * @throw logic_error if shader is already attached
  */
 void Program::attachShader(const Shader &shader) const {
     if (isAttached(shader)) {
@@ -168,7 +168,7 @@ void Program::attribLocation(const std::string& name, GLuint location) const {
  * Creates a new program.
  *
  * @return New program instance
- * @throws std::runtime_error if program could not be created
+ * @throws runtime_error if program could not be created
  */
 Program Program::create() {
 
@@ -411,7 +411,7 @@ void Program::validate() const {
  *
  * @param id OpenGL identifier for program
  * @return Wrapper for OpenGL program
- * @throws std::invalid_argument if ID is not an OpenGL program
+ * @throws invalid_argument if ID is not an OpenGL program
  */
 Program Program::wrap(const GLuint id) {
     return Program(id);
