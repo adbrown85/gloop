@@ -244,7 +244,7 @@ void Program::fragDataLocation(const std::string &name, GLuint location) {
 }
 
 /**
- * Returns the OpenGL indentifier for the program.
+ * Returns the OpenGL identifier for the program.
  */
 GLuint Program::handle() const {
     return _handle;
