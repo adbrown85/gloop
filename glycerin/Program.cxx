@@ -217,7 +217,7 @@ void Program::dispose() const {
  * Returns the location of an output variable.
  *
  * @param name Name of output variable
- * @return Location of output variable, or -1 if name is not an active output variable
+ * @return Location of output variable, or `-1` if name is not an active output variable
  */
 GLint Program::fragDataLocation(const std::string& name) const {
     return glGetFragDataLocation(_id, name.c_str());
