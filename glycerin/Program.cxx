@@ -275,6 +275,17 @@ void Program::fragDataLocation(const std::string &name, GLuint location) const {
 }
 
 /**
+ * Creates a program handle from the ID of an existing OpenGL program.
+ *
+ * @param id ID of existing OpenGL program
+ * @return Handle for OpenGL program
+ * @throws invalid_argument if ID is not an OpenGL program
+ */
+Program Program::fromId(const GLuint id) {
+    return Program(id);
+}
+
+/**
  * Determines the ID of the underlying OpenGL shader program this program handle represents.
  *
  * @return ID of the underlying OpenGL shader program this program handle represents
@@ -451,17 +462,6 @@ bool Program::valid() const {
  */
 void Program::validate() const {
     glValidateProgram(_id);
-}
-
-/**
- * Creates a program handle from the ID of an existing OpenGL program.
- *
- * @param id ID of existing OpenGL program
- * @return Handle for OpenGL program
- * @throws invalid_argument if ID is not an OpenGL program
- */
-Program Program::fromId(const GLuint id) {
-    return Program(id);
 }
 
 // HELPERS
