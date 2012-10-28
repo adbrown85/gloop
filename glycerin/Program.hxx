@@ -43,6 +43,7 @@ public:
     Program& operator=(const Program& program);
     bool operator==(const Program& program) const;
     bool operator!=(const Program& program) const;
+    bool operator<(const Program& program) const;
     std::vector<Shader> shaders() const;
     GLint uniformLocation(const std::string& name) const;
     void use() const;

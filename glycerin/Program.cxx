@@ -320,6 +320,16 @@ bool Program::operator!=(const Program& program) const {
 }
 
 /**
+ * Checks if this program's ID is less than another program's ID.
+ *
+ * @param program Program to check
+ * @return `true` if this program's ID is less than the other program's ID
+ */
+bool Program::operator<(const Program& program) const {
+    return _id < program._id;
+}
+
+/**
  * Returns all the shaders attached to this program.
  */
 vector<Shader> Program::shaders() const {
