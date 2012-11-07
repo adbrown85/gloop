@@ -1,3 +1,24 @@
-Glycerin
+Glycerin - Fuel for OpenGL applications
 
-Fuel for OpenGL applications
+Glycerin is a set of utilities for making OpenGL easier to write, read, and
+maintain.  Rather than taking a new, high-level approach unfamiliar to
+developers who are already familiar with OpenGL, Glycerin is intended to be a
+simple, straightforward wrapper on top of OpenGL.  Other than several small
+extensions, everything in Glycerin corresponds directly to an object or
+function in OpenGL.  Writing applications with Glycerin is just like writing
+applications in OpenGL, only easier.
+
+Glycerin has a number of advantages over straight OpenGL.  Most importantly,
+it is object-oriented, so instead of passing identifiers to functions,
+developers simply call methods on the objects themselves.  As a result, code
+using Glycerin is much more type-safe, and it's easier for developers to find
+the functionality they need.  In addition, Glycerin may perform some basic
+error checking where appropriate, generally only for methods used in
+initialization since making the checks may stall the OpenGL pipeline.  Note
+that the core objects are stateless, storing only their ID, so developers can
+rest assured nothing tricky or misleading is going on behind the scenes.
+
+To install Glycerin, see the INSTALL document.  For a rundown on the changes
+between versions, see the NEWS document.  Lastly, if you want to experiment
+with the code or contribute new features or fixes, please see the HACKING
+document.
