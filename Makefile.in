@@ -195,6 +195,7 @@ dist: all
 	$(CP) $(headers) $(tardir)/$(tarname)
 	$(CP) $(test_sources) $(tardir)/$(tarname)
 	$(CP) README $(tardir)
+	$(CP) INSTALL $(tardir)
 	$(CP) Makefile.in $(tardir)
 	$(CP) configure $(tardir)
 	$(CP) config.guess $(tardir)
