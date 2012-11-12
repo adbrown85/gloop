@@ -27,6 +27,7 @@
 #include <cassert>
 #include <fstream>
 #include <sstream>
+#include <stdexcept>
 #include <boost/filesystem.hpp>
 #include "gloop/common.h"
 #include "gloop/Program.hxx"
