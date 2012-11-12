@@ -12,8 +12,6 @@ namespace Gloop {
 
 /**
  * OpenGL shader.
- *
- * @ingroup core
  */
 class Shader {
 public:

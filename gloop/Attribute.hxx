@@ -13,8 +13,6 @@ namespace Gloop {
 
 /**
  * OpenGL vertex attribute.
- *
- * @ingroup core
  */
 class Attribute : public Variable {
 // Friends

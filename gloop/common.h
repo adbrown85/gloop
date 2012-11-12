@@ -26,9 +26,4 @@
 #define SIZE_MAX ((size_t) -1)
 #endif
 
-/**
- * @defgroup core
- * @defgroup extensions
- */
-
 #endif

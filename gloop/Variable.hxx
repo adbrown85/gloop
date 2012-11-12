@@ -12,8 +12,6 @@ namespace Gloop {
 
 /**
  * Input to a shader program.
- *
- * @ingroup core
  */
 class Variable {
 public:

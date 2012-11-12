@@ -12,8 +12,6 @@ namespace Gloop {
 
 /**
  * Handle for an OpenGL buffer object.
- *
- * @ingroup core
  */
 class BufferObject {
 public:

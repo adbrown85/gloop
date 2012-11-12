@@ -79,8 +79,6 @@ namespace Gloop {
  * ~~~
  *     vao.unbind();
  * ~~~
- *
- * @ingroup core
  */
 class VertexArrayObject {
 public:

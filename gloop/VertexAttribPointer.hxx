@@ -71,8 +71,6 @@ namespace Gloop {
  * [enable-vertex-attrib-array]:
  *     @ref VertexArrayObject::enableVertexAttribArray
  *     "VertexArrayObject::enableVertexAttribArray"
- *
- * @ingroup core
  */
 struct VertexAttribPointer {
 

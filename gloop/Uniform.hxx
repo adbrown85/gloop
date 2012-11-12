@@ -13,8 +13,6 @@ namespace Gloop {
 
 /**
  * OpenGL uniform information.
- *
- * @ingroup core
  */
 class Uniform : public Variable {
 // Friends
