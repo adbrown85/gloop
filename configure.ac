@@ -49,28 +49,6 @@ AC_MSG_CHECKING([for GLFW])
 PKG_CHECK_EXISTS([libglfw], [AC_MSG_RESULT([yes])], [error_no_glfw])
 AC_DEFINE([GL_DO_NOT_WARN_IF_MULTI_GL_VERSION_HEADERS_INCLUDED], [1], [Required for GLFW])
 
-# Check for Boost System
-error_no_boost_system() {
-    echo "------------------------------------------------------------"
-    echo " Boost System is needed to build MY_NAME."
-    echo " Please visit 'http://boost.org/'."
-    echo "------------------------------------------------------------"
-    (exit 1); exit 1;
-}
-AC_CHECK_HEADER([boost/system/system_error.hpp], , [error_no_boost_system])
-AC_CHECK_LIB([boost_system], [exit], , [error_no_boost_system])
-
-# Check for Boost Filesystem
-error_no_boost_filesystem() {
-    echo "------------------------------------------------------------"
-    echo " Boost Filesystem is needed to build MY_NAME."
-    echo " Please visit 'http://boost.org/'."
-    echo "------------------------------------------------------------"
-    (exit 1); exit 1;
-}
-AC_CHECK_HEADER([boost/filesystem.hpp], , [error_no_boost_filesystem])
-AC_CHECK_LIB([boost_filesystem], [exit], , [error_no_boost_filesystem])
-
 # Check for CppUnit
 error_no_cppunit() {
     AC_MSG_RESULT([no])
