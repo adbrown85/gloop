@@ -1,12 +1,12 @@
-Bugs, feature requests, and other issues can be reported using Glycerin's issue
+Bugs, feature requests, and other issues can be reported using Gloop's issue
 tracker on GitHub.
 
-    http://github.com/adbrown85/glycerin/issues
+    http://github.com/adbrown85/gloop/issues
 
-To experiment with Glycerin or to contribute new features or fixes, first check
+To experiment with Gloop or to contribute new features or fixes, first check
 out the code from GitHub using Git.
 
-    git clone git://github.com/adbrown85/glycerin.git
+    git clone git://github.com/adbrown85/gloop.git
 
 Then create the configure script using Autoconf by running the 'bootstrap'
 script as shown below.
