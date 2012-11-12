@@ -1,0 +1,3 @@
+To create an OpenGL context for running unit tests, Gloop uses GLFW, developed
+by Marcus Geelnard and Camilla Beglund.  It is licensed under an unmodified
+zlib/libpng license, and it may be obtained from http://www.glfw.org.
