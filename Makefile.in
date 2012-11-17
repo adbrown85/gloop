@@ -31,7 +31,7 @@ TAR          := tar
 # Compiler options
 CPPFLAGS     := @CPPFLAGS@
 CXXFLAGS     := @CXXFLAGS@
-INCLUDES     := -I$(srcdir)/
+INCLUDES     := -I$(srcdir)
 DEFS         := @DEFS@
 DEPS_CFLAGS  := @DEPS_CFLAGS@
 CXXOPTS      := $(CPPFLAGS) $(CXXFLAGS) $(INCLUDES) $(DEFS) $(DEPS_CFLAGS)
