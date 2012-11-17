@@ -196,6 +196,8 @@ dist: all
 	@$(CP) README $(tardir)
 	@$(CP) INSTALL $(tardir)
 	@$(CP) HACKING $(tardir)
+	@$(CP) LICENSE $(tardir)
+	@$(CP) NOTICE $(tardir)
 	@$(CP) Makefile.in $(tardir)
 	@$(CP) configure $(tardir)
 	@$(CP) config.guess $(tardir)
