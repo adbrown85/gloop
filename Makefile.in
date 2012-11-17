@@ -131,8 +131,8 @@ install: all
 	@libtool --mode=finish -n --quiet $(libdir)
 	@echo "  INSTALL $(includedir)/$(tarname)-$(major)"
 	@$(INSTALL) -d $(includedir)/$(tarname)-$(major)/$(tarname)
-	@$(INSTALL) -m 0644 $(tarname)/common.h $(includedir)/$(tarname)-$(major)/$(tarname)
 	@$(INSTALL) -m 0644 $(headers) $(includedir)/$(tarname)-$(major)/$(tarname)
+	@$(INSTALL) -m 0644 $(tarname)/common.h $(includedir)/$(tarname)-$(major)/$(tarname)
 	@echo "  INSTALL $(pkgcfgdir)/$(pkgcfgfile)"
 	@$(INSTALL) -d $(pkgcfgdir)
 	@$(INSTALL) -m 0644 $(pkgcfgfile) $(pkgcfgdir)
