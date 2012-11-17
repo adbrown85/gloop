@@ -18,6 +18,7 @@ config.log
 config.status
 configure
 configure.scan
+dist/
 doc/
 install-sh
 ltmain.sh
