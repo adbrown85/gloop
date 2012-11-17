@@ -126,8 +126,7 @@ $(library): $(objects)
 install: all
 	@echo "  INSTALL $(libdir)/$(library)"
 	@$(INSTALL) -d $(libdir)
-	@libtool --mode=install --quiet \
-            $(INSTALL) $(builddir)/$(library) $(libdir)
+	@libtool --mode=install --quiet $(INSTALL) $(builddir)/$(library) $(libdir)
 	@libtool --mode=finish -n --quiet $(libdir)
 	@echo "  INSTALL $(includedir)/$(tarname)-$(major)"
 	@$(INSTALL) -d $(includedir)/$(tarname)-$(major)/$(tarname)
