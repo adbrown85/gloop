@@ -1,7 +1,7 @@
 To install Gloop from a distribution, first make sure you have the necessary
-tools and dependencies installed.  You will need g++, GNU Make, GLFW, and
-CppUnit.  Windows users will need to install a Bourne-compatible shell, like
-the one provided with MinGW.
+tools and dependencies installed.  You will need g++, GNU Make, GLFW [1], and
+CppUnit [2].  Windows users will need to install a Bourne-compatible shell,
+like the one provided with MinGW [3].
 
 Then extract the archive and execute the following three commands:
 
@@ -26,13 +26,13 @@ completes without error, Gloop should be ready to go.
     make check
 
 Once Gloop is installed, it may easily be included in a project by using
-pkg-config.  It will report the flags needed to compile and link Gloop with
-your project.  Use backticks to pass its output to your compiler.  The example
-below builds a program that has Gloop as a dependency.
+pkg-config [4].  It will report the flags needed to compile and link Gloop
+with your project.  Use backticks to pass its output to your compiler.  The
+example below builds a program that has Gloop as a dependency.
 
     g++ `pkg-config --cflags --libs gloop-0` MyApp.cxx -o MyApp
 
-To generate documentation, make sure Doxygen is installed and then run the
+To generate documentation, make sure Doxygen [5] is installed and then run the
 command below.
 
     make html
@@ -40,3 +40,9 @@ command below.
 Finally, Gloop can be uninstalled by running the command below.
 
     make uninstall
+
+[1] http://glfw.org
+[2] http://sourceforge.net/projects/cppunit
+[3] http://www.mingw.org
+[4] http://www.freedesktop.org/wiki/Software/pkg-config
+[5] http://www.doxygen.org
