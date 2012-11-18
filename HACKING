@@ -13,10 +13,10 @@ script as shown below.
 
     ./bootstrap
 
-Next, follow the installation steps as detailed in INSTALL.  Note you may want
-to disable optimization by changing the compiler flags when you execute the
+Next, follow the installation steps as detailed in INSTALL.  You may want to
+disable optimization by changing the compiler flags when you execute the
 configure script as shown below.  Note we specify the '-g' flag here to make
-sure debugging symbols are created.
+sure debugging symbols are still created.
 
     ./configure CXXFLAGS=-g
 
