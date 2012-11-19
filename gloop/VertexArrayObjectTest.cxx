@@ -24,9 +24,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #include "config.h"
-#include <cassert>
 #include <stdexcept>
 #include "gloop/VertexArrayObject.hxx"
+#include <cppunit/extensions/HelperMacros.h>
 #include <GL/glfw.h>
 using namespace std;
 using namespace Gloop;
@@ -68,15 +68,9 @@ public:
         glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &max);
 
         // Try to set one more than the maximum
-        try {
-            const VertexArrayObject vao = VertexArrayObject::generate();
-            vao.bind();
-            vao.enableVertexAttribArray(max + 1);
-        } catch (invalid_argument& e) {
-            // Exception caught
-            return;
-        }
-        throw runtime_error("Exception not caught in testEnableVertexAttribArrayWithBadIndex!");
+        const VertexArrayObject vao = VertexArrayObject::generate();
+        vao.bind();
+        CPPUNIT_ASSERT_THROW(vao.enableVertexAttribArray(max + 1), invalid_argument);
     }
 
     /**
@@ -84,7 +78,7 @@ public:
      */
     void testGenerate() {
         const VertexArrayObject vao = VertexArrayObject::generate();
-        assert (vao.id() > 0);
+        CPPUNIT_ASSERT(vao.id() > 0);
     }
 
     /**
@@ -232,10 +226,10 @@ public:
     void testFromIdWithGoodId() {
         GLuint id;
         glGenVertexArrays(1, &id);
-        assert (id > 0);
+        CPPUNIT_ASSERT(id > 0);
         glBindVertexArray(id);
         const VertexArrayObject vao = VertexArrayObject::fromId(id);
-        assert (vao.id() == id);
+        CPPUNIT_ASSERT_EQUAL((GLuint) id, vao.id());
     }
 };
 

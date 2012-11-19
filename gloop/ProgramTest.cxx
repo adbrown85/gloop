@@ -24,13 +24,13 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #include "config.h"
-#include <cassert>
 #include <fstream>
 #include <sstream>
 #include <stdexcept>
 #include "gloop/common.h"
 #include "gloop/Program.hxx"
 #include "gloop/VertexArrayObject.hxx"
+#include <cppunit/extensions/HelperMacros.h>
 #include <GL/glfw.h>
 using namespace std;
 using namespace Gloop;
@@ -90,16 +90,16 @@ public:
         p.attachShader(fs);
 
         p.link();
-        assert (p.linked());
+        CPPUNIT_ASSERT(p.linked());
 
         const map<string,Attribute> attribs = p.activeAttributes();
-        assert (attribs.size() == 1);
+        CPPUNIT_ASSERT_EQUAL((size_t) 1, attribs.size());
         const Attribute a = attribs.find("MCVertex")->second;
-        assert (a.name() == "MCVertex");
-        assert (a.size() == 1);
-        assert (a.type() == GL_FLOAT_VEC4);
-        assert (a.location() >= 0);
-        assert (a.program() == p.id());
+        CPPUNIT_ASSERT_EQUAL(string("MCVertex"), a.name());
+        CPPUNIT_ASSERT_EQUAL(1, a.size());
+        CPPUNIT_ASSERT_EQUAL((GLenum) GL_FLOAT_VEC4, a.type());
+        CPPUNIT_ASSERT(a.location() >= 0);
+        CPPUNIT_ASSERT_EQUAL(p.id(), a.program());
     }
 
     /**
@@ -124,23 +124,23 @@ public:
 
         // Link
         p.link();
-        assert (p.linked());
+        CPPUNIT_ASSERT(p.linked());
 
         // Get uniforms
         const map<string,Uniform> uniforms = p.activeUniforms();
-        assert (uniforms.size() == 2);
+        CPPUNIT_ASSERT_EQUAL((size_t) 2, uniforms.size());
         const Uniform u1 = uniforms.find("MVPMatrix")->second;
-        assert (u1.name() == "MVPMatrix");
-        assert (u1.type() == GL_FLOAT_MAT4);
-        assert (u1.size() == 1);
-        assert (u1.location() >= 0);
-        assert (u1.program() == p.id());
+        CPPUNIT_ASSERT_EQUAL(string("MVPMatrix"), u1.name());
+        CPPUNIT_ASSERT_EQUAL((GLenum) GL_FLOAT_MAT4, u1.type());
+        CPPUNIT_ASSERT_EQUAL((GLint) 1, u1.size());
+        CPPUNIT_ASSERT(u1.location() >= 0);
+        CPPUNIT_ASSERT_EQUAL(p.id(), u1.program());
         const Uniform u2 = uniforms.find("Color")->second;
-        assert (u2.name() == "Color");
-        assert (u2.type() == GL_FLOAT_VEC4);
-        assert (u2.size() == 1);
-        assert (u2.location() >= 0);
-        assert (u2.program() == p.id());
+        CPPUNIT_ASSERT_EQUAL(string("Color"), u2.name());
+        CPPUNIT_ASSERT_EQUAL((GLenum) GL_FLOAT_VEC4, u2.type());
+        CPPUNIT_ASSERT_EQUAL((GLint) 1, u2.size());
+        CPPUNIT_ASSERT(u2.location() >= 0);
+        CPPUNIT_ASSERT_EQUAL(p.id(), u2.program());
     }
 
     /**
@@ -149,13 +149,7 @@ public:
     void testAttachShaderWithBadShader() {
         const Program program = Program::create();
         const GLuint shader = -1;
-        try {
-            program.attachShader(shader);
-        } catch (invalid_argument& e) {
-            // Exception caught
-            return;
-        }
-        throw runtime_error("Exception not caught!");
+        CPPUNIT_ASSERT_THROW(program.attachShader(shader), invalid_argument);
     }
 
     /**
@@ -171,7 +165,7 @@ public:
         // Check if it was attached
         GLint num;
         glGetProgramiv(program.id(), GL_ATTACHED_SHADERS, &num);
-        assert (num == 1);
+        CPPUNIT_ASSERT_EQUAL((GLint) 1, num);
     }
 
     /**
@@ -185,13 +179,7 @@ public:
         program.attachShader(shader);
 
         // Try to attach shader
-        try {
-            program.attachShader(shader);
-        } catch (logic_error& e) {
-            // Exception caught
-            return;
-        }
-        throw runtime_error("Exception not caught!");
+        CPPUNIT_ASSERT_THROW(program.attachShader(shader), logic_error);
     }
 
     /**
@@ -216,11 +204,11 @@ public:
 
         // Link
         program.link();
-        assert (program.linked());
+        CPPUNIT_ASSERT(program.linked());
 
         // Check attrib location
         const GLint loc = program.attribLocation("mcVertex");
-        assert (loc < 0);
+        CPPUNIT_ASSERT(loc < 0);
     }
 
     /**
@@ -245,11 +233,11 @@ public:
 
         // Link
         program.link();
-        assert (program.linked());
+        CPPUNIT_ASSERT(program.linked());
 
         // Check attrib location
         const GLint loc = program.attribLocation("MCVertex");
-        assert (loc >= 0);
+        CPPUNIT_ASSERT(loc >= 0);
     }
 
     /**
@@ -257,7 +245,7 @@ public:
      */
     void testCreate() {
         const Program program = Program::create();
-        assert (program.id() > 0);
+        CPPUNIT_ASSERT(program.id() > 0);
     }
 
     /**
@@ -271,10 +259,10 @@ public:
         GLint attached;
         program.attachShader(shader);
         glGetProgramiv(program.id(), GL_ATTACHED_SHADERS, &attached);
-        assert (attached == 1);
+        CPPUNIT_ASSERT_EQUAL((GLint) 1, attached);
         program.detachShader(shader);
         glGetProgramiv(program.id(), GL_ATTACHED_SHADERS, &attached);
-        assert (attached == 0);
+        CPPUNIT_ASSERT_EQUAL((GLint) 0, attached);
     }
 
     /**
@@ -316,11 +304,11 @@ public:
 
         // Link
         program.link();
-        assert (program.linked());
+        CPPUNIT_ASSERT(program.linked());
 
         // Check location
         GLint location = program.fragDataLocation("fragColor");
-        assert (location < 0);
+        CPPUNIT_ASSERT(location < 0);
     }
 
     /**
@@ -345,11 +333,11 @@ public:
 
         // Link
         program.link();
-        assert (program.linked());
+        CPPUNIT_ASSERT(program.linked());
 
         // Check location
         GLint location = program.fragDataLocation("FragColor");
-        assert (location >= 0);
+        CPPUNIT_ASSERT(location >= 0);
     }
 
     /**
@@ -359,7 +347,7 @@ public:
 
         // Create a program
         const Program program = Program::create();
-        assert (program.id() > 0);
+        CPPUNIT_ASSERT(program.id() > 0);
 
         // Create shaders
         const Shader vs = Shader::create(GL_VERTEX_SHADER);
@@ -381,7 +369,7 @@ public:
         program.link();
         if (!program.linked()) {
             cerr << program.log() << endl;
-            throw runtime_error("Could not link program!");
+            CPPUNIT_FAIL("Could not link program!");
         }
 
         // Validate it
@@ -390,7 +378,7 @@ public:
         program.validate();
         if (!program.valid()) {
             cerr << program.log() << endl;
-            throw runtime_error("Could not validate program!");
+            CPPUNIT_FAIL("Could not validate program!");
         }
 
         // Delete it
@@ -404,7 +392,7 @@ public:
 
         // Create a program
         const Program program = Program::create();
-        assert (program.id() > 0);
+        CPPUNIT_ASSERT(program.id() > 0);
 
         // Create shaders
         const Shader vs = Shader::create(GL_VERTEX_SHADER);
@@ -424,9 +412,7 @@ public:
 
         // Link the program
         program.link();
-        if (program.linked()) {
-            throw runtime_error("Linked bad program!");
-        }
+        CPPUNIT_ASSERT(!program.linked());
 
         // Delete it
         program.dispose();
@@ -454,11 +440,11 @@ public:
 
         // Link
         p.link();
-        assert (p.linked());
+        CPPUNIT_ASSERT(p.linked());
 
         // Check uniform location
         GLint loc = p.uniformLocation("mvpMatrix");
-        assert (loc < 0);
+        CPPUNIT_ASSERT(loc < 0);
     }
 
     /**
@@ -483,11 +469,11 @@ public:
 
         // Link
         p.link();
-        assert (p.linked());
+        CPPUNIT_ASSERT(p.linked());
 
         // Check uniform location
         GLint loc = p.uniformLocation("MVPMatrix");
-        assert (loc >= 0);
+        CPPUNIT_ASSERT(loc >= 0);
     }
 
     /**
@@ -495,7 +481,7 @@ public:
      */
     void testFromIdWithGoodId() {
         const GLuint id = glCreateProgram();
-        assert (id > 0);
+        CPPUNIT_ASSERT(id > 0);
         const Program program = Program::fromId(id);
     }
 
@@ -504,13 +490,7 @@ public:
      */
     void testFromIdWithBadId() {
         const GLuint id = -1;
-        try {
-            const Program program = Program::fromId(id);
-        } catch (std::invalid_argument) {
-            // Exception caught
-            return;
-        }
-        throw runtime_error("Exception not caught!");
+        CPPUNIT_ASSERT_THROW(Program::fromId(id), invalid_argument);
     }
 };
 

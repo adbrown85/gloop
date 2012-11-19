@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #include "config.h"
-#include <cassert>
+#include <cppunit/extensions/HelperMacros.h>
 #include <stdexcept>
 #include <GL/glfw.h>
 #include "gloop/Buffer.hxx"
@@ -54,11 +54,11 @@ public:
         // Check the binding
         GLint id;
         glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &id);
-        assert (id == bo.id());
+        CPPUNIT_ASSERT_EQUAL((GLuint) id, bo.id());
 
         // Check for OpenGL errors
         const GLuint error = glGetError();
-        assert (error == GL_NO_ERROR);
+        CPPUNIT_ASSERT_EQUAL((GLenum) GL_NO_ERROR, error);
     }
 
     /**
@@ -77,7 +77,7 @@ public:
 
         // Check for OpenGL errors
         const GLuint error = glGetError();
-        assert (error == GL_NO_ERROR);
+        CPPUNIT_ASSERT_EQUAL((GLenum) GL_NO_ERROR, error);
     }
 };
 

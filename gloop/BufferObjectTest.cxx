@@ -24,9 +24,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #include "config.h"
-#include <cassert>
 #include <stdexcept>
 #include "gloop/BufferObject.hxx"
+#include <cppunit/extensions/HelperMacros.h>
 #include <GL/glfw.h>
 using namespace std;
 using namespace Gloop;
@@ -43,7 +43,7 @@ public:
      */
     void testGenerate() {
         const BufferObject bo = BufferObject::generate();
-        assert (bo.id() > 0);
+        CPPUNIT_ASSERT(bo.id() > 0);
     }
 
     /**
@@ -51,13 +51,7 @@ public:
      */
     void testFromIdWithBadId() {
         const GLuint id = -1;
-        try {
-            BufferObject::fromId(id);
-        } catch (invalid_argument& e) {
-            // Exception caught
-            return;
-        }
-        throw runtime_error("Exception not caught!");
+        CPPUNIT_ASSERT_THROW(BufferObject::fromId(id), invalid_argument);
     }
 
     /**
@@ -67,9 +61,9 @@ public:
         GLuint id;
         glGenBuffers(1, &id);
         glBindBuffer(GL_ARRAY_BUFFER, id);
-        assert (id > 0);
+        CPPUNIT_ASSERT(id > 0);
         const BufferObject bo = BufferObject::fromId(id);
-        assert (bo.id() == id);
+        CPPUNIT_ASSERT_EQUAL(id, bo.id());
     }
 
     /**

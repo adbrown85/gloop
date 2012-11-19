@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #include "config.h"
-#include <cassert>
+#include <cppunit/extensions/HelperMacros.h>
 #include <stdexcept>
 #include "gloop/Shader.hxx"
 #include <GL/glfw.h>
@@ -50,9 +50,7 @@ public:
                 "    FragColor = vec4(1)\n"
                 "}\n");
         shader.compile();
-        if (shader.compiled()) {
-            throw runtime_error("Compiled bad fragment shader!");
-        }
+        CPPUNIT_ASSERT(!shader.compiled());
     }
 
     /**
@@ -67,9 +65,7 @@ public:
                 "    FragColor = vec4(1);\n"
                 "}\n");
         shader.compile();
-        if (!shader.compiled()) {
-            throw runtime_error("Could not compile good fragment shader!");
-        }
+        CPPUNIT_ASSERT(shader.compiled());
     }
 
     /**
@@ -84,9 +80,7 @@ public:
                 "    gl_FragColor = MCVertex;\n"
                 "}\n");
         shader.compile();
-        if (shader.compiled()) {
-            throw runtime_error("Compiled bad vertex shader!");
-        }
+        CPPUNIT_ASSERT(!shader.compiled());
     }
 
     /**
@@ -101,9 +95,7 @@ public:
                 "    gl_Position = MCVertex;\n"
                 "}\n");
         shader.compile();
-        if (!shader.compiled()) {
-            throw runtime_error("Could not compile good vertex shader!");
-        }
+        CPPUNIT_ASSERT(shader.compiled());
     }
 
     /**
@@ -111,9 +103,8 @@ public:
      */
     void testCreateWithFragmentShader() {
         const Shader shader = Shader::create(GL_FRAGMENT_SHADER);
-        if (glGetError() != 0) {
-            throw runtime_error("Could not create fragment shader!");
-        }
+        const GLenum error = glGetError();
+        CPPUNIT_ASSERT_EQUAL((GLenum) GL_NO_ERROR, error);
         shader.dispose();
     }
 
@@ -122,9 +113,8 @@ public:
      */
     void testCreateWithGeometryShader() {
         const Shader shader = Shader::create(GL_GEOMETRY_SHADER);
-        if (glGetError() != 0) {
-            throw runtime_error("Could not create geometry shader!");
-        }
+        const GLenum error = glGetError();
+        CPPUNIT_ASSERT_EQUAL((GLenum) GL_NO_ERROR, error);
         shader.dispose();
     }
 
@@ -133,9 +123,8 @@ public:
      */
     void testCreateWithVertexShader() {
         const Shader shader = Shader::create(GL_VERTEX_SHADER);
-        if (glGetError() != 0) {
-            throw runtime_error("Could not create vertex shader!");
-        }
+        const GLenum error = glGetError();
+        CPPUNIT_ASSERT_EQUAL((GLenum) GL_NO_ERROR, error);
         shader.dispose();
     }
 
@@ -144,7 +133,7 @@ public:
      */
     void testIdWithFragmentShader() {
         const Shader shader = Shader::create(GL_FRAGMENT_SHADER);
-        assert (shader.id() > 0);
+        CPPUNIT_ASSERT(shader.id() > 0);
     }
 
     /**
@@ -152,7 +141,7 @@ public:
      */
     void testIdWithGeometryShader() {
         const Shader shader = Shader::create(GL_GEOMETRY_SHADER);
-        assert (shader.id() > 0);
+        CPPUNIT_ASSERT(shader.id() > 0);
     }
 
     /**
@@ -160,7 +149,7 @@ public:
      */
     void testIdWithVertexShader() {
         const Shader shader = Shader::create(GL_VERTEX_SHADER);
-        assert (shader.id() > 0);
+        CPPUNIT_ASSERT(shader.id() > 0);
     }
 
     /**
@@ -176,7 +165,7 @@ public:
                 "}\n");
         shader.compile();
         const string log = shader.log();
-        assert (!log.empty());
+        CPPUNIT_ASSERT(!log.empty());
     }
 
     /**
@@ -192,7 +181,7 @@ public:
                 "}\n");
         shader.compile();
         const string log = shader.log();
-        assert (log.empty());
+        CPPUNIT_ASSERT(log.empty());
     }
 
     /**
@@ -208,7 +197,7 @@ public:
                 "}\n");
         shader.compile();
         const string log = shader.log();
-        assert (!log.empty());
+        CPPUNIT_ASSERT(!log.empty());
     }
 
     /**
@@ -224,7 +213,7 @@ public:
                 "}\n");
         shader.compile();
         const string log = shader.log();
-        assert (log.empty());
+        CPPUNIT_ASSERT(log.empty());
     }
 
     /**
@@ -233,7 +222,7 @@ public:
     void testOperatorEqualEqualWithEqual() {
         const Shader s1 = Shader::create(GL_VERTEX_SHADER);
         const Shader s2 = Shader::fromId(s1.id());
-        assert (s1 == s2);
+        CPPUNIT_ASSERT(s1 == s2);
     }
 
     /**
@@ -242,7 +231,7 @@ public:
     void testOperatorNotEqualWithUnequal() {
         const Shader s1 = Shader::create(GL_VERTEX_SHADER);
         const Shader s2 = Shader::create(GL_VERTEX_SHADER);
-        assert (s1 != s2);
+        CPPUNIT_ASSERT(s1 != s2);
     }
 
     /**
@@ -257,7 +246,7 @@ public:
                 "    gl_Position = MCVertex;\n"
                 "}\n";
         shader.source(source);
-        assert (shader.source() == source);
+        CPPUNIT_ASSERT_EQUAL(source, shader.source());
     }
 
     /**
@@ -265,7 +254,7 @@ public:
      */
     void testTypeWithFragmentShader() {
         const Shader shader = Shader::create(GL_FRAGMENT_SHADER);
-        assert(shader.type() == GL_FRAGMENT_SHADER);
+        CPPUNIT_ASSERT_EQUAL((GLenum) GL_FRAGMENT_SHADER, shader.type());
     }
 
     /**
@@ -273,7 +262,7 @@ public:
      */
     void testTypeWithGeometryShader() {
         const Shader shader = Shader::create(GL_GEOMETRY_SHADER);
-        assert(shader.type() == GL_GEOMETRY_SHADER);
+        CPPUNIT_ASSERT_EQUAL((GLenum) GL_GEOMETRY_SHADER, shader.type());
     }
 
     /**
@@ -281,7 +270,7 @@ public:
      */
     void testTypeWithVertexShader() {
         const Shader shader = Shader::create(GL_VERTEX_SHADER);
-        assert(shader.type() == GL_VERTEX_SHADER);
+        CPPUNIT_ASSERT_EQUAL((GLenum) GL_VERTEX_SHADER, shader.type());
     }
 
     /**
@@ -290,7 +279,7 @@ public:
     void testFromIdWithGoodId() {
         const GLuint id = glCreateShader(GL_FRAGMENT_SHADER);
         const Shader shader = Shader::fromId(id);
-        assert (shader.id() == id);
+        CPPUNIT_ASSERT_EQUAL(id, shader.id());
     }
 
     /**
@@ -298,13 +287,7 @@ public:
      */
     void testFromIdWithBadId() {
         const GLuint id = -1;
-        try {
-            const Shader shader = Shader::fromId(id);
-        } catch (std::invalid_argument &e) {
-            // Exception caught
-            return;
-        }
-        throw runtime_error("Exception not caught!");
+        CPPUNIT_ASSERT_THROW(Shader::fromId(id), invalid_argument);
     }
 };
 
