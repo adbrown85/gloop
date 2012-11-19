@@ -200,6 +200,7 @@ dist: all
 	@$(CP) INSTALL $(tardir)
 	@$(CP) HACKING $(tardir)
 	@$(CP) LICENSE $(tardir)
+	@$(CP) NEWS $(tardir)
 	@$(CP) NOTICE $(tardir)
 	@$(CP) Makefile.in $(tardir)
 	@$(CP) configure $(tardir)
