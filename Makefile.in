@@ -5,6 +5,7 @@ package      := @PACKAGE_NAME@
 version      := @PACKAGE_VERSION@
 major        := @PACKAGE_MAJOR_VERSION@
 minor        := @PACKAGE_MINOR_VERSION@
+incremental  := @PACKAGE_INCREMENTAL_VERSION@
 tarname      := @PACKAGE_TARNAME@
 
 # Directories
@@ -120,7 +121,7 @@ $(library): $(objects)
             -o $(builddir)/$@ \
             $(LDOPTS) \
             -rpath $(libdir) \
-            -version-info $(minor):0:0 \
+            -version-info $(minor):$(incremental):0 \
             $(addprefix $(builddir)/,$(objects))
 
 # Installation
