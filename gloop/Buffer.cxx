@@ -124,6 +124,7 @@ void Buffer::data(GLsizeiptr size, const GLvoid* data, GLenum usage) const {
 Buffer& Buffer::operator=(const Buffer& bt) {
     _name = bt._name;
     _binding = bt._binding;
+    return (*this);
 }
 
 /**
