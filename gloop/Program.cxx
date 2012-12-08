@@ -368,6 +368,7 @@ string Program::log() const {
  */
 Program& Program::operator=(const Program& program) {
     _id = program._id;
+    return (*this);
 }
 
 /**
