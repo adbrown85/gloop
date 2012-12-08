@@ -163,6 +163,7 @@ string Shader::log() const {
  */
 Shader& Shader::operator=(const Shader &shader) {
     _id = shader._id;
+    return (*this);
 }
 
 /**
