@@ -212,14 +212,14 @@ Buffer Buffer::elementArrayBuffer() {
 }
 
 /**
- * Returns a handle for the `GL_PIXEL_PACK_BUFFER`.
+ * Returns a handle for the `GL_PIXEL_PACK_BUFFER` buffer.
  */
 Buffer Buffer::pixelPackBuffer() {
     return Buffer(GL_PIXEL_PACK_BUFFER, GL_PIXEL_PACK_BUFFER_BINDING);
 }
 
 /**
- * Returns a handle for the `GL_PIXEL_UNPACK_BUFFER`.
+ * Returns a handle for the `GL_PIXEL_UNPACK_BUFFER` buffer.
  */
 Buffer Buffer::pixelUnpackBuffer() {
     return Buffer(GL_PIXEL_UNPACK_BUFFER, GL_PIXEL_UNPACK_BUFFER_BINDING);
@@ -233,7 +233,7 @@ Buffer Buffer::textureBuffer() {
 }
 
 /**
- * Returns a handle for the `GL_TRANSFORM_FEEDBACK_BUFFER`.
+ * Returns a handle for the `GL_TRANSFORM_FEEDBACK_BUFFER` buffer.
  */
 Buffer Buffer::transformFeedbackBuffer() {
     return Buffer(GL_TRANSFORM_FEEDBACK_BUFFER, GL_TRANSFORM_FEEDBACK_BUFFER_BINDING);
