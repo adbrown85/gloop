@@ -1,3 +1,8 @@
+0.2
+ - Fixed operator= in Buffer, Program, and Shader not returning anything
+ - Added TextureObject, TextureTarget, and TextureUnit
+ - Renamed Buffer to BufferTarget
+
 0.1
  - Added Shader, Program, Attribute, and Uniform
  - Added Buffer and BufferObject
