@@ -273,7 +273,7 @@ void VertexArrayObject::vertexAttribPointer(const VertexAttribPointer& pointer) 
     }
 
     // Check if a buffer object is bound to the array buffer
-    const Buffer arrayBuffer = Buffer::arrayBuffer();
+    const BufferTarget arrayBuffer = BufferTarget::arrayBuffer();
     if (!arrayBuffer.bound()) {
         throw logic_error("[VertexArrayObject] No buffer object currently bound to GL_ARRAY_BUFFER!");
     }

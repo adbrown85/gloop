@@ -131,8 +131,8 @@ public:
 
         // Generate and bind a new buffer object
         const BufferObject bufferObject = BufferObject::generate();
-        const Buffer buffer = Buffer::arrayBuffer();
-        buffer.bind(bufferObject);
+        const BufferTarget bufferTarget = BufferTarget::arrayBuffer();
+        bufferTarget.bind(bufferObject);
 
         // Get the maximum number of vertex attributes
         GLint max;
@@ -163,8 +163,8 @@ public:
 
         // Generate and bind a new buffer object
         const BufferObject bufferObject = BufferObject::generate();
-        const Buffer buffer = Buffer::arrayBuffer();
-        buffer.bind(bufferObject);
+        const BufferTarget bufferTarget = BufferTarget::arrayBuffer();
+        bufferTarget.bind(bufferObject);
 
         // Make a pointer with a low size
         VertexAttribPointer vap;
@@ -190,8 +190,8 @@ public:
 
         // Generate and bind a new buffer object
         const BufferObject bufferObject = BufferObject::generate();
-        const Buffer buffer = Buffer::arrayBuffer();
-        buffer.bind(bufferObject);
+        const BufferTarget bufferTarget = BufferTarget::arrayBuffer();
+        bufferTarget.bind(bufferObject);
 
         // Make a pointer with a high size
         VertexAttribPointer vap;

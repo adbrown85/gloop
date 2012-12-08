@@ -27,16 +27,16 @@
 #include <cppunit/extensions/HelperMacros.h>
 #include <stdexcept>
 #include <GL/glfw.h>
-#include "gloop/Buffer.hxx"
 #include "gloop/BufferObject.hxx"
+#include "gloop/BufferTarget.hxx"
 using namespace std;
 using namespace Gloop;
 
 
 /**
- * Unit test for Buffer.
+ * Unit test for BufferTarget.
  */
-class BufferTest {
+class BufferTargetTest {
 public:
 
     /**
@@ -48,8 +48,8 @@ public:
         BufferObject bo = BufferObject::generate();
 
         // Use as the array buffer
-        const Buffer buffer = Buffer::arrayBuffer();
-        buffer.bind(bo);
+        const BufferTarget bt = BufferTarget::arrayBuffer();
+        bt.bind(bo);
 
         // Check the binding
         GLint id;
@@ -70,10 +70,10 @@ public:
         BufferObject bo = BufferObject::generate();
 
         // Use as the array buffer
-        const Buffer buffer = Buffer::arrayBuffer();
-        buffer.bind(bo);
-        buffer.data(16, NULL, GL_STATIC_DRAW);
-        buffer.unbind(bo);
+        const BufferTarget bt = BufferTarget::arrayBuffer();
+        bt.bind(bo);
+        bt.data(16, NULL, GL_STATIC_DRAW);
+        bt.unbind(bo);
 
         // Check for OpenGL errors
         const GLuint error = glGetError();
@@ -97,7 +97,7 @@ int main(int argc, char* argv[]) {
     glfwOpenWindow(512, 512, 0, 0, 0, 0, 0, 0, GLFW_WINDOW);
 
     // Run the test
-    BufferTest test;
+    BufferTargetTest test;
     try {
         test.testBind();
         test.testData();

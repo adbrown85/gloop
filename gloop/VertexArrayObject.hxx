@@ -27,7 +27,7 @@
 #define GLOOP_VERTEXARRAYOBJECT_HXX
 #include "gloop/common.h"
 #include "gloop/VertexAttribPointer.hxx"
-#include "gloop/Buffer.hxx"
+#include "gloop/BufferTarget.hxx"
 namespace Gloop {
 
 
@@ -59,7 +59,7 @@ namespace Gloop {
  * unbound.
  *
  * ~~~
- *     Buffer arrayBuffer = Buffer::arrayBuffer();
+ *     BufferTarget arrayBuffer = Buffer::arrayBuffer();
  *     arrayBuffer.bind(myBufferObject);
  * ~~~
  *
