@@ -106,6 +106,7 @@ public:
     GLsizei compressedImageSize(GLint level = 0) const;
     GLsizei depth(GLint level = 0) const;
     static TextureTarget fromEnum(GLenum enumeration);
+    void generateMipmap() const;
     GLsizei greenSize(GLint level = 0) const;
     GLenum greenType(GLint level = 0) const;
     GLsizei height(GLint level = 0) const;
@@ -162,6 +163,7 @@ private:
     GLint getTexLevelParameteri(GLint level, GLenum name) const;
     GLfloat getTexParameterf(GLenum name) const;
     GLint getTexParameteri(GLenum name) const;
+    static bool isAbleToGenerateMipmapFor(GLenum enumeration);
     static bool isCompareFunc(GLenum enumeration);
     static bool isCompareMode(GLenum enumeration);
     static bool isComponentType(GLenum enumeration);

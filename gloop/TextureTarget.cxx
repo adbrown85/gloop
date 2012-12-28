@@ -278,6 +278,22 @@ TextureTarget TextureTarget::fromEnum(const GLenum enumeration) {
 }
 
 /**
+ * Generates mipmaps for the texture bound to this target.
+ *
+ * Note that the target must be one of:
+ *  - `GL_TEXTURE_1D`
+ *  - `GL_TEXTURE_2D`
+ *  - `GL_TEXTURE_3D`
+ *  - `GL_TEXTURE_1D_ARRAY`
+ *  - `GL_TEXTURE_2D_ARRAY`
+ *  - `GL_TEXTURE_CUBE_MAP`
+ */
+void TextureTarget::generateMipmap() const {
+    assert (isAbleToGenerateMipmapFor(_id));
+    glGenerateMipmap(_id);
+}
+
+/**
  * Retrieves absolute value of the texture level-of-detail bias.
  *
  * @return Absolute value of the texture level-of-detail bias
@@ -388,6 +404,26 @@ GLenum TextureTarget::internalFormat(const GLint level) const {
     const GLenum value = getTexLevelParameteri(level, GL_TEXTURE_INTERNAL_FORMAT);
     assert (isInternalFormat(value));
     return value;
+}
+
+/**
+ * Checks if OpenGL is able to generate mipmaps for an enumeration.
+ *
+ * @param enumeration Enumeration to check
+ * @return `true` if OpenGL is able to generate mipmaps for the enumeration
+ */
+bool TextureTarget::isAbleToGenerateMipmapFor(const GLenum enumeration) {
+    switch (enumeration) {
+    case GL_TEXTURE_1D:
+    case GL_TEXTURE_2D:
+    case GL_TEXTURE_3D:
+    case GL_TEXTURE_1D_ARRAY:
+    case GL_TEXTURE_2D_ARRAY:
+    case GL_TEXTURE_CUBE_MAP:
+        return true;
+    default:
+        return false;
+    }
 }
 
 /**
