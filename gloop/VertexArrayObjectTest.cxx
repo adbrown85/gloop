@@ -138,13 +138,9 @@ public:
         GLint max;
         glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &max);
 
-        // Make a pointer with a bad index
-        VertexAttribPointer vap;
-        vap.index = max + 1;
-
-        // Try to use a pointer with the bad index
+        // Try to use a pointer with a bad index
         try {
-            vao.vertexAttribPointer(vap);
+            vao.vertexAttribPointer(VertexAttribPointer().index(max + 1));
         } catch (invalid_argument& e) {
             // Exception caught
             return;
@@ -166,13 +162,9 @@ public:
         const BufferTarget bufferTarget = BufferTarget::arrayBuffer();
         bufferTarget.bind(bufferObject);
 
-        // Make a pointer with a low size
-        VertexAttribPointer vap;
-        vap.size = 0;
-
-        // Try to use the pointer
+        // Try to use a pointer with a low size
         try {
-            vao.vertexAttribPointer(vap);
+            vao.vertexAttribPointer(VertexAttribPointer().size(0));
         } catch (invalid_argument& e) {
             return;
         }
@@ -193,13 +185,9 @@ public:
         const BufferTarget bufferTarget = BufferTarget::arrayBuffer();
         bufferTarget.bind(bufferObject);
 
-        // Make a pointer with a high size
-        VertexAttribPointer vap;
-        vap.size = 5;
-
-        // Try to use the pointer
+        // Try to use a pointer with a high size
         try {
-            vao.vertexAttribPointer(vap);
+            vao.vertexAttribPointer(VertexAttribPointer().size(5));
         } catch (invalid_argument& e) {
             return;
         }

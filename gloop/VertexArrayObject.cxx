@@ -279,17 +279,17 @@ void VertexArrayObject::vertexAttribPointer(const VertexAttribPointer& pointer) 
     }
 
     // Check index
-    if (pointer.index >= maxVertexAttribs()) {
+    if (pointer._index >= maxVertexAttribs()) {
         throw invalid_argument("[VertexArrayObject] Index is greater than or equal to GL_MAX_VERTEX_ATTRIBS");
     }
 
     // Check size
-    if ((pointer.size < 1) || (pointer.size > 4)) {
+    if ((pointer._size < 1) || (pointer._size > 4)) {
         throw invalid_argument("[VertexArrayObject] Size must be 1, 2, 3, or 4!");
     }
 
     // Check type
-    switch (pointer.type) {
+    switch (pointer._type) {
     case GL_BYTE:
     case GL_UNSIGNED_BYTE:
     case GL_SHORT:
@@ -306,12 +306,12 @@ void VertexArrayObject::vertexAttribPointer(const VertexAttribPointer& pointer) 
 
     // Set up pointer
     glVertexAttribPointer(
-            pointer.index,
-            pointer.size,
-            pointer.type,
-            pointer.normalized,
-            pointer.stride,
-            (const GLvoid*) pointer.offset);
+            pointer._index,
+            pointer._size,
+            pointer._type,
+            pointer._normalized,
+            pointer._stride,
+            (const GLvoid*) pointer._offset);
 }
 
 } /* namespace Gloop */
