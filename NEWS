@@ -1,3 +1,7 @@
+0.3
+ - Added TextureTarget::generateMipmap()
+ - VertexAttribPointer uses fluent paradigm
+
 0.2
  - Fixed operator= in Buffer, Program, and Shader not returning anything
  - Added TextureObject, TextureTarget, and TextureUnit
