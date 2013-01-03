@@ -74,6 +74,7 @@ TextureObject TextureObject::fromId(const GLuint id) {
  * Creates a new texture object.
  *
  * @return Handle for the texture object
+ * @throws std::runtime_error if texture object could not be generated
  */
 TextureObject TextureObject::generate() {
 
@@ -82,8 +83,9 @@ TextureObject TextureObject::generate() {
     glGenTextures(1, &id);
 
     // Check ID is valid
-    assert (id > 0);
-    assert (id != -1);
+    if (id == 0) {
+        throw std::runtime_error("[TextureObject] Could not generate texture object!");
+    }
 
     // Return the texture object
     return TextureObject(id);
