@@ -1,3 +1,7 @@
+0.3.1
+ - Fixed VertexAttribPointer not initializing stride
+ - TextureObject::generate() throws exception on fail instead of asserting
+
 0.3
  - Added TextureTarget::generateMipmap()
  - VertexAttribPointer uses fluent paradigm
