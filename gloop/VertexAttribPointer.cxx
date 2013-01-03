@@ -35,6 +35,7 @@ VertexAttribPointer::VertexAttribPointer() {
    _size = 4;
    _type = GL_FLOAT;
    _normalized = GL_FALSE;
+   _stride = 0;
    _offset = 0;
 }
 
