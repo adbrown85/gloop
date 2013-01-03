@@ -108,6 +108,7 @@ private:
     GLsizei _offset;
 // Friends
     friend class VertexArrayObject;
+    friend class VertexAttribPointerTest;
 };
 
 } /* namespace Gloop */
