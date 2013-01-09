@@ -144,6 +144,7 @@ public:
     static TextureTarget textureCubeMap();
     static TextureTarget textureRectangle();
     GLenum toEnum() const;
+    void unbind() const;
     GLsizei width(GLint level = 0) const;
     GLenum wrapR() const;
     void wrapR(GLenum wrapR) const;

@@ -1294,6 +1294,13 @@ GLenum TextureTarget::toEnum() const {
 }
 
 /**
+ * Unbinds any texture object currently bound to this texture target.
+ */
+void TextureTarget::unbind() const {
+    glBindTexture(_id, 0);
+}
+
+/**
  * Retrieves the width of an image in the texture object bound to this texture target.
  *
  * @param level Level-of-detail of image, with `0` being the base level, and _n_ being the _nth_ mipmap

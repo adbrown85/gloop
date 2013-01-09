@@ -1529,6 +1529,29 @@ public:
     }
 
     /**
+     * Ensures `TextureTarget::unbind` works correctly.
+     */
+    void testUnbind() {
+
+        // Generate and bind a new texture
+        const TextureObject texture = TextureObject::generate();
+        const TextureTarget target = TextureTarget::texture2d();
+        target.bind(texture);
+
+        // Check that it was bound correctly
+        GLint binding;
+        glGetIntegerv(GL_TEXTURE_BINDING_2D, &binding);
+        CPPUNIT_ASSERT_EQUAL(texture.id(), (GLuint) binding);
+
+        // Unbind
+        target.unbind();
+
+        // Check that it was unbound correctly
+        glGetIntegerv(GL_TEXTURE_BINDING_2D, &binding);
+        CPPUNIT_ASSERT_EQUAL((GLuint) 0, (GLuint) binding);
+    }
+
+    /**
      * Ensures TextureTarget::textureRectangle() returns the texture target for GL_TEXTURE_RECTANGLE.
      */
     void testTextureRectangle() {
@@ -1820,6 +1843,7 @@ int main(int argc, char* argv[]) {
         test.testTextureBuffer();
         test.testTextureCubeMap();
         test.testTextureRectangle();
+        test.testUnbind();
         test.testWidthWithOneDimensionalTextureImage();
         test.testWidthWithTwoDimensionalTextureImage();
         test.testWidthWithThreeDimensionalTextureImage();
