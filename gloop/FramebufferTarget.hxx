@@ -24,7 +24,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 #ifndef GLOOP_FRAMEBUFFER_TARGET_HXX
-#define GLOOP_FRAMEBUFFER_TARGET_CXX
+#define GLOOP_FRAMEBUFFER_TARGET_HXX
 #include <iostream>
 #include <string>
 #include "gloop/common.h"
