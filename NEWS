@@ -1,3 +1,6 @@
+0.4.1
+ - Fixed guard on FramebufferTarget header
+
 0.4.0
  - Added FramebufferObject and FramebufferTarget
  - Added TextureTarget::unbind()
