@@ -29,6 +29,8 @@
 #include <string>
 #include "gloop/common.h"
 #include "gloop/FramebufferObject.hxx"
+#include "gloop/RenderbufferObject.hxx"
+#include "gloop/RenderbufferTarget.hxx"
 #include "gloop/TextureObject.hxx"
 #include "gloop/TextureTarget.hxx"
 namespace Gloop {
@@ -55,6 +57,7 @@ public:
     FramebufferTarget& operator=(const FramebufferTarget& target);
     bool operator==(const FramebufferTarget& target) const;
     static FramebufferTarget readFramebuffer();
+    void renderbuffer(GLenum attachment, const RenderbufferObject& rbo) const;
     void texture1d(GLenum attachment, TextureTarget, TextureObject, GLint level) const;
     void texture2d(GLenum attachment, TextureTarget, TextureObject, GLint level) const;
     void texture3d(GLenum attachment, TextureTarget, TextureObject, GLint level, GLint layer) const;

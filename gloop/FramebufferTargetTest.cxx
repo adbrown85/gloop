@@ -31,10 +31,14 @@
 #include <GL/glfw.h>
 #include "gloop/FramebufferObject.hxx"
 #include "gloop/FramebufferTarget.hxx"
+#include "gloop/RenderbufferObject.hxx"
+#include "gloop/RenderbufferTarget.hxx"
 #include "gloop/TextureObject.hxx"
 #include "gloop/TextureTarget.hxx"
 using Gloop::FramebufferObject;
 using Gloop::FramebufferTarget;
+using Gloop::RenderbufferObject;
+using Gloop::RenderbufferTarget;
 using Gloop::TextureObject;
 using Gloop::TextureTarget;
 using std::string;
@@ -329,6 +333,28 @@ public:
     }
 
     /**
+     * Ensures `FramebufferTarget::renderbuffer` works correctly.
+     */
+    void testRenderbuffer() {
+
+        // Generate and bind a new FBO
+        const FramebufferObject fbo = FramebufferObject::generate();
+        const FramebufferTarget drawFramebuffer = FramebufferTarget::drawFramebuffer();
+        drawFramebuffer.bind(fbo);
+
+        // Generate and bind a new RBO
+        const RenderbufferObject rbo = RenderbufferObject::generate();
+        const RenderbufferTarget renderbuffer;
+        renderbuffer.bind(rbo);
+        renderbuffer.storage(GL_RGB, 2, 4);
+        renderbuffer.unbind();
+
+        // Attach the RBO
+        drawFramebuffer.renderbuffer(GL_COLOR_ATTACHMENT0, rbo);
+        CPPUNIT_ASSERT_EQUAL((GLenum) GL_FRAMEBUFFER_COMPLETE, drawFramebuffer.checkStatus());
+    }
+
+    /**
      * Ensures `FramebufferTarget::texture2d` works correctly.
      */
     void testTexture2d() {
@@ -422,6 +448,7 @@ int main(int argc, char* argv[]) {
         test.testIsAttachmentWithDepthStencilAttachment();
         test.testIsAttachmentWithStencilAttachment();
         test.testReadFramebuffer();
+        test.testRenderbuffer();
         test.testTexture2d();
         test.testUnbind();
     } catch (std::exception& e) {

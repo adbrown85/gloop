@@ -239,6 +239,21 @@ FramebufferTarget FramebufferTarget::readFramebuffer() {
 }
 
 /**
+ * Attaches a renderbuffer to the framebuffer currently bound to this target.
+ *
+ * @param attachment Framebuffer attachment to attach to, e.g. `GL_COLOR_ATTACHMENT0`
+ * @param rbo Renderbuffer to attach
+ * @pre A framebuffer is currently bound to this target
+ * @pre Attachment is a valid framebuffer attachment type
+ * @see http://www.opengl.org/sdk/docs/man3/xhtml/glFramebufferRenderbuffer.xml
+ */
+void FramebufferTarget::renderbuffer(const GLenum attachment, const RenderbufferObject& rbo) const {
+    assert (bound());
+    assert (isAttachment(attachment));
+    glFramebufferRenderbuffer(_id, attachment, GL_RENDERBUFFER, rbo.id());
+}
+
+/**
  * Attaches a one-dimensional texture to this framebuffer.
  *
  * @param attachment Attachment to attach to
