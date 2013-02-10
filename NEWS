@@ -1,3 +1,7 @@
+0.7
+ - Added Program::current()
+ - Program::fromId uses glIsProgram, not ctor
+
 0.6
  - Added FramebufferTarget::renderbuffer
 
