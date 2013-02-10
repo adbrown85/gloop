@@ -219,6 +219,20 @@ Program Program::create() {
 }
 
 /**
+ * Returns a handle for the current OpenGL program.
+ *
+ * @return Handle for the current OpenGL program
+ * @throws runtime_error if there is no current OpenGL program
+ */
+Program Program::current() {
+    const GLuint id = getCurrentProgram();
+    if (id == 0) {
+        throw runtime_error("[Program] No current OpenGL shader program!");
+    }
+    return Program(id);
+}
+
+/**
  * Detaches a shader from this program.
  *
  * @param shader Shader to detach
@@ -302,6 +316,17 @@ Program Program::fromId(const GLuint id) {
         throw invalid_argument("[Program] ID is not an existing OpenGL shader program!");
     }
     return Program(id);
+}
+
+/**
+ * Returns the identifier of the current OpenGL shader program.
+ *
+ * @return Identifier of the current OpenGL shader program, or `0` if none
+ */
+GLuint Program::getCurrentProgram() {
+    GLuint id;
+    glGetIntegerv(GL_CURRENT_PROGRAM, (GLint*) &id);
+    return id;
 }
 
 /**

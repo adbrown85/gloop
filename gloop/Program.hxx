@@ -49,6 +49,7 @@ public:
     GLint attribLocation(const std::string& name) const;
     void attribLocation(const std::string& name, GLuint location) const;
     static Program create();
+    static Program current();
     void detachShader(GLuint shader) const;
     void detachShader(const Shader& shader) const;
     void dispose() const;
@@ -74,6 +75,7 @@ private:
 // Methods
     explicit Program(GLuint id);
     Program();
+    static GLuint getCurrentProgram();
     static GLint getMaxDrawBuffers();
     bool isAttached(const Shader& shader) const;
 };

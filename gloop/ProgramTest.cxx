@@ -249,6 +249,43 @@ public:
     }
 
     /**
+     * Ensures `Program::current` throws when there is a current program.
+     */
+    void testCurrentWhenCurrentProgram() {
+
+        // Create a program
+        const Program program = Program::create();
+
+        // Create shaders
+        const Shader vs = Shader::create(GL_VERTEX_SHADER);
+        vs.source(GOOD_VERTEX_SHADER);
+        vs.compile();
+        const Shader fs = Shader::create(GL_FRAGMENT_SHADER);
+        fs.source(GOOD_FRAGMENT_SHADER);
+        fs.compile();
+
+        // Attach shaders
+        program.attachShader(vs);
+        program.attachShader(fs);
+
+        // Link
+        program.link();
+
+        // Use the program
+        program.use();
+        CPPUNIT_ASSERT_EQUAL(program.id(), Program::current().id());
+        glUseProgram(0);
+    }
+
+    /**
+     * Ensures `Program::current` throws when there is no current program.
+     */
+    void testCurrentWhenNoCurrentProgram() {
+        glUseProgram(0);
+        CPPUNIT_ASSERT_THROW(Program::current(), std::runtime_error);
+    }
+
+    /**
      * Ensures detaching an attached shader works correctly.
      */
     void testDetachShaderWithAttachedShader() {
@@ -515,6 +552,8 @@ int main(int argc, char *argv[]) {
         test.testAttachShaderWithBadShader();
         test.testAttachShaderWithGoodUnattachedShader();
         test.testAttachShaderWithGoodAttachedShader();
+        test.testCurrentWhenCurrentProgram();
+        test.testCurrentWhenNoCurrentProgram();
         test.testDetachShaderWithAttachedShader();
         test.testDetachShaderWithUnattachedShader();
         test.testLinkWithGoodVertexAndFragmentShader();
