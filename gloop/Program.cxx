@@ -33,12 +33,9 @@ namespace Gloop {
  * Constructs a program wrapping an existing shader program.
  *
  * @param id ID of existing shader program to wrap
- * @throws invalid_argument if ID is not an existing OpenGL shader program
  */
 Program::Program(GLuint id) : _id(id) {
-    if (!glIsProgram(_id)) {
-        throw invalid_argument("[Program] ID not an existing OpenGL shader program!");
-    }
+    // empty
 }
 
 /**
@@ -301,6 +298,9 @@ void Program::fragDataLocation(const std::string &name, GLuint location) const {
  * @throws invalid_argument if ID is not an OpenGL program
  */
 Program Program::fromId(const GLuint id) {
+    if (!glIsProgram(id)) {
+        throw invalid_argument("[Program] ID is not an existing OpenGL shader program!");
+    }
     return Program(id);
 }
 
