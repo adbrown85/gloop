@@ -1,3 +1,9 @@
+0.7.1
+ - Fixed tests not compiling on Linux
+ - Don't define GL3_PROTOTYPES and GL_GLEXT_PROTOTYPES if already defined
+ - Fixed test for bad vertex shader not failing with NVIDIA cards
+ - Fixed test for unbinding a Renderbuffer failing with NVIDIA cards
+
 0.7
  - Added Program::current()
  - Program::fromId uses glIsProgram, not ctor
