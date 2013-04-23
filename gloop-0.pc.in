@@ -12,5 +12,5 @@ includedir=@includedir@
 Name: ${name}
 Description: ${description}
 Version: ${version}
-Libs: -L${libdir} -l${tarname}-${major}
+Libs: -L${libdir} -l${tarname}-${major} @LIBS@
 Cflags: -I${includedir}/${tarname}-${major}
