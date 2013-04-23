@@ -295,7 +295,7 @@ public:
 
         // Check binding
         GLuint id;
-        glGetIntegerv(GL_RENDERBUFFER, (GLint*) &id);
+        glGetIntegerv(GL_RENDERBUFFER_BINDING, (GLint*) &id);
         CPPUNIT_ASSERT_EQUAL((GLuint) 0, id);
     }
 };
