@@ -40,6 +40,19 @@ AC_PROG_SED
 PKG_PROG_PKG_CONFIG
 LT_INIT
 
+# Check for OpenGL
+error_no_gl() {
+    echo "------------------------------------------------------------"
+    echo " OpenGL is needed to build MY_NAME."
+    echo " Please visit 'http://opengl.org/'."
+    echo "------------------------------------------------------------"
+    (exit 1); exit 1;
+}
+if test "$host_vendor" != 'apple'; then
+    AC_CHECK_HEADER([GL/gl.h], [], [error_no_gl], [])
+    AC_CHECK_LIB([GL], [glGetString], [], [error_no_gl], [])
+fi
+
 # Check for GLFW
 error_no_glfw() {
     AC_MSG_RESULT([no])
