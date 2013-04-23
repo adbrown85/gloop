@@ -46,9 +46,7 @@ public:
         shader.source(
                 "#version 140\n"
                 "out vec4 FragColor;\n"
-                "void main() {\n"
-                "    FragColor = vec4(1)\n"
-                "}\n");
+                "FragColor = vec4(1);\n");
         shader.compile();
         CPPUNIT_ASSERT(!shader.compiled());
     }
@@ -76,9 +74,7 @@ public:
         shader.source(
                 "#version 140\n"
                 "in vec4 MCVertex;\n"
-                "void main() {\n"
-                "    gl_FragColor = MCVertex;\n"
-                "}\n");
+                "gl_Position = MCVertex;\n");
         shader.compile();
         CPPUNIT_ASSERT(!shader.compiled());
     }
