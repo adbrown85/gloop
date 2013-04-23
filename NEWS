@@ -1,3 +1,7 @@
+0.7.2
+ - Fixed undefined references to OpenGL functions on Linux
+ - Include '-lGL' in pkgconfig file on Linux
+
 0.7.1
  - Fixed tests not compiling on Linux
  - Don't define GL3_PROTOTYPES and GL_GLEXT_PROTOTYPES if already defined
